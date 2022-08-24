@@ -14,14 +14,20 @@ export const bottomBarStyle = css({
 export const buttonStyle = css({
     border: 0,
     color: '#fff',
-    background: 'none',
+    background: '#fff2',
     boxShadow: 'none',
-    borderRadius: '0px',
+    // borderRadius: '0px',
     alignSelf: 'center',
     margin: 'auto',
     marginLeft: 'auto',
-    fontSize: '1.8em',
+    // fontSize: '1.8em',
+    width: "3em",
+    height: "3em",
+    fontSize: "3em",
+    fontWeight: "bold",
+    borderRadius: "50%",
 });
+
 
 export const h2Style = css({
     color: 'rgba(255,255, 255,0.6)',

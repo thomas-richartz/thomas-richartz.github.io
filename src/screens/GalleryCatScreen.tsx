@@ -125,7 +125,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                         showPrevImage();
                     }
                 }
-
             }
         },
         onWheelStart: (state) => doSomethingWith(state),
@@ -184,8 +183,8 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-        }} onClick={() => setShowImage(undefined)}>
-            <button css={[buttonStyle, { opacity: 0 }]}> &lt; </button>
+        }} >
+            <button css={[buttonStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &lt; </button>
             <img
                 {...bind()}
                 key={showImage.filename}
@@ -195,8 +194,10 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                     maxWidth: "90vw",
                     objectFit: "cover",
                     border: "1px solid #fff",
-                }} src={`assets/images/${showImage.filename}`} />
-            <button css={[buttonStyle, { opacity: 0 }]}> &gt; </button>
+                }} src={`assets/images/${showImage.filename}`}
+                onClick={() => setShowImage(undefined)}
+            />
+            <button css={[buttonStyle, { opacity: 1 }]} onClick={() => showNextImage()}> &gt; </button>
         </div>}
     </div>;
 }
