@@ -16,6 +16,9 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     const [showImage, setShowImage] = useState<GalleryImage | undefined>(undefined);
 
     const catRefs = useRef<HTMLImageElement[]>([]);
+    const wheelOffset = useRef(0)
+    const dragOffset = useRef(0)
+    const yOffset = useRef(0)
 
     // images sortBy category
     const sortedImagesByCat = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
@@ -23,7 +26,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     const images: GalleryImage[] = [];
 
     sortedImagesByCat.forEach(image => {
-        console.log(image)
         if (cat === image.cat) {
             images.push(image);
         }
@@ -34,16 +36,98 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     }, []);
 
 
-    const doSomethingWith = (state:any) => {
+
+
+    const doSomethingWith = (state: any) => {
+        return;
+        /*
         // state.wheeling === true ? next : prev 
-        console && console.log(state);
+        if (state.wheeling === true) {
+            // console && console.log(state);
+
+            let prevImage: GalleryImage;
+            let nextImage: GalleryImage;
+            let takeNext: boolean = false;
+            let hasDoneSoemthing: boolean = false;
+            images.forEach((image) => {
+                if (hasDoneSoemthing) return;
+                if (takeNext) {
+                    nextImage = image;
+                    // console.log(showImage)
+                    // console.log(nextImage)
+                    setShowImage(nextImage);
+                    hasDoneSoemthing = true;
+                    return;
+                }
+                if (image!.title !== showImage?.title) {
+                    prevImage = image;
+                } else {
+                    takeNext = true;
+                }
+            });
+        }*/
     };
+
+    const showNextImage = () => {
+        let nextImage: GalleryImage;
+        let takeNext: boolean = false;
+        let hasDoneSoemthing: boolean = false;
+        images.forEach((image) => {
+            if (hasDoneSoemthing) return;
+            if (takeNext) {
+                nextImage = image;
+                setShowImage(nextImage);
+                hasDoneSoemthing = true;
+                return;
+            }
+            if (image!.title === showImage?.title) {
+                takeNext = true;
+            }
+        });
+    };
+
+    const showPrevImage = () => {
+        // console && console.log(state);
+        let prevImage: GalleryImage;
+        let hasDoneSoemthing: boolean = false;
+        images.forEach((image) => {
+            if (hasDoneSoemthing) return;
+            if (image!.title !== showImage?.title) {
+                prevImage = image;
+                setShowImage(prevImage);
+                hasDoneSoemthing = true;
+                return;
+            }
+        });
+
+    };
+
 
     const bind = useGesture({
         onScroll: (state) => doSomethingWith(state),
         onScrollStart: (state) => doSomethingWith(state),
         onScrollEnd: (state) => doSomethingWith(state),
-        onWheel: (state) => doSomethingWith(state),
+        onWheel: ({ event, offset: [, y], direction: [, dy] }) => {
+            event.preventDefault()
+            if (dy) {
+                wheelOffset.current = y
+                // runSprings(dragOffset.current + y, dy)
+                // console.log(dragOffset.current + y, dy)
+                console.log(yOffset.current, y)
+                if (yOffset.current + 200 < y || (y < 0 && yOffset.current - 200 > y)) {
+                    if (dy === 1) {
+                        yOffset.current = y
+                        showNextImage();
+                    }
+                    else if (dy === -1) {
+                        yOffset.current = y
+                        console.log("rewind")
+                        showPrevImage();
+                    }
+                }
+
+            }
+        },
         onWheelStart: (state) => doSomethingWith(state),
         onWheelEnd: (state) => doSomethingWith(state),
     });
@@ -83,8 +167,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 key={index}
                 alt={image!.title}
                 ref={el => {
-                    console.log(el);
-                    console.log("add index " + index);
+                    // console.log(el, "add index " + index);
                     if (el) catRefs.current.push(el);
                 }}
                 css={imageImgStyles} src={`assets/images/${image!.filename}`} />
