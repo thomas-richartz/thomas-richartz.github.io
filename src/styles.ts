@@ -36,3 +36,14 @@ export const h2Style = css({
     marginLeft: '1vw',
 });
 
+export const catsH2Style = css({
+    color: 'rgba(255,255, 255,0.6)',
+    textShadow: '4px 3px 0px #000, 9px 8px 0px rgba(255,255,255,0.15)',
+    padding: '4px',
+    marginLeft: '1vw',
+    display: "none",
+    "@media (min-width: 1028px)": {
+        display: "block",
+    }
+});
+

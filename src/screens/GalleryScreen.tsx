@@ -42,7 +42,7 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
     });
 
     return <div css={styles}>{images.map((image, index) => {
-        return <article style={{ width: '33.3333%', minHeight: '33vh', height: '33vh', overflow: 'none', backgroundColor: '#000', }} onClick={() => { setHide(true); setTimeout(() => { onCatClick(image!.cat); onNavigate("cat"); }, 800); }} >
+        return <article style={{ width: '100%', minHeight: '33vh', height: '33vh', overflow: 'none', backgroundColor: '#000', }} onClick={() => { setHide(true); setTimeout(() => { onCatClick(image!.cat); onNavigate("cat"); }, 800); }} >
             <h2 css={h2Style}>{image!.cat}</h2>
             <img
                 key={index}

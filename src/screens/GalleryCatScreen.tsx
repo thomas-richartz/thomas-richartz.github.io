@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
 import { allImages, GalleryImage } from "../assets/assets";
-import { buttonStyle, h2Style } from "../styles";
+import { buttonStyle, catsH2Style } from "../styles";
 
 type GalleryCatScreenProps = {
     cat: string;
@@ -122,7 +122,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             if (!last) {
                 if (dy && !wait) {
                     wheelOffset.current = y
-                    // runSprings(dragOffset.current + y, dy)
                     // console.log(dragOffset.current + y, dy)
                     console.log(yOffset.current, y)
                     if (yOffset.current + 200 < y || (y < 0 && yOffset.current - 200 > y)) {
@@ -173,7 +172,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
 
     return <div css={imageWrapperStyles}>{images.map((image, index) => {
         return <article css={imageStyles} onClick={() => { setShowImage(image) }} >
-            <h2 css={h2Style}>{image!.title}</h2>
+            <h2 css={catsH2Style}>{image!.title}</h2>
             <img
                 key={index}
                 alt={image!.title}
