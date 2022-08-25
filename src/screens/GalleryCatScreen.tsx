@@ -31,8 +31,18 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         }
     });
 
+    const escKey = (event: any) => {
+        if (event.key === "Escape") {
+            setShowImage(undefined);
+        }
+    };
+
     useEffect(() => {
         setTimeout(() => { setHide(false); }, 800)
+        document.addEventListener("keydown", escKey, false);
+        return () => {
+            document.removeEventListener("keydown", escKey);
+        }
     }, []);
 
 
@@ -107,22 +117,24 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         onScroll: (state) => doSomethingWith(state),
         onScrollStart: (state) => doSomethingWith(state),
         onScrollEnd: (state) => doSomethingWith(state),
-        onWheel: ({ event, offset: [, y], direction: [, dy] }) => {
-            event.preventDefault()
-            if (dy) {
-                wheelOffset.current = y
-                // runSprings(dragOffset.current + y, dy)
-                // console.log(dragOffset.current + y, dy)
-                console.log(yOffset.current, y)
-                if (yOffset.current + 200 < y || (y < 0 && yOffset.current - 200 > y)) {
-                    if (dy === 1) {
-                        yOffset.current = y
-                        showNextImage();
-                    }
-                    else if (dy === -1) {
-                        yOffset.current = y
-                        console.log("rewind")
-                        showPrevImage();
+        onWheel: ({ event, last, offset: [, y], direction: [, dy], memo: wait = false }) => {
+            event.preventDefault();
+            if (!last) {
+                if (dy && !wait) {
+                    wheelOffset.current = y
+                    // runSprings(dragOffset.current + y, dy)
+                    // console.log(dragOffset.current + y, dy)
+                    console.log(yOffset.current, y)
+                    if (yOffset.current + 200 < y || (y < 0 && yOffset.current - 200 > y)) {
+                        if (dy === 1) {
+                            yOffset.current = y
+                            showNextImage();
+                        }
+                        else if (dy === -1) {
+                            yOffset.current = y
+                            console.log("rewind")
+                            showPrevImage();
+                        }
                     }
                 }
             }
