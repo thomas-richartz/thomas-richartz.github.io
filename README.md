@@ -3,6 +3,14 @@
 `yarn add gh-pages`  
 `yarn deploy -- -m "deploy app to github-pages"`
 
+## TODO
+
+- lazy load images
+- website title
+- Lightbox: Title?, mobile? swipable?  
+- Youtube Link 
+- tbd Landingpage?
+
 
 ## Getting Started with Create React App
 

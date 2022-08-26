@@ -2,7 +2,6 @@
 import { css } from "@emotion/react";
 import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
-import { unstable_batchedUpdates } from "react-dom";
 import { allImages, GalleryImage } from "../assets/assets";
 import { buttonStyle, catsH2Style } from "../styles";
 
@@ -18,7 +17,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
 
     const catRefs = useRef<HTMLImageElement[]>([]);
     const wheelOffset = useRef(0)
-    const dragOffset = useRef(0)
+    // const dragOffset = useRef(0)
     const yOffset = useRef(0)
 
     // images sortBy category
@@ -46,38 +45,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         }
     }, []);
 
-
-
-
-    const doSomethingWith = (state: any) => {
-        return;
-        /*
-        // state.wheeling === true ? next : prev 
-        if (state.wheeling === true) {
-            // console && console.log(state);
-
-            let prevImage: GalleryImage;
-            let nextImage: GalleryImage;
-            let takeNext: boolean = false;
-            let hasDoneSoemthing: boolean = false;
-            images.forEach((image) => {
-                if (hasDoneSoemthing) return;
-                if (takeNext) {
-                    nextImage = image;
-                    // console.log(showImage)
-                    // console.log(nextImage)
-                    setShowImage(nextImage);
-                    hasDoneSoemthing = true;
-                    return;
-                }
-                if (image!.title !== showImage?.title) {
-                    prevImage = image;
-                } else {
-                    takeNext = true;
-                }
-            });
-        }*/
-    };
 
     const showNextImage = () => {
         let nextImage: GalleryImage;
@@ -115,9 +82,9 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
 
 
     const bind = useGesture({
-        onScroll: (state) => doSomethingWith(state),
-        onScrollStart: (state) => doSomethingWith(state),
-        onScrollEnd: (state) => doSomethingWith(state),
+        // onScroll: (state) => doSomethingWith(state),
+        // onScrollStart: (state) => doSomethingWith(state),
+        // onScrollEnd: (state) => doSomethingWith(state),
         onWheel: ({ event, last, offset: [, y], direction: [, dy], memo: wait = false }) => {
             event.preventDefault();
             if (!last) {
@@ -139,8 +106,8 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 }
             }
         },
-        onWheelStart: (state) => doSomethingWith(state),
-        onWheelEnd: (state) => doSomethingWith(state),
+        // onWheelStart: (state) => doSomethingWith(state),
+        // onWheelEnd: (state) => doSomethingWith(state),
     });
 
 
@@ -199,6 +166,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             <button css={[buttonStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &lt; </button>
             <img
                 {...bind()}
+                loading="lazy"
                 key={showImage.filename}
                 alt={showImage.title}
                 css={{
