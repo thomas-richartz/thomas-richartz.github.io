@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import { useGesture } from "@use-gesture/react";
 import { useEffect, useRef, useState } from "react";
+import { unstable_batchedUpdates } from "react-dom";
 import { allImages, GalleryImage } from "../assets/assets";
 import { buttonStyle, catsH2Style } from "../styles";
 
@@ -200,11 +201,15 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 {...bind()}
                 key={showImage.filename}
                 alt={showImage.title}
-                style={{
-                    height: "80vh",
+                css={{
+                    height: "unset",
+                    width: "69vw",
                     maxWidth: "90vw",
                     objectFit: "cover",
                     border: "1px solid #fff",
+                    "@media (min-width: 1096x)": {
+                        height: "80vh",
+                    }
                 }} src={`assets/images/${showImage.filename}`}
                 onClick={() => setShowImage(undefined)}
             />

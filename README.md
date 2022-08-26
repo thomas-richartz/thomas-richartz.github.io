@@ -1,5 +1,8 @@
 # thomas-richartz.github.io
 
+`yarn add gh-pages`  
+`yarn deploy -- -m "deploy app to github-pages"`
+
 
 ## Getting Started with Create React App
 
