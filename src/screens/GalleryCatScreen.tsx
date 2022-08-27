@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useGesture } from "@use-gesture/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { allImages, GalleryImage } from "../assets/assets";
+import { LazyLoadImage } from "../components/LazyLoadImage";
+import { Spinner } from "../components/Spinner";
 import { buttonStyle, catsH2Style } from "../styles";
 
 type GalleryCatScreenProps = {
@@ -14,11 +15,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
 
     const [hide, setHide] = useState<boolean>(true);
     const [showImage, setShowImage] = useState<GalleryImage | undefined>(undefined);
-
-    const catRefs = useRef<HTMLImageElement[]>([]);
-    const wheelOffset = useRef(0)
-    // const dragOffset = useRef(0)
-    const yOffset = useRef(0)
 
     // images sortBy category
     const sortedImagesByCat = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
@@ -80,37 +76,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
 
     };
 
-
-    const bind = useGesture({
-        // onScroll: (state) => doSomethingWith(state),
-        // onScrollStart: (state) => doSomethingWith(state),
-        // onScrollEnd: (state) => doSomethingWith(state),
-        onWheel: ({ event, last, offset: [, y], direction: [, dy], memo: wait = false }) => {
-            event.preventDefault();
-            if (!last) {
-                if (dy && !wait) {
-                    wheelOffset.current = y
-                    // console.log(dragOffset.current + y, dy)
-                    console.log(yOffset.current, y)
-                    if (yOffset.current + 200 < y || (y < 0 && yOffset.current - 200 > y)) {
-                        if (dy === 1) {
-                            yOffset.current = y
-                            showNextImage();
-                        }
-                        else if (dy === -1) {
-                            yOffset.current = y
-                            console.log("rewind")
-                            showPrevImage();
-                        }
-                    }
-                }
-            }
-        },
-        // onWheelStart: (state) => doSomethingWith(state),
-        // onWheelEnd: (state) => doSomethingWith(state),
-    });
-
-
     const imageWrapperStyles = css({
         display: 'flex',
         flexWrap: 'wrap',
@@ -139,16 +104,16 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     });
 
     return <div css={imageWrapperStyles}>{images.map((image, index) => {
-        return <article css={imageStyles} onClick={() => { setShowImage(image) }} >
+        return  <article css={imageStyles} onClick={() => { setShowImage(image) }} >
             <h2 css={catsH2Style}>{image!.title}</h2>
-            <img
+            <LazyLoadImage
+                placeholder={<Spinner />}
+                // placeholderSrc={`assets/images/${image!.filename}-s.webp`}
                 key={index}
                 alt={image!.title}
-                ref={el => {
-                    // console.log(el, "add index " + index);
-                    if (el) catRefs.current.push(el);
-                }}
-                css={imageImgStyles} src={`assets/images/${image!.filename}`} />
+                cssStyle={imageImgStyles} 
+                src={`assets/images/${image!.filename}`}
+            />
         </article>
     })}
         {showImage !== undefined && <div css={{
@@ -165,7 +130,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         }} >
             <button css={[buttonStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &lt; </button>
             <img
-                {...bind()}
                 loading="lazy"
                 key={showImage.filename}
                 alt={showImage.title}
