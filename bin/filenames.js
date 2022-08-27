@@ -19,3 +19,4 @@ fs.readdirSync(imagesFolder).forEach(folder => {
 
     });
 });
+

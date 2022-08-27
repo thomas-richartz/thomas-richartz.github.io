@@ -171,9 +171,9 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 alt={showImage.title}
                 css={{
                     height: "unset",
-                    width: "69vw",
-                    maxWidth: "90vw",
-                    objectFit: "cover",
+                    maxWidth: "59vw",
+                    maxHeight: "59vh",
+                    objectFit: "contain",
                     border: "1px solid #fff",
                     "@media (min-width: 1096x)": {
                         height: "80vh",
