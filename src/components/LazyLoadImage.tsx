@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { SerializedStyles } from "@emotion/react";
-import { ReactElement } from "react";
+import { ReactElement, useEffect, useState } from "react";
 
 
 type LazyLoadImageProps = {
     placeholder: ReactElement;
-    alt:string;
-    src:string;
-    cssStyle:SerializedStyles;
+    alt: string;
+    src: string;
+    cssStyle: SerializedStyles;
 }
 
 export const LazyLoadImage = ({
@@ -15,6 +15,24 @@ export const LazyLoadImage = ({
     alt,
     src,
     cssStyle
-}:LazyLoadImageProps) => {
-    return <img loading="lazy" alt={alt}  css={cssStyle} src={src} />
+}: LazyLoadImageProps) => {
+
+    const [isLoading, SetIsLoading] = useState<boolean>(true);
+    const [currentSrc, SetCurrentSrc] = useState<string>("");
+
+    useEffect(() => {
+        const image = new Image();
+        image.src = src;
+        image.onload = () => {
+            SetIsLoading(false);
+            SetCurrentSrc(src)
+        };
+        console.log(image)
+    }, [src])
+
+    if (isLoading) {
+        return <><h1>Loading ...</h1></>;
+        // return placeholder;
+    }
+    return <img loading="lazy" alt={alt} css={cssStyle} src={currentSrc} />
 }

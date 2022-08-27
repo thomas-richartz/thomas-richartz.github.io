@@ -31,5 +31,5 @@ export const Spinner = (): JSX.Element => {
             animation: scanner + " 0.9s linear infinite",
             zIndex: 1,
         }
-    })}>Loading...</div>
+    })}><h1>Loading...</h1></div>
 }

@@ -108,6 +108,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             <h2 css={catsH2Style}>{image!.title}</h2>
             <LazyLoadImage
                 placeholder={<Spinner />}
+                // run bin/preview to generate thumbs 
                 // placeholderSrc={`assets/images/${image!.filename}-s.webp`}
                 key={index}
                 alt={image!.title}
