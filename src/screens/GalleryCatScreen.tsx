@@ -3,7 +3,6 @@ import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { allImages, GalleryImage } from "../assets/assets";
 import { LazyLoadImage } from "../components/LazyLoadImage";
-import { Spinner } from "../components/Spinner";
 import { buttonStyle, catsH2Style } from "../styles";
 
 type GalleryCatScreenProps = {
@@ -107,7 +106,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         return  <article css={imageStyles} onClick={() => { setShowImage(image) }} >
             <h2 css={catsH2Style}>{image!.title}</h2>
             <LazyLoadImage
-                placeholder={<Spinner />}
                 // run bin/preview to generate thumbs 
                 // placeholderSrc={`assets/images/${image!.filename}-s.webp`}
                 key={index}
