@@ -8,7 +8,7 @@ import { LandingScreen } from './screens/LandingScreen';
 
 function App() {
 
-  const [selectedScreen, setSelectedScreen] = useState<string>("gallery");
+  const [selectedScreen, setSelectedScreen] = useState<string>("landing");
   // const [selectedScreen, setSelectedScreen] = useState<string>("landing");
   const [selectedCat, setSelectedCat] = useState<string>("");
 
@@ -31,7 +31,7 @@ function App() {
       <HeaderBar />
       <main>
       {screen}
-      <BottomBar onNavigate={onNavigate} />
+      <BottomBar onNavigate={onNavigate} selectedScreen={selectedScreen} />
       </main>
     </div>
   );

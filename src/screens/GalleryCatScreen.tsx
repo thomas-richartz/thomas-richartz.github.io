@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { allImages, GalleryImage } from "../assets/assets";
 import { LazyLoadImage } from "../components/LazyLoadImage";
 import { buttonStyle, catsH2Style } from "../styles";
@@ -16,7 +16,10 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     const [showImage, setShowImage] = useState<GalleryImage | undefined>(undefined);
 
     // images sortBy category
-    const sortedImagesByCat = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
+    const sortedImagesByCat = useMemo(()=>{
+        const results:GalleryImage[] = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
+        return results;
+    }, [allImages]);
 
     const images: GalleryImage[] = [];
 

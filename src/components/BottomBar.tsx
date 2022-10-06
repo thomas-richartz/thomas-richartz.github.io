@@ -4,12 +4,18 @@ import { bottomBarStyle } from "../styles";
 
 interface BottomBarProps {
     onNavigate: (screen:string) => void;
+    selectedScreen: string;
 }
 
-export const BottomBar = ({onNavigate}:BottomBarProps): JSX.Element => {
+export const BottomBar = ({onNavigate, selectedScreen}:BottomBarProps): JSX.Element => {
+
+    let parentScreen = "gallery";
+    if (selectedScreen === "gallery") {
+        parentScreen = "landing";
+    }
 
     return <><div css={bottomBarStyle}>
-        <span css={{
+        {/* <span css={{
             border: 0,
             color:'#666',
             background: 'none',
@@ -20,7 +26,7 @@ export const BottomBar = ({onNavigate}:BottomBarProps): JSX.Element => {
             '&:hover,&:focus' : {
                 color:'#999',
             }
-        }} > &copy; Thomas Richartz 2022</span>
+        }} > &copy; Thomas Richartz 2022</span> */}
         <button css={{
             border: 0,
             color:'#fff',
@@ -29,9 +35,8 @@ export const BottomBar = ({onNavigate}:BottomBarProps): JSX.Element => {
             borderRadius: '0px',
             alignSelf:'center',
             margin: 'auto',
-            marginLeft: '33vw',
             fontSize: '1.8em',
-        }}  onClick={() => onNavigate("gallery")}>⌂</button>
+        }}  onClick={() => onNavigate(parentScreen)}>⌂</button>
     </div>
     </>
 

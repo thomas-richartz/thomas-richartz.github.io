@@ -47,3 +47,12 @@ export const catsH2Style = css({
     }
 });
 
+
+export const landingWrapStyle = css({
+    color: 'rgba(255,255, 255,0.6)',
+    textShadow: '4px 3px 0px #000, 9px 8px 0px rgba(255,255,255,0.15)',
+    padding: '4px',
+    margin: 'auto',
+    width: "fit-content",
+    paddingTop: "12px",
+});

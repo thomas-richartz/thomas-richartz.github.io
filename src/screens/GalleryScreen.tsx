@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { allImages, GalleryImage } from "../assets/assets";
 import { h2Style } from "../styles";
 
@@ -20,8 +20,19 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
     }, []);
 
     // images sortBy category and time
-    const sortedImagesByCat = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
-    const sortedImagesByCatAndRange = sortedImagesByCat.sort((a, b) => (a.range[0] > b.range[0] ? -1 : 1))
+
+    // images sortBy category
+    const sortedImagesByCat = useMemo(()=>{
+        const results:GalleryImage[] = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
+        return results;
+    }, [allImages]);
+
+    // const sortedImagesByCat = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
+    // const sortedImagesByCatAndRange = sortedImagesByCat.sort((a, b) => (a.range[0] > b.range[0] ? -1 : 1))
+    const sortedImagesByCatAndRange = useMemo(()=>{
+        const results:GalleryImage[] = sortedImagesByCat.sort((a, b) => (a.range[0] > b.range[0] ? -1 : 1));
+        return results;
+    }, [sortedImagesByCat]);
 
     const catsListedSet = new Set();
 
