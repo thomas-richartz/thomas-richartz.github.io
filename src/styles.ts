@@ -48,11 +48,41 @@ export const catsH2Style = css({
 });
 
 
+export const centeredImageStyle = css({
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "240px",
+    "@media (min-width: 1028px)": {
+        width: "240px",
+    }
+});
+
+export const gallerySliderWrapStyle = css({
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "100%",
+    height: "100%",
+});
+
+export const warehouseWrapStyle = css({
+    display: "block",
+    width: "100%",
+    background: "url(/assets/img/marten-bjork-warehouse-unsplash.jpg)",
+    height: "100%",
+    backgroundPosition: "center",
+    backgroundSize: "cover",
+});
+
 export const landingWrapStyle = css({
     color: 'rgba(255,255, 255,0.6)',
     textShadow: '4px 3px 0px #000, 9px 8px 0px rgba(255,255,255,0.15)',
     padding: '4px',
     margin: 'auto',
-    width: "fit-content",
+    // width: "fit-content",
+    width: "100vw",
     paddingTop: "12px",
 });
+
+

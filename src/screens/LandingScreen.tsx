@@ -1,18 +1,32 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useEffect, useRef, useState } from "react";
-import { landingWrapStyle } from "../styles";
+import { useEffect, useState } from "react";
+import { GallerySlider } from "../components/GallerySlider";
+import { centeredImageStyle, landingWrapStyle, warehouseWrapStyle } from "../styles";
 
 type LandingScreenProps = {
     // cat: string;
-    onCatClick: (cat:string) => void;
-    onNavigate: (screen:string) => void;
+    onCatClick: (cat: string) => void;
+    onNavigate: (screen: string) => void;
 };
 
-export const LandingScreen = ({onCatClick, onNavigate}:LandingScreenProps): JSX.Element => {
-    return <div css={landingWrapStyle} onClick={() => onNavigate("gallery")}>
-        <h1>Thomas Richartz</h1>
-        <img src="/assets/img/thomas-richartz.jpg" />
+export const LandingScreen = ({ onCatClick, onNavigate }: LandingScreenProps): JSX.Element => {
+
+    const [hide, setHide] = useState<boolean>(true);
+
+    useEffect(() => {
+        setTimeout(() => { setHide(false); }, 800)
+    }, []);
+
+    const fadeStyles = css({
+        opacity: hide ? 0 : 1,
+        transition: "opacity 800ms",
+    });
+
+    return <div css={[warehouseWrapStyle, fadeStyles, landingWrapStyle]} onClick={() => onNavigate("gallery")}>
+        <img css={centeredImageStyle} src="/assets/img/thomas-richartz.jpg" />
+        <h1 style={{textAlign:"center"}}>Thomas Richartz</h1>
+        <GallerySlider />
     </div>;
 }
 
