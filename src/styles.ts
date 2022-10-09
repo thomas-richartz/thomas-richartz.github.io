@@ -13,8 +13,8 @@ export const bottomBarStyle = css({
 
 export const buttonStyle = css({
     border: 0,
-    color: '#fff',
-    background: '#fff2',
+    color: '#91888869',
+    background: '#fff1',
     boxShadow: 'none',
     // borderRadius: '0px',
     alignSelf: 'center',
@@ -22,10 +22,18 @@ export const buttonStyle = css({
     marginLeft: 'auto',
     // fontSize: '1.8em',
     width: "3em",
-    height: "3em",
+    height: "100vh",
     fontSize: "3em",
     fontWeight: "bold",
-    borderRadius: "50%",
+    // borderRadius: "50%",
+});
+
+export const buttonLeftStyle = css({
+    marginLeft: 0,
+});
+
+export const buttonRightStyle = css({
+    marginRight: 0,
 });
 
 

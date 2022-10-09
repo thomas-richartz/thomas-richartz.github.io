@@ -24,7 +24,7 @@ export const LandingScreen = ({ onCatClick, onNavigate }: LandingScreenProps): J
     });
 
     return <div css={[warehouseWrapStyle, fadeStyles, landingWrapStyle]} onClick={() => onNavigate("gallery")}>
-        <img css={centeredImageStyle} src="/assets/img/thomas-richartz.jpg" />
+        <img css={centeredImageStyle} src="/assets/img/thomas-richartz.jpg" alt={"thomas-richartz"} />
         <h1 style={{textAlign:"center"}}>Thomas Richartz</h1>
         <GallerySlider />
     </div>;

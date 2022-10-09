@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import { useEffect, useMemo, useState } from "react";
 import { allImages, GalleryImage } from "../assets/assets";
 import { LazyLoadImage } from "../components/LazyLoadImage";
-import { buttonStyle, catsH2Style } from "../styles";
+import { buttonLeftStyle, buttonRightStyle, buttonStyle, catsH2Style } from "../styles";
 
 type GalleryCatScreenProps = {
     cat: string;
@@ -15,11 +15,14 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     const [hide, setHide] = useState<boolean>(true);
     const [showImage, setShowImage] = useState<GalleryImage | undefined>(undefined);
 
-    // images sortBy category
+    // this ext dep doesnt triggers re-render
+    const allImagesLocal = allImages;
+
+    // images sortBy category 
     const sortedImagesByCat = useMemo(()=>{
-        const results:GalleryImage[] = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
+        const results:GalleryImage[] = allImagesLocal.sort((a, b) => (a.cat < b.cat ? -1 : 1));
         return results;
-    }, [allImages]);
+    }, [allImagesLocal]);
 
     const images: GalleryImage[] = [];
 
@@ -130,15 +133,15 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             alignItems: 'center',
             justifyContent: 'space-between',
         }} >
-            <button css={[buttonStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &lt; </button>
+            <button css={[buttonStyle, buttonLeftStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &#9664; </button>
             <img
                 loading="lazy"
                 key={showImage.filename}
                 alt={showImage.title}
                 css={{
                     height: "unset",
-                    maxWidth: "59vw",
-                    maxHeight: "59vh",
+                    maxWidth: "69vw",
+                    maxHeight: "69vh",
                     objectFit: "contain",
                     border: "1px solid #fff",
                     "@media (min-width: 1096x)": {
@@ -147,7 +150,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 }} src={`assets/images/${showImage.filename}`}
                 onClick={() => setShowImage(undefined)}
             />
-            <button css={[buttonStyle, { opacity: 1 }]} onClick={() => showNextImage()}> &gt; </button>
+            <button css={[buttonStyle, buttonRightStyle, { opacity: 1 }]} onClick={() => showNextImage()}> &#9654; </button>
         </div>}
     </div>;
 }
