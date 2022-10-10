@@ -71,11 +71,12 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         let hasDoneSoemthing: boolean = false;
         images.forEach((image) => {
             if (hasDoneSoemthing) return;
-            if (image!.title !== showImage?.title) {
-                prevImage = image;
+            if (image!.title === showImage?.title) {
                 setShowImage(prevImage);
                 hasDoneSoemthing = true;
                 return;
+            } else {
+                prevImage = image;
             }
         });
 
