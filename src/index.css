@@ -19,3 +19,20 @@ code {
 h1, h2, article {
   font-family: 'Roboto Condensed', sans-serif;
 }
+
+/* loader test */ 
+
+.loader {
+  margin: auto;
+  border: 20px solid #39754a;
+  border-radius: 50%;
+  border-top: 20px solid #575757;
+  width: 100%;
+  height: 100%;
+  animation: spinner 8s linear infinite;
+}
+
+@keyframes spinner {
+  0% { transform: rotate(0deg); opacity: 0.2;  }
+  100% { transform: rotate(360deg);opacity: 0.8;  }
+}

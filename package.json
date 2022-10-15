@@ -14,11 +14,11 @@
     "@types/react-dom": "^18.0.0",
     "@use-gesture/react": "^10.2.18",
     "gh-pages": "^4.0.0",
-    "gsap": "^3.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-lazy-load-image-component": "^1.5.5",
     "react-scripts": "5.0.1",
+    "react-spring": "^9.5.5",
     "sharp": "^0.30.7",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
