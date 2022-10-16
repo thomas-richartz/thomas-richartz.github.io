@@ -14,13 +14,6 @@ export const Spinner = (): JSX.Element => {
     delay: 1000,
   });
 
-  // color: '#fff', backgroundColor: "grey",
-  // position: "relative",
-  // overflow: "hidden",
-  // width: "100%",
-  // height: "100%",
-
-
   return textTransitions(
     (styles, item) => item && <animated.div style={styles}><h1 style={{ marginLeft: "22px" }}><div className="loader"></div></h1></animated.div>
   );

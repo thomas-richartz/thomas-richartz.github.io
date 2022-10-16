@@ -20,20 +20,3 @@ h1, h2, article {
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-/* loader test #e17b3f */ 
-
-.loader {
-  margin: auto;
-  border: 10px solid #311b0e;
-  border-radius: 50%;
-  border-top: 10px solid #733a69;
-  width: 132px;
-  height: 132px;
-  animation: spinner 8s linear infinite;
-}
-
-@keyframes spinner {
-  0% { transform: rotate(0deg); opacity: 0.3;  }
-  50% { opacity: 0.7;  }
-  100% { transform: rotate(360deg);opacity: 0.3;  }
-}

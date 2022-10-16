@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css, keyframes } from "@emotion/react";
 
 
 export const bottomBarStyle = css({
@@ -92,5 +92,22 @@ export const landingWrapStyle = css({
     width: "100vw",
     paddingTop: "12px",
 });
+
+// TODO spinner animation
+const spinnerAnimation = keyframes({
+    "0%": { transform: "rotate(0deg)", opacity: 0.3  },
+    "50%": { opacity: 0.7  },
+    "100%": { transform: "rotate(360deg)", opacity: 0.3  },
+});
+export const preloaderStyle = css({
+    margin: "auto",
+    border: "10px solid #311b0e",
+    borderRadius: "50%",
+    borderTop: "10px solid #733a69",
+    width: "132px",
+    height: "132px",
+    animation: spinnerAnimation + " 8s linear infinite",
+});
+
 
 
