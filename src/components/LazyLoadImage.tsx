@@ -31,7 +31,7 @@ export const LazyLoadImage = ({
     const imgTransitions = useTransition(!isLoading, {
         from: { opacity: 0, },
         enter: { opacity: 1, },
-        // leave: {opacity: 0},
+        leave: {opacity: 0},
         delay: 200,
     });
 

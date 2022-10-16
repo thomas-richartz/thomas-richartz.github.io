@@ -141,12 +141,14 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 alt={showImage.title}
                 css={{
                     height: "unset",
-                    maxWidth: "69vw",
-                    maxHeight: "69vh",
+                    maxWidth: "79vw",
+                    maxHeight: "79vh",
                     objectFit: "contain",
                     border: "1px solid #fff",
+                    margin: "auto",
+                    zIndex:2,
                     "@media (min-width: 1096x)": {
-                        height: "80vh",
+                        height: "89vh",
                     }
                 }} src={`assets/images/${showImage.filename}`}
                 onClick={() => setShowImage(undefined)}

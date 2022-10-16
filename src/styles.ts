@@ -13,26 +13,31 @@ export const bottomBarStyle = css({
 
 export const buttonStyle = css({
     border: 0,
-    color: '#91888869',
-    background: '#fff1',
+    color: '#fff5',
+    background: '#0000',
     boxShadow: 'none',
     // borderRadius: '0px',
     alignSelf: 'center',
     margin: 'auto',
     marginLeft: 'auto',
     // fontSize: '1.8em',
-    width: "3em",
+    width: "48px",
     height: "100vh",
-    fontSize: "3em",
+    fontSize: "48px",
     fontWeight: "bold",
+    position: "absolute",
+    top: 0,
+    zIndex:1,
     // borderRadius: "50%",
 });
 
 export const buttonLeftStyle = css({
+    left: 0,
     marginLeft: 0,
 });
 
 export const buttonRightStyle = css({
+    right: 0,
     marginRight: 0,
 });
 
@@ -93,7 +98,7 @@ export const landingWrapStyle = css({
     paddingTop: "12px",
 });
 
-// TODO spinner animation
+
 const spinnerAnimation = keyframes({
     "0%": { transform: "rotate(0deg)", opacity: 0.3  },
     "50%": { opacity: 0.7  },
@@ -101,11 +106,11 @@ const spinnerAnimation = keyframes({
 });
 export const preloaderStyle = css({
     margin: "auto",
-    border: "10px solid #311b0e",
+    border: "7px solid #311b0e",
     borderRadius: "50%",
-    borderTop: "10px solid #733a69",
-    width: "132px",
-    height: "132px",
+    borderTop: "7px solid #733a69",
+    width: "48px",
+    height: "48px",
     animation: spinnerAnimation + " 8s linear infinite",
 });
 
