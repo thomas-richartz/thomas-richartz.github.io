@@ -7,11 +7,11 @@ export const Spinner = (): JSX.Element => {
 
   const isVisible = true;
 
-  const textTransitions = useTransition(isVisible, {
-    from: { opacity: 0, transform: "translate3d(0,1000,0)", filter: "blur(0.6px)"},
-    enter: { opacity: 1, transform: "translate3d(0,0,0)", filter: "blur(0px)"},
+  const textTransitions = useTransition(!isVisible, {
+    from: { opacity: 0,  },
+    enter: { opacity: 1,  },
     leave: { opacity: 0 },
-    delay: 800,
+    delay: 1000,
   });
 
   // color: '#fff', backgroundColor: "grey",
@@ -22,7 +22,7 @@ export const Spinner = (): JSX.Element => {
 
 
   return textTransitions(
-    (styles, item) => item && <animated.div style={styles}><h1 style={{ marginLeft: "22px" }}><div className="loader"></div><div className="loader"></div></h1></animated.div>
+    (styles, item) => item && <animated.div style={styles}><h1 style={{ marginLeft: "22px" }}><div className="loader"></div></h1></animated.div>
   );
 
 }
