@@ -81,9 +81,9 @@ export const gallerySliderWrapStyle = css({
 
 export const warehouseWrapStyle = css({
     display: "block",
-    width: "100%",
+    width: "100vw",
+    height: "100vh",
     background: "url(/assets/img/marten-bjork-warehouse-unsplash.jpg)",
-    height: "100%",
     backgroundPosition: "center",
     backgroundSize: "cover",
 });

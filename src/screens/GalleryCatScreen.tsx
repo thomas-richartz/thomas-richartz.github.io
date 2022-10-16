@@ -19,8 +19,8 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     const allImagesLocal = allImages;
 
     // images sortBy category 
-    const sortedImagesByCat = useMemo(()=>{
-        const results:GalleryImage[] = allImagesLocal.sort((a, b) => (a.cat < b.cat ? -1 : 1));
+    const sortedImagesByCat = useMemo(() => {
+        const results: GalleryImage[] = allImagesLocal.sort((a, b) => (a.cat < b.cat ? -1 : 1));
         return results;
     }, [allImagesLocal]);
 
@@ -31,21 +31,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             images.push(image);
         }
     });
-
-    const escKey = (event: any) => {
-        if (event.key === "Escape") {
-            setShowImage(undefined);
-        }
-    };
-
-    useEffect(() => {
-        setTimeout(() => { setHide(false); }, 800)
-        document.addEventListener("keydown", escKey, false);
-        return () => {
-            document.removeEventListener("keydown", escKey);
-        }
-    }, []);
-
 
     const showNextImage = () => {
         let nextImage: GalleryImage;
@@ -81,6 +66,32 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         });
 
     };
+    const keyDownHandler = (event: any) => {
+        // console.log(event)
+        if (event.code === "ArrowLeft") {
+            // console.log("<");
+            showPrevImage();
+        }
+        if (event.code === "ArrowRight") {
+            // console.log(">");
+            showNextImage();
+        }
+        // if (event.key === "Escape") {
+        //     console.log("x");
+        // }
+        if (event.code === "Escape") {
+            setShowImage(undefined);
+        }
+    };
+
+    useEffect(() => {
+        setTimeout(() => { setHide(false); }, 800)
+        document.addEventListener("keydown", keyDownHandler, false);
+        return () => {
+            document.removeEventListener("keydown", keyDownHandler);
+        }
+    }, []);
+
 
     const imageWrapperStyles = css({
         display: 'flex',
@@ -110,14 +121,14 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     });
 
     return <div css={imageWrapperStyles}>{images.map((image, index) => {
-        return  <article css={imageStyles} onClick={() => { setShowImage(image) }} >
+        return <article css={imageStyles} onClick={() => { setShowImage(image) }} >
             <h2 css={catsH2Style}>{image!.title}</h2>
             <LazyLoadImage
                 // run bin/preview to generate thumbs 
                 // placeholderSrc={`assets/images/${image!.filename}-s.webp`}
                 key={index}
                 alt={image!.title}
-                cssStyle={imageImgStyles} 
+                cssStyle={imageImgStyles}
                 src={`assets/images/${image!.filename}`}
             />
         </article>
@@ -136,6 +147,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         }} >
             <button css={[buttonStyle, buttonLeftStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &#9664; </button>
             <img
+                onKeyDown={keyDownHandler}
                 loading="lazy"
                 key={showImage.filename}
                 alt={showImage.title}
@@ -146,7 +158,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                     objectFit: "contain",
                     border: "1px solid #fff",
                     margin: "auto",
-                    zIndex:2,
+                    zIndex: 2,
                     "@media (min-width: 1096x)": {
                         height: "89vh",
                     }

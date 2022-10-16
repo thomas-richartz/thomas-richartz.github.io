@@ -29,7 +29,7 @@ export const LazyLoadImage = ({
     const isVisible = !!entry?.isIntersecting
 
     const imgTransitions = useTransition(!isLoading, {
-        from: { opacity: 0, },
+        from: { opacity: 0,  },
         enter: { opacity: 1, },
         leave: {opacity: 0},
         delay: 200,

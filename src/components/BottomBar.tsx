@@ -36,7 +36,8 @@ export const BottomBar = ({onNavigate, selectedScreen}:BottomBarProps): JSX.Elem
             alignSelf:'center',
             margin: 'auto',
             fontSize: '1.8em',
-        }}  onClick={() => onNavigate(parentScreen)}>⌂</button>
+            // &#9650; &#8962;
+        }}  onClick={() => onNavigate(parentScreen)}>{(selectedScreen === "landing") ? "▲" : "⌂" }</button>
     </div>
     </>
 
