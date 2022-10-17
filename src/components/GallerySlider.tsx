@@ -42,13 +42,13 @@ export const GallerySlider = (): JSX.Element => {
     // const parallaxLayers:IParallaxLayer[] = [];
     const parallaxLayers: ReactNode[] = [];
 
-    let page = 1;
+    let pages = 0;
     // iterate ranges and pick random pics
     Object.keys(imagesByRange).map((key: keyof RangeKeyImages) => {
-        page++;
-        console.log("key:", key)
+        pages++;
+        // console.log("key:", key)
         parallaxLayers.push(<ParallaxLayer
-            offset={page}
+            offset={pages}
             speed={0.1}
             >
             <h1 style={{ textAlign: "left", marginLeft: "20px", }}>{key}</h1>
@@ -58,11 +58,11 @@ export const GallerySlider = (): JSX.Element => {
         let image = imagesByRange[key][Math.floor(Math.random() * imagesByRange[key].length)]
 
         parallaxLayers.push(<ParallaxLayer
-            offset={page + .2}
+            offset={pages + .2}
             speed={0.3}
         >
             <LazyLoadImage
-                key={page}
+                key={pages}
                 alt={image!.title}
                 cssStyle={imageImgStyles}
                 src={`assets/images/${image!.filename}`} />
@@ -73,7 +73,7 @@ export const GallerySlider = (): JSX.Element => {
 
     return <div css={gallerySliderWrapStyle}>
 
-        <Parallax pages={5} ref={parallaxRef}>
+        <Parallax pages={pages+1} ref={parallaxRef}>
             <ParallaxLayer
                 offset={0}
                 speed={0}
