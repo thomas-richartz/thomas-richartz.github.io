@@ -1,21 +1,28 @@
 /** @jsxImportSource @emotion/react */
 
 import { css, keyframes } from "@emotion/react";
+import { MouseEventHandler } from "react";
 import { useTransition, animated } from "react-spring";
+import { preloaderStyle } from "../styles";
 
-export const Spinner = (): JSX.Element => {
+type SpinnerProps = {
+  onClick: MouseEventHandler<HTMLImageElement> | undefined;
+}
+
+
+export const Spinner = ({onClick}:SpinnerProps): JSX.Element => {
 
   const isVisible = true;
 
-  const textTransitions = useTransition(!isVisible, {
-    from: { opacity: 0,  },
-    enter: { opacity: 1,  },
-    leave: { opacity: 0 },
-    delay: 1000,
+  const textTransitions = useTransition(isVisible, {
+    from: { opacity: 0,  margin:"auto"},
+    enter: { opacity: 1,  margin:"auto"},
+    // leave: { opacity: 0 },
+    delay: 300,
   });
 
   return textTransitions(
-    (styles, item) => item && <animated.div style={styles}><h1 style={{ marginLeft: "22px" }}><div className="loader"></div></h1></animated.div>
+    (styles, item) => item && <animated.div style={styles} onClick={onClick}><div css={preloaderStyle}></div></animated.div>
   );
 
 }

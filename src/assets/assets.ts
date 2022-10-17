@@ -1,11 +1,5 @@
+import { GalleryImage } from "../types";
 
-
-export type GalleryImage = {
-    filename: string;
-    title: string;
-    cat: string;
-    range: number[];
-};
 
 export const allImages: GalleryImage[] = [
     { filename: 'Auswahl_2008-2012/ASSASSINS.jpg.webp', title: 'ASSASSINS', cat: 'Auswahl_2008-2012', range: [2008, 2012]  },

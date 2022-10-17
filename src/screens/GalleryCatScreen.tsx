@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useEffect, useMemo, useState } from "react";
-import { allImages, GalleryImage } from "../assets/assets";
+import { allImages } from "../assets/assets";
 import { LazyLoadImage } from "../components/LazyLoadImage";
+import { LightBoxImage } from "../components/LightBoxImage";
 import { buttonLeftStyle, buttonRightStyle, buttonStyle, catsH2Style } from "../styles";
+import { GalleryImage } from "../types";
 
 type GalleryCatScreenProps = {
     cat: string;
@@ -146,12 +148,11 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             justifyContent: 'space-between',
         }} >
             <button css={[buttonStyle, buttonLeftStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &#9664; </button>
-            <img
-                onKeyDown={keyDownHandler}
-                loading="lazy"
-                key={showImage.filename}
+
+            <LightBoxImage key={showImage.filename}
                 alt={showImage.title}
-                css={{
+                src={`assets/images/${showImage.filename}`}
+                cssStyle={css({
                     height: "unset",
                     maxWidth: "79vw",
                     maxHeight: "79vh",
@@ -162,7 +163,8 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                     "@media (min-width: 1096x)": {
                         height: "89vh",
                     }
-                }} src={`assets/images/${showImage.filename}`}
+                })
+                }
                 onClick={() => setShowImage(undefined)}
             />
             <button css={[buttonStyle, buttonRightStyle, { opacity: 1 }]} onClick={() => showNextImage()}> &#9654; </button>

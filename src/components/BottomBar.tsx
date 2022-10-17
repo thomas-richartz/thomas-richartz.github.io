@@ -2,6 +2,10 @@
 
 import { bottomBarStyle } from "../styles";
 
+import { ReactComponent as HouseIcon } from '../assets/svg/house_icon.svg' 
+import { ReactComponent as GalleryIcon } from '../assets/svg/gallery_icon.svg' 
+
+
 interface BottomBarProps {
     onNavigate: (screen:string) => void;
     selectedScreen: string;
@@ -37,7 +41,8 @@ export const BottomBar = ({onNavigate, selectedScreen}:BottomBarProps): JSX.Elem
             margin: 'auto',
             fontSize: '1.8em',
             // &#9650; &#8962;
-        }}  onClick={() => onNavigate(parentScreen)}>{(selectedScreen === "landing") ? "▲" : "⌂" }</button>
+        }}  onClick={() => onNavigate(parentScreen)}>{(
+            (selectedScreen === "landing") && <GalleryIcon fill="#cde" stroke="#ecd" />) || <HouseIcon fill="#cde" stroke="#ecd" /> }</button>
     </div>
     </>
 

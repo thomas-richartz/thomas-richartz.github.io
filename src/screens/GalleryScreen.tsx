@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { allImages, GalleryImage } from "../assets/assets";
+import { allImages } from "../assets/assets";
 import { h2Style } from "../styles";
+import { GalleryImage } from "../types";
 
 type GalleryScreenProps = {
     // cat: string;
