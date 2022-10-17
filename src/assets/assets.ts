@@ -49,7 +49,7 @@ export const allImages: GalleryImage[] = [
     { filename: 'Verfall/Thomas_Verfall_113.png.webp', title: 'Verfall 113', cat: 'Verfall', range: [2019, 2020]  },
     { filename: 'Verfall/Thomas_Verfall_118.png.webp', title: 'Verfall 118', cat: 'Verfall', range: [2019, 2020]  },
     { filename: 'Verfall/Thomas_Verfall_136.png.webp', title: 'Verfall 136', cat: 'Verfall', range: [2019, 2020]  },
-    { filename: 'Verfall/Thomas_Verfall_138.png.webp', title: 'Verfall 138', cat: 'Verfall', range: [2019, 2022]  },
+    { filename: 'Verfall/Thomas_Verfall_138.png.webp', title: 'Verfall 138', cat: 'Verfall', range: [2019, 2020]  },
     { filename: 'Bilder 1995-2008/Achte Sekunde.jpg.webp', title: 'Achte Sekunde', cat: 'Bilder 1995-2008', range: [1995, 2008]  },
     { filename: 'Bilder 1995-2008/Aus der Sonne heraus.jpg.webp', title: 'Aus der Sonne heraus', cat: 'Bilder 1995-2008', range: [1995, 2008]  },
     { filename: 'Bilder 1995-2008/Coreolan.jpg.webp', title: 'Coreolan', cat: 'Bilder 1995-2008', range: [1995, 2008]  },

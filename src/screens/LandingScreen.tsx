@@ -2,7 +2,7 @@
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { GallerySlider } from "../components/GallerySlider";
-import { centeredImageStyle, landingWrapStyle, warehouseWrapStyle } from "../styles";
+import { landingWrapStyle, warehouseWrapStyle } from "../styles";
 
 type LandingScreenProps = {
     // cat: string;
@@ -22,10 +22,8 @@ export const LandingScreen = ({ onCatClick, onNavigate }: LandingScreenProps): J
         opacity: hide ? 0 : 1,
         transition: "opacity 800ms",
     });
-
-    return <div css={[warehouseWrapStyle, fadeStyles, landingWrapStyle]} onClick={() => onNavigate("gallery")}>
-        <img css={centeredImageStyle} style={{borderRadius: "50%" }} src="/assets/img/thomas-richartz.jpg" alt={"thomas-richartz"} />
-        <h1 style={{textAlign:"center"}}>Thomas Richartz</h1>
+    // onClick={() => onNavigate("gallery")}
+    return <div css={[warehouseWrapStyle, fadeStyles, landingWrapStyle]} >
         <GallerySlider />
     </div>;
 }
