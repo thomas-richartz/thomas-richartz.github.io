@@ -49,6 +49,15 @@ export const h2Style = css({
     marginLeft: '1vw',
 });
 
+export const underHeadlineStyle = css({
+    color: 'rgba(255,255, 255,0.6)',
+    textShadow: 'none',
+    padding: '4px',
+    marginLeft: '1vw',
+    textAlign: "center", 
+    margin: "auto", 
+});
+
 export const catsH2Style = css({
     color: 'rgba(255,255, 255,0.6)',
     textShadow: '4px 3px 0px #000, 9px 8px 0px rgba(255,255,255,0.15)',
@@ -65,9 +74,9 @@ export const centeredImageStyle = css({
     display: "block",
     marginLeft: "auto",
     marginRight: "auto",
-    width: "240px",
+    width: "340px",
     "@media (min-width: 1028px)": {
-        width: "240px",
+        width: "640px",
     }
 });
 

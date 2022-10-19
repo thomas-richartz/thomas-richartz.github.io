@@ -2,7 +2,6 @@
 import { SerializedStyles } from "@emotion/react";
 import { MouseEventHandler, useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
-import { preloaderStyle } from "../styles";
 import { Spinner } from "./Spinner";
 
 
