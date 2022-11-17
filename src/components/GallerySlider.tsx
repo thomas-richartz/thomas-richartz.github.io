@@ -1,6 +1,4 @@
 /** @jsxImportSource @emotion/react */
-
-import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { ReactNode, useMemo, useRef } from "react";
 import { centeredImageStyle, gallerySliderWrapStyle, underHeadlineStyle } from "../styles";
 import { allImages } from "../assets/assets";
@@ -9,8 +7,6 @@ import { GalleryImage } from "../types";
 import { css } from "@emotion/react";
 
 export const GallerySlider = (): JSX.Element => {
-
-    const parallaxRef = useRef<IParallax>(null!)
 
     type RangeKeyImages = {
         [key: string]: GalleryImage[]
@@ -61,68 +57,43 @@ export const GallerySlider = (): JSX.Element => {
         // marginTop: "120px",
     })
 
-    // const parallaxLayers:IParallaxLayer[] = [];
-    const parallaxLayers: ReactNode[] = [];
+    // const randomImages:IParallaxLayer[] = [];
+    const randomImages: ReactNode[] = [];
 
     let pages = 0;
+    const images: GalleryImage[] = [];
     // iterate ranges and pick random pics
-    Object.keys(imagesByRange).map((key: keyof RangeKeyImages) => {
+    for (let i = 0; i < 10; i++) {
+        Object.keys(imagesByRange).map((key: keyof RangeKeyImages) => {
+            let image = imagesByRange[key][Math.floor(Math.random() * imagesByRange[key].length)]
+            images.push(image)
+            return null;
+        });
+    }
 
+    for (let image of images) {
         pages++;
-        // pick one random image each range
-        let image = imagesByRange[key][Math.floor(Math.random() * imagesByRange[key].length)]
-
-        // console.log("key:", key)
-        parallaxLayers.push(<ParallaxLayer
-            offset={pages}
-            speed={0.4}
-        >
-            <div style={{ background: "black", margin: "auto", width: "fit-content"}}>
-                <h1 style={{ textAlign: "center", margin: "auto", }}>{key}</h1>
-                <h2 css={underHeadlineStyle} >{image!.title}</h2>
+        randomImages.push(<>
+            <div style={{ background: "black", margin: "auto", width: "fit-content" }}>
+                <h1 style={{ textAlign: "center", margin: "auto", }}>{image!.title}</h1>
+                {/* <h2 css={underHeadlineStyle} ></h2> */}
             </div>
-
-        </ParallaxLayer>);
-
-
-        parallaxLayers.push(<ParallaxLayer
-            offset={pages + .2}
-            speed={0.1}
-        >
-
             <LazyLoadImage
 
                 key={pages}
                 alt={image!.title}
                 cssStyle={imageImgStyles}
                 src={`assets/images/${image!.filename}`} />
+        </>
+        );
+    }
 
-        </ParallaxLayer>);
-
-        return null;
-    });
-
-    return <div css={gallerySliderWrapStyle}>
-
-        <Parallax pages={pages + 1} ref={parallaxRef}>
-            <ParallaxLayer
-                offset={0}
-                speed={0}
-                factor={3}
-                onClick={() => parallaxRef.current.scrollTo(1)}
-            >
-                <img css={[centeredImageStyle, imageProfile]} style={{ borderRadius: "50%" }} src="/assets/img/thomas-richartz.jpg" alt={"thomas-richartz"} />
-            </ParallaxLayer>
-            <ParallaxLayer
-                offset={0.3}
-                speed={1}
-            >
-                <h1 style={{ textAlign: "center" }}>Thomas Richartz</h1>
-                <h2  css={underHeadlineStyle} style={{ textAlign: "center", margin: "auto", }}>{essayList[Math.floor(Math.random() * essayList.length)]}</h2>
-            </ParallaxLayer>
-            {parallaxLayers}
-        </Parallax>
+    return <><div css={gallerySliderWrapStyle}>
+        <img css={[centeredImageStyle, imageProfile]} style={{ borderRadius: "50%" }} src="/assets/img/thomas-richartz.jpg" alt={"thomas-richartz"} />
+        <h1 style={{ textAlign: "center" }}>Thomas Richartz</h1>
+        <h2 css={underHeadlineStyle} style={{ textAlign: "center", margin: "auto", }}>{essayList[Math.floor(Math.random() * essayList.length)]}</h2>
     </div>
-
+    {randomImages}
+    </>
 };
 

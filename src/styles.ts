@@ -92,7 +92,7 @@ export const warehouseWrapStyle = css({
     display: "block",
     width: "100vw",
     height: "100vh",
-    background: "url(/assets/img/marten-bjork-warehouse-unsplash.jpg)",
+    background: "url(/assets/img/warehouse.jpeg)",
     backgroundPosition: "center",
     backgroundSize: "cover",
 });

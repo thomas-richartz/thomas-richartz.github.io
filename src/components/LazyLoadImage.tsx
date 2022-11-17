@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { SerializedStyles } from "@emotion/react";
 import { useEffect, useRef, useState } from "react";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated } from "@react-spring/web";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { preloaderStyle } from "../styles";
 import { Spinner } from "./Spinner";

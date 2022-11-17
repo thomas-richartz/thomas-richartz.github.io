@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { SerializedStyles } from "@emotion/react";
 import { MouseEventHandler, useEffect, useState } from "react";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated } from "@react-spring/web";
 import { Spinner } from "./Spinner";
 
 

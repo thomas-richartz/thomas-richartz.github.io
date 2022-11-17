@@ -1,15 +1,26 @@
 # thomas-richartz.github.io
 
+
 `yarn add gh-pages`  
 `yarn deploy -- -m "deploy app to github-pages"`
 
 ## TODO
 
-- lazy load images
-- website title
-- Lightbox: Title?, mobile? swipable?  
-- Youtube Link 
-- tbd Landingpage?
+- [x] lazy load images
+- [x] website title
+- [x] Lightbox: Title?, mobile? 
+- [x] Landingpage
+- [ ] Landingpage: Random "Masonry" with Texts (deutsch / english)
+- [ ] bin/upsert.js: Fix Filenames (replace slugified titles with orignal titles) 
+- [ ] New Menu: Sculptures ...
+        - Skulpturen, Installation: Reformation (2017),   
+        - Gemälde, 
+        - Grafik: Baudelaire (2009-2012)  
+- [ ] GallerySlider swipable?
+- [ ] FadeIn ProfilePic (name first)
+- [ ] Youtube Link 
+
+
 
 
 ## Getting Started with Create React App

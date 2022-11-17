@@ -39,6 +39,7 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
 
     const images: GalleryImage[] = [];
 
+    // TODO filter array
     sortedImagesByCatAndRange.forEach(image => {
         if (!catsListedSet.has(image.cat)) {
             catsListedSet.add(image.cat);

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, keyframes } from "@emotion/react";
+// import { css, keyframes } from "@emotion/react";
 import { MouseEventHandler } from "react";
-import { useTransition, animated } from "react-spring";
+import { useTransition, animated } from "@react-spring/web";
 import { preloaderStyle } from "../styles";
 
 type SpinnerProps = {

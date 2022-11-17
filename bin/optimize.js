@@ -19,7 +19,6 @@ fs.readdirSync(imagesFolder).forEach(folder => {
     fs.readdirSync(imagepath).forEach(file => {
         // console.log(file);
         let title = file.replace(path.extname(file), "");
-        console.log(`{ filename: '${folder}/${file}', title: '${title}', cat: '${folder}', range: [2008, 2012]  },`);
         optimizeImage(`${imagepath}/${file}`)
     });
 });
