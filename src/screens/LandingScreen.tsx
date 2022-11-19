@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { GallerySlider } from "../components/GallerySlider";
 import { landingWrapStyle, warehouseWrapStyle } from "../styles";
 
-type LandingScreenProps = {
+interface ILandingScreen {
     // cat: string;
     onCatClick: (cat: string) => void;
     onNavigate: (screen: string) => void;
 };
 
-export const LandingScreen = ({ onCatClick, onNavigate }: LandingScreenProps): JSX.Element => {
+export const LandingScreen = ({ onCatClick, onNavigate }: ILandingScreen): JSX.Element => {
 
     const [hide, setHide] = useState<boolean>(true);
 

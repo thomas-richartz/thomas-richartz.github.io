@@ -7,7 +7,7 @@ import { preloaderStyle } from "../styles";
 import { Spinner } from "./Spinner";
 
 
-type LazyLoadImageProps = {
+interface ILazyLoadImage {
     // placeholder: ReactElement;
     alt: string;
     src: string;
@@ -19,7 +19,7 @@ export const LazyLoadImage = ({
     alt,
     src,
     cssStyle
-}: LazyLoadImageProps) => {
+}: ILazyLoadImage) => {
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [currentSrc, setCurrentSrc] = useState<string>("");

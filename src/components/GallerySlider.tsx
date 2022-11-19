@@ -1,12 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { ReactNode, useMemo, useRef } from "react";
+import React, { ReactNode, useMemo } from "react";
 import { centeredImageStyle, gallerySliderWrapStyle, underHeadlineStyle } from "../styles";
 import { allImages } from "../assets/assets";
 import { LazyLoadImage } from "./LazyLoadImage";
 import { GalleryImage } from "../types";
 import { css } from "@emotion/react";
+import { LightBoxImage } from "./LightBoxImage";
 
 export const GallerySlider = (): JSX.Element => {
+
+    const [showImage, setShowImage] = React.useState<GalleryImage | undefined>(undefined);
+
 
     type RangeKeyImages = {
         [key: string]: GalleryImage[]
@@ -52,10 +56,14 @@ export const GallerySlider = (): JSX.Element => {
     });
 
     const imageProfile = css({
-        webkitFilter: "grayscale(100%)",
+        WebkitFilter: "grayscale(100%)",
         filter: "grayscale(100%)",
         // marginTop: "120px",
     })
+
+    const onClickRandomImage = (img: GalleryImage) => {
+        setShowImage(img)
+    }
 
     // const randomImages:IParallaxLayer[] = [];
     const randomImages: ReactNode[] = [];
@@ -73,18 +81,16 @@ export const GallerySlider = (): JSX.Element => {
 
     for (let image of images) {
         pages++;
-        randomImages.push(<>
-            <div style={{ background: "black", margin: "auto", width: "fit-content" }}>
-                <h1 style={{ textAlign: "center", margin: "auto", }}>{image!.title}</h1>
-                {/* <h2 css={underHeadlineStyle} ></h2> */}
-            </div>
+        randomImages.push(<div onClick={() => onClickRandomImage(image as GalleryImage)}>
             <LazyLoadImage
-
-                key={pages}
+                key={image!.title}
                 alt={image!.title}
                 cssStyle={imageImgStyles}
                 src={`assets/images/${image!.filename}`} />
-        </>
+            <div style={{ background: "black", margin: "auto", width: "fit-content" }}>
+                <h2 style={{ textAlign: "center", margin: "auto", }} css={underHeadlineStyle}>{image!.title}</h2>
+            </div>
+        </div>
         );
     }
 
@@ -93,7 +99,39 @@ export const GallerySlider = (): JSX.Element => {
         <h1 style={{ textAlign: "center" }}>Thomas Richartz</h1>
         <h2 css={underHeadlineStyle} style={{ textAlign: "center", margin: "auto", }}>{essayList[Math.floor(Math.random() * essayList.length)]}</h2>
     </div>
-    {randomImages}
+        {randomImages}
+        {showImage !== undefined && <div css={{
+            zIndex: "1",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: 'rgba(0, 0, 0, 0.79)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+        }} >
+
+            <LightBoxImage key={showImage.filename}
+                alt={showImage.title}
+                src={`assets/images/${showImage.filename}`}
+                cssStyle={css({
+                    height: "unset",
+                    maxWidth: "79vw",
+                    maxHeight: "79vh",
+                    objectFit: "contain",
+                    border: "1px solid #fff",
+                    margin: "auto",
+                    zIndex: 2,
+                    "@media (min-width: 1096x)": {
+                        height: "89vh",
+                    }
+                })
+                }
+                onClick={() => setShowImage(undefined)}
+            />
+        </div>}
     </>
 };
 
