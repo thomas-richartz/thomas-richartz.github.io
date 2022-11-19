@@ -4,6 +4,13 @@
 `yarn add gh-pages`  
 `yarn deploy -- -m "deploy app to github-pages"`
 
+## Scripts
+
+
+`bin/upsert.sh` - builds a pipe- or copyable list of files 
+
+`bin/upsert.sh > src/assets/assets.ts`  (idompontent?)
+
 ## TODO
 
 - [x] lazy load images

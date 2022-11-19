@@ -94,19 +94,9 @@ fs.readdirSync(imagesFolder).forEach(folder => {
 
     if (!fs.lstatSync(imagepath).isDirectory()) return;
 
-    // extract years (range)
+    // extract years (range) -YYYY-YYYY or -YYYY
     let range = [];
-    /*
-    if (folder.includes("(")) {
-        let s = folder.replace(/^[^(]*\(/, "").replace(/\)[^(]*$/, "")
-        if (s.includes("-")) {
-            range = s.split("-").map(str => Number(str))
-        } else {
-            range.push(Number(s));
-        }
-    }*/
     if (folder.substring(folder.length-4)) {
-
         if (!isNaN(folder.substring(folder.length-9, folder.length-5))) {
             range.push(Number(folder.substring(folder.length-9, folder.length-5)));
         }

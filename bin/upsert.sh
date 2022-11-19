@@ -1,4 +1,11 @@
-# bash
+#!/usr/bin/env bash
 
+cd "$(dirname "$0")"
 
-node upsert.js > assets.json
+echo 'import { GalleryImage } from "../types";
+
+export const allImages: GalleryImage[] = ['
+
+node upsert.js
+
+echo '];'
