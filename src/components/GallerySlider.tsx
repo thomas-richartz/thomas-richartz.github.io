@@ -55,6 +55,21 @@ export const GallerySlider = (): JSX.Element => {
 
     });
 
+    const randomImgStyles = css({
+        maxHeight: '90vh',
+        maxWidth: "90vw",
+        objectFit: "cover",
+        // height: "100vh",
+
+        display: "block",
+        marginLeft: "auto",
+        marginRight: "auto",
+        // "@media (min-width: 1028px)": {
+        //     width: "240px",
+        // }
+
+    });
+
     const imageProfile = css({
         WebkitFilter: "grayscale(100%)",
         filter: "grayscale(100%)",
@@ -81,11 +96,11 @@ export const GallerySlider = (): JSX.Element => {
 
     for (let image of images) {
         pages++;
-        randomImages.push(<div onClick={() => onClickRandomImage(image as GalleryImage)}>
+        randomImages.push(<div onClick={() => onClickRandomImage(image as GalleryImage)} style={{marginTop: 20}}>
             <LazyLoadImage
                 key={image!.title}
                 alt={image!.title}
-                cssStyle={imageImgStyles}
+                cssStyle={randomImgStyles}
                 src={`assets/images/${image!.filename}`} />
             <div style={{ background: "black", margin: "auto", width: "fit-content" }}>
                 <h2 style={{ textAlign: "center", margin: "auto", }} css={underHeadlineStyle}>{image!.title}</h2>
