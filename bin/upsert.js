@@ -63,6 +63,7 @@ const slugifiedPathToCat = {
   };
 
 // check for new folder to slugify
+let hasNewSlugifiedPaths = false;
 fs.readdirSync(imagesFolder).forEach(folder => {
     // console.log(folder);
 
@@ -80,10 +81,16 @@ fs.readdirSync(imagesFolder).forEach(folder => {
             mv(imagepath, imagesFolder + '/' + slugify(folder));
             // console.log(imagepath, imagesFolder + '/' + slugify(folder));
             slugifiedPathToCat[slugify(folder)] = folder; 
+            hasNewSlugifiedPaths = true;
+            // console.log(`${slugify(folder)}: ${folder}`);
         }
     }
 }); 
 
+if (hasNewSlugifiedPaths) {
+    // save to slugcats.json file?
+    console.log(JSON.stringify(slugifiedPathToCat));
+}
 
 // console.log(slugifiedPathToCat);
 
@@ -107,22 +114,17 @@ fs.readdirSync(imagesFolder).forEach(folder => {
     fs.readdirSync(imagepath).forEach(file => {
         // console.log(file);
 
-        // TODO skip hidden files with dot (.DS_Store) and Thumbs.
+        // TODO skip hidden files with dot (.DS_Store), *.log and Thumbs.db etc.
         if (file == ".DS_Store") return;
-
-        // console.log(path.parse(file).ext)
-        // return;
 
         // rename file to a slugified (lowercase and ascii) filename, due to different fs-formats (macOS (HFS+) uses a decomposed (Unicode NFD) and Windows precomposed characters)
         let title = file.replace(path.extname(file), "");
         if (path.parse(file).ext !== ".webp" && !fs.existsSync(`${imagepath}/${file}.webp`)) {
-            // console.log(`${imagepath}/${file}.webp`)
-            optimizeImage(`${imagepath}/${file}`)
+            if (!fs.existsSync(`${imagepath}/${slugify(file)}.webp`)) {
+                optimizeImage(`${imagepath}/${file}`)
+            }
             return;
         }
-
-        // TODO console.log(slugify(folder))
-        // TODO Make a lookup List for folderTitle to slugified folder?
 
         // let title = path.parse(file).name
         if (path.parse(file).ext === ".webp") {

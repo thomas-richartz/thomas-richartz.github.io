@@ -18,15 +18,16 @@
 - [x] Lightbox: Title?, mobile? 
 - [x] Landingpage
 - [ ] Landingpage: Random "Masonry" with Texts (deutsch / english)
-- [ ] bin/upsert.js: Fix Filenames (replace slugified titles with orignal titles) 
+- [ ] bin/upsert.js: Fix Filenames (replace slugified titles with orignal titles, slugs.json[titles] file?) 
+- [ ] bin/upsert.js: (make it idompotent) -> slugs.json[cats] file?
 - [ ] New Menu: Sculptures ...
         - Skulpturen, Installation: Reformation (2017),   
         - Gemälde, 
         - Grafik: Baudelaire (2009-2012)  
+- [ ] GallerySlider Keyboard Events
 - [ ] GallerySlider swipable?
 - [ ] FadeIn ProfilePic (name first)
 - [ ] Youtube Link 
-
 
 
 
