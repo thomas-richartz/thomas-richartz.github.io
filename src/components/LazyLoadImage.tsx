@@ -43,7 +43,6 @@ export const LazyLoadImage = ({
         delay: 500,
     });
 
-
     useEffect(() => {
         if (isVisible) {
             const image = new Image();
@@ -64,13 +63,8 @@ export const LazyLoadImage = ({
         // return <div ref={ref}><h1 style={{marginLeft:"22px"}}>Loading ...</h1></div>;
     }
 
-    if (true) {
-        return zoomTransition(
-            (styles, item) => item && <animated.img loading="lazy" alt={alt} style={styles} css={cssStyle} src={currentSrc} />
-        );
-    }
-
-    return imgTransitions(
+    return zoomTransition(
         (styles, item) => item && <animated.img loading="lazy" alt={alt} style={styles} css={cssStyle} src={currentSrc} />
     );
+
 }

@@ -26,7 +26,7 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
     const sortedImagesByCat = useMemo(()=>{
         const results:GalleryImage[] = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
         return results;
-    }, [allImages]);
+    }, []);
 
     // const sortedImagesByCat = allImages.sort((a, b) => (a.cat < b.cat ? -1 : 1));
     // const sortedImagesByCatAndRange = sortedImagesByCat.sort((a, b) => (a.range[0] > b.range[0] ? -1 : 1))
@@ -61,8 +61,6 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
                 key={index}
                 alt={image!.title}
                 ref={el => {
-                    console.log(el);
-                    console.log("add index " + index);
                     if (el) catRefs.current.push(el);
                 }}
                 style={{

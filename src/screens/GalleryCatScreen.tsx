@@ -70,7 +70,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
     };
 
     const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
-        // console.log(event)
+        console.log(event)
         if (event.code === "ArrowLeft") {
             // console.log("<");
             showPrevImage();
@@ -119,7 +119,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         height: "33vh",
     });
 
-    return <div css={imageWrapperStyles} onKeyDown={keyDownHandler}>
+    return <div css={imageWrapperStyles} onKeyDown={keyDownHandler} tabIndex={0}>
         {images.map((image, index) => {
             return <article css={imageStyles} onClick={() => { setShowImage(image) }} >
                 <h2 css={catsH2Style}>{image!.title}</h2>

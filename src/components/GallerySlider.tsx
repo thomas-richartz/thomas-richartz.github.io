@@ -40,34 +40,16 @@ export const GallerySlider = (): JSX.Element => {
         "„Metakunst“ zum Wohle Aller!",
     ];
 
-    const imageImgStyles = css({
-        // width: '100%',
-        maxHeight: "fit-content",
-        objectFit: "cover",
-        height: "100vh",
-
-        display: "block",
-        marginLeft: "auto",
-        marginRight: "auto",
-        // "@media (min-width: 1028px)": {
-        //     width: "240px",
-        // }
-
-    });
-
     const randomImgStyles = css({
         maxHeight: '90vh',
         maxWidth: "90vw",
         objectFit: "cover",
-        // height: "100vh",
-
         display: "block",
         marginLeft: "auto",
         marginRight: "auto",
         // "@media (min-width: 1028px)": {
         //     width: "240px",
         // }
-
     });
 
     const imageProfile = css({
@@ -80,7 +62,6 @@ export const GallerySlider = (): JSX.Element => {
         setShowImage(img)
     }
 
-    // const randomImages:IParallaxLayer[] = [];
     const randomImages: ReactNode[] = [];
 
     let pages = 0;
@@ -98,7 +79,7 @@ export const GallerySlider = (): JSX.Element => {
         pages++;
         randomImages.push(<div onClick={() => onClickRandomImage(image as GalleryImage)} style={{marginTop: 20}}>
             <LazyLoadImage
-                key={image!.title}
+                key={image!.title + "-" + pages}
                 alt={image!.title}
                 cssStyle={randomImgStyles}
                 src={`assets/images/${image!.filename}`} />
