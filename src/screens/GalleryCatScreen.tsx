@@ -68,7 +68,8 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         });
 
     };
-    const keyDownHandler = (event: any) => {
+
+    const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
         // console.log(event)
         if (event.code === "ArrowLeft") {
             // console.log("<");
@@ -88,10 +89,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
 
     useEffect(() => {
         setTimeout(() => { setHide(false); }, 800)
-        document.addEventListener("keydown", keyDownHandler, false);
-        return () => {
-            document.removeEventListener("keydown", keyDownHandler);
-        }
     }, []);
 
 
@@ -122,19 +119,20 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         height: "33vh",
     });
 
-    return <div css={imageWrapperStyles}>{images.map((image, index) => {
-        return <article css={imageStyles} onClick={() => { setShowImage(image) }} >
-            <h2 css={catsH2Style}>{image!.title}</h2>
-            <LazyLoadImage
-                // run bin/preview to generate thumbs 
-                // placeholderSrc={`assets/images/${image!.filename}-s.webp`}
-                key={index}
-                alt={image!.title}
-                cssStyle={imageImgStyles}
-                src={`assets/images/${image!.filename}`}
-            />
-        </article>
-    })}
+    return <div css={imageWrapperStyles} onKeyDown={keyDownHandler}>
+        {images.map((image, index) => {
+            return <article css={imageStyles} onClick={() => { setShowImage(image) }} >
+                <h2 css={catsH2Style}>{image!.title}</h2>
+                <LazyLoadImage
+                    // run bin/preview to generate thumbs 
+                    // placeholderSrc={`assets/images/${image!.filename}-s.webp`}
+                    key={index}
+                    alt={image!.title}
+                    cssStyle={imageImgStyles}
+                    src={`assets/images/${image!.filename}`}
+                />
+            </article>
+        })}
         {showImage !== undefined && <div css={{
             zIndex: "1",
             position: "fixed",

@@ -16,6 +16,7 @@ function App() {
     setSelectedScreen(screen);
   }
 
+
   let screen:JSX.Element;
 
   if (selectedScreen === "landing") {
@@ -27,7 +28,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div tabIndex={0} >
       <HeaderBar />
       <main>
       {screen}

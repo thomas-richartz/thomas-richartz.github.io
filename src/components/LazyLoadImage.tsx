@@ -1,8 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { SerializedStyles } from "@emotion/react";
 import { useEffect, useRef, useState } from "react";
-import { useTransition, animated } from "@react-spring/web";
-import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import { useTransition, animated, Spring } from "@react-spring/web";
+// import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import { useIntersectionObserver } from 'usehooks-ts'
 import { preloaderStyle } from "../styles";
 import { Spinner } from "./Spinner";
 
@@ -29,13 +30,20 @@ export const LazyLoadImage = ({
     const isVisible = !!entry?.isIntersecting
 
     const imgTransitions = useTransition(!isLoading, {
-        from: { opacity: 0,  },
+        from: { opacity: 0, },
         enter: { opacity: 1, },
-        leave: {opacity: 0},
+        leave: { opacity: 0 },
         delay: 200,
     });
 
-    
+    const zoomTransition = useTransition(!isLoading, {
+        from: { transform: "scale(0.79)", opacity: 0, },
+        enter: { transform: "scale(1.0)", opacity: 1, },
+        leave: { transform: "scale(1.2)", opacity: 0, },
+        delay: 500,
+    });
+
+
     useEffect(() => {
         if (isVisible) {
             const image = new Image();
@@ -48,13 +56,20 @@ export const LazyLoadImage = ({
         }
     }, [src, isVisible])
 
-    
+
     if (isLoading) {
         // spinner needs fowarded ref for instersection observer
         // return <Spinner />;
-        return <div ref={ref}><h1 style={{marginLeft:"22px"}}><div css={preloaderStyle}></div></h1></div>;
+        return <div ref={ref}><h1 style={{ marginLeft: "22px" }}><div css={preloaderStyle}></div></h1></div>;
         // return <div ref={ref}><h1 style={{marginLeft:"22px"}}>Loading ...</h1></div>;
     }
+
+    if (true) {
+        return zoomTransition(
+            (styles, item) => item && <animated.img loading="lazy" alt={alt} style={styles} css={cssStyle} src={currentSrc} />
+        );
+    }
+
     return imgTransitions(
         (styles, item) => item && <animated.img loading="lazy" alt={alt} style={styles} css={cssStyle} src={currentSrc} />
     );
