@@ -6,8 +6,6 @@ import { LazyLoadImage } from "./LazyLoadImage";
 import { GalleryImage } from "../types";
 import { css } from "@emotion/react";
 import { LightBoxImage } from "./LightBoxImage";
-import { IntenseImage } from "./IntenseImage";
-import { TextFx } from "./TextFx";
 
 export const GallerySlider = (): JSX.Element => {
 
@@ -80,7 +78,7 @@ export const GallerySlider = (): JSX.Element => {
     for (let image of images) {
         pages++;
         randomImages.push(<div onClick={() => onClickRandomImage(image as GalleryImage)} style={{marginTop: 20}}>
-            <IntenseImage
+            <LazyLoadImage
                 key={image!.title + "-" + pages}
                 alt={image!.title}
                 cssStyle={randomImgStyles}
@@ -95,9 +93,41 @@ export const GallerySlider = (): JSX.Element => {
     return <><div css={gallerySliderWrapStyle}>
         <img css={[centeredImageStyle, imageProfile]} style={{ borderRadius: "50%" }} src="/assets/img/thomas-richartz.jpg" alt={"thomas-richartz"} />
         <h1 style={{ textAlign: "center" }}>Thomas Richartz</h1>
-        <h2 css={underHeadlineStyle} style={{ textAlign: "center", margin: "auto", }}><TextFx>{essayList[Math.floor(Math.random() * essayList.length)]}</TextFx></h2>
+        <h2 css={underHeadlineStyle} style={{ textAlign: "center", margin: "auto", }}>{essayList[Math.floor(Math.random() * essayList.length)]}</h2>
     </div>
         {randomImages}
+        {showImage !== undefined && <div css={{
+            zIndex: "1",
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: 'rgba(0, 0, 0, 0.79)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+        }} >
+
+            <LightBoxImage key={showImage.filename}
+                alt={showImage.title}
+                src={`assets/images/${showImage.filename}`}
+                cssStyle={css({
+                    height: "unset",
+                    maxWidth: "79vw",
+                    maxHeight: "79vh",
+                    objectFit: "contain",
+                    border: "1px solid #fff",
+                    margin: "auto",
+                    zIndex: 2,
+                    "@media (min-width: 1096x)": {
+                        height: "89vh",
+                    }
+                })
+                }
+                onClick={() => setShowImage(undefined)}
+            />
+        </div>}
     </>
 };
 
