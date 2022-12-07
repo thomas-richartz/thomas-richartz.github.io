@@ -2,10 +2,9 @@
 import { SerializedStyles } from "@emotion/react";
 import { useEffect, useRef, useState } from "react";
 import { useTransition, animated, Spring } from "@react-spring/web";
-// import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useIntersectionObserver } from 'usehooks-ts'
 import { preloaderStyle } from "../styles";
-import { Spinner } from "./Spinner";
+// import { Spinner } from "./Spinner";
 
 
 interface ILazyLoadImage {
@@ -29,13 +28,6 @@ export const LazyLoadImage = ({
     const entry = useIntersectionObserver(ref, {});
     const isVisible = !!entry?.isIntersecting
 
-    const imgTransitions = useTransition(!isLoading, {
-        from: { opacity: 0, },
-        enter: { opacity: 1, },
-        leave: { opacity: 0 },
-        delay: 200,
-    });
-
     const zoomTransition = useTransition(!isLoading, {
         from: { transform: "scale(0.79)", opacity: 0, },
         enter: { transform: "scale(1.0)", opacity: 1, },
@@ -57,10 +49,8 @@ export const LazyLoadImage = ({
 
 
     if (isLoading) {
-        // spinner needs fowarded ref for instersection observer
-        // return <Spinner />;
+        // spinner needs fowarded ref for instersection observer return <Spinner />;
         return <div ref={ref}><h1 style={{ marginLeft: "22px" }}><div css={preloaderStyle}></div></h1></div>;
-        // return <div ref={ref}><h1 style={{marginLeft:"22px"}}>Loading ...</h1></div>;
     }
 
     return zoomTransition(

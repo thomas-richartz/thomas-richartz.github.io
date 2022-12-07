@@ -4,18 +4,19 @@ import { bottomBarStyle } from "../styles";
 
 import { ReactComponent as HouseIcon } from '../assets/svg/house_icon.svg' 
 import { ReactComponent as GalleryIcon } from '../assets/svg/gallery_icon.svg' 
+import { Screen } from "../enums";
 
 
 interface BottomBarProps {
-    onNavigate: (screen:string) => void;
-    selectedScreen: string;
+    onNavigate: (Screen:Screen) => void;
+    selectedScreen: Screen;
 }
 
 export const BottomBar = ({onNavigate, selectedScreen}:BottomBarProps): JSX.Element => {
 
-    let parentScreen = "gallery";
-    if (selectedScreen === "gallery") {
-        parentScreen = "landing";
+    let parentScreen = Screen.GALLERY;
+    if (selectedScreen === Screen.GALLERY) {
+        parentScreen = Screen.LANDING;
     }
 
     return <><div css={bottomBarStyle}>
@@ -42,7 +43,7 @@ export const BottomBar = ({onNavigate, selectedScreen}:BottomBarProps): JSX.Elem
             fontSize: '1.8em',
             // &#9650; &#8962;
         }}  onClick={() => onNavigate(parentScreen)}>{(
-            (selectedScreen === "landing") && <GalleryIcon fill="#cde" stroke="#ecd" />) || <HouseIcon fill="#cde" stroke="#ecd" /> }</button>
+            (selectedScreen === Screen.LANDING) && <GalleryIcon fill="#cde" stroke="#ecd" />) || <HouseIcon fill="#cde" stroke="#ecd" /> }</button>
     </div>
     </>
 

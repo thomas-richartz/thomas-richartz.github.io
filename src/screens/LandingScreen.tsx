@@ -2,12 +2,13 @@
 import { css } from "@emotion/react";
 import { useEffect, useState } from "react";
 import { GallerySlider } from "../components/GallerySlider";
+import { Screen } from "../enums";
 import { landingWrapStyle, warehouseWrapStyle } from "../styles";
 
 interface ILandingScreen {
     // cat: string;
     onCatClick: (cat: string) => void;
-    onNavigate: (screen: string) => void;
+    onNavigate: (screen: Screen) => void;
 };
 
 export const LandingScreen = ({ onCatClick, onNavigate }: ILandingScreen): JSX.Element => {

@@ -2,13 +2,14 @@
 import { css } from "@emotion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { allImages } from "../assets/assets";
+import { Screen } from "../enums";
 import { h2Style } from "../styles";
 import { GalleryImage } from "../types";
 
 type GalleryScreenProps = {
     // cat: string;
     onCatClick: (cat: string) => void;
-    onNavigate: (screen: string) => void;
+    onNavigate: (Screen: Screen) => void;
 };
 
 export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): JSX.Element => {
@@ -20,7 +21,7 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
         setTimeout(() => { setHide(false); }, 800)
     }, []);
 
-    // images sortBy category and time
+    // images sortBy category and time in callback?
 
     // images sortBy category
     const sortedImagesByCat = useMemo(()=>{
@@ -55,7 +56,7 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
     });
 
     return <div css={styles}>{images.map((image, index) => {
-        return <article style={{ width: '100%', minHeight: '33vh', height: '33vh', overflow: 'none', backgroundColor: '#000', }} onClick={() => { setHide(true); setTimeout(() => { onCatClick(image!.cat); onNavigate("cat"); }, 800); }} >
+        return <article style={{ width: '100%', minHeight: '33vh', height: '33vh', overflow: 'none', backgroundColor: '#000', }} onClick={() => { setHide(true); setTimeout(() => { onCatClick(image!.cat); onNavigate(Screen.GALLERY_CAT); }, 800); }} >
             <h2 css={h2Style}>{image!.cat}</h2>
             <img
                 key={index}

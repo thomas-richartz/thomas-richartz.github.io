@@ -60,9 +60,6 @@ export const GallerySlider = (): JSX.Element => {
         // marginTop: "120px",
     })
 
-    const onClickRandomImage = (img: GalleryImage) => {
-        setShowImage(img)
-    }
 
     const randomImages: ReactNode[] = [];
 
@@ -79,7 +76,7 @@ export const GallerySlider = (): JSX.Element => {
 
     for (let image of images) {
         pages++;
-        randomImages.push(<div onClick={() => onClickRandomImage(image as GalleryImage)} style={{marginTop: 20}}>
+        randomImages.push(<div style={{marginTop: 20}}>
             <IntenseImage
                 key={image!.title + "-" + pages}
                 alt={image!.title}
