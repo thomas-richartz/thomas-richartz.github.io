@@ -92,7 +92,7 @@ export const warehouseWrapStyle = css({
     display: "block",
     width: "100vw",
     height: "100vh",
-    background: "url(/assets/img/warehouse.jpeg)",
+    background: "url(/assets/img/warehouse.jpg)",
     backgroundPosition: "center",
     backgroundSize: "cover",
 });
