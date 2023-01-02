@@ -5,14 +5,13 @@ import { allImages } from "../assets/assets";
 import { LazyLoadImage } from "./LazyLoadImage";
 import { GalleryImage } from "../types";
 import { css } from "@emotion/react";
-import { LightBoxImage } from "./LightBoxImage";
+// import { LightBoxImage } from "./LightBoxImage";
 import { IntenseImage } from "./IntenseImage";
 import { TextFx } from "./TextFx";
 
 export const GallerySlider = (): JSX.Element => {
 
     const [showImage, setShowImage] = React.useState<GalleryImage | undefined>(undefined);
-
 
     type RangeKeyImages = {
         [key: string]: GalleryImage[]
@@ -80,11 +79,12 @@ export const GallerySlider = (): JSX.Element => {
             <IntenseImage
                 key={image!.title + "-" + pages}
                 alt={image!.title}
+                title={image!.title}
                 cssStyle={randomImgStyles}
                 src={`assets/images/${image!.filename}`} />
-            <div style={{ background: "black", margin: "auto", width: "fit-content" }}>
+            {/* <div style={{ background: "black", margin: "auto", width: "fit-content" }}>
                 <h2 style={{ textAlign: "center", margin: "auto", }} css={underHeadlineStyle}>{image!.title}</h2>
-            </div>
+            </div> */}
         </div>
         );
     }

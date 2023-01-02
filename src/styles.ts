@@ -64,6 +64,7 @@ export const catsH2Style = css({
     padding: '4px',
     marginLeft: '1vw',
     display: "none",
+    fontSize: "12px",
     "@media (min-width: 1028px)": {
         display: "block",
     }

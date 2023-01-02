@@ -18,7 +18,8 @@ const intenseImgStyles = css({
     // }
 });
 
-interface IOverflow {
+
+interface IPos2D {
     x: number;
     y: number;
 }
@@ -27,6 +28,7 @@ interface IIntenseImage {
     // placeholder: ReactElement;
     alt: string;
     src: string;
+    title: string;
     cssStyle: SerializedStyles;
 }
 
@@ -34,20 +36,23 @@ export const IntenseImage = ({
     // placeholder,
     alt,
     src,
+    title,
     cssStyle
 }: IIntenseImage) => {
 
     const [locked, setLocked] = useLockedBody(false, 'root');
     // https://usehooks-ts.com/react-hook/use-screen
-    const screen = useScreen();
+
+    // chrome is a gui-term for browsers ui elements like address bar, tabs, etc.
+    const screenWithoutChrome = useScreen();
 
     // State
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
     const [currentSrc, setCurrentSrc] = React.useState<string>("");
     // intense
-    const [currentPointerPos, setPointerPos] = React.useState<string>("");
-    const [overflow, setOverflow] = React.useState<IOverflow>({ x: 0, y: 0 });
+    const [currentPointerPos, setPointerPos] = React.useState<IPos2D>({ x: 0, y: 0 });
+    const [overflow, setOverflow] = React.useState<IPos2D>({ x: 0, y: 0 });
     const [overflowValue, setOverflowValue] = React.useState<string>(document.body && document.body.style.overflow || "unset");
     const imgRef = React.useRef<HTMLImageElement | null>(null);
     const intenseImgRef = React.useRef<HTMLImageElement | null>(null);
@@ -96,9 +101,7 @@ export const IntenseImage = ({
     };
 
     React.useEffect(() => {
-
-        console.log("isLoading:", isLoading);
-
+        // console.log("isLoading:", isLoading);
         // events
         try {
             window.addEventListener('keyup', handleKeyUp);
@@ -144,10 +147,8 @@ export const IntenseImage = ({
     }, [isOpen])
 
     if (isLoading) {
-        // spinner needs fowarded ref for instersection observer
-        // return <Spinner />;
+        // return <Spinner />; needs fowarded ref for instersection observer?
         return <div ref={ref}><h1 style={{ marginLeft: "22px" }}><div css={preloaderStyle}></div></h1></div>;
-        // return <div ref={ref}><h1 style={{marginLeft:"22px"}}>Loading ...</h1></div>;
     }
 
     if (isOpen) {
@@ -155,7 +156,7 @@ export const IntenseImage = ({
             <img ref={intenseImgRef} 
                 onClick={handleClick}
                 loading="lazy" alt={alt} css={intenseImgStyles} src={currentSrc} />
-            <h1>{"title"}</h1>
+            <h1>{title}</h1>
         </div>
     }
     return <img ref={imgRef} onClick={handleClick} loading="lazy" alt={alt} css={cssStyle} src={currentSrc} />

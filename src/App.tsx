@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BottomBar } from './components/BottomBar';
 import { HeaderBar } from './components/HeaderBar';
 import { GalleryContextProvider } from './context/GalleryContext';
@@ -10,8 +10,8 @@ import { LandingScreen } from './screens/LandingScreen';
 
 function App() {
 
-  const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
-  const [selectedCat, setSelectedCat] = useState<string>("");
+  const [selectedScreen, setSelectedScreen] = React.useState<Screen>(Screen.LANDING);
+  const [selectedCat, setSelectedCat] = React.useState<string>("");
 
   const onNavigate = (screen:Screen) => {
     setSelectedScreen(screen);

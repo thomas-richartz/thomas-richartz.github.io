@@ -117,6 +117,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         maxHeight: "fit-content",
         objectFit: "cover",
         height: "33vh",
+        border: "7px solid #000",
     });
 
     return <div css={imageWrapperStyles} onKeyDown={keyDownHandler} tabIndex={0}>
@@ -167,6 +168,6 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             />
             <button css={[buttonStyle, buttonRightStyle, { opacity: 1 }]} onClick={() => showNextImage()}> &#9654; </button>
         </div>}
-    </div>;
+    </div>
 }
 

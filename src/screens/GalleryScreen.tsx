@@ -9,7 +9,7 @@ import { GalleryImage } from "../types";
 type GalleryScreenProps = {
     // cat: string;
     onCatClick: (cat: string) => void;
-    onNavigate: (Screen: Screen) => void;
+    onNavigate: (screen: Screen) => void;
 };
 
 export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): JSX.Element => {
@@ -72,6 +72,6 @@ export const GalleryScreen = ({ onCatClick, onNavigate }: GalleryScreenProps): J
                 }} src={`assets/images/${image!.filename}`} />
         </article>
     })}
-    </div>;
+    </div>
 }
 
