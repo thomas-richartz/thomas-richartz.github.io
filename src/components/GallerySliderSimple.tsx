@@ -7,7 +7,7 @@ import { GalleryImage } from "../types";
 import { css } from "@emotion/react";
 import { LightBoxImage } from "./LightBoxImage";
 
-export const GallerySlider = (): JSX.Element => {
+export const GallerySliderSimple = (): JSX.Element => {
 
     const [showImage, setShowImage] = React.useState<GalleryImage | undefined>(undefined);
 

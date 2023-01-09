@@ -82,9 +82,6 @@ export const GallerySlider = (): JSX.Element => {
                 title={image!.title}
                 cssStyle={randomImgStyles}
                 src={`assets/images/${image!.filename}`} />
-            {/* <div style={{ background: "black", margin: "auto", width: "fit-content" }}>
-                <h2 style={{ textAlign: "center", margin: "auto", }} css={underHeadlineStyle}>{image!.title}</h2>
-            </div> */}
         </div>
         );
     }

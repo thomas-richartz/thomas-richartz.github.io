@@ -61,28 +61,29 @@ export const IntenseImage = ({
     const entry = useIntersectionObserver(ref, {});
     const isVisible = !!entry?.isIntersecting
 
-    const setDimensons = (target: any) => {
-        const { offsetHeight, offsetWidth } = target;
-
-        setOverflow({ x: 0, y: 0 })
-    }
-
-
     const handleKeyUp = (e: KeyboardEvent) => {
-        // console.log("IntenseImage:handleKeyUp", e)
+        console.log("IntenseImage:handleKeyUp", e)
         if (e.key && e.key === "Escape") {
-            // console.log("->IntenseImage:handleKeyUp ESC")
-            hideViewer()
+            document.exitFullscreen();
+        }
+        if (e.key && e.key === "ArrowRight") {
+            // nextImage()
+        }
+        if (e.key && e.key === "ArrowLeft") {
+            // prevImage()
         }
     }
 
-    const handleClick = (e: Event|React.MouseEvent<HTMLImageElement> ) => {
-        // console.log("IntenseImage:handleClick", e)
-        // console.log("handleClick Viewer:", isOpen)        
+    const makeFullScreen = (element: any) => {
+        element.requestFullscreen();
+    }
+
+    const handleClick = (e: Event|React.MouseEvent<HTMLImageElement>) => {
         if (isOpen) {
-            hideViewer()
+            document.exitFullscreen()
         } else {
-            showViewer()
+            if (e && e.currentTarget)
+            makeFullScreen(e.currentTarget)
         }
     };
 
@@ -105,25 +106,12 @@ export const IntenseImage = ({
         // events
         try {
             window.addEventListener('keyup', handleKeyUp);
-            // useScreen : window.addEventListener('resize', setDimensons);
-            // take care of both image-refs 
-            // if (imgRef.current) {
-            //     imgRef.current.addEventListener('click', handleClick);
-            //     imgRef.current.addEventListener('touchmove', handleTouchMove);
-            //     imgRef.current.addEventListener('mousemove', handleMouseMove);
-            // }
         } catch (e: any) { console.log(e) }
 
         return () => {
             setLocked(false)
             try {
                 window.removeEventListener('keyup', handleKeyUp);
-                // useScreen : window.removeEventListener('resize', handleClick);
-                // if (imgRef.current) {
-                //     imgRef.current.removeEventListener('click', handleClick);
-                //     imgRef.current.removeEventListener('touchmove', handleTouchMove);
-                //     imgRef.current.removeEventListener('mousemove', handleMouseMove);
-                // }
             } catch (e: any) { console.log(e) }
         };
     }, [isLoading]);
@@ -147,7 +135,6 @@ export const IntenseImage = ({
     }, [isOpen])
 
     if (isLoading) {
-        // return <Spinner />; needs fowarded ref for instersection observer?
         return <div ref={ref}><h1 style={{ marginLeft: "22px" }}><div css={preloaderStyle}></div></h1></div>;
     }
 

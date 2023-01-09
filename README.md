@@ -17,7 +17,11 @@
 - [x] website title
 - [x] Lightbox: Title?, mobile? 
 - [x] Landingpage
-- [ ] Landingpage: Random "Masonry" with Texts (deutsch / english)
+- [x] Landingpage: Random 
+        - [ ] Diashow -> SlideShow Fullscreen API with fallback? (no opacity, https://blog.logrocket.com/experimenting-with-fullscreen-api/ )
+        - [ ] optional "Masonry"
+        - [ ] optional Random Texts / Zitate (deutsch / english)
+- [ ] Meta Tags - SEO
 - [ ] bin/upsert.js: Fix Filenames (replace slugified titles with orignal titles, slugs.json[titles] file?) 
 - [ ] bin/upsert.js: (make it idompotent) -> slugs.json[cats] file?
 - [ ] New Menu: Sculptures ...
@@ -28,6 +32,14 @@
 - [ ] GallerySlider swipable?
 - [ ] FadeIn ProfilePic (name first)
 - [ ] Youtube Link 
+
+
+## Zitate
+
+
+Das Bestreben dem Dasein einen Sinn ab zu gewinnen, ihm Geheimnisse ein zu schreiben und dann versuchen sie zu entschleiern, ist uraltes Bedürfnis des Menschen und wurde von Religionsstiftern, Philosophen und Wissenschaftlern zu allen Zeiten bedient. In der heutigen Zeit widmen sich auch vermehrt wieder die Künstler dem Hinterfragen des Scheins und der Suche nach „Wirklichkeit“ und „Wahrheit“.
+
+Unsere Vorstellung der Welt ist das Ergebnis von Wertungen und Präferenzen, die gesellschaftlichen Konventionen entspringen. Aber Wertungen, Interpretationen und Definitionen, ist es nicht alles von Menschen gemacht, also relativ und wandelbar? Könnte nicht alles auch ganz anders sein? Das Oben unten, das Schwarze weiß und harmonisch das Disharmonische?
 
 
 
