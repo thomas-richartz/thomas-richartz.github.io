@@ -1,9 +1,10 @@
 import { css, keyframes } from "@emotion/react";
+import { defaultTheme } from "./theme";
 
 
 export const bottomBarStyle = css({
-    backgroundColor: "black",
-    color: "#ccc",
+    backgroundColor: defaultTheme.backgroundColors.primary,
+    color: defaultTheme.colors.primary,
     position: "fixed",
     bottom: 0,
     width: '100vw',
@@ -13,14 +14,13 @@ export const bottomBarStyle = css({
 
 export const buttonStyle = css({
     border: 0,
-    color: '#fff5',
-    background: '#0000',
+    color: defaultTheme.colors.primary,
+    background: defaultTheme.backgroundColors.primary,
     boxShadow: 'none',
     // borderRadius: '0px',
     alignSelf: 'center',
     margin: 'auto',
     marginLeft: 'auto',
-    // fontSize: '1.8em',
     width: "48px",
     height: "100vh",
     fontSize: "48px",
@@ -43,14 +43,14 @@ export const buttonRightStyle = css({
 
 
 export const h2Style = css({
-    color: 'rgba(255,255, 255,0.6)',
-    textShadow: '4px 3px 0px #000, 9px 8px 0px rgba(255,255,255,0.15)',
+    color: defaultTheme.colors.secondary,
+    textShadow: defaultTheme.shadows.large,
     padding: '4px',
     marginLeft: '1vw',
 });
 
 export const underHeadlineStyle = css({
-    color: 'rgba(255,255, 255,0.6)',
+    color: defaultTheme.colors.secondary,
     textShadow: 'none',
     padding: '4px',
     marginLeft: '1vw',
@@ -59,12 +59,12 @@ export const underHeadlineStyle = css({
 });
 
 export const catsH2Style = css({
-    color: 'rgba(255,255, 255,0.6)',
-    textShadow: '4px 3px 0px #000, 9px 8px 0px rgba(255,255,255,0.15)',
+    color: defaultTheme.colors.secondary,
+    textShadow: defaultTheme.shadows.large,
     padding: '4px',
     marginLeft: '1vw',
     display: "none",
-    fontSize: "12px",
+    fontSize: defaultTheme.fontSizes.medium,
     "@media (min-width: 1028px)": {
         display: "block",
     }
@@ -99,8 +99,8 @@ export const warehouseWrapStyle = css({
 });
 
 export const landingWrapStyle = css({
-    color: 'rgba(255,255, 255,0.6)',
-    textShadow: '4px 3px 0px #000, 9px 8px 0px rgba(255,255,255,0.15)',
+    color: defaultTheme.colors.secondary,
+    textShadow: defaultTheme.shadows.large,
     padding: '4px',
     margin: 'auto',
     // width: "fit-content",
@@ -114,6 +114,7 @@ const spinnerAnimation = keyframes({
     "50%": { opacity: 0.7  },
     "100%": { transform: "rotate(360deg)", opacity: 0.3  },
 });
+
 export const preloaderStyle = css({
     margin: "auto",
     border: "7px solid #311b0e",

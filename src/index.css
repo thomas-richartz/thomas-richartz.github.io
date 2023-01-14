@@ -37,3 +37,18 @@ input:focus,
 textarea:focus {
   outline: none;
 }
+
+
+div:fullscreen, img:fullscreen {
+  overflow: auto;
+}
+
+div:fullscreen img {
+  object-fit: contain;
+  border: 0;
+}
+
+img:fullscreen {
+  object-fit: contain;
+  border: 0;
+}

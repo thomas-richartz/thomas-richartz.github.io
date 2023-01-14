@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css, SerializedStyles } from "@emotion/react";
+import throttle from "lodash.throttle";
 import React from "react";
 // import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { useIntersectionObserver, useLockedBody, useScreen } from 'usehooks-ts'
@@ -26,6 +27,8 @@ interface IPos2D {
 
 interface IIntenseImage {
     // placeholder: ReactElement;
+    nextImage: () => void,
+    prevImage: () => void,
     alt: string;
     src: string;
     title: string;
@@ -34,6 +37,8 @@ interface IIntenseImage {
 
 export const IntenseImage = ({
     // placeholder,
+    nextImage,
+    prevImage,
     alt,
     src,
     title,
@@ -67,12 +72,16 @@ export const IntenseImage = ({
             document.exitFullscreen();
         }
         if (e.key && e.key === "ArrowRight") {
-            // nextImage()
+            nextImage()
         }
         if (e.key && e.key === "ArrowLeft") {
-            // prevImage()
+            prevImage()
         }
     }
+
+    const throttledKeyUp = React.useMemo(() => throttle(handleKeyUp, 300), [])
+
+
 
     const makeFullScreen = (element: any) => {
         element.requestFullscreen();
@@ -105,13 +114,13 @@ export const IntenseImage = ({
         // console.log("isLoading:", isLoading);
         // events
         try {
-            window.addEventListener('keyup', handleKeyUp);
+            window.addEventListener('keyup', throttledKeyUp);
         } catch (e: any) { console.log(e) }
 
         return () => {
-            setLocked(false)
+            // setLocked(false)
             try {
-                window.removeEventListener('keyup', handleKeyUp);
+                window.removeEventListener('keyup', throttledKeyUp);
             } catch (e: any) { console.log(e) }
         };
     }, [isLoading]);

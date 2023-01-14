@@ -18,7 +18,8 @@
 - [x] Lightbox: Title?, mobile? 
 - [x] Landingpage
 - [x] Landingpage: Random 
-        - [ ] Diashow -> SlideShow Fullscreen API with fallback? (no opacity, https://blog.logrocket.com/experimenting-with-fullscreen-api/ )
+        - [x] Diashow -> SlideShow Fullscreen API 
+        - [ ]         -> SlideShow Fullscreen API with fallback?
         - [ ] optional "Masonry"
         - [ ] optional Random Texts / Zitate (deutsch / english)
 - [ ] Meta Tags - SEO
@@ -30,7 +31,6 @@
         - Grafik: Baudelaire (2009-2012)  
 - [ ] GallerySlider Keyboard Events
 - [ ] GallerySlider swipable?
-- [ ] FadeIn ProfilePic (name first)
 - [ ] Youtube Link 
 
 

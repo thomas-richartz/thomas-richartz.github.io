@@ -1,3 +1,4 @@
+import { ThemeProvider } from '@emotion/react';
 import React from 'react';
 import { BottomBar } from './components/BottomBar';
 import { HeaderBar } from './components/HeaderBar';
@@ -7,6 +8,7 @@ import { GalleryCatScreen } from './screens/GalleryCatScreen';
 
 import { GalleryScreen } from './screens/GalleryScreen';
 import { LandingScreen } from './screens/LandingScreen';
+import { defaultTheme } from './theme';
 
 function App() {
 
@@ -29,6 +31,7 @@ function App() {
 
   return (
     <GalleryContextProvider>
+      <ThemeProvider theme={defaultTheme}>
       <div tabIndex={0} >
         <HeaderBar />
         <main>
@@ -38,6 +41,7 @@ function App() {
           </>
         </main>  
       </div>
+      </ThemeProvider>
     </GalleryContextProvider>
   );
 }
