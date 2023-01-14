@@ -2,9 +2,9 @@
 import { css, SerializedStyles } from "@emotion/react";
 import throttle from "lodash.throttle";
 import React from "react";
-// import useIntersectionObserver from "../hooks/useIntersectionObserver";
-import { useIntersectionObserver, useLockedBody, useScreen } from 'usehooks-ts'
-import { preloaderStyle } from "../styles";
+import { useIntersectionObserver } from 'usehooks-ts'
+import { lightBoxStyle, preloaderStyle } from "../styles";
+import { LightBoxImage } from "./LightBoxImage";
 
 const intenseImgStyles = css({
     maxHeight: '150vh',
@@ -19,11 +19,6 @@ const intenseImgStyles = css({
     // }
 });
 
-
-interface IPos2D {
-    x: number;
-    y: number;
-}
 
 interface IIntenseImage {
     // placeholder: ReactElement;
@@ -45,26 +40,18 @@ export const IntenseImage = ({
     cssStyle
 }: IIntenseImage) => {
 
-    const [locked, setLocked] = useLockedBody(false, 'root');
-    // https://usehooks-ts.com/react-hook/use-screen
-
-    // chrome is a gui-term for browsers ui elements like address bar, tabs, etc.
-    const screenWithoutChrome = useScreen();
-
     // State
     const [isLoading, setIsLoading] = React.useState<boolean>(true);
     const [isOpen, setIsOpen] = React.useState<boolean>(false);
     const [currentSrc, setCurrentSrc] = React.useState<string>("");
-    // intense
-    const [currentPointerPos, setPointerPos] = React.useState<IPos2D>({ x: 0, y: 0 });
-    const [overflow, setOverflow] = React.useState<IPos2D>({ x: 0, y: 0 });
-    const [overflowValue, setOverflowValue] = React.useState<string>(document.body && document.body.style.overflow || "unset");
     const imgRef = React.useRef<HTMLImageElement | null>(null);
-    const intenseImgRef = React.useRef<HTMLImageElement | null>(null);
     // lazy load
     const ref = React.useRef<HTMLDivElement | HTMLImageElement | null>(null);
     const entry = useIntersectionObserver(ref, {});
     const isVisible = !!entry?.isIntersecting
+
+    const hasFullscreenSupport = document.fullscreenEnabled;
+
 
     const handleKeyUp = (e: KeyboardEvent) => {
         console.log("IntenseImage:handleKeyUp", e)
@@ -81,32 +68,29 @@ export const IntenseImage = ({
 
     const throttledKeyUp = React.useMemo(() => throttle(handleKeyUp, 300), [])
 
-
-
     const makeFullScreen = (element: any) => {
         element.requestFullscreen();
     }
 
-    const handleClick = (e: Event|React.MouseEvent<HTMLImageElement>) => {
+    const handleClick = (e: Event | React.MouseEvent<HTMLImageElement>) => {
         if (isOpen) {
-            document.exitFullscreen()
+            hideViewer()
         } else {
-            if (e && e.currentTarget)
-            makeFullScreen(e.currentTarget)
+            showViewer(e)
         }
     };
 
-    const handleTouchMove = () => { };
-    const handleMouseMove = () => { };
-
-
-    const showViewer = () => {
+    const showViewer = (e: Event | React.MouseEvent<HTMLImageElement>) => {
+        if (e && e.currentTarget && hasFullscreenSupport) {
+            makeFullScreen(e.currentTarget)
+        }
         setIsOpen(true)
-        // setLocked(true)
     };
 
     const hideViewer = () => {
-        // setLocked(false)
+        if (hasFullscreenSupport) {
+            document.exitFullscreen()
+        }
         setIsOpen(false)
     };
 
@@ -118,7 +102,6 @@ export const IntenseImage = ({
         } catch (e: any) { console.log(e) }
 
         return () => {
-            // setLocked(false)
             try {
                 window.removeEventListener('keyup', throttledKeyUp);
             } catch (e: any) { console.log(e) }
@@ -138,21 +121,24 @@ export const IntenseImage = ({
     }, [src, isVisible])
 
 
-    React.useEffect(() => {
-        console.log("useEffect isOpen:")
-        console.log(isOpen)
-    }, [isOpen])
+    // React.useEffect(() => {
+    //     console.log("useEffect isOpen:")
+    //     console.log(isOpen)
+    // }, [isOpen])
 
     if (isLoading) {
         return <div ref={ref}><h1 style={{ marginLeft: "22px" }}><div css={preloaderStyle}></div></h1></div>;
     }
 
-    if (isOpen) {
-        return <div style={{width:"100vw",height:"100vh",background:"#000"}}>
-            <img ref={intenseImgRef} 
-                onClick={handleClick}
-                loading="lazy" alt={alt} css={intenseImgStyles} src={currentSrc} />
-            <h1>{title}</h1>
+    if (isOpen && !hasFullscreenSupport) {
+        return <div css={lightBoxStyle} ><LightBoxImage
+            onClick={handleClick}
+            // nextImage={nextImage}
+            // prevImage={prevImage}
+            alt={title}
+            // title={selectedImage!.title}
+            cssStyle={intenseImgStyles}
+            src={currentSrc} />
         </div>
     }
     return <img ref={imgRef} onClick={handleClick} loading="lazy" alt={alt} css={cssStyle} src={currentSrc} />

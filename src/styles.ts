@@ -127,3 +127,15 @@ export const preloaderStyle = css({
 
 
 
+export const lightBoxStyle = css({
+    zIndex: "1",
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: 'rgba(0, 0, 0, 0.79)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+});

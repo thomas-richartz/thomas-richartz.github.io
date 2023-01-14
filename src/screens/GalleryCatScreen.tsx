@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import { allImages } from "../assets/assets";
 import { LazyLoadImage } from "../components/LazyLoadImage";
 import { LightBoxImage } from "../components/LightBoxImage";
-import { buttonLeftStyle, buttonRightStyle, buttonStyle, catsH2Style } from "../styles";
+import { buttonLeftStyle, buttonRightStyle, buttonStyle, catsH2Style, lightBoxStyle } from "../styles";
 import { GalleryImage } from "../types";
 
 type GalleryCatScreenProps = {
@@ -134,18 +134,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 />
             </article>
         })}
-        {showImage !== undefined && <div css={{
-            zIndex: "1",
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: 'rgba(0, 0, 0, 0.79)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-        }} >
+        {showImage !== undefined && <div css={lightBoxStyle} >
             <button css={[buttonStyle, buttonLeftStyle, { opacity: 1 }]} onClick={() => showPrevImage()}> &#9664; </button>
 
             <LightBoxImage key={showImage.filename}
