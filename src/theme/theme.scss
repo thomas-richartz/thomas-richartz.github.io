@@ -1,0 +1,28 @@
+@use "sass:color";
+
+// palletti
+$primary-color: #fff;
+$primary-link-color: #cde;
+$secondary-color: #edc;
+$accent-color: #ccc;
+$accent-light-color: #eee;
+$primary-light-color: color.scale($primary-color, $lightness: 20%);
+$secondary-light-color: color.scale($secondary-color, $lightness: 20%);
+$primary-dark-color: color.scale($primary-color, $lightness: -20%);
+$secondary-dark-color: color.scale($secondary-color, $lightness: -20%);
+
+$background-color: #111;
+$background-primary-color: #123;
+
+$error-color: #d8ab58;
+$warning-color: #86c1ad;
+$info-color: #77aebd;
+$success-color: #7fc59c;
+
+// typography
+$typo-font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+$typo-font-size:  15px;
+$typo-font-weight:  400;
+$typo-line-height:  23px;
+
+// breakpoints

@@ -1,0 +1,109 @@
+@import "theme/theme.scss";
+
+:root {
+  --background: $background-color;
+  --text-primary: $primary-color;
+  --text-primary-link: $primary-link-color;
+  --text-secondary: $secondary-color;
+  --accent: $accent-color;
+}
+
+html {
+  font-family: $typo-font-family;
+  font-size: $typo-font-size;
+  line-height: $typo-line-height;
+  font-weight: $typo-font-weight;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  color: var(--text-primary);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: $secondary-light-color;
+}
+
+body {
+  margin: 0;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background: $background-color;
+  color: $primary-color;
+}
+
+// generic-page ---------------------------------------------------
+.page-headline {
+  font-size: 18px;
+  text-align: center;
+}
+
+
+.page-image--center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 340px;
+  @media (min-width: 1028px) {
+    width: 640px;
+  }
+}
+
+// landing-page --------------------------------------------------
+.landingpage-image--profile {
+  border-radius: "50%";
+  // -webkit-filter: grayscale(100%),
+  filter: grayscale(100%);
+}
+
+.landingpage-wrap {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  background: url(/assets/img/page/warehouse.jpg);
+  background-position: center;
+  background-size: cover;
+  padding: 4px;
+  margin: auto;
+  padding-top: 12px;
+}
+
+// random-image-viewer ---------------------------------------------
+.random-image {
+  max-height: 90vh;
+  max-width: 90vw;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.random-image--preload {
+  margin: auto;
+  border: 7px solid #311b0e;
+  border-radius: 50%;
+  border-top: 7px solid #733a69;
+  width: 48px;
+  height: 48px;
+  // animation: spinnerAnimation + " 8s linear infinite";
+}
+
+  .random-image--item {
+  // why?
+  max-height: 150vh;
+  max-width: 150vw;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
