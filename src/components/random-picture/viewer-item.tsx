@@ -1,12 +1,13 @@
 import React from "react";
 import { useIntersectionObserver } from "usehooks-ts";
-import { GalleryImage } from "../../assets/assets";
+import { GalleryImage, MEDIA_PATH } from "../../assets/assets";
 
 interface IRandomPictureViewerItem {
   nextImage: () => void;
   prevImage: () => void;
   image: GalleryImage;
 }
+
 
 const RandomPictureViewerItem = ({
   nextImage,
@@ -83,10 +84,10 @@ const RandomPictureViewerItem = ({
   React.useEffect(() => {
     if (isVisible) {
       const image_ = new Image();
-      image_.src = image.filename;
+      image_.src = MEDIA_PATH + image.filename;
       image_.onload = () => {
         setIsLoading(false);
-        setCurrentSrc(image.filename);
+        setCurrentSrc(MEDIA_PATH + image.filename);
       };
     }
   }, [image, isVisible]);

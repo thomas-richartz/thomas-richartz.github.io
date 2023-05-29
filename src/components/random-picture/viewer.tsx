@@ -1,6 +1,6 @@
 import React from "react";
 import { GalleryImage } from "../../assets/assets";
-import ViewerItem from "./viewer-item";
+import RandomPictureViewerItem from "./viewer-item";
 
 interface IRandomPictureViewer {
   images: GalleryImage[];
@@ -30,12 +30,14 @@ export const RandomPictureViewer = ({ images }: IRandomPictureViewer): JSX.Eleme
 
   return (
     <div style={{ marginTop: 20 }}>
-      <ViewerItem
-        nextImage={nextImage}
-        prevImage={prevImage}
-        image={image}
-        key={image.title + "-" + currentImageIndex}
-      />
+      {randomImages.map((image, index) => (
+        <RandomPictureViewerItem
+          key={image.title + "-" + index}
+          nextImage={nextImage}
+          prevImage={prevImage}
+          image={image}
+        />
+      ))}
     </div>
   );
 };

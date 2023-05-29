@@ -6,6 +6,8 @@ export type GalleryImage = {
     range: number[];
 };
 
+export const MEDIA_PATH = "/assets/images/";
+
 
 export const allImages: GalleryImage[] = [
     { filename: '3-monde-2018/3-monde-1.jpg.webp', title: '3-monde-1', cat: '3 Monde (2018)', range: [2018] },
