@@ -63,11 +63,11 @@ export const catsH2Style = css({
     textShadow: defaultTheme.shadows.large,
     padding: '4px',
     marginLeft: '1vw',
-    display: "none",
+    // display: "none",
     fontSize: defaultTheme.fontSizes.medium,
-    "@media (min-width: 1028px)": {
-        display: "block",
-    }
+    // "@media (min-width: 1028px)": {
+    //     display: "block",
+    // }
 });
 
 
