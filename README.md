@@ -13,6 +13,7 @@
 
 ## TODO
 
+- [ ] remove unused images, rebase
 - [x] lazy load images
 - [x] website title
 - [x] Lightbox: Title?, mobile? 
