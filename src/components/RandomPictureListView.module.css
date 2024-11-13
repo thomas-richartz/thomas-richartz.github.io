@@ -1,0 +1,17 @@
+
+.randomImg {
+    max-height: 90vh;
+    max-width: 90vw;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* Optional media query */
+    /* @media (min-width: 1028px) {
+        width: 240px;
+    } */
+}
+
+.imageContainer {
+    margin-top: 20px;
+}

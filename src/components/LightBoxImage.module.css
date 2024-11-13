@@ -1,0 +1,14 @@
+.lightBoxImage {
+    max-width: 79vw;
+    max-height: 79vh;
+    object-fit: contain;
+    border: 1px solid #fff;
+    margin: auto;
+    z-index: 2;
+}
+
+@media (min-width: 1096px) {
+    .lightBoxImage {
+        height: 89vh;
+    }
+}

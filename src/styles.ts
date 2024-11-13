@@ -44,7 +44,7 @@ export const buttonRightStyle = css({
 
 export const h2Style = css({
     color: defaultTheme.colors.secondary,
-    textShadow: defaultTheme.shadows.large,
+    textShadow: "none",
     padding: '4px',
     marginLeft: '1vw',
 });
@@ -60,7 +60,7 @@ export const underHeadlineStyle = css({
 
 export const catsH2Style = css({
     color: defaultTheme.colors.secondary,
-    textShadow: defaultTheme.shadows.large,
+    textShadow: 'none',
     padding: '4px',
     marginLeft: '1vw',
     // display: "none",

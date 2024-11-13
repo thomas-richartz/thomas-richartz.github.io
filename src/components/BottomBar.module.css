@@ -1,0 +1,38 @@
+.bottomBar {
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1vw;
+}
+
+.footerText {
+  border: 0;
+  color: #666;
+  background: none;
+  box-shadow: none;
+  font-size: 1.2em;
+  margin-left: 1vw;
+}
+
+.footerText:hover,
+.footerText:focus {
+  color: #999;
+}
+
+.button {
+  border: 0;
+  color: #fff;
+  background: none;
+  box-shadow: none;
+  font-size: 1.8em;
+  cursor: pointer;
+}
+
+.centerButton {
+  margin: 0 auto;
+}
