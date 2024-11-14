@@ -1,53 +1,51 @@
-import React from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { allImages } from "../assets/assets";
 import { GalleryImage } from "../types";
 import { RandomPictureListView } from "./RandomPictureListView";
 
 export const RandomPictureViewer = (): JSX.Element => {
+  const [images, setImages] = useState<GalleryImage[]>([]);
+  const [hasMore, setHasMore] = useState(true);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
 
-    const [showImage, setShowImage] = React.useState<GalleryImage | undefined>(undefined);
+  // Load a random batch of images, ensuring no duplicates
+  const loadRandomImages = useCallback((count: number) => {
+    const newImages: GalleryImage[] = [];
+    const availableImages = allImages.slice(); // Copy to preserve original array
 
-    type RangeKeyImages = {
-        [key: string]: GalleryImage[]
-    };
+    for (let i = 0; i < count && availableImages.length > 0; i++) {
+      const randomIndex = Math.floor(Math.random() * availableImages.length);
+      const [selectedImage] = availableImages.splice(randomIndex, 1); // Avoid duplicates
+      newImages.push(selectedImage);
+    }
 
-    const imagesByRange: RangeKeyImages = {};
+    return newImages;
+  }, []);
 
-    const sortedImagesByCatAndRange = React.useMemo(() => {
-        const results: GalleryImage[] = allImages.sort((a, b) => (a.range[0] > b.range[0] ? -1 : 1));
-        return results;
-    }, []);
+  // Load initial images and set up observer for lazy loading
+  useEffect(() => {
+    setImages(loadRandomImages(10));
 
-    sortedImagesByCatAndRange.map((image) => {
-        let rangeKey = `${image.range[0]}-${image.range[1]}`
-        if (!imagesByRange[rangeKey]) imagesByRange[rangeKey] = [];
-        imagesByRange[rangeKey].push(image);
-        return null;
+    const observer = new IntersectionObserver((entries) => {
+      const lastEntry = entries[0];
+      if (lastEntry.isIntersecting && hasMore) {
+        setImages((prevImages) => [...prevImages, ...loadRandomImages(5)]);
+      }
     });
 
-    // console.log("imagesByRange");
-    // console.log(imagesByRange);
-
-    const nextImage = () => {
-        console.log("nextImage")
-    };
-    
-    const prevImage = () => {
-        console.log("prevImage")
-    };
-
-    const images: GalleryImage[] = [];
-    // iterate ranges and pick random pics
-    for (let i = 0; i < 10; i++) {
-        Object.keys(imagesByRange).map((key: keyof RangeKeyImages) => {
-            let image = imagesByRange[key][Math.floor(Math.random() * imagesByRange[key].length)]
-            images.push(image)
-            return null;
-        });
+    if (loaderRef.current) {
+      observer.observe(loaderRef.current);
     }
-    
-    return <>  
-        <RandomPictureListView selectedImage={undefined}  images={images} />
-    </>
-};
 
+    return () => {
+      if (loaderRef.current) observer.unobserve(loaderRef.current);
+    };
+  }, [loadRandomImages, hasMore]);
+
+  return (
+    <div style={{marginTop: "101px"}}>
+      <RandomPictureListView images={images} selectedImage={undefined} />
+      <div ref={loaderRef} style={{ height: "1px" }}></div>
+    </div>
+  );
+};

@@ -1,6 +1,6 @@
 .intenseImg {
-    max-height: 150vh;
-    max-width: 150vw;
+    max-height: 100vh;
+    max-width: 100vw;
     object-fit: cover;
     display: block;
     margin-left: auto;
@@ -42,4 +42,18 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+
+.figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content horizontally */
+}
+
+
+.title {
+    text-align: center;
+    margin-top: 8px; /* Adjust spacing between image and title */
+    font-size: 1rem; /* Adjust as needed */
 }
