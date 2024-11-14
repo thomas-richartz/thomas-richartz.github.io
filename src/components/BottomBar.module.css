@@ -19,20 +19,36 @@
   margin-left: 1vw;
 }
 
-.footerText:hover,
+/* .footerText:hover,
 .footerText:focus {
   color: #999;
+} */
+
+
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background-color: #333; 
+  color: #fff; 
 }
 
 .button {
-  border: 0;
-  color: #fff;
+  border: none;
   background: none;
-  box-shadow: none;
-  font-size: 1.8em;
+  color: inherit;
+  font-size: 1.5rem;
   cursor: pointer;
 }
 
+
 .centerButton {
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.footerText {
+  font-size: 0.9rem;
 }

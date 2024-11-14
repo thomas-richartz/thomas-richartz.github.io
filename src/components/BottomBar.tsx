@@ -1,6 +1,6 @@
 import React from "react";
 import { Screen } from "../enums";
-import { HomeIcon, ImageIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { HomeIcon, ImageIcon, InstagramLogoIcon, MagnifyingGlassIcon, VideoIcon } from "@radix-ui/react-icons";
 import styles from "./BottomBar.module.css";
 
 interface BottomBarProps {
@@ -24,9 +24,8 @@ export const BottomBar = ({ onNavigate, selectedScreen }: BottomBarProps): JSX.E
                 {isGalleryScreen ? <HomeIcon color="#cde" /> : <ImageIcon color="#cde" />}
             </button>
 
-            {/* Footer Text  
-            <span className={styles.footerText}>&copy; Thomas Richartz 2024</span>
-            */}
+            <span className={styles.footerText}>&copy; Thomas Richartz 2024 </span>
+            
         </div>
     );
 };

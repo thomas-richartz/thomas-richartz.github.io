@@ -5,6 +5,8 @@ import { Screen } from './enums';
 import { GalleryCatScreen } from './screens/GalleryCatScreen';
 import { GalleryScreen } from './screens/GalleryScreen';
 import { LandingScreen } from './screens/LandingScreen';
+import styles from "./App.module.css";
+ 
 
 function App() {
   const [selectedScreen, setSelectedScreen] = React.useState<Screen>(Screen.LANDING);
@@ -27,7 +29,7 @@ function App() {
   return (
     <GalleryContextProvider>
       <div tabIndex={0}>
-        <main>
+        <main className={styles.warehouseWrap}>
           <>
             {screen}
             <BottomBar onNavigate={onNavigate} selectedScreen={selectedScreen} />

@@ -13,7 +13,8 @@
 
 ## TODO
 
-- [ ] remove unused images, rebase
+- [ ] remove duplicates in assets
+- [x] remove unused images
 - [x] lazy load images
 - [x] website title
 - [x] Lightbox: Title?, mobile? 
@@ -33,6 +34,13 @@
 - [ ] GallerySlider Keyboard Events
 - [ ] GallerySlider swipable?
 - [ ] Youtube Link 
+
+      <a href="https://www.youtube.com/@thomasrichartz6276" title="YouTube">
+          <VideoIcon />
+      </a> 
+        <a href="https://instagram.com/@" title="insta">
+          <InstagramLogoIcon />
+      </a> 
 
 
 ## Zitate
