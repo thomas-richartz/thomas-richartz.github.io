@@ -1,7 +1,3 @@
-
-
-/** @jsxImportSource @emotion/react */
-// import { css, keyframes } from "@emotion/react";
 import { animated, useTrail } from "@react-spring/web";
 import React from "react";
 

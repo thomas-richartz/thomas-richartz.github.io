@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     outDir: 'build',
   },
-  base: '/thomas-richartz.github.io/',
+  base: '/',
   define: {
     'process.env': {},
   },

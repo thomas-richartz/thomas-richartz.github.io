@@ -1,0 +1,14 @@
+
+.preloader {
+  /* Replace this with your actual preloader style from `preloaderStyle` */
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: gray;
+  /* Any additional preloader styles */
+}
+
+.textTransition {
+  /* Define styles that should apply to the `animated.div`, if any */
+  margin: auto;
+}

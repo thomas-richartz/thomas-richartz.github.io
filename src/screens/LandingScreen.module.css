@@ -1,0 +1,21 @@
+
+.fadeStyles {
+  opacity: 1;
+  transition: opacity 800ms;
+}
+
+.fadeStylesHidden {
+  opacity: 0;
+}
+
+.imageProfile {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+  display: block;
+  margin: auto;
+  width: 340px;
+}
+
+.centeredImage {
+  border-radius: 50%;
+}

@@ -1,10 +1,9 @@
-/** @jsxImportSource @emotion/react */
 
-import { bottomBarStyle } from "../styles";
+import { bottomBar } from "../App.module.css";
 
 export const HeaderBar = (): JSX.Element => {
 
-    return <><header css={bottomBarStyle}>
+    return <><header className={bottomBar}>
         <button >filter</button>
     </header>
     </>

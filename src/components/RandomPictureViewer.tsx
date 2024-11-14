@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import React from "react";
 import { allImages } from "../assets/assets";
 import { GalleryImage } from "../types";
