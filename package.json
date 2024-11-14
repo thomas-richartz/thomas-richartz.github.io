@@ -32,7 +32,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d build --cname thomas-richartz.com",
     "image-optimize": "scripts/optimize.js"
   },
   "eslintConfig": {
