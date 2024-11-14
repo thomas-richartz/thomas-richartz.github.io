@@ -1,6 +1,5 @@
 import React from 'react';
 import { BottomBar } from './components/BottomBar';
-import { HeaderBar } from './components/HeaderBar';
 import { GalleryContextProvider } from './context/GalleryContext';
 import { Screen } from './enums';
 import { GalleryCatScreen } from './screens/GalleryCatScreen';
@@ -28,7 +27,6 @@ function App() {
   return (
     <GalleryContextProvider>
       <div tabIndex={0}>
-        <HeaderBar />
         <main>
           <>
             {screen}
