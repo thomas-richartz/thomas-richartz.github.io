@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import throttle from "lodash.throttle";
 import { useIntersectionObserver } from "usehooks-ts";
 import styles from "./IntenseImage.module.css";
-import { LightBoxImage } from "./LightBoxImage";
 
 interface IIntenseImage {
   nextImage: () => void;
@@ -18,53 +17,20 @@ export const IntenseImage = ({
   prevImage,
   alt,
   src,
-  title
+  title,
 }: IIntenseImage) => {
-  const [isLoading, setIsLoading] = React.useState<boolean>(true);
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [currentSrc, setCurrentSrc] = React.useState<string>("");
-  const imgRef = React.useRef<HTMLImageElement | null>(null);
-  const ref = React.useRef<HTMLDivElement | HTMLImageElement | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [currentSrc, setCurrentSrc] = useState<string>("");
+  const imgRef = useRef<HTMLImageElement | null>(null);
+  const fullscreenContainerRef = useRef<HTMLDivElement | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
   const entry = useIntersectionObserver(ref, {});
   const isVisible = !!entry?.isIntersecting;
   const hasFullscreenSupport = document.fullscreenEnabled;
 
-  const handleKeyUp = (e: KeyboardEvent) => {
-    if (e.key === "Escape") document.exitFullscreen();
-    if (e.key === "ArrowRight") nextImage();
-    if (e.key === "ArrowLeft") prevImage();
-  };
-
-  const throttledKeyUp = React.useMemo(() => throttle(handleKeyUp, 300), []);
-
-  const makeFullScreen = (element: any) => {
-    element.requestFullscreen();
-  };
-
-  const handleClick = (e: Event | React.MouseEvent<HTMLImageElement>) => {
-    isOpen ? hideViewer() : showViewer(e);
-  };
-
-  const showViewer = (e: Event | React.MouseEvent<HTMLImageElement>) => {
-    if (e.currentTarget && hasFullscreenSupport) {
-      makeFullScreen(e.currentTarget);
-    }
-    setIsOpen(true);
-  };
-
-  const hideViewer = () => {
-    if (hasFullscreenSupport) document.exitFullscreen();
-    setIsOpen(false);
-  };
-
-  React.useEffect(() => {
-    window.addEventListener("keyup", throttledKeyUp);
-    return () => {
-      window.removeEventListener("keyup", throttledKeyUp);
-    };
-  }, [isLoading]);
-
-  React.useEffect(() => {
+  // Preload the image
+  useEffect(() => {
     if (isVisible) {
       const image = new Image();
       image.src = src;
@@ -75,6 +41,67 @@ export const IntenseImage = ({
     }
   }, [src, isVisible]);
 
+  // Handle keyboard navigation
+  const handleKeyUp = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === "Escape") hideFullscreen();
+      if (e.key === "ArrowRight") nextImage();
+      if (e.key === "ArrowLeft") prevImage();
+    },
+    [nextImage, prevImage]
+  );
+
+  useEffect(() => {
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [handleKeyUp]);
+
+  // Open fullscreen
+  const showFullscreen = () => {
+    if (hasFullscreenSupport && fullscreenContainerRef.current) {
+      fullscreenContainerRef.current.style.display = "flex";
+      fullscreenContainerRef.current.requestFullscreen().catch((err) => {
+        console.error("Fullscreen failed:", err);
+      });
+      setIsOpen(true);
+    } else {
+      // Fallback: for devices without fullscreen support
+      setIsOpen(true);
+    }
+  };
+
+  // Close fullscreen
+  const hideFullscreen = () => {
+    if (hasFullscreenSupport && document.fullscreenElement) {
+      document.exitFullscreen().catch((err) => {
+        console.error("Exiting fullscreen failed:", err);
+      });
+    }
+    setIsOpen(false);
+    if (fullscreenContainerRef.current) {
+      fullscreenContainerRef.current.style.display = "none";
+    }
+  };
+
+  // Handle fullscreen exit cleanup
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      if (!document.fullscreenElement) {
+        setIsOpen(false);
+        if (fullscreenContainerRef.current) {
+          fullscreenContainerRef.current.style.display = "none";
+        }
+      }
+    };
+
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
   if (isLoading) {
     return (
       <div ref={ref}>
@@ -83,30 +110,50 @@ export const IntenseImage = ({
     );
   }
 
+  // Mobile Fallback
   if (isOpen && !hasFullscreenSupport) {
     return (
       <div className={styles.lightBox}>
-        <LightBoxImage
-          onClick={handleClick}
+        <img
+          onClick={hideFullscreen}
           alt={title}
           src={currentSrc}
-          className={styles.intenseImg}
+          className={styles.lightBoxImg}
         />
       </div>
     );
   }
 
   return (
-    <div className={styles.figure}>
-      <img
-        ref={imgRef}
-        onClick={handleClick}
-        loading="lazy"
-        alt={alt}
-        className={styles.intenseImg}
-        src={currentSrc}
-      />
-      <span className={styles.title}>{title}</span>
-    </div>
+    <>
+      {/* Main Image */}
+      <div className={styles.figure}>
+        <img
+          ref={imgRef}
+          onClick={showFullscreen}
+          loading="lazy"
+          alt={alt}
+          className={styles.intenseImg}
+          src={currentSrc}
+        />
+        <span className={styles.title}>{title}</span>
+      </div>
+
+      {/* Fullscreen Overlay */}
+      {hasFullscreenSupport && (
+        <div
+          ref={fullscreenContainerRef}
+          className={styles.fullscreenContainer}
+          style={{ display: "none" }} // Hidden by default
+        >
+          <img
+            alt={alt}
+            className={styles.fullscreenImg}
+            src={currentSrc}
+            onClick={hideFullscreen} // Exit fullscreen on click
+          />
+        </div>
+      )}
+    </>
   );
 };
