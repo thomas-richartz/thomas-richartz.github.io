@@ -15,49 +15,40 @@ export const LightBoxImage = ({
   className,
   onClick,
 }: LightBoxImageProps) => {
-  const [isLoading, setIsLoading] = useState(true); // Track loading state
-  const [currentSrc, setCurrentSrc] = useState<string>(src); // Manage current source
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [currentSrc, setCurrentSrc] = useState<string>("");
 
-  // Transition for the image appearance
   const imgTransitions = useTransition(!isLoading, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    config: { duration: 300 }, // Smooth transition
+    delay: 200,
   });
 
-  // Preload image
   useEffect(() => {
     const image = new Image();
     image.src = src;
     image.onload = () => {
-      setCurrentSrc(src); // Update the source
-      setIsLoading(false); // Mark loading as complete
-    };
-    return () => {
-      image.onload = null; // Cleanup to avoid memory leaks
+      setIsLoading(false);
+      setCurrentSrc(src);
     };
   }, [src]);
 
-  return (
-    <>
-      {isLoading ? (
-        <Spinner onClick={onClick} /> // Show spinner while loading
-      ) : (
-        imgTransitions(
-          (styles, item) =>
-            item && (
-              <animated.img
-                loading="lazy"
-                alt={alt}
-                style={styles}
-                className={className}
-                src={currentSrc}
-                onClick={onClick}
-              />
-            )
-        )
-      )}
-    </>
+  if (isLoading) {
+    return <Spinner onClick={onClick} />;
+  }
+
+  return imgTransitions(
+    (styles, item) =>
+      item && (
+        <animated.img
+          loading="lazy"
+          alt={alt}
+          style={styles}
+          className={className}
+          src={currentSrc}
+          onClick={onClick}
+        />
+      )
   );
 };

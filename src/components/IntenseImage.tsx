@@ -1,7 +1,9 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
-import throttle from "lodash.throttle";
+import { useState, useEffect, useRef, useCallback } from "react";
+// import throttle from "lodash.throttle";
 import { useIntersectionObserver } from "usehooks-ts";
 import styles from "./IntenseImage.module.css";
+import { LightBoxImage } from "./LightBoxImage";
+// import { ExitFullScreenIcon } from "@radix-ui/react-icons";
 
 interface IIntenseImage {
   nextImage: () => void;
@@ -114,11 +116,11 @@ export const IntenseImage = ({
   if (isOpen && !hasFullscreenSupport) {
     return (
       <div className={styles.lightBox}>
-        <img
+        <LightBoxImage
           onClick={hideFullscreen}
           alt={title}
           src={currentSrc}
-          className={styles.lightBoxImg}
+          className={styles.intenseImg}
         />
       </div>
     );
