@@ -1,6 +1,7 @@
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import { Spinner } from "./Spinner";
+// import styles from "./LightBoxImage.module.css"
 
 type LightBoxImageProps = {
   alt: string;

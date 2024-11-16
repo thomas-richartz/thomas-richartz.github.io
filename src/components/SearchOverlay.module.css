@@ -91,15 +91,15 @@
   align-items: center;
   gap: 1rem;
   padding: 0.5rem;
-  border: 1px solid #202;
+  border: 1px solid #222;
   border-radius: 4px;
-  background: #101;
+  background: #111;
   cursor: pointer;
   transition: background-color 0.2s;
 }
 
 .resultItem:hover {
-  background: #303;
+  background: #222;
 }
 
 .thumbnail {

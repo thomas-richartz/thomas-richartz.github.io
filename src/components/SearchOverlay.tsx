@@ -3,6 +3,7 @@ import styles from "./SearchOverlay.module.css";
 import { GalleryImage } from "../types";
 import { Spinner } from "./Spinner";
 import { Cross1Icon, DownloadIcon } from "@radix-ui/react-icons";
+import { LightBoxImage } from "./LightBoxImage";
 
 interface SearchOverlayProps {
   items: GalleryImage[];
@@ -17,15 +18,14 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   onClose,
   onItemSelect,
 }) => {
-  const [isVisible, setIsVisible] = useState(false); // Controls fade-in
-  const [isContentVisible, setIsContentVisible] = useState(false); // Controls content collapse
+  const [isVisible, setIsVisible] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(false);
+  const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null);
+  const [filteredItems, setFilteredItems] = useState<GalleryImage[]>(items);
   const [editedTitles, setEditedTitles] = useState<Record<string, string>>(
     () => JSON.parse(localStorage.getItem("editedTitles") || "{}")
   );
-  const [filteredItems, setFilteredItems] = useState<GalleryImage[]>(items); // Filtered items state
-  const searchInputRef = useRef<HTMLInputElement | null>(null); // Ref for input field
-
-  const longPressTimeout = useRef<NodeJS.Timeout | null>(null);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     setIsVisible(true);
@@ -36,11 +36,9 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
 
     return () => {
       clearTimeout(timer);
-      if (longPressTimeout.current) clearTimeout(longPressTimeout.current);
     };
   }, []);
 
-  // Filter logic
   const handleFilter = () => {
     const query = searchInputRef.current?.value.trim().toLowerCase() || "";
     const filtered = items.filter(
@@ -50,23 +48,6 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
         item.cat.toLowerCase().includes(query)
     );
     setFilteredItems(filtered);
-  };
-
-  const handleLongPressStart = (filename: string, currentTitle: string) => {
-    longPressTimeout.current = setTimeout(() => {
-      const newTitle = prompt("Edit Title:", currentTitle) || currentTitle;
-      const updatedTitles = { ...editedTitles, [filename]: newTitle };
-
-      setEditedTitles(updatedTitles);
-      localStorage.setItem("editedTitles", JSON.stringify(updatedTitles)); // Persist changes
-    }, 500);
-  };
-
-  const handleLongPressEnd = () => {
-    if (longPressTimeout.current) {
-      clearTimeout(longPressTimeout.current);
-      longPressTimeout.current = null;
-    }
   };
 
   const handleClose = () => {
@@ -108,11 +89,11 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
         <div className={styles.header}>
           <input
             type="text"
-            ref={searchInputRef} // Reference to the input field
+            ref={searchInputRef}
             placeholder="Find by title, filename, or category..."
             className={styles.searchInput}
             disabled={isLoading}
-            onChange={handleFilter} // Trigger filtering on input change
+            onChange={handleFilter}
           />
           {hasEdits && (
             <button onClick={exportEditedTitles} className={styles.exportButton}>
@@ -129,26 +110,11 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
               <Spinner onClick={onClose} />
             </div>
           ) : (
-            filteredItems.map((item) => ( // Display filtered items
+            filteredItems.map((item) => (
               <div
                 key={item.filename}
                 className={styles.resultItem}
-                onClick={() => onItemSelect(item.cat)}
-                onMouseDown={() =>
-                  handleLongPressStart(
-                    item.filename,
-                    editedTitles[item.filename] || item.title
-                  )
-                }
-                onMouseUp={handleLongPressEnd}
-                onMouseLeave={handleLongPressEnd}
-                onTouchStart={() =>
-                  handleLongPressStart(
-                    item.filename,
-                    editedTitles[item.filename] || item.title
-                  )
-                }
-                onTouchEnd={handleLongPressEnd}
+                onClick={() => setLightboxImage(item)} // Open lightbox with image details
               >
                 <img
                   src={`assets/images/${item.filename}`}
@@ -161,6 +127,14 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
           )}
         </div>
       </div>
+      {lightboxImage && (
+        <LightBoxImage
+          onClick={() => setLightboxImage(null)}
+          alt={lightboxImage.title}
+          src={`assets/images/${lightboxImage.filename}`}
+          className={styles.lightBoxImage}
+        />
+      )}
     </div>
   );
 };
