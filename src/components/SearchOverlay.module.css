@@ -36,6 +36,7 @@
 .content.expanded {
   transform: scale(1);
   opacity: 1;
+  min-height: 90%;
 }
 
 /* Header section */

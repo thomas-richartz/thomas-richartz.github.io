@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./SearchOverlay.module.css";
 import { GalleryImage } from "../types";
 import { Spinner } from "./Spinner";
-import { Cross1Icon } from "@radix-ui/react-icons";
+import { Cross1Icon, DownloadIcon } from "@radix-ui/react-icons";
 
 interface SearchOverlayProps {
   items: GalleryImage[];
@@ -19,28 +19,38 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
 }) => {
   const [isVisible, setIsVisible] = useState(false); // Controls fade-in
   const [isContentVisible, setIsContentVisible] = useState(false); // Controls content collapse
-
   const [editedTitles, setEditedTitles] = useState<Record<string, string>>(
     () => JSON.parse(localStorage.getItem("editedTitles") || "{}")
   );
+  const [filteredItems, setFilteredItems] = useState<GalleryImage[]>(items); // Filtered items state
+  const searchInputRef = useRef<HTMLInputElement | null>(null); // Ref for input field
 
   const longPressTimeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    // Trigger the fade-in effect
     setIsVisible(true);
 
-    // Slight delay for content expand effect
     const timer = setTimeout(() => {
       setIsContentVisible(true);
-    }, 200); // Adjust delay as needed
+    }, 200);
 
     return () => {
-      // Clean up any long press timeouts or timers
       clearTimeout(timer);
       if (longPressTimeout.current) clearTimeout(longPressTimeout.current);
     };
   }, []);
+
+  // Filter logic
+  const handleFilter = () => {
+    const query = searchInputRef.current?.value.trim().toLowerCase() || "";
+    const filtered = items.filter(
+      (item) =>
+        item.title.toLowerCase().includes(query) ||
+        item.filename.toLowerCase().includes(query) ||
+        item.cat.toLowerCase().includes(query)
+    );
+    setFilteredItems(filtered);
+  };
 
   const handleLongPressStart = (filename: string, currentTitle: string) => {
     longPressTimeout.current = setTimeout(() => {
@@ -49,7 +59,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
 
       setEditedTitles(updatedTitles);
       localStorage.setItem("editedTitles", JSON.stringify(updatedTitles)); // Persist changes
-    }, 500); // Long press duration
+    }, 500);
   };
 
   const handleLongPressEnd = () => {
@@ -60,11 +70,30 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   };
 
   const handleClose = () => {
-    setIsContentVisible(false); // Collapse content
+    setIsContentVisible(false);
     setTimeout(() => {
-      setIsVisible(false); // Fade out overlay
-      setTimeout(onClose, 300); // Ensure overlay fully fades before closing
-    }, 200); // Sync with animation duration
+      setIsVisible(false);
+      setTimeout(onClose, 300);
+    }, 200);
+  };
+
+  const exportEditedTitles = () => {
+    const updatedAssets = items.map((item) => ({
+      ...item,
+      title: editedTitles[item.filename] || item.title,
+    }));
+
+    const formattedExport = `${JSON.stringify(updatedAssets, null, 2)};`;
+
+    const blob = new Blob([formattedExport], { type: "text/javascript" });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "assets.json";
+    link.click();
+
+    URL.revokeObjectURL(url);
   };
 
   const hasEdits = items.some(
@@ -79,19 +108,20 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
         <div className={styles.header}>
           <input
             type="text"
+            ref={searchInputRef} // Reference to the input field
             placeholder="Find by title, filename, or category..."
             className={styles.searchInput}
             disabled={isLoading}
+            onChange={handleFilter} // Trigger filtering on input change
           />
           {hasEdits && (
-            <button className={styles.exportButton}>
-              Export Edits
+            <button onClick={exportEditedTitles} className={styles.exportButton}>
+              <DownloadIcon />
             </button>
           )}
           <button onClick={handleClose} className={styles.closeButton}>
             <Cross1Icon />
           </button>
-
         </div>
         <div className={styles.results}>
           {isLoading ? (
@@ -99,7 +129,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
               <Spinner onClick={onClose} />
             </div>
           ) : (
-            items.map((item) => (
+            filteredItems.map((item) => ( // Display filtered items
               <div
                 key={item.filename}
                 className={styles.resultItem}
