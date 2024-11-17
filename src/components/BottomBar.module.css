@@ -30,8 +30,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px;
-  background-color: #333; 
+  /* background-color: #333;  */
   color: #fff; 
+  background: rgb(0,0,0);
+  background: linear-gradient(0deg, rgba(34,34,34,1) 0%, rgba(0,0,0,1) 95%, rgba(34,34,34,1) 100%); 
 }
 
 .button {

@@ -19,3 +19,9 @@
 .centeredImage {
   border-radius: 50%;
 }
+
+.gallerySliderWrap {
+  /* border-bottom: 1px solid black; */
+  box-shadow: 0px 20px 120px black;
+  padding-bottom: 20px;
+}
