@@ -2,6 +2,10 @@
 
 ## TODO
 
+- [ ] LightBox Styles (from parent?)
+- [ ] Find Close on Escape / click
+- [ ] GallerySlider swipable?
+
 - [x] remove duplicates in assets
 - [x] remove duplicates in assets for each folder - different folder same file (checksum)?
 - [x] remove unused images
@@ -22,7 +26,6 @@
         - Gemälde, 
         - Grafik: Baudelaire (2009-2012)  
 - [ ] GallerySlider Keyboard Events
-- [ ] GallerySlider swipable?
 - [ ] Youtube Link 
 
       <a href="https://www.youtube.com/@thomasrichartz6276" title="YouTube">

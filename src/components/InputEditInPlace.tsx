@@ -15,29 +15,38 @@ export const InputEditInPlace: React.FC<InputEditInPlaceProps> = ({ value, onSav
     setIsEditing(true);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
     setIsEditing(false);
     setCurrentValue(value); // Revert changes
   };
 
-  const handleSave = () => {
+  const handleSave = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation();
     setIsEditing(false);
     if (currentValue !== value) {
       onSave(currentValue); // Save only if value changed
     }
   };
 
-  const handleLongPressStart = () => {
+  const handleLongPressStart = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation(); // Prevent propagation on long press
     longPressTimeout.current = setTimeout(() => {
       handleEditStart();
     }, 500); // Long press duration
   };
 
-  const handleLongPressEnd = () => {
+  const handleLongPressEnd = (e: React.MouseEvent | React.TouchEvent) => {
+    e.stopPropagation(); // Prevent propagation on touch/mouse up
     if (longPressTimeout.current) {
       clearTimeout(longPressTimeout.current);
       longPressTimeout.current = null;
     }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation(); // Ensure change event doesn't propagate
+    setCurrentValue(e.target.value);
   };
 
   return (
@@ -54,20 +63,25 @@ export const InputEditInPlace: React.FC<InputEditInPlaceProps> = ({ value, onSav
           <input
             className={styles.editInput}
             value={currentValue}
-            onChange={(e) => setCurrentValue(e.target.value)}
+            onChange={handleInputChange}
             autoFocus
           />
-          <button className={styles.saveButton} onClick={handleSave}>
+          <button
+            className={styles.saveButton}
+            onClick={handleSave}
+          >
             Save
           </button>
-          <button className={styles.cancelButton} onClick={handleCancel}>
+          <button
+            className={styles.cancelButton}
+            onClick={handleCancel}
+          >
             Cancel
           </button>
         </>
       ) : (
         <span
           className={styles.textDisplay}
-          onClick={handleEditStart} // Allows click to edit as well
         >
           {value}
         </span>

@@ -4,6 +4,7 @@ import { GalleryImage } from "../types";
 import { Spinner } from "./Spinner";
 import { Cross1Icon, DownloadIcon } from "@radix-ui/react-icons";
 import { LightBoxImage } from "./LightBoxImage";
+import { InputEditInPlace } from "./InputEditInPlace";
 
 interface SearchOverlayProps {
   items: GalleryImage[];
@@ -26,6 +27,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
     () => JSON.parse(localStorage.getItem("editedTitles") || "{}")
   );
   const searchInputRef = useRef<HTMLInputElement | null>(null);
+  const overlayRef = useRef<HTMLDivElement | null>(null); // Ref for overlay
 
   useEffect(() => {
     setIsVisible(true);
@@ -39,6 +41,22 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
     };
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent | PointerEvent) => {
+      if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
+        console.log("Outside click detected. Closing overlay."); // Debug log
+        handleClose();
+      }
+    };
+  
+    // Use `pointerdown` for better support across devices
+    document.addEventListener("pointerdown", handleClickOutside);
+  
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside);
+    };
+  }, []);
+
   const handleFilter = () => {
     const query = searchInputRef.current?.value.trim().toLowerCase() || "";
     const filtered = items.filter(
@@ -48,6 +66,12 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
         item.cat.toLowerCase().includes(query)
     );
     setFilteredItems(filtered);
+  };
+
+  const handleTitleUpdate = (filename: string, newTitle: string) => {
+    const updatedTitles = { ...editedTitles, [filename]: newTitle };
+    setEditedTitles(updatedTitles);
+    localStorage.setItem("editedTitles", JSON.stringify(updatedTitles));
   };
 
   const handleClose = () => {
@@ -83,6 +107,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
 
   return (
     <div
+      ref={overlayRef}
       className={`${styles.overlay} ${isVisible ? styles.visible : ""}`}
     >
       <div className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}>
@@ -114,14 +139,18 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
               <div
                 key={item.filename}
                 className={styles.resultItem}
-                onClick={() => setLightboxImage(item)} // Open lightbox with image details
+                onClick={() => setLightboxImage(item)}
               >
                 <img
                   src={`assets/images/${item.filename}`}
                   alt={item.title}
                   className={styles.thumbnail}
                 />
-                <p>{editedTitles[item.filename] || item.title}</p>
+                <InputEditInPlace
+                  value={editedTitles[item.filename] || item.title}
+                  onSave={(newTitle) => handleTitleUpdate(item.filename, newTitle)}
+                />
+                <span className={styles.itemCat}>{item.cat}</span>
               </div>
             ))
           )}
