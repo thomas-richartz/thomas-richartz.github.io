@@ -5,6 +5,7 @@ import { Spinner } from "./Spinner";
 import { Cross1Icon, DownloadIcon } from "@radix-ui/react-icons";
 import { LightBoxImage } from "./LightBoxImage";
 import { InputEditInPlace } from "./InputEditInPlace";
+import lightBoxStyles from "./LightBoxImage.module.css"
 
 interface SearchOverlayProps {
   items: GalleryImage[];
@@ -48,10 +49,10 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
         handleClose();
       }
     };
-  
+
     // Use `pointerdown` for better support across devices
     document.addEventListener("pointerdown", handleClickOutside);
-  
+
     return () => {
       document.removeEventListener("pointerdown", handleClickOutside);
     };
@@ -106,64 +107,67 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   );
 
   return (
-    <div
-      ref={overlayRef}
-      className={`${styles.overlay} ${isVisible ? styles.visible : ""}`}
-    >
-      <div className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}>
-        <div className={styles.header}>
-          <input
-            type="text"
-            ref={searchInputRef}
-            placeholder="Find by title, filename, or category..."
-            className={styles.searchInput}
-            disabled={isLoading}
-            onChange={handleFilter}
-          />
-          {hasEdits && (
-            <button onClick={exportEditedTitles} className={styles.exportButton}>
-              <DownloadIcon />
-            </button>
-          )}
-          <button onClick={handleClose} className={styles.closeButton}>
-            <Cross1Icon />
-          </button>
-        </div>
-        <div className={styles.results}>
-          {isLoading ? (
-            <div className={styles.spinner}>
-              <Spinner onClick={onClose} />
+    <>
+      <div
+        ref={overlayRef}
+        className={`${styles.overlay} ${isVisible ? styles.visible : ""}`}
+      >
+        {lightboxImage && (
+          <LightBoxImage
+            onClick={() => setLightboxImage(null)}
+            alt={lightboxImage.title}
+            src={`assets/images/${lightboxImage.filename}`}
+            className={lightBoxStyles.lightBoxImage}
+          />)
+          ||
+          (<div className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}>
+            <div className={styles.header}>
+              <input
+                type="text"
+                ref={searchInputRef}
+                placeholder="Find by title, filename, or category..."
+                className={styles.searchInput}
+                disabled={isLoading}
+                onChange={handleFilter}
+              />
+              {hasEdits && (
+                <button onClick={exportEditedTitles} className={styles.exportButton}>
+                  <DownloadIcon />
+                </button>
+              )}
+              <button onClick={handleClose} className={styles.closeButton}>
+                <Cross1Icon />
+              </button>
             </div>
-          ) : (
-            filteredItems.map((item) => (
-              <div
-                key={item.filename}
-                className={styles.resultItem}
-                onClick={() => setLightboxImage(item)}
-              >
-                <img
-                  src={`assets/images/${item.filename}`}
-                  alt={item.title}
-                  className={styles.thumbnail}
-                />
-                <InputEditInPlace
-                  value={editedTitles[item.filename] || item.title}
-                  onSave={(newTitle) => handleTitleUpdate(item.filename, newTitle)}
-                />
-                <span className={styles.itemCat}>{item.cat}</span>
-              </div>
-            ))
-          )}
-        </div>
+            <div className={styles.results}>
+              {isLoading ? (
+                <div className={styles.spinner}>
+                  <Spinner onClick={onClose} />
+                </div>
+              ) : (
+                filteredItems.map((item) => (
+                  <div
+                    key={item.filename}
+                    className={styles.resultItem}
+                    onClick={() => setLightboxImage(item)}
+                  >
+                    <img
+                      src={`assets/images/${item.filename}`}
+                      alt={item.title}
+                      className={styles.thumbnail}
+                    />
+                    <InputEditInPlace
+                      value={editedTitles[item.filename] || item.title}
+                      onSave={(newTitle) => handleTitleUpdate(item.filename, newTitle)}
+                    />
+                    <span className={styles.itemCat}>{item.cat}</span>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        )}
       </div>
-      {lightboxImage && (
-        <LightBoxImage
-          onClick={() => setLightboxImage(null)}
-          alt={lightboxImage.title}
-          src={`assets/images/${lightboxImage.filename}`}
-          className={styles.lightBoxImage}
-        />
-      )}
-    </div>
+    </>
   );
 };

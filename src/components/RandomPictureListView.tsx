@@ -3,6 +3,7 @@ import { GalleryImage } from "../types";
 import { IntenseImage } from "./IntenseImage";
 import { LightBoxImage } from "./LightBoxImage";
 import styles from "./RandomPictureListView.module.css";
+import lightBoxStyles from "./LightBoxImage.module.css"
 
 interface IRandomPictureListView {
   images: GalleryImage[];
@@ -50,7 +51,7 @@ export const RandomPictureListView = ({
           onClick={() => setLightboxImage(null)} // Close lightbox on click
           alt={lightboxImage.title}
           src={`assets/images/${lightboxImage.filename}`}
-          className={styles.lightBoxImage}
+          className={lightBoxStyles.lightBoxImage}
         />
       )}
     </div>
