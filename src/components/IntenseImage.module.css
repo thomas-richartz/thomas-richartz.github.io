@@ -60,7 +60,7 @@
 
 .fullscreenContainer {
     display: flex;
-    align-items: center;
+    align-items: normal;
     justify-content: center;
     text-align: center;
 }
