@@ -35,7 +35,7 @@ export const LandingScreen = ({ onCatClick, onNavigate }: ILandingScreen): JSX.E
           src="/assets/img/thomas-richartz.jpg"
           alt="thomas-richartz"
         />
-        <h1 style={{ textAlign: "center" }}>Thomas Richartz</h1>
+        <h1 className={styles.landingHeadline}>Thomas Richartz</h1>
         <h2 className={styles.underHeadline} style={{ textAlign: "center", margin: "auto" }}>
           <TextFx>{essayList[Math.floor(Math.random() * essayList.length)]}</TextFx>
         </h2>
