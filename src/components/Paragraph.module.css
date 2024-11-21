@@ -1,0 +1,60 @@
+/* Container for the paragraph component with 3D effect */
+.paragraphWindow {
+    perspective: 1000px; /* 3D perspective */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border-radius: 9px;
+    padding: 20px;
+    margin: 20px auto;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    transition:
+        transform 0.5s ease,
+        opacity 0.5s ease;
+}
+
+/* Content inside the paragraph window */
+.paragraphContent {
+    transform: rotateX(0deg) rotateY(0deg); /* Default flat position */
+    transform-origin: center; /* Pivot for 3D transformations */
+    transition:
+        transform 0.5s ease,
+        opacity 0.3s ease; /* Smooth hover effects */
+}
+
+/* Hover effect for the 3D tilt */
+.paragraphWindowHover:global(.paragraphWindow:hover) .paragraphContent {
+    transform: rotateX(10deg) rotateY(-10deg); /* Adjust angles for 3D tilt */
+    opacity: 1;
+}
+
+/* Paragraph text styling */
+.paragraphText {
+    color: #ccc;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin: 0;
+}
+
+.paragraphLink {
+    color: #777799;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover state for links */
+.paragraphLinkHover:global(.paragraphLink:hover) {
+    text-decoration: underline;
+    color: #9999cc;
+}
+
+/* Icon styling for links */
+.ccIcon {
+    height: 22px !important;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+}

@@ -1449,7 +1449,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/das-fruhere-leben.jpg.webp",
-    "title": "Das fruhere Leben",
+    "title": "Das frühere Leben",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1512,7 +1512,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-tod-der-kunstler.jpg.webp",
-    "title": "der tod der künstler",
+    "title": "Der Tod der Künstler",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,

@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import { SearchOverlay } from './components/SearchOverlay';
-import { GalleryContextProvider } from './context/GalleryContext';
-import { Screen } from './enums';
-import { GalleryCatScreen } from './screens/GalleryCatScreen';
-import { GalleryScreen } from './screens/GalleryScreen';
-import { LandingScreen } from './screens/LandingScreen';
+import React, { useState } from "react";
+import { SearchOverlay } from "./components/SearchOverlay";
+import { GalleryContextProvider } from "./context/GalleryContext";
+import { Screen } from "./enums";
+import { GalleryCatScreen } from "./screens/GalleryCatScreen";
+import { GalleryScreen } from "./screens/GalleryScreen";
+import { LandingScreen } from "./screens/LandingScreen";
 import styles from "./App.module.css";
-import { BottomBar } from './components/BottomBar';
+import { BottomBar } from "./components/BottomBar";
+import { ContactScreen } from "./screens/ContactScreen";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -23,7 +24,7 @@ function App() {
     if (images.length === 0) {
       setLoadingImages(true);
       // Dynamically load `allImages` when search is triggered
-      const { allImages } = await import('./assets/assets');
+      const { allImages } = await import("./assets/assets");
       setImages(allImages);
       setLoadingImages(false);
     }
@@ -39,7 +40,6 @@ function App() {
     setSelectedScreen(Screen.GALLERY);
     setSearchVisible(false);
   };
-  
 
   return (
     <GalleryContextProvider>
@@ -47,11 +47,25 @@ function App() {
         <main className={styles.warehouseWrap}>
           <>
             {selectedScreen === Screen.LANDING ? (
-              <LandingScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
+              <LandingScreen
+                onCatClick={(cat) => setSelectedCat(cat)}
+                onNavigate={onNavigate}
+              />
             ) : selectedScreen === Screen.GALLERY ? (
-              <GalleryScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
+              <GalleryScreen
+                onCatClick={(cat) => setSelectedCat(cat)}
+                onNavigate={onNavigate}
+              />
+            ) : selectedScreen === Screen.CONTACT ? (
+              <ContactScreen
+                onCatClick={(cat) => setSelectedCat(cat)}
+                onNavigate={onNavigate}
+              />
             ) : (
-              <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
+              <GalleryCatScreen
+                cat={selectedCat}
+                onClick={(cat) => setSelectedCat(cat)}
+              />
             )}
             <BottomBar
               onNavigate={onNavigate}
