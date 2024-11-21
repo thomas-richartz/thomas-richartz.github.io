@@ -3,7 +3,7 @@ import { GalleryImage } from '../types';
 export const allImages: GalleryImage[] = [
   {
     "filename": "3-monde-2018/3-monde-1.jpg.webp",
-    "title": "3-monde-1",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -11,7 +11,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-10.jpg.webp",
-    "title": "3-monde-10",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -19,7 +19,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-2.jpg.webp",
-    "title": "3-monde-2",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -27,7 +27,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-3.jpg.webp",
-    "title": "3-monde-3",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -35,7 +35,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-4.jpg.webp",
-    "title": "3-monde-4",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -43,7 +43,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-5.jpg.webp",
-    "title": "3-monde-5",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -51,7 +51,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-6.jpg.webp",
-    "title": "3-monde-6",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -59,7 +59,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-7.jpg.webp",
-    "title": "3-monde-7",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -67,7 +67,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-8.jpg.webp",
-    "title": "3-monde-8",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -75,7 +75,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3-monde-9.jpg.webp",
-    "title": "3-monde-9",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -83,7 +83,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3monde-11.jpg.webp",
-    "title": "3monde-11",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -91,7 +91,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "3-monde-2018/3monde-12.jpg.webp",
-    "title": "3monde-12",
+    "title": "Eine Stadt mit drei Monden",
     "cat": "3 Monde (2018)",
     "range": [
       2018
@@ -99,7 +99,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/aquivokation.jpg.webp",
-    "title": "aquivokation",
+    "title": "Aquivokation",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -108,7 +108,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/betonbrut.jpg.webp",
-    "title": "betonbrut",
+    "title": "Betonbrut",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -117,7 +117,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/der-exekutant.jpg.webp",
-    "title": "der-exekutant",
+    "title": "Der Exekutant",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -126,7 +126,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/dismembration.jpg.webp",
-    "title": "dismembration",
+    "title": "Dismembration",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -135,7 +135,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/empiriokritizismus.jpg.webp",
-    "title": "empiriokritizismus",
+    "title": "Empiriokritizismus",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -144,7 +144,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/erection-collectivement.jpg.webp",
-    "title": "erection-collectivement",
+    "title": "Erection Collectivement",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -153,7 +153,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/exaudi.jpg.webp",
-    "title": "exaudi",
+    "title": "Exaudi",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -162,7 +162,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/freimaurer.jpg.webp",
-    "title": "freimaurer",
+    "title": "Freimaurer",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -171,7 +171,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/gender-studie.jpg.webp",
-    "title": "gender-studie",
+    "title": "Gender Studie",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -180,7 +180,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/homofonie.jpg.webp",
-    "title": "homofonie",
+    "title": "Homofonie",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -189,7 +189,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/kadenz.jpg.webp",
-    "title": "kadenz",
+    "title": "Kadenz",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -198,7 +198,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/kassandra.jpg.webp",
-    "title": "kassandra",
+    "title": "Kassandra",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -207,7 +207,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/konszientalistsche-sphynx.jpg.webp",
-    "title": "konszientalistsche-sphynx",
+    "title": "Konszientalistsche Sphynx",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -216,7 +216,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/kosmodrom.jpg.webp",
-    "title": "kosmodrom",
+    "title": "Kosmodrom",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -225,7 +225,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/kunstterror.jpg.webp",
-    "title": "kunstterror",
+    "title": "Kunstterror",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -234,7 +234,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/la-plus-grande-necessite-du-monde.jpg.webp",
-    "title": "la-plus-grande-necessite-du-monde",
+    "title": "La plus grande necessite du monde",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -243,7 +243,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/mahdi.jpg.webp",
-    "title": "mahdi",
+    "title": "Mahdi",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -252,7 +252,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/majeur.jpg.webp",
-    "title": "majeur",
+    "title": "Majeur",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -261,7 +261,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/metaphysischer-bettelmonch.jpg.webp",
-    "title": "metaphysischer-bettelmonch",
+    "title": "Metaphysischer Bettelmonch",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -270,7 +270,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/minimalproblem.jpg.webp",
-    "title": "minimalproblem",
+    "title": "Minimalproblem",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -279,7 +279,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/mithridatist.jpg.webp",
-    "title": "mithridatist",
+    "title": "Mithridatist",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -288,7 +288,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/narkomane.jpg.webp",
-    "title": "narkomane",
+    "title": "Narkomane",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -297,7 +297,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/nefas.jpg.webp",
-    "title": "nefas",
+    "title": "Nefas",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -306,7 +306,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/neoverismus.jpg.webp",
-    "title": "neoverismus",
+    "title": "Neoverismus",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -315,7 +315,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/november.jpg.webp",
-    "title": "november",
+    "title": "November",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -324,7 +324,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/philokalia.jpg.webp",
-    "title": "philokalia",
+    "title": "Philokalia",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -333,7 +333,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/therapie.jpg.webp",
-    "title": "therapie",
+    "title": "Therapie",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -342,7 +342,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "32-denkmaler-1993-1999/vertikale-idolatrie.jpg.webp",
-    "title": "vertikale-idolatrie",
+    "title": "Vertikale Idolatrie",
     "cat": "32 Denkmäler (1993-1999)",
     "range": [
       1993,
@@ -351,7 +351,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "africa-europa-2016/africa-europa-1.jpg.webp",
-    "title": "Africa-Europa 1",
+    "title": "Africa-Europa",
     "cat": "Africa-Europa (2016)",
     "range": [
       2016
@@ -359,7 +359,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "africa-europa-2016/africa-europa-2.jpg.webp",
-    "title": "Africa-Europa 2",
+    "title": "Africa-Europa",
     "cat": "Africa-Europa (2016)",
     "range": [
       2016
@@ -367,7 +367,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "africa-europa-2016/africa-europa-3.jpg.webp",
-    "title": "Africa-Europa 3",
+    "title": "Africa-Europa",
     "cat": "Africa-Europa (2016)",
     "range": [
       2016
@@ -375,7 +375,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "ametat-2020/ametat-1.jpg.webp",
-    "title": "AMETAT 1",
+    "title": "AMETAT",
     "cat": "Ametat (2020)",
     "range": [
       2020
@@ -383,7 +383,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "ametat-2020/ametat-2.jpg.webp",
-    "title": "AMETAT 2",
+    "title": "AMETAT",
     "cat": "Ametat (2020)",
     "range": [
       2020
@@ -391,7 +391,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "ametat-2020/ametat-3.jpg.webp",
-    "title": "AMETAT 3",
+    "title": "AMETAT",
     "cat": "Ametat (2020)",
     "range": [
       2020
@@ -399,7 +399,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "ametat-2020/ametat-4.jpg.webp",
-    "title": "AMETAT 4",
+    "title": "AMETAT",
     "cat": "Ametat (2020)",
     "range": [
       2020
@@ -407,7 +407,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "ametat-2020/ametat-5.jpg.webp",
-    "title": "AMETAT 5",
+    "title": "AMETAT",
     "cat": "Ametat (2020)",
     "range": [
       2020
@@ -415,7 +415,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "ametat-2020/ametat-6.jpg.webp",
-    "title": "AMETAT 6",
+    "title": "AMETAT",
     "cat": "Ametat (2020)",
     "range": [
       2020
@@ -846,7 +846,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/abschiedsgesang.jpg.webp",
-    "title": "abschiedsgesang",
+    "title": "Abschiedsgesang",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -855,7 +855,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/coreolan.jpg.webp",
-    "title": "coreolan",
+    "title": "Coreolan",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -864,7 +864,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/demirug.jpg.webp",
-    "title": "demirug",
+    "title": "Demirug",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -873,7 +873,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/die-gefangenen.jpg.webp",
-    "title": "die-gefangenen",
+    "title": "Die Gefangenen",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -882,7 +882,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/drehorgellied.jpg.webp",
-    "title": "drehorgellied",
+    "title": "Drehorgellied",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -891,7 +891,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/erinnerung.jpg.webp",
-    "title": "erinnerung",
+    "title": "Erinnerung",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -900,7 +900,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/harden.jpg.webp",
-    "title": "harden",
+    "title": "Harden",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -909,7 +909,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/kriegsteilnehmer.jpg.webp",
-    "title": "kriegsteilnehmer",
+    "title": "Kriegsteilnehmer",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -918,7 +918,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/nacht.jpg.webp",
-    "title": "nacht",
+    "title": "Nacht",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -927,7 +927,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/nitschewo.jpg.webp",
-    "title": "nitschewo",
+    "title": "Nitschewo",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -936,7 +936,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/paradoxisten.jpg.webp",
-    "title": "paradoxisten",
+    "title": "Paradoxisten",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -945,7 +945,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/paris.jpg.webp",
-    "title": "paris",
+    "title": "Paris",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -954,7 +954,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/religionsunterricht.jpg.webp",
-    "title": "religionsunterricht",
+    "title": "Religionsunterricht",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -963,7 +963,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/rheinundine.jpg.webp",
-    "title": "rheinundine",
+    "title": "Rheinundine",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -972,7 +972,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/rom.jpg.webp",
-    "title": "rom",
+    "title": "Rom",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -981,7 +981,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/rota.jpg.webp",
-    "title": "rota",
+    "title": "Rota",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -990,7 +990,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/schicksalslied.jpg.webp",
-    "title": "schicksalslied",
+    "title": "Schicksalslied",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -999,7 +999,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/spieler.jpg.webp",
-    "title": "spieler",
+    "title": "Spieler",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -1008,7 +1008,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/altes-lied.jpg.webp",
-    "title": "altes Lied",
+    "title": "Altes Lied",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1017,7 +1017,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/aramasramas.jpg.webp",
-    "title": "aramasramas",
+    "title": "Aramasramas",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1026,7 +1026,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/assassins.jpg.webp",
-    "title": "assassins",
+    "title": "Assassins",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1035,7 +1035,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/atakor.jpg.webp",
-    "title": "atakor",
+    "title": "Atakor",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1044,7 +1044,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/berlin-gibt-auf.jpg.webp",
-    "title": "berlin-gibt-auf",
+    "title": "Berlin gibt auf",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1053,7 +1053,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/denkmal-fur-den-heiligen-donald.jpg.webp",
-    "title": "denkmal-fur-den-heiligen-donald",
+    "title": "Denkmal für den heiligen Donald",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1062,7 +1062,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/der-dichter-bei-der-arbeit.jpg.webp",
-    "title": "der-dichter-bei-der-arbeit",
+    "title": "Der Dichter bei der Arbeit",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1071,7 +1071,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/der-kriegslieferant.jpg.webp",
-    "title": "der-kriegslieferant",
+    "title": "Der Kriegslieferant",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1080,7 +1080,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/der-kunstler-bei-der-arbeit.jpg.webp",
-    "title": "der-kunstler-bei-der-arbeit",
+    "title": "Der Künstler bei der Arbeit",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1089,7 +1089,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/die-philosophen-und-ihre-kerngedanken.jpg.webp",
-    "title": "die-philosophen-und-ihre-kerngedanken",
+    "title": "Die Philosophen und ihre Kerngedanken",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1098,7 +1098,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/gedanken-eines-arbeiters-an-einer-kreissage.jpg.webp",
-    "title": "gedanken-eines-arbeiters-an-einer-kreissage",
+    "title": "Gedanken eines Arbeiters an einer Kreissäge",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1107,7 +1107,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/gesprach-der-gotzen.jpg.webp",
-    "title": "gesprach-der-gotzen",
+    "title": "Gespräch der Gotzen",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1116,7 +1116,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/holofernes-motiv.jpg.webp",
-    "title": "holofernes-motiv",
+    "title": "Holofernes Motiv",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1125,7 +1125,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/ilaman.jpg.webp",
-    "title": "ilaman",
+    "title": "Ilaman",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1134,7 +1134,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/ils-ont-bu.jpg.webp",
-    "title": "ils-ont-bu",
+    "title": "Ils ont bu",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1143,7 +1143,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/ivrogne.jpg.webp",
-    "title": "ivrogne",
+    "title": "Ivrogne",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1152,7 +1152,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/j-aime-avoir-peure.jpg.webp",
-    "title": "j-aime-avoir-peure",
+    "title": "J'aime avoir peur",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1161,7 +1161,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/la-belle-va-au-chateau.jpg.webp",
-    "title": "la-belle-va-au-chateau",
+    "title": " La Belle va au château",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1170,7 +1170,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/le-domaine-de-la-bete.jpg.webp",
-    "title": "le-domaine-de-la-bete",
+    "title": "Le Domaine de la Bête",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1179,7 +1179,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/le-magnifique-apparait.jpg.webp",
-    "title": "le-magnifique-apparait",
+    "title": "Le Magnifique Apparaît",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1188,7 +1188,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/nahere-bekanntschaft.jpg.webp",
-    "title": "nahere-bekanntschaft",
+    "title": "Nähere Bekanntschaft",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1197,7 +1197,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/oh-frau.jpg.webp",
-    "title": "oh-frau",
+    "title": "Oh Frau",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1206,7 +1206,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/psychoanalyse.jpg.webp",
-    "title": "psychoanalyse",
+    "title": "Psychoanalyse",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1215,7 +1215,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/ti-n-herkan.jpg.webp",
-    "title": "ti-n-herkan",
+    "title": "Ti-n-Herkan",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1224,7 +1224,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/ti-n-tamatt.jpg.webp",
-    "title": "ti-n-tamatt",
+    "title": "Ti-n-Tamatt",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1233,7 +1233,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/ti-n-traz.jpg.webp",
-    "title": "ti-n-traz",
+    "title": "Ti-n-Traz",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1242,7 +1242,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/tricheur.jpg.webp",
-    "title": "tricheur",
+    "title": "Tricheur",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1251,7 +1251,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/twoqqin.jpg.webp",
-    "title": "twoqqin",
+    "title": "Twoqqin",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1260,7 +1260,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/und-sonntags-tu-ich-dichten.jpg.webp",
-    "title": "und-sonntags-tu-ich-dichten",
+    "title": "Und Sonntags tu ich dichten",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1269,7 +1269,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/utul.jpg.webp",
-    "title": "utul",
+    "title": "Utul",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1278,7 +1278,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/va-ou-je-vais.jpg.webp",
-    "title": "va-ou-je-vais",
+    "title": "Vas-y, ou j'y vais",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1287,7 +1287,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/zwei-malerfursten-besuchen-donald-judd-um-ihn-auf-zu-lockern.jpg.webp",
-    "title": "zwei-malerfursten-besuchen-donald-judd-um-ihn-auf-zu-lockern",
+    "title": "Zwei Malerfürsten besuchen Donald Judd um ihn auf zu lockern",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1296,7 +1296,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/zwei-malerfursten.jpg.webp",
-    "title": "zwei-malerfursten",
+    "title": "Zwei Malerfürsten",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1305,7 +1305,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/ahaggar.jpg.webp",
-    "title": "ahaggar",
+    "title": "Ahaggar",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1314,7 +1314,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/azru.jpg.webp",
-    "title": "azru",
+    "title": "Azru",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1323,7 +1323,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/dichtkunst.jpg.webp",
-    "title": "dichtkunst",
+    "title": "Dichtkunst",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1332,7 +1332,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/gedanken_eines_arbeiters_an_einer_kreissage.jpg.webp",
-    "title": "gedanken_eines_arbeiters_an_einer_kreissage",
+    "title": "Gedanken eines Arbeiters an einer Kreissäge",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1341,7 +1341,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/mezzuliet.jpg.webp",
-    "title": "mezzuliet",
+    "title": "Mezzuliet",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1350,7 +1350,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/serkut.jpg.webp",
-    "title": "serkut",
+    "title": "Serkut",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1359,7 +1359,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/torpedo-los.jpg.webp",
-    "title": "torpedo-los",
+    "title": "Torpedo los",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1368,7 +1368,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/abel-und-kain.jpg.webp",
-    "title": "abel-und-kain",
+    "title": "Abel und Kain",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1377,7 +1377,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/abenddammerung.jpg.webp",
-    "title": "abenddammerung",
+    "title": "Abenddämmerung",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1386,7 +1386,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/alchimie-des-schmerzes.jpg.webp",
-    "title": "alchimie-des-schmerzes",
+    "title": "Alchimie des Schmerzes",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1395,7 +1395,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/allegorie.jpg.webp",
-    "title": "allegorie",
+    "title": "Allegorie",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1404,7 +1404,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/an-ein-rothaariges-bettelmadchen.jpg.webp",
-    "title": "an-ein-rothaariges-bettelmadchen",
+    "title": "An ein rothaariges Bettelmadchen",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1413,7 +1413,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/an-eine-die-voruberging-2.jpg.webp",
-    "title": "an-eine-die-voruberging-2",
+    "title": "An eine die vorüberging",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1422,7 +1422,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/an-eine-madonna.jpg.webp",
-    "title": "an-eine-madonna",
+    "title": "An eine Madonna",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1431,7 +1431,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/besessenheit.jpg.webp",
-    "title": "besessenheit",
+    "title": "Besessenheit",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1440,7 +1440,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/das-bildnis.jpg.webp",
-    "title": "das-bildnis",
+    "title": "Das Bildnis",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1449,7 +1449,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/das-fruhere-leben.jpg.webp",
-    "title": "das-fruhere-leben",
+    "title": "Das fruhere Leben",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1458,7 +1458,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/das-gespenst.jpg.webp",
-    "title": "das-gespenst",
+    "title": "Das Gespenst",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1467,7 +1467,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/das-haar.jpg.webp",
-    "title": "das-haar",
+    "title": "Das Haar",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1476,7 +1476,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-heautontimoroumenos.jpg.webp",
-    "title": "der-heautontimoroumenos",
+    "title": "Der Heautontimoroumenos",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1485,7 +1485,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-schlechte-monch.jpg.webp",
-    "title": "der-schlechte-monch",
+    "title": "Der schlechte Mönch",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1494,7 +1494,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-schwan.jpg.webp",
-    "title": "der-schwan",
+    "title": "Der Schwan",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1503,7 +1503,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-tod-der-armen.jpg.webp",
-    "title": "der-tod-der-armen",
+    "title": "Der Tod der Armen",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1512,7 +1512,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-tod-der-kunstler.jpg.webp",
-    "title": "der-tod-der-kunstler",
+    "title": "der tod der künstler",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1521,7 +1521,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-tod-der-liebenden.jpg.webp",
-    "title": "der-tod-der-liebenden",
+    "title": "Der Tod der Liebenden",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1530,7 +1530,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-traum-eines-neugierigen.jpg.webp",
-    "title": "der-traum-eines-neugierigen",
+    "title": "Der Traum eines Neugierigen",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1539,7 +1539,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-wein-der-liebenden.jpg.webp",
-    "title": "der-wein-der-liebenden",
+    "title": "Der Wein der Liebenden",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1548,7 +1548,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-wein-des-einsamen.jpg.webp",
-    "title": "der-wein-des-einsamen",
+    "title": "Der Wein des Einsamen",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1557,7 +1557,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-wein-des-lumpensammlers.jpg.webp",
-    "title": "der-wein-des-lumpensammlers",
+    "title": "Der Wein des Lumpensammlers",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1566,7 +1566,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-wein-des-morders.jpg.webp",
-    "title": "der-wein-des-morders",
+    "title": "Der Wein des Mörders",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1575,7 +1575,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-blinden.jpg.webp",
-    "title": "die-blinden",
+    "title": "Die Blinden",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1584,7 +1584,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-blutfontane.jpg.webp",
-    "title": "die-blutfontane",
+    "title": "Die Blutfontane",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1593,7 +1593,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-kaufliche-muse.jpg.webp",
-    "title": "die-kaufliche-muse",
+    "title": "Die käufliche Muse",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1602,7 +1602,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-kranke-muse.jpg.webp",
-    "title": "die-kranke-muse",
+    "title": "Die kranke Muse",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1611,7 +1611,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-satanslitaneien.jpg.webp",
-    "title": "die-satanslitaneien",
+    "title": "Die Satanslitaneien",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1620,7 +1620,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-schonheit.jpg.webp",
-    "title": "die-schonheit",
+    "title": "Die Schönheit",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1629,7 +1629,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-seele-des-weines.jpg.webp",
-    "title": "die-seele-des-weines",
+    "title": "Die Seele des Weines",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1638,7 +1638,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-tanzende-schlange.jpg.webp",
-    "title": "die-tanzende-schlange",
+    "title": "Die tanzende Schlange",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1647,7 +1647,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-verleugnung-des-heiligen-petrus.jpg.webp",
-    "title": "die-verleugnung-des-heiligen-petrus",
+    "title": "Die Verleugnung des heiligen Petrus",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1656,7 +1656,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/du-nahmst-die-ganze-welt-ins-bett-zum-zeitvertreib.jpg.webp",
-    "title": "du-nahmst-die-ganze-welt-ins-bett-zum-zeitvertreib",
+    "title": "Du nahmst die ganze Welt ins Bett zum Zeitvertreib",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1665,7 +1665,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/eine-erscheinung.jpg.webp",
-    "title": "eine-erscheinung",
+    "title": "Eine Erscheinung",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1674,7 +1674,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/eine-martyrerin.jpg.webp",
-    "title": "eine-martyrerin",
+    "title": "Eine Märtyrerin",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1683,7 +1683,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/eine-reise-nach-kythera.jpg.webp",
-    "title": "eine-reise-nach-kythera",
+    "title": "Eine Reise nach Kythera",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1692,7 +1692,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/einladung-zur-reise.jpg.webp",
-    "title": "einladung-zur-reise",
+    "title": "Einladungzur Reise",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1701,7 +1701,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/herbstsonett.jpg.webp",
-    "title": "herbstsonett",
+    "title": "Herbstsonett",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1710,7 +1710,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/hymne-an-die-schonheit.jpg.webp",
-    "title": "hymne-an-die-schonheit",
+    "title": "Hymne an die Schönheit",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1719,7 +1719,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/lob-auf-meine-franziska.jpg.webp",
-    "title": "lob-auf-meine-franziska",
+    "title": "Lob auf meine Franziska",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1728,7 +1728,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/lunas-schwermut.jpg.webp",
-    "title": "lunas-schwermut",
+    "title": "Lunas Schwermut",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1737,7 +1737,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/moesta-et-errabunda.jpg.webp",
-    "title": "moesta-et-errabunda",
+    "title": "Mœsta et errabunda",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1746,7 +1746,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/morgendammerung.jpg.webp",
-    "title": "morgendammerung",
+    "title": "Morgendämmerung",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1755,7 +1755,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/nebel-und-regen.jpg.webp",
-    "title": "nebel-und-regen",
+    "title": "Nebel und Regen",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1764,7 +1764,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/neigung-zum-nichts-2.jpg.webp",
-    "title": "neigung-zum-nichts-2",
+    "title": "Neigung zum Nichts",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1773,7 +1773,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/pariser-traum.jpg.webp",
-    "title": "pariser-traum",
+    "title": "Pariser Traum",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1782,7 +1782,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/sed-non-satiata.jpg.webp",
-    "title": "sed-non-satiata",
+    "title": "Sed non satiata",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1791,7 +1791,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/semper-aedem.jpg.webp",
-    "title": "semper-aedem",
+    "title": "Semper eadem",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1800,7 +1800,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/sisina.jpg.webp",
-    "title": "sisina",
+    "title": "Sisina",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1809,7 +1809,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/spleen-der-regenmond-erbost-auf-die-ganze-sadt.jpg.webp",
-    "title": "spleen-der-regenmond-erbost-auf-die-ganze-sadt",
+    "title": "Spleen der Regenmond erbost auf die ganze Sadt",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1818,7 +1818,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/spleen-ich-bin-dem-konig-eines-regenlandes-gleich.jpg.webp",
-    "title": "spleen-ich-bin-dem-konig-eines-regenlandes-gleich",
+    "title": "Spleen ich bin dem König eines Regenlandes gleich",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1827,7 +1827,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/spleen-ich-habe-mehr-erinnerung-als-zahlt-ich-tausend-jahre.jpg.webp",
-    "title": "spleen-ich-habe-mehr-erinnerung-als-zahlt-ich-tausend-jahre",
+    "title": "Spleen ich habe mehr Erinnerung als zahlt ich tausend Jahre",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1836,7 +1836,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/spleen-wenn-der-tiefe-himmel-wie-ein-deckel-lastet.jpg.webp",
-    "title": "spleen-wenn-der-tiefe-himmel-wie-ein-deckel-lastet",
+    "title": "Spleen wenn der tiefe Himmel wie ein Deckel lastet",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1845,7 +1845,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/sympathetisches-grauen.jpg.webp",
-    "title": "sympathetisches-grauen",
+    "title": "Sympathetisches Grauen",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1854,7 +1854,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/totentanz.jpg.webp",
-    "title": "totentanz",
+    "title": "Totentanz",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1863,7 +1863,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/unwiederbringlichkeit.jpg.webp",
-    "title": "unwiederbringlichkeit",
+    "title": "Unwiederbringlichkeit",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1872,7 +1872,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/zuchtigung-der-hoffart.jpg.webp",
-    "title": "zuchtigung-der-hoffart",
+    "title": "Züchtigung der Hoffart",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1881,7 +1881,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "berlin-gibt-auf-2015/berlin-gibt-auf-1.jpg.webp",
-    "title": "berlin-gibt-auf-1",
+    "title": "Berlin gibt auf",
     "cat": "Berlin gibt auf (2015)",
     "range": [
       2015
@@ -1889,7 +1889,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "berlin-gibt-auf-2015/berlin-gibt-auf-2.jpg.webp",
-    "title": "berlin-gibt-auf-2",
+    "title": "Berlin gibt auf",
     "cat": "Berlin gibt auf (2015)",
     "range": [
       2015
@@ -1897,7 +1897,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "berlin-gibt-auf-2015/berlin-gibt-auf-3.jpg.webp",
-    "title": "berlin-gibt-auf-3",
+    "title": "Berlin gibt auf",
     "cat": "Berlin gibt auf (2015)",
     "range": [
       2015
@@ -1905,7 +1905,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/achte-sekunde.jpg.webp",
-    "title": "achte-sekunde",
+    "title": "Achte Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1914,7 +1914,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/der-kunstfreund.jpg.webp",
-    "title": "der-kunstfreund",
+    "title": "Der Kunstfreund",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1923,7 +1923,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/drei-irre-gingen-in-den-garten.jpg.webp",
-    "title": "drei-irre-gingen-in-den-garten",
+    "title": "Drei Irre gingen in den Garten",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1932,7 +1932,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/dritte-sekunde.jpg.webp",
-    "title": "dritte-sekunde",
+    "title": "Dritte Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1941,7 +1941,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/du-bist-maler1.jpg.webp",
-    "title": "du-bist-maler1",
+    "title": "Du bist Maler",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1950,7 +1950,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/erste-sekunde.jpg.webp",
-    "title": "erste-sekunde",
+    "title": "Erste Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1959,7 +1959,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/funfte-sekunde.jpg.webp",
-    "title": "funfte-sekunde",
+    "title": "Fünfte Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1968,7 +1968,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/fur-drowlgla.jpg.webp",
-    "title": "fur-drowlgla",
+    "title": "Für Drowlgla",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1977,7 +1977,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/nachruf.jpg.webp",
-    "title": "nachruf",
+    "title": "Nachruf",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1986,7 +1986,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/neunte-sekunde.jpg.webp",
-    "title": "neunte-sekunde",
+    "title": "Neunte Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1995,7 +1995,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/sechste-sekunde.jpg.webp",
-    "title": "sechste-sekunde",
+    "title": "Sechste Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2004,7 +2004,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/siebte-sekunde.jpg.webp",
-    "title": "siebte-sekunde",
+    "title": "Siebte Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2013,7 +2013,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/treue.jpg.webp",
-    "title": "treue",
+    "title": "Treue",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2022,7 +2022,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/vierte-sekunde.jpg.webp",
-    "title": "vierte-sekunde",
+    "title": "Vierte Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2031,7 +2031,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/zweite-sekunde.jpg.webp",
-    "title": "zweite-sekunde",
+    "title": "Zweite Sekunde",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2040,7 +2040,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-1.jpg.webp",
-    "title": "buro-1",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2048,7 +2048,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-10.jpg.webp",
-    "title": "buro-10",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2056,7 +2056,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-2.jpg.webp",
-    "title": "buro-2",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2064,7 +2064,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-3.jpg.webp",
-    "title": "buro-3",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2072,7 +2072,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-4.jpg.webp",
-    "title": "buro-4",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2080,7 +2080,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-5.jpg.webp",
-    "title": "buro-5",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2088,7 +2088,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-6.jpg.webp",
-    "title": "buro-6",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2096,7 +2096,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-7.jpg.webp",
-    "title": "buro-7",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2104,7 +2104,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-8.jpg.webp",
-    "title": "buro-8",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2112,7 +2112,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "buro-2019/buro-9.jpg.webp",
-    "title": "buro-9",
+    "title": "Büro",
     "cat": "Büro (2019)",
     "range": [
       2019
@@ -2120,7 +2120,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/c0rona-art-07.jpg.webp",
-    "title": "c0rona-art-07",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2128,7 +2128,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-01.jpg.webp",
-    "title": "corona-art-01",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2136,7 +2136,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-010.jpg.webp",
-    "title": "corona-art-010",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2144,7 +2144,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-011.jpg.webp",
-    "title": "corona-art-011",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2152,7 +2152,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-012.jpg.webp",
-    "title": "corona-art-012",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2160,7 +2160,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-013.jpg.webp",
-    "title": "corona-art-013",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2168,7 +2168,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-014.jpg.webp",
-    "title": "corona-art-014",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2176,7 +2176,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-015.jpg.webp",
-    "title": "corona-art-015",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2184,7 +2184,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-016.jpg.webp",
-    "title": "corona-art-016",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2192,7 +2192,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-017.jpg.webp",
-    "title": "corona-art-017",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2200,7 +2200,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-018.jpg.webp",
-    "title": "corona-art-018",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2208,7 +2208,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-019.jpg.webp",
-    "title": "corona-art-019",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2216,7 +2216,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-02.jpg.webp",
-    "title": "corona-art-02",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2224,7 +2224,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-020.jpg.webp",
-    "title": "corona-art-020",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2232,7 +2232,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-021.jpg.webp",
-    "title": "corona-art-021",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2240,7 +2240,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-022.jpg.webp",
-    "title": "corona-art-022",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2248,7 +2248,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-023.jpg.webp",
-    "title": "corona-art-023",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2256,7 +2256,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-024.jpg.webp",
-    "title": "corona-art-024",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2264,7 +2264,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-025.jpg.webp",
-    "title": "corona-art-025",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2272,7 +2272,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-03.jpg.webp",
-    "title": "corona-art-03",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2280,7 +2280,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-05.jpg.webp",
-    "title": "corona-art-05",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2288,7 +2288,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-06.jpg.webp",
-    "title": "corona-art-06",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2296,7 +2296,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/corona-art-08.jpg.webp",
-    "title": "corona-art-08",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2304,7 +2304,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "corona-art-2020/coronaart-04.jpg.webp",
-    "title": "coronaart-04",
+    "title": "Coronaaart",
     "cat": "CORONA-ART (2020)",
     "range": [
       2020
@@ -2312,7 +2312,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-1.jpg.webp",
-    "title": "das-verlorene-jahr-1",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2320,7 +2320,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-2.jpg.webp",
-    "title": "das-verlorene-jahr-2",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2328,7 +2328,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-3.jpg.webp",
-    "title": "das-verlorene-jahr-3",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2336,7 +2336,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-4.jpg.webp",
-    "title": "das-verlorene-jahr-4",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2344,7 +2344,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-5.jpg.webp",
-    "title": "das-verlorene-jahr-5",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2352,7 +2352,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-6.jpg.webp",
-    "title": "das-verlorene-jahr-6",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2360,7 +2360,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-7.jpg.webp",
-    "title": "das-verlorene-jahr-7",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2368,7 +2368,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-8.jpg.webp",
-    "title": "das-verlorene-jahr-8",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2376,7 +2376,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "das-verlorene-jahr2017/das-verlorene-jahr-9.jpg.webp",
-    "title": "das-verlorene-jahr-9",
+    "title": "Das verlorene Jahr",
     "cat": "Das verlorene Jahr(2017)",
     "range": [
       2017
@@ -2384,7 +2384,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-1.png.webp",
-    "title": "peking-1",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2392,7 +2392,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-11.png.webp",
-    "title": "peking-11",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2400,7 +2400,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-12.png.webp",
-    "title": "peking-12",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2408,7 +2408,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-13.png.webp",
-    "title": "peking-13",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2416,7 +2416,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-14.png.webp",
-    "title": "peking-14",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2424,7 +2424,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-2.png.webp",
-    "title": "peking-2",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2432,7 +2432,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-3.png.webp",
-    "title": "peking-3",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2440,7 +2440,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-4.png.webp",
-    "title": "peking-4",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2448,7 +2448,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-5.png.webp",
-    "title": "peking-5",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2456,7 +2456,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-6.png.webp",
-    "title": "peking-6",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2464,7 +2464,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-7.png.webp",
-    "title": "peking-7",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2472,7 +2472,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-8.png.webp",
-    "title": "peking-8",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2480,7 +2480,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/peking-9.png.webp",
-    "title": "peking-9",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2488,7 +2488,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-himmel-uber-peking-2014/verfall-10.png.webp",
-    "title": "verfall-10",
+    "title": "Der Himmel über Peking",
     "cat": "Der Himmel über Peking (2014)",
     "range": [
       2014
@@ -2496,7 +2496,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-1.jpg.webp",
-    "title": "der-schein-trugt-1",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2504,7 +2504,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-10.jpg.webp",
-    "title": "der-schein-trugt-10",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2512,7 +2512,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-11.jpg.webp",
-    "title": "der-schein-trugt-11",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2520,7 +2520,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-12.jpg.webp",
-    "title": "der-schein-trugt-12",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2528,7 +2528,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-13.jpg.webp",
-    "title": "der-schein-trugt-13",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2536,7 +2536,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-14.jpg.webp",
-    "title": "der-schein-trugt-14",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2544,7 +2544,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-15.jpg.webp",
-    "title": "der-schein-trugt-15",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2552,7 +2552,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-16.jpg.webp",
-    "title": "der-schein-trugt-16",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2560,7 +2560,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-17.jpg.webp",
-    "title": "der-schein-trugt-17",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2568,7 +2568,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-18.jpg.webp",
-    "title": "der-schein-trugt-18",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2576,7 +2576,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-19.jpg.webp",
-    "title": "der-schein-trugt-19",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2584,7 +2584,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-2.jpg.webp",
-    "title": "der-schein-trugt-2",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2592,7 +2592,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-20.jpg.webp",
-    "title": "der-schein-trugt-20",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2600,7 +2600,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-21.jpg.webp",
-    "title": "der-schein-trugt-21",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2608,7 +2608,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-22.jpg.webp",
-    "title": "der-schein-trugt-22",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2616,7 +2616,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-23.jpg.webp",
-    "title": "der-schein-trugt-23",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2624,7 +2624,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-24.jpg.webp",
-    "title": "der-schein-trugt-24",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2632,7 +2632,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-25.jpg.webp",
-    "title": "der-schein-trugt-25",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2640,7 +2640,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-26.jpg.webp",
-    "title": "der-schein-trugt-26",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2648,7 +2648,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-27.jpg.webp",
-    "title": "der-schein-trugt-27",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2656,7 +2656,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-28.jpg.webp",
-    "title": "der-schein-trugt-28",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2664,7 +2664,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-3.jpg.webp",
-    "title": "der-schein-trugt-3",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2672,7 +2672,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-30.jpg.webp",
-    "title": "der-schein-trugt-30",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2680,7 +2680,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-31.jpg.webp",
-    "title": "der-schein-trugt-31",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2688,7 +2688,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-32.jpg.webp",
-    "title": "der-schein-trugt-32",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2696,7 +2696,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-33.jpg.webp",
-    "title": "der-schein-trugt-33",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2704,7 +2704,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-34.jpg.webp",
-    "title": "der-schein-trugt-34",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2712,7 +2712,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-35.jpg.webp",
-    "title": "der-schein-trugt-35",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2720,7 +2720,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-36.jpg.webp",
-    "title": "der-schein-trugt-36",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2728,7 +2728,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-37.jpg.webp",
-    "title": "der-schein-trugt-37",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2736,7 +2736,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-38.jpg.webp",
-    "title": "der-schein-trugt-38",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2744,7 +2744,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-39.jpg.webp",
-    "title": "der-schein-trugt-39",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2752,7 +2752,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-4.jpg.webp",
-    "title": "der-schein-trugt-4",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2760,7 +2760,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-6.jpg.webp",
-    "title": "der-schein-trugt-6",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2768,7 +2768,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-7.jpg.webp",
-    "title": "der-schein-trugt-7",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2776,7 +2776,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-8.jpg.webp",
-    "title": "der-schein-trugt-8",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2784,7 +2784,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "der-schein-trugt-2018/der-schein-trugt-9.jpg.webp",
-    "title": "der-schein-trugt-9",
+    "title": "Der Schein trügt",
     "cat": "Der Schein trügt (2018)",
     "range": [
       2018
@@ -2792,7 +2792,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0877a.jpg.webp",
-    "title": "dsc_0877a",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2800,7 +2800,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0881a.jpg.webp",
-    "title": "dsc_0881a",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2808,7 +2808,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0882.JPG.webp",
-    "title": "dsc_0882",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2816,7 +2816,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0883.JPG.webp",
-    "title": "dsc_0883",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2824,7 +2824,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0886.JPG.webp",
-    "title": "dsc_0886",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2832,7 +2832,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0888.JPG.webp",
-    "title": "dsc_0888",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2840,7 +2840,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0889a.jpg.webp",
-    "title": "dsc_0889a",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2848,7 +2848,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0892.JPG.webp",
-    "title": "dsc_0892",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2856,7 +2856,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0893a.jpg.webp",
-    "title": "dsc_0893a",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -2864,7 +2864,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dovcenko2-2022/dsc_0894a.jpg.webp",
-    "title": "dsc_0894a",
+    "title": "Arsenal",
     "cat": "Dovcenko2 (2022)",
     "range": [
       2022
@@ -3064,7 +3064,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/schweigen_in_esztergom.jpg.webp",
-    "title": "schweigen_in_esztergom",
+    "title": "Schweigen in Esztergom",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3072,7 +3072,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "kunst-und-so-2000-2021/amerikaner-in-paris.jpg.webp",
-    "title": "amerikaner-in-paris",
+    "title": "Amerikaner in Paris",
     "cat": "Kunst und so (2000-2021)",
     "range": [
       2000,
@@ -3081,7 +3081,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "kunst-und-so-2000-2021/die-deplacierten.jpg.webp",
-    "title": "die-deplacierten",
+    "title": "Die Deplacierten",
     "cat": "Kunst und so (2000-2021)",
     "range": [
       2000,
@@ -3090,7 +3090,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "kunst-und-so-2000-2021/die-ruckkehr-des-vaters.jpg.webp",
-    "title": "die-ruckkehr-des-vaters",
+    "title": "Die Rückkehr des Vaters",
     "cat": "Kunst und so (2000-2021)",
     "range": [
       2000,
@@ -3099,7 +3099,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "kunst-und-so-2000-2021/europa-vor-dem-regen.jpg.webp",
-    "title": "europa-vor-dem-regen",
+    "title": "Europa vor dem Regen",
     "cat": "Kunst und so (2000-2021)",
     "range": [
       2000,
@@ -3108,7 +3108,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "kunst-und-so-2000-2021/nur-die-ruhe.JPG.webp",
-    "title": "nur-die-ruhe",
+    "title": "Nur die Ruhe",
     "cat": "Kunst und so (2000-2021)",
     "range": [
       2000,
@@ -3117,7 +3117,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "kunst-und-so-2000-2021/ware-es-nicht-schon-dabei-zu-sein.jpg.webp",
-    "title": "ware-es-nicht-schon-dabei-zu-sein",
+    "title": "Wäre es nicht schön dabei zu sein",
     "cat": "Kunst und so (2000-2021)",
     "range": [
       2000,
@@ -3126,7 +3126,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/belle-raconte-son-histoire.jpg.webp",
-    "title": "belle-raconte-son-histoire",
+    "title": "Belle raconte son histoire",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3134,7 +3134,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/ils-ont-bout.jpg.webp",
-    "title": "ils-ont-bout",
+    "title": "Ils ont bout",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3142,7 +3142,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/la-confiance-de-la-bete-en-la-belle.jpg.webp",
-    "title": "la-confiance-de-la-bete-en-la-belle",
+    "title": "La Confiance De La Bête En La Belle",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3150,7 +3150,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/la-domaine-de-la-bete.jpg.webp",
-    "title": "la-domaine-de-la-bete",
+    "title": "Le Domaine de la Bête",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3158,7 +3158,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/la-retour-du-pere.jpg.webp",
-    "title": "la-retour-du-pere",
+    "title": "Le retour du père",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3166,7 +3166,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/le-magnifque-apparait.jpg.webp",
-    "title": "le-magnifque-apparait",
+    "title": "Le Magnifique Apparaît",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3174,7 +3174,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/les-tourments-de-la-bete.jpg.webp",
-    "title": "les-tourments-de-la-bete",
+    "title": "Les Tourments de la Bête",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3182,7 +3182,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/promenad-dans-le-jardin.jpg.webp",
-    "title": "promenad-dans-le-jardin",
+    "title": "Promenade dans le jardin",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3190,7 +3190,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-belle-et-la-bete-2009/vous-me-tuez.jpg.webp",
-    "title": "vous-me-tuez",
+    "title": "Vous me tuez",
     "cat": "LA BELLE ET LA BETE (2009)",
     "range": [
       2009
@@ -3198,7 +3198,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "la-trasformazione-2017/das-gesetz.jpg.webp",
-    "title": "das-gesetz",
+    "title": "Das Gesetz",
     "cat": "La Trasformazione (2017)",
     "range": [
       2017
@@ -3254,7 +3254,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/armes-berlin.jpg.webp",
-    "title": "armes-berlin",
+    "title": "Armes Berlin",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3263,7 +3263,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/bergmannslied.jpg.webp",
-    "title": "bergmannslied",
+    "title": "Bergmannslied",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3272,7 +3272,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/bilanz.jpg.webp",
-    "title": "bilanz",
+    "title": "Bilanz",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3281,7 +3281,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/das-lied-von-der-gleichgulgtigkeit.jpg.webp",
-    "title": "das-lied-von-der-gleichgulgtigkeit",
+    "title": "Das Lied von der Gleichgülgtigkeit",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3290,7 +3290,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/das-schweigen.jpg.webp",
-    "title": "das-schweigen",
+    "title": "Das Schweigen",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3299,7 +3299,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/die-bekehrung.jpg.webp",
-    "title": "die-bekehrung",
+    "title": "Die Bekehrung",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3308,7 +3308,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/einst-saen-wir-im-zuchthaus-und-lagen-in-ketten.jpg.webp",
-    "title": "einst-saen-wir-im-zuchthaus-und-lagen-in-ketten",
+    "title": "Einst saßen wir im Zuchthaus und lagen in Ketten",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3317,7 +3317,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/es-ist-krieg.jpg.webp",
-    "title": "es-ist-krieg",
+    "title": "Es ist Krieg",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3326,7 +3326,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/philosophie.jpg.webp",
-    "title": "philosophie",
+    "title": "Philosophie",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3335,7 +3335,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/sehnsucht-nach-der-sehnsucht.jpg.webp",
-    "title": "sehnsucht-nach-der-sehnsucht",
+    "title": "Sehnsucht nach der Sehnsucht",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3344,7 +3344,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2-2013-2014/wunsche.jpg.webp",
-    "title": "wunsche",
+    "title": "Drei Irre gingen in den Garten",
     "cat": "Religionsunterricht 2 (2013-2014)",
     "range": [
       2013,
@@ -3353,7 +3353,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2013/einst-saen-wir-im-zuchthaus.jpg.webp",
-    "title": "einst-saen-wir-im-zuchthaus",
+    "title": "Einst saßen wir im Zuchthaus",
     "cat": "Religionsunterricht (2013)",
     "range": [
       2013
@@ -3361,7 +3361,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2013/sehnsucht.jpg.webp",
-    "title": "sehnsucht",
+    "title": "Sehnsucht",
     "cat": "Religionsunterricht (2013)",
     "range": [
       2013
@@ -3369,7 +3369,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "religionsunterricht-2013/sist-krieg.jpg.webp",
-    "title": "sist-krieg",
+    "title": "Es ist Krieg",
     "cat": "Religionsunterricht (2013)",
     "range": [
       2013
@@ -3503,7 +3503,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wege-aus-dem-ghetto-2016/wege-aus-dem-ghetto-1.jpg.webp",
-    "title": "wege-aus-dem-ghetto-1",
+    "title": "Wege aus dem Ghetto",
     "cat": "Wege aus dem Ghetto (2016)",
     "range": [
       2016
@@ -3511,7 +3511,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wege-aus-dem-ghetto-2016/wege-aus-dem-ghetto-2.jpg.webp",
-    "title": "wege-aus-dem-ghetto-2",
+    "title": "Wege aus dem Ghetto",
     "cat": "Wege aus dem Ghetto (2016)",
     "range": [
       2016
@@ -3519,7 +3519,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wege-aus-dem-ghetto-2016/wege-aus-dem-ghetto-3.jpg.webp",
-    "title": "wege-aus-dem-ghetto-3",
+    "title": "Wege aus dem Ghetto",
     "cat": "Wege aus dem Ghetto (2016)",
     "range": [
       2016
@@ -3527,7 +3527,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wege-aus-dem-ghetto-2016/wege-aus-dem-ghetto-4.jpg.webp",
-    "title": "wege-aus-dem-ghetto-4",
+    "title": "Wege aus dem Ghetto",
     "cat": "Wege aus dem Ghetto (2016)",
     "range": [
       2016
@@ -3535,7 +3535,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/freiheitskampf1.jpg.webp",
-    "title": "freiheitskampf1",
+    "title": "Freiheitskampf",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
