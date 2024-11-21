@@ -1,3 +1,177 @@
+/* Introductory text */
+.galleryCatScreen__introText {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #777;
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+    line-height: 1.5;
+}
+
+.galleryCatScreen__introText strong {
+    color: #999;
+}
+
+.galleryCatScreen__icon {
+    display: block;
+    margin: 10px auto;
+    font-size: 1.5rem;
+    color: #999;
+}
+
+/* Image wrapper with Ken Burns effect */
+.galleryCatScreen__imageWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    opacity: 1;
+    transition: opacity 800ms;
+}
+
+.galleryCatScreen__imageWrapper--show {
+    opacity: 1;
+}
+
+.galleryCatScreen__image {
+    width: 33.3333%;
+    min-height: 33vh;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+.galleryCatScreen__imageTitle {
+    color: #fff;
+    text-align: center;
+}
+
+/* Ken Burns wrapper for image effect */
+.galleryCatScreen__kenBurnsWrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.galleryCatScreen__imageImg {
+    width: 100%;
+    height: 33vh;
+    object-fit: cover;
+    position: absolute;
+    transform: scale(1.1) rotateX(0deg) rotateY(0deg);
+    animation: galleryCatScreen__kenBurns 10s infinite alternate;
+    transition: transform 0.5s ease-in-out;
+}
+
+@keyframes galleryCatScreen__kenBurns {
+    0% {
+        transform: scale(1.1) translate(0, 0) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+        transform: scale(1.2) translate(5%, -5%) rotateX(3deg) rotateY(3deg);
+    }
+    100% {
+        transform: scale(1.1) translate(-5%, 5%) rotateX(-3deg) rotateY(-3deg);
+    }
+}
+
+/* Lightbox and navigation styles */
+.galleryCatScreen__lightBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 3;
+}
+
+.galleryCatScreen__lightBoxOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 3;
+}
+
+.galleryCatScreen__lightBoxImage {
+    max-width: 80vw;
+    max-height: 80vh;
+    object-fit: contain;
+    border: 1px solid #fff;
+}
+
+.galleryCatScreen__button {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    z-index: 5;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.galleryCatScreen__buttonLeft {
+    left: 5%;
+}
+
+.galleryCatScreen__buttonRight {
+    right: 5%;
+}
+
+.galleryCatScreen__closeButton {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    z-index: 5;
+}
+
+.galleryCatScreen__lightBoxImage {
+    max-width: 79vw;
+    max-height: 79vh;
+    object-fit: contain;
+    border: 1px solid #fff;
+    margin: auto;
+    z-index: 2;
+}
+
+.galleryCatScreen__button {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+.galleryCatScreen__button--left {
+    position: absolute;
+    left: 5%;
+}
+
+.galleryCatScreen__button--right {
+    position: absolute;
+    right: 5%;
+}
+
+/* Legacy Styles */
 .imageWrapper {
     display: flex;
     flex-wrap: wrap;
