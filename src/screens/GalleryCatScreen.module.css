@@ -28,6 +28,7 @@
     flex-wrap: wrap;
     opacity: 1;
     transition: opacity 800ms;
+    outline: none;
 }
 
 .galleryCatScreen__imageWrapper--show {

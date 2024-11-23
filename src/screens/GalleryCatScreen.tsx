@@ -30,7 +30,7 @@ export const GalleryCatScreen = ({
   const showNextImage = () => {
     if (!showImage) return;
     const currentIndex = images.findIndex(
-      (image) => image.title === showImage.title,
+      (image) => image.filename === showImage.filename,
     );
     const nextIndex = (currentIndex + 1) % images.length;
     setShowImage(images[nextIndex]);
