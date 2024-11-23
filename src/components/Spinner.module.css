@@ -1,14 +1,30 @@
+.preloaderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
 
 .preloader {
-  /* Replace this with your actual preloader style from `preloaderStyle` */
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: gray;
-  /* Any additional preloader styles */
+    background-color: gray;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #000;
+    border-top: 1px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .textTransition {
-  /* Define styles that should apply to the `animated.div`, if any */
-  margin: auto;
+    margin: auto;
 }

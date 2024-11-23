@@ -5,7 +5,7 @@ import { Spinner } from "./Spinner";
 import { Cross1Icon, DownloadIcon } from "@radix-ui/react-icons";
 import { LightBoxImage } from "./LightBoxImage";
 import { InputEditInPlace } from "./InputEditInPlace";
-import lightBoxStyles from "./LightBoxImage.module.css"
+import lightBoxStyles from "./LightBoxImage.module.css";
 
 interface SearchOverlayProps {
   items: GalleryImage[];
@@ -24,8 +24,8 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   const [isContentVisible, setIsContentVisible] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null);
   const [filteredItems, setFilteredItems] = useState<GalleryImage[]>(items);
-  const [editedTitles, setEditedTitles] = useState<Record<string, string>>(
-    () => JSON.parse(localStorage.getItem("editedTitles") || "{}")
+  const [editedTitles, setEditedTitles] = useState<Record<string, string>>(() =>
+    JSON.parse(localStorage.getItem("editedTitles") || "{}"),
   );
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null); // Ref for overlay
@@ -43,9 +43,14 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent | TouchEvent | PointerEvent) => {
-      if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
-        console.log("Outside click detected. Closing overlay."); // Debug log
+    const handleClickOutside = (
+      event: MouseEvent | TouchEvent | PointerEvent,
+    ) => {
+      if (
+        overlayRef.current &&
+        !overlayRef.current.contains(event.target as Node)
+      ) {
+        console.log("Outside click detected. Closing overlay.");
         handleClose();
       }
     };
@@ -64,7 +69,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
       (item) =>
         item.title.toLowerCase().includes(query) ||
         item.filename.toLowerCase().includes(query) ||
-        item.cat.toLowerCase().includes(query)
+        item.cat.toLowerCase().includes(query),
     );
     setFilteredItems(filtered);
   };
@@ -103,7 +108,8 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   };
 
   const hasEdits = items.some(
-    (item) => editedTitles[item.filename] && editedTitles[item.filename] !== item.title
+    (item) =>
+      editedTitles[item.filename] && editedTitles[item.filename] !== item.title,
   );
 
   return (
@@ -112,26 +118,31 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
         ref={overlayRef}
         className={`${styles.overlay} ${isVisible ? styles.visible : ""}`}
       >
-        {lightboxImage && (
+        {(lightboxImage && (
           <LightBoxImage
             onClick={() => setLightboxImage(null)}
             alt={lightboxImage.title}
             src={`assets/images/${lightboxImage.filename}`}
             className={lightBoxStyles.lightBoxImage}
-          />)
-          ||
-          (<div className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}>
+          />
+        )) || (
+          <div
+            className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}
+          >
             <div className={styles.header}>
               <input
                 type="text"
                 ref={searchInputRef}
-                placeholder="Find by title, filename, or category..."
+                placeholder="Suche nach Titel oder Ausstellung..."
                 className={styles.searchInput}
                 disabled={isLoading}
                 onChange={handleFilter}
               />
               {hasEdits && (
-                <button onClick={exportEditedTitles} className={styles.exportButton}>
+                <button
+                  onClick={exportEditedTitles}
+                  className={styles.exportButton}
+                >
                   <DownloadIcon />
                 </button>
               )}
@@ -158,7 +169,9 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
                     />
                     <InputEditInPlace
                       value={editedTitles[item.filename] || item.title}
-                      onSave={(newTitle) => handleTitleUpdate(item.filename, newTitle)}
+                      onSave={(newTitle) =>
+                        handleTitleUpdate(item.filename, newTitle)
+                      }
                     />
                     <span className={styles.itemCat}>{item.cat}</span>
                   </div>

@@ -4,7 +4,12 @@ import { LazyLoadImage } from "../components/LazyLoadImage";
 import { LightBoxImage } from "../components/LightBoxImage";
 import styles from "./GalleryCatScreen.module.css";
 import { GalleryImage } from "../types";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  Cross2Icon,
+} from "@radix-ui/react-icons";
+import { useDrag } from "@use-gesture/react";
 
 type GalleryCatScreenProps = {
   cat: string;
@@ -17,7 +22,6 @@ export const GalleryCatScreen = ({
   const [hide, setHide] = useState<boolean>(true);
   const [showImage, setShowImage] = useState<GalleryImage | null>(null);
 
-  // Memoized filtered images by category
   const images = useMemo(
     () => allImages.filter((image) => image.cat === cat),
     [cat],
@@ -60,6 +64,19 @@ export const GalleryCatScreen = ({
     return () => clearTimeout(timer);
   }, []);
 
+  const bindGesture = useDrag(
+    ({ down, movement: [mx], velocity: [vx] }) => {
+      if (!down && Math.abs(vx) > 0.5) {
+        if (mx < 0) {
+          showNextImage();
+        } else {
+          showPrevImage();
+        }
+      }
+    },
+    { axis: "x" },
+  );
+
   return (
     <>
       {/* Introductory paragraph */}
@@ -67,7 +84,6 @@ export const GalleryCatScreen = ({
         <p>
           <strong>{cat}</strong>
         </p>
-        <ChevronDownIcon className={styles.galleryCatScreen__icon} />
       </div>
 
       <div
@@ -81,9 +97,11 @@ export const GalleryCatScreen = ({
             className={styles.galleryCatScreen__image}
             onClick={() => setShowImage(image)}
           >
-            <h2 className={styles.galleryCatScreen__imageTitle}>
-              {image.title}
-            </h2>
+            <div className={styles.galleryCatScreen__imageOverlay}>
+              <h2 className={styles.galleryCatScreen__imageTitle}>
+                {image.title}
+              </h2>
+            </div>
             <div className={styles.galleryCatScreen__kenBurnsWrapper}>
               <LazyLoadImage
                 alt={image.title}
@@ -96,12 +114,15 @@ export const GalleryCatScreen = ({
 
         {/* Lightbox for selected image */}
         {showImage && (
-          <div className={styles.galleryCatScreen__lightBoxOverlay}>
+          <div
+            className={styles.galleryCatScreen__lightBoxOverlay}
+            {...bindGesture()}
+          >
             <button
               className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonLeft}`}
               onClick={showPrevImage}
             >
-              &#9664;
+              <ChevronLeftIcon />
             </button>
             <LightBoxImage
               alt={showImage.title}
@@ -113,13 +134,13 @@ export const GalleryCatScreen = ({
               className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonRight}`}
               onClick={showNextImage}
             >
-              &#9654;
+              <ChevronRightIcon />
             </button>
             <button
               className={styles.galleryCatScreen__closeButton}
               onClick={() => setShowImage(null)}
             >
-              &#10005;
+              <Cross2Icon />
             </button>
           </div>
         )}

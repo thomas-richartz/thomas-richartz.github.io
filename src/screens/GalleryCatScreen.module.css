@@ -103,6 +103,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.9);
     z-index: 3;
+    touch-action: "none";
 }
 
 .galleryCatScreen__lightBoxImage {
@@ -125,11 +126,11 @@
 }
 
 .galleryCatScreen__buttonLeft {
-    left: 5%;
+    left: 10px;
 }
 
 .galleryCatScreen__buttonRight {
-    right: 5%;
+    right: 10px;
 }
 
 .galleryCatScreen__closeButton {
@@ -240,4 +241,38 @@
 .buttonRight {
     position: absolute;
     right: 5%;
+}
+
+.galleryCatScreen__image {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.galleryCatScreen__imageOverlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Semi-transparent overlay */
+    color: white;
+    padding: 0.5rem;
+    text-align: center;
+    z-index: 2;
+}
+
+.galleryCatScreen__imageTitle {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.galleryCatScreen__kenBurnsWrapper {
+    position: relative;
+    overflow: hidden;
+    height: 33vh;
+}
+
+.galleryCatScreen__imageImg {
+    width: 100%;
+    height: auto;
+    display: block;
 }

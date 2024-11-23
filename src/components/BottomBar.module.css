@@ -1,22 +1,23 @@
 .bottomBar {
-  background-color: #333;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1vw;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1vw;
+    z-index: 2;
 }
 
 .footerText {
-  border: 0;
-  color: #666;
-  background: none;
-  box-shadow: none;
-  font-size: 1.2em;
-  margin-left: 1vw;
+    border: 0;
+    color: #666;
+    background: none;
+    box-shadow: none;
+    font-size: 1.2em;
+    margin-left: 1vw;
 }
 
 /* .footerText:hover,
@@ -24,33 +25,36 @@
   color: #999;
 } */
 
-
 .bottomBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px;
-  /* background-color: #333;  */
-  color: #fff; 
-  background: rgb(0,0,0);
-  background: linear-gradient(0deg, rgba(34,34,34,1) 0%, rgba(0,0,0,1) 95%, rgba(34,34,34,1) 100%); 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    /* background-color: #333;  */
+    color: #fff;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+        0deg,
+        rgba(34, 34, 34, 1) 0%,
+        rgba(0, 0, 0, 1) 95%,
+        rgba(34, 34, 34, 1) 100%
+    );
 }
 
 .button {
-  border: none;
-  background: none;
-  color: inherit;
-  font-size: 1.5rem;
-  cursor: pointer;
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 1.5rem;
+    cursor: pointer;
 }
 
-
 .centerButton {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .footerText {
-  font-size: 0.9rem;
+    font-size: 0.9rem;
 }

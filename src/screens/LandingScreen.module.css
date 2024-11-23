@@ -1,55 +1,53 @@
-
 .fadeStyles {
-  opacity: 1;
-  transition: opacity 800ms;
+    opacity: 1;
+    transition: opacity 800ms;
 }
 
 .fadeStylesHidden {
-  opacity: 0;
+    opacity: 0;
 }
 
 .imageProfile {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
-  display: block;
-  margin: auto;
-  width: 340px;
-  padding-top: 10px;
-
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    display: block;
+    margin: auto;
+    max-width: 69vw;
+    max-height: 38vh;
+    padding-top: 10px;
 }
 
 .centeredImage {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
 .gallerySliderWrap {
-  /* border-bottom: 1px solid black; */
-  box-shadow: 0px 20px 120px black;
-  min-height: 70vh;
+    /* border-bottom: 1px solid black; */
+    box-shadow: 0px 20px 120px black;
+    min-height: 70vh;
 }
 
 @keyframes pulsate {
-  100% {
-    /* Larger blur radius */
-    text-shadow:
-      0 0 14px #0fa,
-      0 0 150px #0fa;
-  }
-  0% {
-    /* Smaller blur radius */
-    text-shadow:
-      0 0 80px #0fa;
-  }
+    100% {
+        /* Larger blur radius */
+        text-shadow:
+            0 0 14px #0fa,
+            0 0 150px #0fa;
+    }
+    0% {
+        /* Smaller blur radius */
+        text-shadow: 0 0 80px #0fa;
+    }
 }
 
 .landingHeadline {
-  text-align: center;
-  color: #eee;
-  animation: pulsate 6s infinite alternate;      
+    text-align: center;
+    color: #eee;
+    animation: pulsate 6s infinite alternate;
 }
 
-
-
 .neonLight {
-  text-shadow:  0 0 42px #0fa, 0 0 150px #0fa;
+    text-shadow:
+        0 0 42px #0fa,
+        0 0 150px #0fa;
 }
