@@ -486,7 +486,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/der-verutschte-hut.jpg.webp",
-    "title": "Der verutschte Hut",
+    "title": "Robespierre",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -513,7 +513,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/die-weinenden-hohenzollern.jpg.webp",
-    "title": "Die weinenden Hohenzollern",
+    "title": "Ursprung des Lebensstromes",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -522,7 +522,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/diese-welt-isr-eine-null.jpg.webp",
-    "title": "Diese Welt isr eine Null",
+    "title": "Diese Welt ist eine Null",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -531,7 +531,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/drei-minuten-gehor.jpg.webp",
-    "title": "Drei Minuten Gehör",
+    "title": "Die subjektiv erlebte Zeit ",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -594,7 +594,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/gedanken-und-erinnerungen.jpg.webp",
-    "title": "Gedanken und Erinnerungen",
+    "title": "Die Welt als schöpferisches Werden",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -612,7 +612,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/kleine-fingerubung.jpg.webp",
-    "title": "Kleine Fingerübung",
+    "title": "Spannungsfeld",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -648,7 +648,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/lieb-zur-luge.jpg.webp",
-    "title": "Lieb zur Lüge",
+    "title": "Tiefste Schicht des Bewußtseins",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -657,7 +657,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/limbisches-system.jpg.webp",
-    "title": "Limbisches System",
+    "title": "Freiheit und Heiterkeit des Geistes",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -747,7 +747,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/spaniache-krankheit.jpg.webp",
-    "title": "Spaniache Krankheit",
+    "title": "Spanische Krankheit",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -792,7 +792,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/unser-taglich-brot.jpg.webp",
-    "title": "Unser täglich Brot",
+    "title": "Worte sind relativ",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -900,7 +900,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/harden.jpg.webp",
-    "title": "Harden",
+    "title": "Abendländischer Geist",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -981,7 +981,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-1-1995-2008/rota.jpg.webp",
-    "title": "Rota",
+    "title": "Der Dichter bei der Arbeit",
     "cat": "Auswahl 1 (1995-2008)",
     "range": [
       1995,
@@ -1107,7 +1107,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-2-2008-2013/gesprach-der-gotzen.jpg.webp",
-    "title": "Gespräch der Gotzen",
+    "title": "Diskussion der Götzen",
     "cat": "Auswahl 2 (2008-2013)",
     "range": [
       2008,
@@ -1359,7 +1359,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "auswahl-3-2008-2012/torpedo-los.jpg.webp",
-    "title": "Torpedo los",
+    "title": "Der Dichter bei der Arbeit",
     "cat": "Auswahl 3 (2008-2012)",
     "range": [
       2008,
@@ -1512,7 +1512,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/der-tod-der-kunstler.jpg.webp",
-    "title": "Der Tod der Künstler",
+    "title": "Man´s search for meaning",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1584,7 +1584,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-blutfontane.jpg.webp",
-    "title": "Die Blutfontane",
+    "title": "Die Blutfontäne",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1593,7 +1593,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-kaufliche-muse.jpg.webp",
-    "title": "Die käufliche Muse",
+    "title": "Vergangenheitsbewältigung",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1638,7 +1638,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/die-tanzende-schlange.jpg.webp",
-    "title": "Die tanzende Schlange",
+    "title": "Abendländischer Geist",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1692,7 +1692,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/einladung-zur-reise.jpg.webp",
-    "title": "Einladungzur Reise",
+    "title": "Einladung zur Reise",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1827,7 +1827,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "baudelaire-2009-2012/spleen-ich-habe-mehr-erinnerung-als-zahlt-ich-tausend-jahre.jpg.webp",
-    "title": "Spleen ich habe mehr Erinnerung als zahlt ich tausend Jahre",
+    "title": "Spleen ich habe mehr Erinnerung als zählt ich tausend Jahre",
     "cat": "Baudelaire (2009-2012)",
     "range": [
       2009,
@@ -1905,7 +1905,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/achte-sekunde.jpg.webp",
-    "title": "Achte Sekunde",
+    "title": "Mystik",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1932,7 +1932,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/dritte-sekunde.jpg.webp",
-    "title": "Dritte Sekunde",
+    "title": "Leben will immer mehr Leben",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1950,7 +1950,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/erste-sekunde.jpg.webp",
-    "title": "Erste Sekunde",
+    "title": "Planetarische Bewegung",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1959,7 +1959,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/funfte-sekunde.jpg.webp",
-    "title": "Fünfte Sekunde",
+    "title": "Zukunftsgestaltung",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1986,7 +1986,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/neunte-sekunde.jpg.webp",
-    "title": "Neunte Sekunde",
+    "title": "Tiefen des Lebens",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -1995,7 +1995,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/sechste-sekunde.jpg.webp",
-    "title": "Sechste Sekunde",
+    "title": "Zeitintervall",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2004,7 +2004,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/siebte-sekunde.jpg.webp",
-    "title": "Siebte Sekunde",
+    "title": "Genesis",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2022,7 +2022,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/vierte-sekunde.jpg.webp",
-    "title": "Vierte Sekunde",
+    "title": "Von der Quelle des Lebens",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2031,7 +2031,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "bilder-1995-2008/zweite-sekunde.jpg.webp",
-    "title": "Zweite Sekunde",
+    "title": "verständliche,schöne, klare Sprache",
     "cat": "Bilder (1995-2008)",
     "range": [
       1995,
@@ -2872,7 +2872,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-1.jpg.webp",
-    "title": "Dystopie 1",
+    "title": "Dystopie ",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2880,7 +2880,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-2.jpg.webp",
-    "title": "Dystopie 2",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2888,7 +2888,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-3.jpg.webp",
-    "title": "Dystopie 3",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2896,7 +2896,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-4.jpg.webp",
-    "title": "Dystopie 4",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2904,7 +2904,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-5.jpg.webp",
-    "title": "Dystopie 5",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2912,7 +2912,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-6.jpg.webp",
-    "title": "Dystopie 6",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2920,7 +2920,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-7.jpg.webp",
-    "title": "Dystopie 7",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2928,7 +2928,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-8.jpg.webp",
-    "title": "Dystopie 8",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2936,7 +2936,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "dystopie-2011/dystopie-9.jpg.webp",
-    "title": "Dystopie 9",
+    "title": "Dystopie",
     "cat": "Dystopie (2011)",
     "range": [
       2011
@@ -2944,7 +2944,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "freiheitskampf-2018/freiheitskampf-1.jpg.webp",
-    "title": "Freiheitskampf-1",
+    "title": "Freiheitskampf",
     "cat": "Freiheitskampf (2018)",
     "range": [
       2018
@@ -2952,7 +2952,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "freiheitskampf-2018/freiheitskampf-2.jpg.webp",
-    "title": "Freiheitskampf-2",
+    "title": "Freiheitskampf",
     "cat": "Freiheitskampf (2018)",
     "range": [
       2018
@@ -2960,7 +2960,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "freiheitskampf-2018/freiheitskampf-3.jpg.webp",
-    "title": "Freiheitskampf-3",
+    "title": "Freiheitskampf",
     "cat": "Freiheitskampf (2018)",
     "range": [
       2018
@@ -2968,7 +2968,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "freiheitskampf-2018/freiheitskampf-4.jpg.webp",
-    "title": "Freiheitskampf-4",
+    "title": "Freiheitskampf",
     "cat": "Freiheitskampf (2018)",
     "range": [
       2018
@@ -2976,7 +2976,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "geruchtekuche-2017/geruchtekuche-1.jpg.webp",
-    "title": "Gerüchtekuche 1",
+    "title": "Gerüchtekuche ",
     "cat": "Gerüchteküche (2017)",
     "range": [
       2017
@@ -2984,7 +2984,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "geruchtekuche-2017/geruchtekuche-2.jpg.webp",
-    "title": "Gerüchtekuche 2",
+    "title": "Gerüchtekuche ",
     "cat": "Gerüchteküche (2017)",
     "range": [
       2017
@@ -2992,7 +2992,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "geruchtekuche-2017/geruchtekuche-3.jpg.webp",
-    "title": "Gerüchtekuche 3",
+    "title": "Gerüchteküche",
     "cat": "Gerüchteküche (2017)",
     "range": [
       2017
@@ -3000,7 +3000,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-1.jpg.webp",
-    "title": "Hallgatas 1",
+    "title": "Hallgatas",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3008,7 +3008,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-2.jpg.webp",
-    "title": "Hallgatas 2",
+    "title": "Hallgatas",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3016,7 +3016,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-3.jpg.webp",
-    "title": "Hallgatas 3",
+    "title": "Hallgatas",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3024,7 +3024,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-4.jpg.webp",
-    "title": "Hallgatas 4",
+    "title": "Hallgatas",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3032,7 +3032,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-5.jpg.webp",
-    "title": "Hallgatas 5",
+    "title": "Hallgatas",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3040,7 +3040,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-6.jpg.webp",
-    "title": "Hallgatas 6",
+    "title": "Hallgatas",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3048,7 +3048,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-7.jpg.webp",
-    "title": "Hallgatas 7",
+    "title": "Hallgatas ",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3056,7 +3056,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "hallgatas-2014/hallgatas-8.jpg.webp",
-    "title": "Hallgatas 8",
+    "title": "Hallgatas ",
     "cat": "Hallgatás (2014)",
     "range": [
       2014
@@ -3206,7 +3206,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "reformation-2017/reformation-1.jpg.webp",
-    "title": "Reformation-1",
+    "title": "Reformation",
     "cat": "Reformation (2017)",
     "range": [
       2017
@@ -3214,7 +3214,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "reformation-2017/reformation-2.jpg.webp",
-    "title": "Reformation-2",
+    "title": "Reformation",
     "cat": "Reformation (2017)",
     "range": [
       2017
@@ -3222,7 +3222,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "reformation-2017/reformation-3.jpg.webp",
-    "title": "Reformation-3",
+    "title": "Reformation",
     "cat": "Reformation (2017)",
     "range": [
       2017
@@ -3230,7 +3230,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "reformation-2017/reformation-4.jpg.webp",
-    "title": "Reformation-4",
+    "title": "Reformation",
     "cat": "Reformation (2017)",
     "range": [
       2017
@@ -3238,7 +3238,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "reformation-2017/reformation-5.jpg.webp",
-    "title": "Reformation-5",
+    "title": "Reformation",
     "cat": "Reformation (2017)",
     "range": [
       2017
@@ -3246,7 +3246,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "reformation-2017/reformation-6.jpg.webp",
-    "title": "Reformation-6",
+    "title": "Reformation",
     "cat": "Reformation (2017)",
     "range": [
       2017
@@ -3376,132 +3376,6 @@ export const allImages: GalleryImage[] = [
     ]
   },
   {
-    "filename": "verfall-2019-2021/thomas_verfall_003.png.webp",
-    "title": "Verfall 003",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_011.png.webp",
-    "title": "Verfall 011",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_016.png.webp",
-    "title": "Verfall 016",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_033.png.webp",
-    "title": "Verfall 033",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_051.png.webp",
-    "title": "Verfall 051",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_084.png.webp",
-    "title": "Verfall 084",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_096.png.webp",
-    "title": "Verfall 096",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_097.png.webp",
-    "title": "Verfall 097",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_108.png.webp",
-    "title": "Verfall 108",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_110.png.webp",
-    "title": "Verfall 110",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_113.png.webp",
-    "title": "Verfall 113",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_118.png.webp",
-    "title": "Verfall 118",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_136.png.webp",
-    "title": "Verfall 136",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
-    "filename": "verfall-2019-2021/thomas_verfall_138.png.webp",
-    "title": "Verfall 138",
-    "cat": "Verfall (2019-2021)",
-    "range": [
-      2019,
-      2021
-    ]
-  },
-  {
     "filename": "wege-aus-dem-ghetto-2016/wege-aus-dem-ghetto-1.jpg.webp",
     "title": "Wege aus dem Ghetto",
     "cat": "Wege aus dem Ghetto (2016)",
@@ -3543,7 +3417,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-1.jpg.webp",
-    "title": "Wille und Vorstellung-1",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3551,7 +3425,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-10.jpg.webp",
-    "title": "Wille und Vorstellung-10",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3559,7 +3433,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-11.jpg.webp",
-    "title": "Wille und Vorstellung-11",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3567,7 +3441,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-12.jpg.webp",
-    "title": "Wille und Vorstellung-12",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3575,7 +3449,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-13.jpg.webp",
-    "title": "Wille und Vorstellung-13",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3583,7 +3457,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-14.jpg.webp",
-    "title": "Wille und Vorstellung-14",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3591,7 +3465,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-15.jpg.webp",
-    "title": "Wille und Vorstellung-15",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3599,7 +3473,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-16.jpg.webp",
-    "title": "Wille und Vorstellung-16",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3607,7 +3481,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-17.jpg.webp",
-    "title": "Wille und Vorstellung-17",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3615,7 +3489,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-2.jpg.webp",
-    "title": "Wille und Vorstellung-2",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3623,7 +3497,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-3.jpg.webp",
-    "title": "Wille und Vorstellung-3",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3631,7 +3505,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-5.jpg.webp",
-    "title": "Wille und Vorstellung-5",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3639,7 +3513,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-6.jpg.webp",
-    "title": "Wille und Vorstellung-6",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3647,7 +3521,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-7.jpg.webp",
-    "title": "Wille und Vorstellung-7",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3655,7 +3529,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-8.jpg.webp",
-    "title": "Wille und Vorstellung-8",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3663,7 +3537,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "wille-und-vorstellung-2018/wille-und-vorstellung-9.jpg.webp",
-    "title": "Wille und Vorstellung-9",
+    "title": "Wille und Vorstellung",
     "cat": "Wille und Vorstellung (2018)",
     "range": [
       2018
@@ -3671,7 +3545,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_01.webp",
-    "title": "Schmöckwitz_1_01",
+    "title": "Heliozentrische Astronomie",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3680,7 +3554,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_02.webp",
-    "title": "Schmöckwitz_1_02",
+    "title": "Kopernikanische Astronomie",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3689,7 +3563,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_03.webp",
-    "title": "Schmöckwitz_1_03",
+    "title": "Religion des freudvollen Reichtums",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3698,7 +3572,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_04.webp",
-    "title": "Schmöckwitz_1_04",
+    "title": "Egoistische Aneignung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3707,7 +3581,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_05.webp",
-    "title": "Schmöckwitz_1_05",
+    "title": "Glück nach getaner Pflicht",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3716,7 +3590,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_06.webp",
-    "title": "Schmöckwitz_1_06",
+    "title": "Vorbewußter Vorgang",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3725,7 +3599,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_07.webp",
-    "title": "Schmöckwitz_1_07",
+    "title": "Unabhängige Wesenheiten",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3734,7 +3608,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_08.webp",
-    "title": "Schmöckwitz_1_08",
+    "title": "Veränderung im Denken",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3743,7 +3617,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_09.webp",
-    "title": "Schmöckwitz_1_09",
+    "title": "Die Vernunft kommt",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3752,7 +3626,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_10.webp",
-    "title": "Schmöckwitz_1_10",
+    "title": "Möglichkeit und Wirklichkeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3761,7 +3635,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_100.webp",
-    "title": "Schmöckwitz_1_100",
+    "title": "Kollosale Irrtümer",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3770,7 +3644,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_11.webp",
-    "title": "Schmöckwitz_1_11",
+    "title": "Unbedingter Grundsatz",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3779,7 +3653,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_12.webp",
-    "title": "Schmöckwitz_1_12",
+    "title": "33 Jahre nach Brunos Tod",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3788,7 +3662,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_13.webp",
-    "title": "Schmöckwitz_1_13",
+    "title": "Philosophische Richtung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3797,7 +3671,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_14.webp",
-    "title": "Schmöckwitz_1_14",
+    "title": "Das erzwungene kann niemals schön sein",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3806,7 +3680,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_15.webp",
-    "title": "Schmöckwitz_1_15",
+    "title": "Untergang der Europäischen Freiheit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3815,7 +3689,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_16.webp",
-    "title": "Schmöckwitz_1_16",
+    "title": "Östereichische Schule",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3824,7 +3698,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_17.webp",
-    "title": "Schmöckwitz_1_17",
+    "title": "Wege des modernen Dichters",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3833,7 +3707,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_18.webp",
-    "title": "Schmöckwitz_1_18",
+    "title": "Die Seele geht aus den Fugen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3842,7 +3716,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_19.webp",
-    "title": "Schmöckwitz_1_19",
+    "title": "Materialistischer Atheismus",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3851,7 +3725,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_20.webp",
-    "title": "Schmöckwitz_1_20",
+    "title": "Wie ein Film",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3860,7 +3734,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_21.webp",
-    "title": "Schmöckwitz_1_21",
+    "title": "Kunst trennt und entzweit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3869,7 +3743,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_22.webp",
-    "title": "Schmöckwitz_1_22",
+    "title": "Das Reich der Freiheit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3878,7 +3752,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_23.webp",
-    "title": "Schmöckwitz_1_23",
+    "title": "Frei von jeder Zeitgewalt",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3887,7 +3761,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_24.webp",
-    "title": "Schmöckwitz_1_24",
+    "title": "Die das dunkle Schicksal flechten",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3896,7 +3770,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_25.webp",
-    "title": "Schmöckwitz_1_25",
+    "title": "Unvergleichlicher Erfolg",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3905,7 +3779,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_26.webp",
-    "title": "Schmöckwitz_1_26",
+    "title": "Kapitalvernichtung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3914,7 +3788,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_27.webp",
-    "title": "Schmöckwitz_1_27",
+    "title": "Wenn unerträglich wird die Last",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3923,7 +3797,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_28.webp",
-    "title": "Schmöckwitz_1_28",
+    "title": "Gesellschaftliche Entwicklung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3932,7 +3806,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_29.webp",
-    "title": "Schmöckwitz_1_29",
+    "title": "Gesamtschau",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3941,7 +3815,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_30.webp",
-    "title": "Schmöckwitz_1_30",
+    "title": "Gefahren des Kollektivismus",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3950,7 +3824,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_31.webp",
-    "title": "Schmöckwitz_1_31",
+    "title": "Freiheit in der Erscheinung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3959,7 +3833,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_32.webp",
-    "title": "Schmöckwitz_1_32",
+    "title": "Orator",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3968,7 +3842,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_33.webp",
-    "title": "Schmöckwitz_1_33",
+    "title": "Alles wächst weiter",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3977,7 +3851,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_34.webp",
-    "title": "Schmöckwitz_1_34",
+    "title": "Unsterblichkeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3986,7 +3860,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_35.webp",
-    "title": "Schmöckwitz_1_35",
+    "title": "Freier Wille",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -3995,7 +3869,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_36.webp",
-    "title": "Schmöckwitz_1_36",
+    "title": "Gott ist der Inbegriff aller Gegensätze",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4004,7 +3878,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_37.webp",
-    "title": "Schmöckwitz_1_37",
+    "title": "Maßvolle Freiheit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4013,7 +3887,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_38.webp",
-    "title": "Schmöckwitz_1_38",
+    "title": "Lebensrisiken",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4022,7 +3896,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_39.webp",
-    "title": "Schmöckwitz_1_39",
+    "title": "Freiheitliche Einrichtung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4031,7 +3905,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_40.webp",
-    "title": "Schmöckwitz_1_40",
+    "title": "Erfülltes Leben",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4040,7 +3914,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_41.webp",
-    "title": "Schmöckwitz_1_41",
+    "title": "Rufe in der Wüste",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4049,7 +3923,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_42.webp",
-    "title": "Schmöckwitz_1_42",
+    "title": "Lebensrisiken",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4058,7 +3932,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_43.webp",
-    "title": "Schmöckwitz_1_43",
+    "title": "Fruchtbarkeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4067,7 +3941,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_44.webp",
-    "title": "Schmöckwitz_1_44",
+    "title": "Sterblichkeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4076,7 +3950,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_45.webp",
-    "title": "Schmöckwitz_1_45",
+    "title": "Etliche Irrtümer",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4085,7 +3959,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_46.webp",
-    "title": "Schmöckwitz_1_46",
+    "title": "Der grausame Damitian",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4094,7 +3968,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_47.webp",
-    "title": "Schmöckwitz_1_47",
+    "title": "Kluge Affen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4103,7 +3977,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_49.webp",
-    "title": "Schmöckwitz_1_49",
+    "title": "Rebellion",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4112,7 +3986,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_50.webp",
-    "title": "Schmöckwitz_1_50",
+    "title": "Gegen die Aufklärung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4121,7 +3995,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_51.webp",
-    "title": "Schmöckwitz_1_51",
+    "title": "Lehrauftrag",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4130,7 +4004,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_52.webp",
-    "title": "Schmöckwitz_1_52",
+    "title": "Trennlinie zum Pragmatismus",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4139,7 +4013,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_53.webp",
-    "title": "Schmöckwitz_1_53",
+    "title": "Negative demographische Entwicklung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4148,7 +4022,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_54.webp",
-    "title": "Schmöckwitz_1_54",
+    "title": "Lebensphilosophie",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4157,7 +4031,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_55.webp",
-    "title": "Schmöckwitz_1_55",
+    "title": "Unter den Fittichen des Staates",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4166,7 +4040,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_56.webp",
-    "title": "Schmöckwitz_1_56",
+    "title": "Totenmesse",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4175,7 +4049,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_57.webp",
-    "title": "Schmöckwitz_1_57",
+    "title": "Gefühlsmäßiges Erfassen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4184,7 +4058,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_58.webp",
-    "title": "Schmöckwitz_1_58",
+    "title": "Freiheit und Kraft",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4193,7 +4067,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_59.webp",
-    "title": "Schmöckwitz_1_59",
+    "title": "Zunehmende Verunsicherung",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4202,7 +4076,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_60.webp",
-    "title": "Schmöckwitz_1_60",
+    "title": "Rausch und Leiden",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4211,7 +4085,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_61.webp",
-    "title": "Schmöckwitz_1_61",
+    "title": "Unvermischte Reinheit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4220,7 +4094,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_62.webp",
-    "title": "Schmöckwitz_1_62",
+    "title": "Totenmesse",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4229,7 +4103,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_63.webp",
-    "title": "Schmöckwitz_1_63",
+    "title": "Denkrichtungen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4238,7 +4112,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_64.webp",
-    "title": "Schmöckwitz_1_64",
+    "title": "Gefühlsmäßiges Erfassen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4247,7 +4121,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_65.webp",
-    "title": "Schmöckwitz_1_65",
+    "title": "Erleben und Verstehen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4256,7 +4130,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_66.webp",
-    "title": "Schmöckwitz_1_66",
+    "title": "Bilder der Seele",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4265,7 +4139,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_67.webp",
-    "title": "Schmöckwitz_1_67",
+    "title": "Schöne Sprache",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4274,7 +4148,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_68.webp",
-    "title": "Schmöckwitz_1_68",
+    "title": "Am intesivsten werden die Bilder im Traum",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4283,7 +4157,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_69.webp",
-    "title": "Schmöckwitz_1_69",
+    "title": "Evolutionstheorie",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4292,7 +4166,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_70.webp",
-    "title": "Schmöckwitz_1_70",
+    "title": "Das intuitiv Erkannte",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4301,7 +4175,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_71.webp",
-    "title": "Schmöckwitz_1_71",
+    "title": "Die subjektiv erlebte Zeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4310,7 +4184,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_72.webp",
-    "title": "Schmöckwitz_1_72",
+    "title": "Deja-Vu",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4319,7 +4193,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_73.webp",
-    "title": "Schmöckwitz_1_73",
+    "title": "Bewußtseinstraum",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4328,7 +4202,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_74.webp",
-    "title": "Schmöckwitz_1_74",
+    "title": "Sinn der Welt",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4337,7 +4211,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_75.webp",
-    "title": "Schmöckwitz_1_75",
+    "title": "Zeitintervall",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4346,7 +4220,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_76.webp",
-    "title": "Schmöckwitz_1_76",
+    "title": "Auf der Suche nach der verlorenen Zeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4355,7 +4229,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_77.webp",
-    "title": "Schmöckwitz_1_77",
+    "title": "Momente gehen fließend ineinander über",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4364,7 +4238,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_78.webp",
-    "title": "Schmöckwitz_1_78",
+    "title": "Pantheon",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4373,7 +4247,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_79.webp",
-    "title": "Schmöckwitz_1_79",
+    "title": "Anatomie des sittlichen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4382,7 +4256,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_80.webp",
-    "title": "Schmöckwitz_1_80",
+    "title": "Einzelpersönlichkeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4391,7 +4265,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_81.webp",
-    "title": "Schmöckwitz_1_81",
+    "title": "Vernunft verwirklichen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4400,7 +4274,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_82.webp",
-    "title": "Schmöckwitz_1_82",
+    "title": "Alles was der Mensch ist verdankt er dem Staat",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4409,7 +4283,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_83.webp",
-    "title": "Schmöckwitz_1_83",
+    "title": "Entfaltung der absoluten Wahrheit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4418,7 +4292,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_84.webp",
-    "title": "Schmöckwitz_1_84",
+    "title": "Prompte Kritik",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4427,7 +4301,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_85.webp",
-    "title": "Schmöckwitz_1_85",
+    "title": "Hat reich dich beschenkt dein Los",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4436,7 +4310,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_86.webp",
-    "title": "Schmöckwitz_1_86",
+    "title": "Die Dinge gehen zurück von woher sie kamen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4445,7 +4319,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_87.webp",
-    "title": "Schmöckwitz_1_87",
+    "title": "Duldsamkeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4454,7 +4328,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_88.webp",
-    "title": "Schmöckwitz_1_88",
+    "title": "Das Nützlichkeitsprinzip",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4463,7 +4337,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_89.webp",
-    "title": "Schmöckwitz_1_89",
+    "title": "Bewußte Persönlichkeit",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4472,7 +4346,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_90.webp",
-    "title": "Schmöckwitz_1_90",
+    "title": "Er ist nicht mehr erselbst",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4481,7 +4355,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_91.webp",
-    "title": "Schmöckwitz_1_91",
+    "title": "Künstlicher Nimbus",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4490,7 +4364,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_92.webp",
-    "title": "Schmöckwitz_1_92",
+    "title": "Le Prestige",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4499,7 +4373,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_93.webp",
-    "title": "Schmöckwitz_1_93",
+    "title": "Charisma",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4508,7 +4382,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_94.webp",
-    "title": "Schmöckwitz_1_94",
+    "title": "Härteste Kasteiungen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4517,7 +4391,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_95.webp",
-    "title": "Schmöckwitz_1_95",
+    "title": "Über den freien Willen",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4526,7 +4400,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_96.webp",
-    "title": "Schmöckwitz_1_96",
+    "title": "Mahnung zur Toleranz",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4535,7 +4409,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_97.webp",
-    "title": "Schmöckwitz_1_97",
+    "title": "Zeitkritik",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4544,7 +4418,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_98.webp",
-    "title": "Schmöckwitz_1_98",
+    "title": "Verbotene Bücher",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4553,7 +4427,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz05/schmockwitz_1_99.webp",
-    "title": "Schmöckwitz_1_99",
+    "title": "Ketzerei",
     "cat": "Schmöckwitz0.5",
     "range": [
       2023,
@@ -4562,7 +4436,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_101.webp",
-    "title": "Schmöckwitz_1_101",
+    "title": "Zeitgemäßes über Krieg und Tod ",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4571,7 +4445,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_102.webp",
-    "title": "Schmöckwitz_1_102",
+    "title": "Absolute Priorität",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4580,7 +4454,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_103.webp",
-    "title": "Schmöckwitz_1_103",
+    "title": "Der Witz und seine Beziehungen zum Unbewußten",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4589,7 +4463,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_104.webp",
-    "title": "Schmöckwitz_1_104",
+    "title": "Machterhalt",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4598,7 +4472,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_105.webp",
-    "title": "Schmöckwitz_1_105",
+    "title": "Das Wahre",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4607,7 +4481,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_106.webp",
-    "title": "Schmöckwitz_1_106",
+    "title": "Gunst der Zeitumstände",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4616,7 +4490,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_107.webp",
-    "title": "Schmöckwitz_1_107",
+    "title": "Das Richtige",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4625,7 +4499,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_108.webp",
-    "title": "Schmöckwitz_1_108",
+    "title": "Gewalt",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4634,7 +4508,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_109.webp",
-    "title": "Schmöckwitz_1_109",
+    "title": "L´Etat c´est moi",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4643,7 +4517,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_110.webp",
-    "title": "Schmöckwitz_1_110",
+    "title": "Das Wollen und der Glaube",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4652,7 +4526,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_111.webp",
-    "title": "Schmöckwitz_1_111",
+    "title": "Einigkeit und Treue",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4661,7 +4535,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_113.webp",
-    "title": "Schmöckwitz_1_113",
+    "title": "Abwägen oder Draufgehen",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4670,7 +4544,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_114.webp",
-    "title": "Schmöckwitz_1_114",
+    "title": "Lüge, Betrug, Mord, usw",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4679,7 +4553,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_115.webp",
-    "title": "Schmöckwitz_1_115",
+    "title": "Entschlossenheit zur Tat",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4688,7 +4562,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_116.webp",
-    "title": "Schmöckwitz_1_116",
+    "title": "List,Verrat,Gewalt, usw.",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4697,7 +4571,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_117.webp",
-    "title": "Schmöckwitz_1_117",
+    "title": "Die Vernunft kommt!",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4706,7 +4580,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_118.webp",
-    "title": "Schmöckwitz_1_118",
+    "title": "Nur eine dienende Rolle",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4715,7 +4589,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_119.webp",
-    "title": "Schmöckwitz_1_119",
+    "title": "Gefühlsmäßiges Erfassen, Erleben, Verstehen",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4724,7 +4598,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_120.webp",
-    "title": "Schmöckwitz_1_120",
+    "title": "Freiheit, Menschlichkeit, Liebe",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4733,7 +4607,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_121.webp",
-    "title": "Schmöckwitz_1_121",
+    "title": "Die Entwicklung des Lebendigen",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4742,7 +4616,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_122.webp",
-    "title": "Schmöckwitz_1_122",
+    "title": "Les deux sources de la morale et de la religion",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4751,7 +4625,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_123.webp",
-    "title": "Schmöckwitz_1_123",
+    "title": "Lebensgrund",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4760,7 +4634,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_124.webp",
-    "title": "Schmöckwitz_1_124",
+    "title": "Keine Erklärung für das Geistige",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4769,7 +4643,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_125.webp",
-    "title": "Schmöckwitz_1_125",
+    "title": "Der Verstand ist ein Instrument der Praxis",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4778,7 +4652,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_126.webp",
-    "title": "Schmöckwitz_1_126",
+    "title": "Unablässiger Fluss von Wahrnehmungen",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4787,7 +4661,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_127.webp",
-    "title": "Schmöckwitz_1_127",
+    "title": "Zeitunterschied",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4796,7 +4670,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_128.webp",
-    "title": "Schmöckwitz_1_128",
+    "title": "Intraversion",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4805,7 +4679,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_129.webp",
-    "title": "Schmöckwitz_1_129",
+    "title": "Narrative Kraft des Bewußtseins",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4814,7 +4688,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_130.webp",
-    "title": "Schmöckwitz_1_130",
+    "title": "Spirituelle Energie",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4823,7 +4697,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_131.webp",
-    "title": "Schmöckwitz_1_131",
+    "title": "Den Namen nimmt die Veregessenheit",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4832,7 +4706,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_132.webp",
-    "title": "Schmöckwitz_1_132",
+    "title": "Vermessenheit gerät nicht in Vergessenheit",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4841,7 +4715,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_133.webp",
-    "title": "Schmöckwitz_1_133",
+    "title": "Zusammengesetzt aus Vergessenheit",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4850,7 +4724,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_134.webp",
-    "title": "Schmöckwitz_1_134",
+    "title": "Extraversion",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4859,7 +4733,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_135.webp",
-    "title": "Schmöckwitz_1_135",
+    "title": "Virtu",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4868,7 +4742,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_136.webp",
-    "title": "Schmöckwitz_1_136",
+    "title": "Individuum und Gesellschaft",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4877,7 +4751,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_137.webp",
-    "title": "Schmöckwitz_1_137",
+    "title": "Ich kreise in mir selbst",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4886,7 +4760,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_138.webp",
-    "title": "Schmöckwitz_1_138",
+    "title": "Der Sinn dessen was dem Menschen angeboren ist",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4895,7 +4769,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_139.webp",
-    "title": "Schmöckwitz_1_139",
+    "title": "Gestaltung des Daseins",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4904,7 +4778,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_140.webp",
-    "title": "Schmöckwitz_1_140",
+    "title": "Der Weltprozess",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4913,7 +4787,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_141.webp",
-    "title": "Schmöckwitz_1_141",
+    "title": "Das also ist der Mensch",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4922,7 +4796,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_142.webp",
-    "title": "Schmöckwitz_1_142",
+    "title": "Philosophie des Stoikers",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4931,7 +4805,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_143.webp",
-    "title": "Schmöckwitz_1_143",
+    "title": "Alles was im Unbewußten liegt will Ereignis werden",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4940,7 +4814,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_144.webp",
-    "title": "Schmöckwitz_1_144",
+    "title": "Optimum Princeps",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4949,7 +4823,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_145.webp",
-    "title": "Schmöckwitz_1_145",
+    "title": "Individuation",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4958,7 +4832,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_146.webp",
-    "title": "Schmöckwitz_1_146",
+    "title": "Emanation",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4967,7 +4841,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_147.webp",
-    "title": "Schmöckwitz_1_147",
+    "title": "Das Eine",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4976,7 +4850,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_148.webp",
-    "title": "Schmöckwitz_1_148",
+    "title": "Das Andere",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4985,7 +4859,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_149.webp",
-    "title": "Schmöckwitz_1_149",
+    "title": "Das Gute",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -4994,7 +4868,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_150.webp",
-    "title": "Schmöckwitz_1_150",
+    "title": "Die Welt des Kollektiven",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -5003,7 +4877,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_151.webp",
-    "title": "Schmöckwitz_1_151",
+    "title": "Von der Kürze des Lebens",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -5012,7 +4886,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_152.webp",
-    "title": "Schmöckwitz_1_152",
+    "title": "Vom glücklichen Leben",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
@@ -5021,7 +4895,7 @@ export const allImages: GalleryImage[] = [
   },
   {
     "filename": "schmockwitz06/schmockwitz_1_153.webp",
-    "title": "Schmöckwitz_1_153",
+    "title": "Leben heißt kämpfen",
     "cat": "Schmöckwitz0.6",
     "range": [
       2023,
