@@ -27,28 +27,43 @@ function App() {
       pattern: "random",
       duration: 5,
       reverb: true,
-      volume: 0.5,
+      volume: 0.2,
     },
     {
       name: "bgNoise",
+      pattern: "sampleAndHold",
       noise: true,
+      scale: [55, 110, 165, 220, 261.63, 311.13, 392, 440],
       duration: 10,
       reverb: true,
-      volume: 0.3,
+      volume: 0.1,
     },
     {
-      name: "arpeggio",
+      name: "arpeggioHi",
+      pattern: "random",
+      scale: [440, 311.13, 220, 110],
+      lfo1Speed: 100, // LFO speed in Hz (control modulation rate)
+      lfo1Target: "volume", // Modulate the volume (amplitude modulation)
+      lfoWave: "sin", // Use sine wave for smooth modulation
+      lfoDepth: 50, // Depth of modulation (50% modulation depth)
+      duration: 20,
+      reverb: true,
+      volume: 0.2,
+    },
+    {
+      name: "arpeggioBass",
+      pattern: "sampleAndHold",
       scale: [55, 110, 220, 440],
       duration: 0.4,
       reverb: true,
-      volume: 0.4,
+      volume: 0.5,
       trigger: {
         onEveryNth: 4, // Trigger every 4th drone note
         targetBlock: "bgDroneChords",
       },
       arpeggio: {
         noteCount: 3,
-        speed: 100, // ms between arpeggio notes
+        speed: 300, // ms between arpeggio notes
       },
     },
   ];
