@@ -65,3 +65,11 @@ img:fullscreen {
     object-fit: contain;
     border: 0;
 }
+
+@media
+(prefers-reduced-motion: reduce) {
+    *{
+        cursor: auto; /* default cursor */
+        animation: none;
+    }
+}

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import { Screen } from "../enums";
+import React, {useState} from "react";
+import {Screen} from "../enums";
 import {
   HomeIcon,
   ImageIcon,
   MagnifyingGlassIcon,
+  SpeakerLoudIcon,
+  SpeakerOffIcon,
 } from "@radix-ui/react-icons";
 import styles from "./BottomBar.module.css";
 
@@ -11,13 +13,17 @@ interface BottomBarProps {
   onNavigate: (screen: Screen) => void;
   selectedScreen: Screen;
   onSearch: () => void; // Triggered when the search button is clicked
+  onMusicToggle: () => void;
+  isPlaying: boolean;
 }
 
 export const BottomBar = ({
-  onNavigate,
-  selectedScreen,
-  onSearch,
-}: BottomBarProps): JSX.Element => {
+                            onNavigate,
+                            selectedScreen,
+                            onSearch,
+                            onMusicToggle,
+                            isPlaying,
+                          }: BottomBarProps): JSX.Element => {
   const isGalleryScreen = selectedScreen === Screen.GALLERY;
   const parentScreen = isGalleryScreen ? Screen.LANDING : Screen.GALLERY;
 
@@ -25,7 +31,16 @@ export const BottomBar = ({
     <div className={styles.bottomBar}>
       {/* Search Icon */}
       <button className={styles.button} onClick={onSearch}>
-        <MagnifyingGlassIcon color="#cde" />
+        <MagnifyingGlassIcon color="#cde"/>
+      </button>
+      
+      {/* Music Toggle Icon */}
+      <button className={styles.button} onClick={onMusicToggle}>
+        {isPlaying ? (
+          <SpeakerLoudIcon color="#cde" />
+        ) : (
+          <SpeakerOffIcon color="#cde" />
+        )}
       </button>
 
       {/* Home/Gallery Icon in the center */}
@@ -34,9 +49,9 @@ export const BottomBar = ({
         onClick={() => onNavigate(parentScreen)}
       >
         {isGalleryScreen ? (
-          <HomeIcon color="#cde" />
+          <HomeIcon color="#cde"/>
         ) : (
-          <ImageIcon color="#cde" />
+          <ImageIcon color="#cde"/>
         )}
       </button>
 

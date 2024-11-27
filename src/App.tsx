@@ -8,6 +8,8 @@ import { LandingScreen } from "./screens/LandingScreen";
 import styles from "./App.module.css";
 import { BottomBar } from "./components/BottomBar";
 import { ContactScreen } from "./screens/ContactScreen";
+import MusicSystem from "./components/MusicSystem";
+import {SoundBlock} from "./audio/SoundBlock";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -15,6 +17,28 @@ function App() {
   const [isSearchVisible, setSearchVisible] = useState<boolean>(false);
   const [images, setImages] = useState<any[]>([]); // Initially empty
   const [isLoadingImages, setLoadingImages] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // const darkDystopianScale = [55, 110, 165, 220, 261.63, 311.13, 392];
+  const blocks: SoundBlock[] = [
+    {
+      name: "bgDroneChords",
+      scale: [110, 220, 330, 440], // Frequencies in Hz
+      pattern: "random",
+      duration: 5,
+      reverb: true,
+      volume: 0.5,
+    },
+    {
+      name: "bgNoise",
+      scale: [], // No scale for noise
+      pattern: "sampleAndHold",
+      duration: 10,
+      reverb: true,
+      noise: true,
+      volume: 0.3,
+    },
+  ];
 
   const onNavigate = (screen: Screen) => {
     setSelectedScreen(screen);
@@ -67,10 +91,13 @@ function App() {
                 onClick={(cat) => setSelectedCat(cat)}
               />
             )}
+            <MusicSystem play={isPlaying} blocks={blocks} />
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
               onSearch={handleSearchOpen}
+              onMusicToggle={() => setIsPlaying((prev) => !prev)}
+              isPlaying={isPlaying}
             />
           </>
           {isSearchVisible && (
