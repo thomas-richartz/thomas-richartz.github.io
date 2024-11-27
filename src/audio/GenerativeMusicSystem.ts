@@ -48,7 +48,7 @@ export class GenerativeMusicSystem {
     }, duration * 1000); // Schedule at intervals based on note duration
 
     // Optionally stop the interval after a certain amount of time
-    setTimeout(() => clearInterval(interval), 10 * duration * 1000);
+    // setTimeout(() => clearInterval(interval), 10 * duration * 1000);
   }
 
   private playNotes(block: SoundBlock) {
