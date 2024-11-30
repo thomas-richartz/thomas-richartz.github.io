@@ -79,6 +79,7 @@ function App() {
               <ContactScreen
                 onCatClick={(cat) => setSelectedCat(cat)}
                 onNavigate={onNavigate}
+                onSearch={handleSearchOpen}
               />
             ) : (
               <GalleryCatScreen

@@ -1,16 +1,19 @@
 import { createReverb } from "./effects";
 import { SoundBlock } from "./SoundBlock";
-import {WavSoundSource} from "./sources/WavSoundSource.ts";
+import {VoicePool} from "./VoicePool";
 
 export class GenerativeMusicSystem {
   private audioContext: AudioContext;
   private blocks: SoundBlock[];
   private blockCounters: { [blockName: string]: number } = {}; // Track play counts
+  private voicePool: VoicePool;
 
-  constructor(blocks: SoundBlock[]) {
+
+  constructor(blocks: SoundBlock[], maxPolyphony: number = 8) {
     this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     this.blocks = blocks;
-
+    this.voicePool = new VoicePool(this.audioContext, maxPolyphony);
+    
     // Initialize counters
     blocks.forEach((block) => {
       this.blockCounters[block.name] = 0;
@@ -33,20 +36,27 @@ export class GenerativeMusicSystem {
 
   private async playFileBlock(block: SoundBlock) {
     if (!block.filePath) return;
-
-    const wavSource = new WavSoundSource(block.filePath, this.audioContext);
-    await wavSource.load();
-
-    console.log(block.filePath);
-    console.log(wavSource);
     
-    wavSource.play({
-      loop: block.loop || false,
-      volume: block.volume,
-      playbackRate: block.playbackRate || 1,
-      reverb: block.reverb,
-    });
+    try {
+      // Acquire a voice from the pool
+      const wavSource = await this.voicePool.getVoice(block.filePath);
+
+      // Play the sound
+      wavSource.play({
+        loop: block.loop || false,
+        volume: block.volume,
+        playbackRate: block.playbackRate || 1,
+        reverb: block.reverb,
+      });
+
+      // Release the voice back to the pool when playback finishes
+      setTimeout(() => this.voicePool.releaseVoice(String(block.filePath), wavSource), block.duration * 1000);
+    } catch (error) {
+      // ${error.message}
+      console.error(`Failed to play file block`);
+    }
   }
+
 
   private scheduleBlock(block: SoundBlock) {
     const { name, duration } = block;
@@ -54,7 +64,7 @@ export class GenerativeMusicSystem {
     const playBlock = () => {
       // Increment play count
       this.blockCounters[name] += 1;
-      console.log(block);
+      // console.log(block);
 
       if (block.filePath) {
         this.playFileBlock(block);

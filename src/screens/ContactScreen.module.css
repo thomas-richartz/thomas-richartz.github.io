@@ -18,3 +18,11 @@ img.ccIcon {
     margin-left: 3px;
     vertical-align: text-bottom;
 }
+
+.button {
+    border: none;
+    background: none;
+    color: inherit;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

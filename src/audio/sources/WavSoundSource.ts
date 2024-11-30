@@ -1,4 +1,4 @@
-import {createReverb} from "../effects.ts";
+import {createReverb} from "../effects";
 
 export class WavSoundSource {
   private audioContext: AudioContext;

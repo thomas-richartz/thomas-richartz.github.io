@@ -30,9 +30,9 @@ export const BottomBar = ({
   return (
     <div className={styles.bottomBar}>
       {/* Search Icon */}
-      <button className={styles.button} onClick={onSearch}>
-        <MagnifyingGlassIcon color="#cde"/>
-      </button>
+      {/*<button className={styles.button} onClick={onSearch}>*/}
+      {/*  <MagnifyingGlassIcon color="#cde"/>*/}
+      {/*</button>*/}
       
       {/* Music Toggle Icon */}
       <button className={styles.button} onClick={onMusicToggle}>
