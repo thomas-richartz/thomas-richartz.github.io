@@ -31,7 +31,6 @@ export const RandomPictureListView = ({
             prevImage={prevImage}
             alt={image.title}
             title={image.title}
-            className={styles.randomImg}
             src={`assets/images/${image.filename}`}
           />
         </div>

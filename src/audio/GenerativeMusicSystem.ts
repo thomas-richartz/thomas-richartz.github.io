@@ -1,5 +1,6 @@
 import { createReverb } from "./effects";
 import { SoundBlock } from "./SoundBlock";
+import {WavSoundSource} from "./sources/WavSoundSource.ts";
 
 export class GenerativeMusicSystem {
   private audioContext: AudioContext;
@@ -25,12 +26,40 @@ export class GenerativeMusicSystem {
     this.audioContext.suspend();
   }
 
+  private validateOscillatorType(type?: string): OscillatorType {
+    const oscillatorTypes: OscillatorType[] = ["sine", "square", "sawtooth", "triangle"];
+    return oscillatorTypes.includes(type as OscillatorType) ? (type as OscillatorType) : "sine";
+  }
+
+  private async playFileBlock(block: SoundBlock) {
+    if (!block.filePath) return;
+
+    const wavSource = new WavSoundSource(block.filePath, this.audioContext);
+    await wavSource.load();
+
+    console.log(block.filePath);
+    console.log(wavSource);
+    
+    wavSource.play({
+      loop: block.loop || false,
+      volume: block.volume,
+      playbackRate: block.playbackRate || 1,
+      reverb: block.reverb,
+    });
+  }
+
   private scheduleBlock(block: SoundBlock) {
     const { name, duration } = block;
 
-    const interval = setInterval(() => {
-      // Track play count for each block
+    const playBlock = () => {
+      // Increment play count
       this.blockCounters[name] += 1;
+      console.log(block);
+
+      if (block.filePath) {
+        this.playFileBlock(block);
+        return;
+      }
 
       if (block.noise) {
         this.playNoise(block);
@@ -38,17 +67,27 @@ export class GenerativeMusicSystem {
         this.playNotes(block);
       }
 
-      // Check for trigger to play arpeggio
+      // Trigger arpeggio if conditions are met
       if (block.trigger) {
         const targetCount = this.blockCounters[block.trigger.targetBlock];
         if (targetCount % block.trigger.onEveryNth === 0) {
           this.playArpeggio(block);
         }
       }
-    }, duration * 1000); // Schedule at intervals based on note duration
+    };
 
-    // Optionally stop the interval after a certain amount of time
-    // setTimeout(() => clearInterval(interval), 10 * duration * 1000);
+    const interval = setInterval(playBlock, duration * 1000);
+
+    // Stop the interval after a certain time
+    setTimeout(() => {
+      clearInterval(interval);
+
+      // Wait for 5 seconds (5000ms) to release audio, then restart the interval
+      setTimeout(() => {
+        console.log(`Restarting block: ${name} after delay`);
+        this.scheduleBlock(block);
+      }, 5000); // 5-second delay
+    }, 10 * duration * 1000); // Run for 10 iterations before stopping
   }
 
   private playNotes(block: SoundBlock) {
@@ -60,16 +99,18 @@ export class GenerativeMusicSystem {
         ? scale[Math.floor(Math.random() * scale.length)]
         : scale[0]; // Sample and hold always selects the first note
 
+    const validLfoWave = this.validateOscillatorType(lfoWave);
+
     // Handle amplitude modulation if LFO is provided
     if (lfo1Speed && lfo1Target === "volume") {
-      this.playWithLFO(frequency, duration, volume, reverb, lfo1Speed, lfoWave, lfoDepth);
+      this.playWithLFO(frequency, duration, volume, reverb, Number(lfo1Speed), validLfoWave, Number(lfoDepth));
     } else {
       this.playOscillator(frequency, duration, volume, reverb);
     }
   }
 
   private playNoise(block: SoundBlock) {
-    const { duration, volume, reverb, scale, pattern } = block;
+    const { duration, volume, reverb, scale,  } = block; // pattern
 
     const bufferSize = 2 * this.audioContext.sampleRate;
     const noiseBuffer = this.audioContext.createBuffer(1, bufferSize, this.audioContext.sampleRate);
@@ -103,26 +144,35 @@ export class GenerativeMusicSystem {
   }
 
   private applyNoiseEQ(noiseSource: AudioBufferSourceNode, scale: number[]) {
-    // We can create a series of bandpass filters to match the scale frequencies
-    const filters: BiquadFilterNode[] = [];
+    if (scale.length === 0) {
+      noiseSource.connect(this.audioContext.destination);
+      return; // No scale provided, directly output noise
+    }
 
-    scale.forEach(frequency => {
-      const filter = this.audioContext.createBiquadFilter();
-      filter.type = "bandpass";
-      filter.frequency.value = frequency;
-      filter.Q.value = 1; // Control bandwidth of the filter
-      filters.push(filter);
-    });
+    // Create a bandpass filter
+    const filter = this.audioContext.createBiquadFilter();
+    filter.type = "bandpass";
+    filter.Q.value = 1; // Bandwidth control
 
-    // Chain filters together
-    let currentNode = noiseSource;
-    filters.forEach((filter, index) => {
-      currentNode.connect(filter);
-      currentNode = filter;
-    });
+    // Connect noise source to filter
+    noiseSource.connect(filter);
+    filter.connect(this.audioContext.destination);
 
-    // Final output to destination
-    currentNode.connect(this.audioContext.destination);
+    // Create an LFO for frequency modulation
+    const lfo = this.audioContext.createOscillator();
+    const lfoGain = this.audioContext.createGain();
+
+    // Configure the LFO
+    lfo.type = "sawtooth"; // Cycle through the scale frequencies
+    lfo.frequency.value = 0.1; // LFO speed (cycles per second)
+
+    // Map the LFO output to the filter frequency
+    lfo.connect(lfoGain);
+    lfoGain.gain.value = scale.length - 1; // Scale the LFO output
+    lfoGain.connect(filter.frequency); // Map the scaled LFO output directly to frequency
+
+    // Start the LFO
+    lfo.start();
   }
 
   private playArpeggio(block: SoundBlock) {
@@ -131,11 +181,13 @@ export class GenerativeMusicSystem {
 
     const { noteCount, speed } = arpeggio;
 
+    const validLfoWave = this.validateOscillatorType(lfoWave);
+
     // Play arpeggio notes
     for (let i = 0; i < noteCount; i++) {
       const frequency = scale[i % scale.length];
       if (lfo1Speed && lfo1Target === "volume") {
-        this.playWithLFO(frequency, block.duration, volume, reverb, lfo1Speed, lfoWave, lfoDepth, speed * i);
+        this.playWithLFO(frequency, block.duration, volume, reverb, Number(lfo1Speed), validLfoWave, Number(lfoDepth), speed * i);
       } else {
         this.playOscillator(frequency, block.duration, volume, reverb, speed * i);
       }
@@ -179,7 +231,7 @@ export class GenerativeMusicSystem {
     volume: number,
     reverb: boolean,
     lfoSpeed: number,
-    lfoWave: string,
+    lfoWave: OscillatorType,
     lfoDepth: number,
     delay: number = 0
   ) {
@@ -203,7 +255,7 @@ export class GenerativeMusicSystem {
     // Create the LFO oscillator to modulate the gain
     const lfo = this.audioContext.createOscillator();
     lfo.frequency.value = lfoSpeed; // LFO speed
-    lfo.type = lfoWave === "sin" ? "sine" : "square"; // Use sine or square wave for LFO
+    lfo.type = lfoWave; //  === "sin" ? "sine" : "square"; // Use sine or square wave for LFO
     const lfoGain = this.audioContext.createGain();
     lfoGain.gain.value = lfoDepth / 100; // Depth of modulation (0-1)
 

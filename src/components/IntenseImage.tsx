@@ -11,7 +11,7 @@ interface IIntenseImage {
   alt: string;
   src: string;
   title: string;
-  className?: string;
+  // className?: string;
 }
 
 export const IntenseImage = ({
@@ -129,13 +129,13 @@ export const IntenseImage = ({
   return (
     <>
       {/* Main Image */}
-      <div className={styles.figure}>
+      <div className={styles.figureKenBurns}>
         <img
           ref={imgRef}
           onClick={showFullscreen}
           loading="lazy"
           alt={alt}
-          className={styles.intenseImg}
+          className={styles.intenseImgKenBurns}
           src={currentSrc}
         />
         <span className={styles.title}>{title}</span>

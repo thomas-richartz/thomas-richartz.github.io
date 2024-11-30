@@ -15,13 +15,21 @@ export interface SoundBlock {
     speed: number; // Speed of the arpeggio (ms between notes)
   };
 
-  // Optional parameters for LFO modulation (Amplitude Modulation)
+  // Parameters for LFO modulation (Amplitude Modulation)
   lfo1Speed?: number; // LFO speed (frequency) in Hz
   lfo1Target?: "volume" | "pitch"; // What the LFO modulates (volume or pitch)
-  lfoWave?: "sin" | "square" | "triangle"; // LFO waveform (sine, square, or triangle)
+  lfoWave?: OscillatorType; // "sine" | "square" | "triangle"; // LFO waveform (sine, square, or triangle)
   lfoDepth?: number; // Depth of modulation (percentage, 0-100%)
 
-  // Optional parameters for Noise EQ when noise is enabled
+  // Parameters for Noise EQ when noise is enabled
   noiseFilter?: boolean; // Whether to apply EQ to the noise
   noiseScale?: number[]; // Frequencies for filtering the noise (based on scale)
+  
+  // WavSoundSource
+  filePath?: string; // Path to an audio file for file-based sources
+  loop?: boolean; // Loop the audio file
+  playbackRate?: number; // Playback speed for audio file sources
+
 }
+
+
