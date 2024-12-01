@@ -26,8 +26,9 @@ export const IntenseImage = ({
   const [currentSrc, setCurrentSrc] = useState<string>("");
   const imgRef = useRef<HTMLImageElement | null>(null);
   const fullscreenContainerRef = useRef<HTMLDivElement | null>(null);
-  const ref = useRef<HTMLDivElement | null>(null);
-  const entry = useIntersectionObserver(ref, {});
+  const ref = useRef<HTMLDivElement>(null);
+  const options = { threshold: 0.5 };
+  const entry = useIntersectionObserver(ref, options);
   const isVisible = !!entry?.isIntersecting;
   const hasFullscreenSupport = document.fullscreenEnabled;
 

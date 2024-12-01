@@ -29,6 +29,7 @@
     opacity: 1;
     transition: opacity 800ms;
     outline: none;
+    padding-bottom: 52px;
 }
 
 .galleryCatScreen__imageWrapper--show {
