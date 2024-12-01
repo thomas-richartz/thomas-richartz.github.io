@@ -10,6 +10,7 @@ import {BottomBar} from "./components/BottomBar";
 import {ContactScreen} from "./screens/ContactScreen";
 import MusicSystem from "./components/MusicSystem";
 import {SoundBlock} from "./audio/SoundBlock";
+import ImmersiveScreen from "./screens/ImmersiveScreen";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -76,11 +77,12 @@ function App() {
                 onNavigate={onNavigate}
               />
             ) : selectedScreen === Screen.CONTACT ? (
-              <ContactScreen
-                onCatClick={(cat) => setSelectedCat(cat)}
-                onNavigate={onNavigate}
-                onSearch={handleSearchOpen}
-              />
+              // <ContactScreen
+              //   onCatClick={(cat) => setSelectedCat(cat)}
+              //   onNavigate={onNavigate}
+              //   onSearch={handleSearchOpen}
+              // />
+              <ImmersiveScreen />
             ) : (
               <GalleryCatScreen
                 cat={selectedCat}
