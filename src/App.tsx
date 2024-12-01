@@ -23,10 +23,10 @@ function App() {
    const blocks: SoundBlock[] = [
     {
       name: "wavLoop",
-      pattern: "sampleAndHold",
+      pattern: "random",
       scale: [55, 110, 165, 220, 261.63, 311.13, 392],
       filePath: "/assets/wav/kalimba_gb_prt2.wav",
-      duration: 10,
+      duration: 84,
       reverb: true,
       volume: 0.8,
       loop: true,

@@ -5,7 +5,7 @@ export class VoicePool {
   private pool: Map<string, WavSoundSource[]> = new Map();
   private maxVoicesPerFile: number;
 
-  constructor(audioContext: AudioContext, maxVoicesPerFile: number = 4) {
+  constructor(audioContext: AudioContext, maxVoicesPerFile: number = 3) {
     this.audioContext = audioContext;
     this.maxVoicesPerFile = maxVoicesPerFile;
   }
