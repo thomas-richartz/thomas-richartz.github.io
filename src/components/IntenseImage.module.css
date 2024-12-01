@@ -52,28 +52,6 @@
 }
 
 
-.figureKenBurns {
-    width: 100%;
-    height: 90vh;
-    overflow: hidden;
-    position: relative;
-}
-
-.intenseImgKenBurns {
-    max-height: 100vh;
-    max-width: 100vw;
-    object-fit: cover;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /*position: absolute;*/
-    top: 0;
-    left: 0;
-    transform: scale(1.05) translate(0%, 0%); /* Reduced initial scale */
-    /*object-fit: contain;*/
-    animation: kenBurns 30s ease-in-out infinite;
-}
-
 @keyframes kenBurns {
     0% {
         transform: scale(1.05) translate(0%, 0%);
@@ -92,15 +70,59 @@
     }
 }
 
-.title {
-    text-align: center;
-    margin-top: 8px; /*  spacing between image and title */
-    font-size: 1rem;
-}
 
 .fullscreenContainer {
     display: flex;
     align-items: normal;
     justify-content: center;
     text-align: center;
+}
+
+
+/* Styles for the Ken Burns container */
+.figureKenBurns {
+    width: 100%;
+    height: 66vh; /* Ensure 2-third of the screen height */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px 0; /* Space between rows */
+}
+
+/* Ken Burns Effect */
+.intenseImgKenBurns {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.05);
+    animation: kenBurns 30s ease-in-out infinite;
+}
+
+/* Title Overlay */
+.title {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5); 
+    padding: 4px 8px;
+    font-size: 1rem;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* Grid for Images */
+.imageGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; /* Space between images */
+    padding: 16px;
+}
+
+.imageContainer {
+    position: relative;
+    overflow: hidden;
 }
