@@ -1,15 +1,15 @@
-import React, {useState} from "react";
-import {SearchOverlay} from "./components/SearchOverlay";
-import {GalleryContextProvider} from "./context/GalleryContext";
-import {Screen} from "./enums";
-import {GalleryCatScreen} from "./screens/GalleryCatScreen";
-import {GalleryScreen} from "./screens/GalleryScreen";
-import {LandingScreen} from "./screens/LandingScreen";
+import React, { useState, useEffect } from "react";
+import { SearchOverlay } from "./components/SearchOverlay";
+import { GalleryContextProvider } from "./context/GalleryContext";
+import { Screen } from "./enums";
+import { GalleryCatScreen } from "./screens/GalleryCatScreen";
+import { GalleryScreen } from "./screens/GalleryScreen";
+import { LandingScreen } from "./screens/LandingScreen";
 import styles from "./App.module.css";
-import {BottomBar} from "./components/BottomBar";
-import {ContactScreen} from "./screens/ContactScreen";
+import { BottomBar } from "./components/BottomBar";
+import { ContactScreen } from "./screens/ContactScreen";
 import MusicSystem from "./components/MusicSystem";
-import {SoundBlock} from "./audio/SoundBlock";
+import { FileSoundBlock } from "./audio/FileSoundBlock";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -18,22 +18,21 @@ function App() {
   const [images, setImages] = useState<any[]>([]); // Initially empty
   const [isLoadingImages, setLoadingImages] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [blocks, setBlocks] = useState<FileSoundBlock[]>([]);
+  const [sceneIndex, setSceneIndex] = useState(0);
+  const [verbose, setVerbose] = useState(false);
+  // const [verbose, setVerbose] = useState(true);
 
-  // const darkDystopianScale = [55, 110, 165, 220, 261.63, 311.13, 392];
-   const blocks: SoundBlock[] = [
-    {
-      name: "wavLoop",
-      pattern: "sampleAndHold",
-      scale: [55, 110, 165, 220, 261.63, 311.13, 392],
-      filePath: "/assets/wav/kalimba_gb_prt2.wav",
-      duration: 10,
-      reverb: true,
-      volume: 0.8,
-      loop: true,
-      playbackRate: 1.0,
-    },
-  ];
+  useEffect(() => {
+    // Fetch the sound blocks
+    const fetchBlocks = async () => {
+      const response = await fetch("/assets/soundblocks/blocks.json");
+      const data = await response.json();
+      setBlocks(data);
+    };
 
+    fetchBlocks();
+  }, []);
 
   const onNavigate = (screen: Screen) => {
     setSelectedScreen(screen);
@@ -43,7 +42,7 @@ function App() {
     if (images.length === 0) {
       setLoadingImages(true);
       // Dynamically load `allImages` when search is triggered
-      const {allImages} = await import("./assets/assets");
+      const { allImages } = await import("./assets/assets");
       setImages(allImages);
       setLoadingImages(false);
     }
@@ -87,7 +86,12 @@ function App() {
                 onClick={(cat) => setSelectedCat(cat)}
               />
             )}
-            <MusicSystem play={isPlaying} blocks={blocks}/>
+            <MusicSystem
+              play={isPlaying}
+              blocks={blocks}
+              sceneIndex={sceneIndex}
+              verbose={verbose}
+            />
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}

@@ -22,7 +22,6 @@
     background: var(--background-primary);
     box-shadow: none;
     margin: auto;
-    margin-left: auto;
     width: 48px;
     height: 100vh;
     font-size: 48px;
@@ -53,9 +52,9 @@
     color: var(--color-secondary);
     text-shadow: none;
     padding: 4px;
-    margin-left: 1vw;
     text-align: center;
     margin: auto;
+    /*margin-left: 1vw;*/
   }
   
   .centeredImage {
@@ -74,16 +73,15 @@
     display: block;
     width: 100vw;
     height: 100vh;
-    background: url(/assets/img/warehouse.jpg) center / cover;
+    background: url("/assets/img/warehouse.jpg") center / cover;
   }
   
   .landingWrap {
     color: var(--color-secondary);
     text-shadow: var(--shadow-large);
-    padding: 4px;
     margin: auto;
     width: 100vw;
-    padding-top: 12px;
+    padding: 12px 4px 4px;
   }
   
   .spinner {
@@ -122,4 +120,5 @@
     align-items: center;
     justify-content: space-between;
   }
+  
   
