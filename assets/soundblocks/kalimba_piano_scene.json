@@ -1,7 +1,6 @@
 [
   {
     "name": "Kalimba Loop 1",
-    "scene": "KalimbaPianoScene",
     "pattern": [0.8, 0.7, 1.0, 0.9],
     "patternCycle": "forward",
     "scale": [55, 110, 165, 220, 261.63, 311.13, 392],
@@ -11,32 +10,21 @@
     "loop": true,
     "playbackRate": 1.0,
     "duration": 10,
-    "maxVoices": 4
-  },
-  {
-    "name": "Intro",
-    "scene": "IntroScene",
-    "pattern": [0.8, 0.7, 1.0, 0.9],
-    "patternCycle": "forward",
-    "scale": [55, 110, 165, 220, 261.63, 311.13, 392],
-    "filePath": "/assets/wav/arsenal_intro.wav",
-    "reverb": true,
-    "volume": 0.8,
-    "loop": true,
-    "playbackRate": 1.0,
-    "duration": 1800
+    "maxVoices": 4,
+    "pan": 0.3
   },
   {
     "name": "Kalimba Loop 2",
-    "scene": "exampleScene",
     "pattern": [0.8, 0.4, 0.1, 0.4],
     "patternCycle": "random",
     "scale": [55, 311.13, 110, 392, 165, 261.63, 220],
     "filePath": "/assets/wav/kalimba_gb_prt2.wav",
     "reverb": true,
-    "volume": 0.8,
+    "volume": 0.3,
     "loop": true,
     "playbackRate": 1.0,
-    "duration": 0
+    "duration": 0,
+    "maxVoices": 4,
+    "pan": -0.3
   }
 ]
