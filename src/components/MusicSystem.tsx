@@ -6,65 +6,66 @@ import { FileSoundBlock } from "../audio/FileSoundBlock";
 interface MusicSystemProps {
   play: boolean;
   blocks: FileSoundBlock[];
-  sceneIndex: number;
   verbose: boolean;
 }
 
-const MusicSystem: React.FC<MusicSystemProps> = ({
-  play,
-  blocks,
-  sceneIndex,
-  verbose,
-}) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+const MusicSystem: React.FC<MusicSystemProps> = ({ play, blocks, verbose }) => {
+  const [blockIndex, setBlockIndex] = useState(0);
   const wavStereoPlayerRef = useRef<WavStereoPlayer | null>(null);
   const musicSceneRef = useRef<MusicScene | null>(null);
 
+  // Initialize the audio player and MusicScene
   useEffect(() => {
     if (!wavStereoPlayerRef.current) {
-      const maxVoices = 4;
-      wavStereoPlayerRef.current = new WavStereoPlayer(maxVoices, verbose);
+      wavStereoPlayerRef.current = new WavStereoPlayer(4, verbose); // 4 voices
     }
 
-    const sceneReverb = true;
-    const scene = new MusicScene(
-      wavStereoPlayerRef.current!,
-      blocks,
-      sceneReverb,
-      verbose,
-    );
-    musicSceneRef.current = scene;
+    if (blocks.length > 0) {
+      musicSceneRef.current = new MusicScene(
+        wavStereoPlayerRef.current,
+        blocks,
+        true, // Enable reverb
+        verbose,
+      );
 
-    if (wavStereoPlayerRef.current.audioContext.state === "suspended") {
-      wavStereoPlayerRef.current.audioContext.resume().then(() => {
-        console.log("AudioContext resumed");
-      });
+      console.log("Initialized MusicScene:", musicSceneRef.current);
     }
-  }, [blocks, sceneIndex, verbose]);
+  }, [blocks, verbose]);
 
+  // Periodically advance the blockIndex
   useEffect(() => {
-    if (
-      !wavStereoPlayerRef ||
-      (wavStereoPlayerRef && !wavStereoPlayerRef.current)
-    )
-      return;
-    if (!musicSceneRef || (musicSceneRef && !musicSceneRef.current)) return;
+    if (!play || blocks.length === 0) return;
 
-    const handlePlayStop = async () => {
-      if (play && !isPlaying) {
-        setIsPlaying(true);
-        console.log(`Triggering play for block at index ${sceneIndex}`);
-        await musicSceneRef!.current!.playBlock(sceneIndex); // Play the block at the current sceneIndex
-      } else if (!play && isPlaying) {
-        setIsPlaying(false);
-        musicSceneRef!.current!.stop(); // Stop the music playback
-      }
-    };
+    const interval = setInterval(() => {
+      setBlockIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % blocks.length;
+        if (verbose) {
+          console.log(
+            `Advancing blockIndex to ${nextIndex} of ${blocks.length}`,
+          );
+        }
+        return nextIndex;
+      });
+    }, 3000); // Every 2 minutes: 2 * 60 * 1000
 
-    handlePlayStop();
-  }, [play, sceneIndex, isPlaying]);
+    return () => clearInterval(interval); // Cleanup on unmount or play toggle
+  }, [play, blocks, verbose]);
 
-  return null;
+  // Play the current block when blockIndex changes
+  useEffect(() => {
+    if (!play || !musicSceneRef.current) return;
+
+    musicSceneRef.current.playBlock(blockIndex);
+  }, [blockIndex, play]);
+
+  // Stop playback when play is toggled off
+  useEffect(() => {
+    if (!play && musicSceneRef.current) {
+      musicSceneRef.current.stop();
+    }
+  }, [play]);
+
+  return null; // MusicSystem doesn't render anything visible
 };
 
 export default MusicSystem;

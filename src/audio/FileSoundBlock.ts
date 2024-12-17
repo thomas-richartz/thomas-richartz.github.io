@@ -5,6 +5,7 @@ export class FileSoundBlock {
   volume: number = 1;
   playbackRate: number = 1;
   loop: boolean = false;
+  pan: number = 0;
 
   constructor(name: string, filePath: string) {
     this.name = name;

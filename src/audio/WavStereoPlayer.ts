@@ -36,56 +36,58 @@ export class WavStereoPlayer {
     return audioBuffer;
   }
 
-  // Create reverb effect using a convolver node and gain nodes
   private createReverb(wetDryMix: number, revTime: number): GainNode {
     const convolver = this.audioContext.createConvolver();
 
+    // Create impulse response
     const length = this.audioContext.sampleRate * revTime;
     const impulse = this.audioContext.createBuffer(
       2,
       length,
       this.audioContext.sampleRate,
     );
+
     for (let channel = 0; channel < impulse.numberOfChannels; channel++) {
       const channelData = impulse.getChannelData(channel);
       for (let i = 0; i < length; i++) {
-        // Exponentially decaying noise for impulse response
         channelData[i] = (Math.random() * 2 - 1) * Math.exp((-3 * i) / length);
       }
     }
-
     convolver.buffer = impulse;
 
-    // Create wet/dry mix using gain nodes
-    const gainNodeWet = this.audioContext.createGain();
-    const gainNodeDry = this.audioContext.createGain();
+    // Create gain nodes for wet and dry mix
+    const wetGain = this.audioContext.createGain();
+    const dryGain = this.audioContext.createGain();
 
-    gainNodeWet.gain.value = wetDryMix;
-    gainNodeDry.gain.value = 1 - wetDryMix;
+    wetGain.gain.value = wetDryMix;
+    dryGain.gain.value = 1 - wetDryMix;
 
-    // Connecting the wet signal to the reverb
-    convolver.connect(gainNodeWet);
-    gainNodeWet.connect(this.audioContext.destination);
+    // Connect the nodes
+    convolver.connect(wetGain);
+    wetGain.connect(this.audioContext.destination);
 
-    return gainNodeDry;
+    return dryGain; // Return dry gain to allow dry signals to connect to it
   }
 
-  // Set reverb effect on or off
   public setReverbEffect(reverb: boolean) {
     this.log(`Setting reverb effect: ${reverb}`);
     if (reverb) {
-      const reverbNode = this.createReverb(0.8, 2); // Wet/Dry mix and reverb time in seconds
-      this.reverbEffect = reverbNode;
-      this.log("Reverb effect applied.");
+      const wetDryMix = 0.8;
+      const revTime = 2; // in seconds
+      this.reverbEffect = this.createReverb(wetDryMix, revTime);
     } else {
       this.reverbEffect = null;
-      this.log("Reverb effect disabled.");
     }
   }
 
-  // Play block once the audio buffer is loaded
   public async playBlock(block: FileSoundBlock) {
-    // Check if audioBuffer exists
+    if (this.voices.length >= this.maxVoices) {
+      this.log(
+        `Max voices (${this.maxVoices}) reached. Cannot play block: ${block.name}`,
+      );
+      return;
+    }
+
     if (!block.audioBuffer) {
       this.log(`No audioBuffer found for block: ${block.name}`);
       return;
@@ -93,28 +95,31 @@ export class WavStereoPlayer {
 
     this.log(`Playing block: ${block.name}`);
 
-    // Create an audio source for playback
     const source = this.audioContext.createBufferSource();
     source.buffer = block.audioBuffer;
     const gainNode = this.audioContext.createGain();
+    const pannerNode = this.audioContext.createStereoPanner(); // New panner node
+
+    // Set volume and playback rate
     gainNode.gain.value = block.volume;
     source.playbackRate.value = block.playbackRate;
 
-    // Connect the audio signal with optional reverb
-    if (this.reverbEffect) {
-      source.connect(this.reverbEffect); // Wet reverb signal
-    } else {
-      source.connect(gainNode); // Dry signal
-    }
+    // Set panning value (-1 = full left, 1 = full right, 0 = center)
+    pannerNode.pan.value = block.pan || 0; // Default to center if `pan` isn't set
 
-    // Final connection to the output
+    // Connect audio nodes
     if (this.reverbEffect) {
+      // Wet signal: connect to reverb
+      source.connect(pannerNode);
+      pannerNode.connect(this.reverbEffect);
       this.reverbEffect.connect(this.audioContext.destination);
     } else {
+      // Dry signal: connect directly
+      source.connect(pannerNode);
+      pannerNode.connect(gainNode);
       gainNode.connect(this.audioContext.destination);
     }
 
-    // Set loop and start playback
     if (block.loop) {
       source.loop = true;
     }
@@ -122,12 +127,15 @@ export class WavStereoPlayer {
     try {
       source.start();
       this.voices.push(source);
+
+      // Remove the voice from the array when it ends
+      source.onended = () => {
+        this.voices = this.voices.filter((v) => v !== source);
+      };
     } catch (error: unknown) {
-      let message;
       if (error instanceof Error) {
-        message = error.message;
+        this.log(`Error playing block ${block.name}: ${error.message}`);
       }
-      this.log(`Error playing block ${block.name}: ${message}`);
     }
   }
 

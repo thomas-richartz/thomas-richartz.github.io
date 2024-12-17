@@ -19,16 +19,21 @@ function App() {
   const [isLoadingImages, setLoadingImages] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [blocks, setBlocks] = useState<FileSoundBlock[]>([]);
-  const [sceneIndex, setSceneIndex] = useState(0);
-  const [verbose, setVerbose] = useState(false);
-  // const [verbose, setVerbose] = useState(true);
+  // const [verbose, setVerbose] = useState(false);
+  const [verbose, setVerbose] = useState(true);
 
   useEffect(() => {
-    // Fetch the sound blocks
+    // Fetch sound blocks
     const fetchBlocks = async () => {
-      const response = await fetch("/assets/soundblocks/blocks.json");
-      const data = await response.json();
-      setBlocks(data);
+      try {
+        const response = await fetch(
+          "/assets/soundblocks/kalimba_piano_scene.json",
+        );
+        const data = await response.json();
+        setBlocks(data);
+      } catch (error) {
+        console.error("Error fetching blocks:", error);
+      }
     };
 
     fetchBlocks();
@@ -86,12 +91,7 @@ function App() {
                 onClick={(cat) => setSelectedCat(cat)}
               />
             )}
-            <MusicSystem
-              play={isPlaying}
-              blocks={blocks}
-              sceneIndex={sceneIndex}
-              verbose={verbose}
-            />
+            <MusicSystem play={isPlaying} blocks={blocks} verbose={verbose} />
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}

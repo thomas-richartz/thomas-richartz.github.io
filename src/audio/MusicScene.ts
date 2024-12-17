@@ -1,5 +1,5 @@
-import { WavStereoPlayer } from "./WavStereoPlayer";
 import { FileSoundBlock } from "./FileSoundBlock";
+import { WavStereoPlayer } from "./WavStereoPlayer";
 
 export class MusicScene {
   private player: WavStereoPlayer;
@@ -18,29 +18,24 @@ export class MusicScene {
     this.reverb = reverb;
     this.verbose = verbose;
 
-    // Set the reverb for the scene
     this.player.setReverbEffect(this.reverb);
 
-    this.log(
-      `MusicScene initialized with ${blocks.length} blocks and reverb: ${this.reverb}`,
-    );
-  }
-
-  private log(message: string) {
     if (this.verbose) {
-      console.log(message);
+      console.log(
+        `Initialized MusicScene with ${blocks.length} blocks, reverb: ${reverb}`,
+      );
     }
   }
 
   public async playBlock(index: number) {
     if (index < 0 || index >= this.blocks.length) {
-      this.log(`Block index ${index} is out of bounds.`);
+      console.error(`Invalid block index: ${index}`);
       return;
     }
 
     const block = this.blocks[index];
     if (!block.audioBuffer) {
-      this.log(`Audio buffer is missing for block: ${block.name}`);
+      console.log(`Loading audio buffer for block: ${block.name}`);
       await this.loadAudioForBlock(block);
     }
 
@@ -48,9 +43,7 @@ export class MusicScene {
   }
 
   private async loadAudioForBlock(block: FileSoundBlock) {
-    if (!block.audioBuffer) {
-      block.audioBuffer = await this.player.loadAudio(block.filePath);
-    }
+    block.audioBuffer = await this.player.loadAudio(block.filePath);
   }
 
   public stop() {

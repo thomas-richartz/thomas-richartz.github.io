@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Intro",
+    "pattern": [0.8, 0.7, 1.0, 0.9],
+    "patternCycle": "forward",
+    "scale": [55, 110, 165, 220, 261.63, 311.13, 392],
+    "filePath": "/assets/wav/arsenal_intro.wav",
+    "reverb": true,
+    "volume": 0.8,
+    "loop": true,
+    "playbackRate": 1.0,
+    "duration": 1800
+  }
+]
