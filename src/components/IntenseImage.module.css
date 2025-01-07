@@ -44,13 +44,11 @@
     justify-content: space-between;
 }
 
-
 .figure {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 
 @keyframes kenBurns {
     0% {
@@ -70,7 +68,6 @@
     }
 }
 
-
 .fullscreenContainer {
     display: flex;
     align-items: normal;
@@ -78,11 +75,11 @@
     text-align: center;
 }
 
-
 /* Styles for the Ken Burns container */
 .figureKenBurns {
     width: 100%;
-    height: 66vh; /* Ensure 2-third of the screen height */
+    /* 2-third of the screen height */
+    /* max-height: 66vh; */
     overflow: hidden;
     position: relative;
     display: flex;
@@ -95,18 +92,23 @@
 .intenseImgKenBurns {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transform: scale(1.05);
-    animation: kenBurns 30s ease-in-out infinite;
+    object-fit: contain;
+    /* transform: scale(1.05); */
+    /* animation: kenBurns 30s ease-in-out infinite; */
 }
 
 /* Title Overlay */
+.titleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .title {
-    position: absolute;
-    bottom: 8px;
-    left: 16px;
+    /* position: absolute; */
+    /* bottom: 8px; */
+    /* left: 16px; */
     color: white;
-    background: rgba(0, 0, 0, 0.5); 
+    background: rgba(0, 0, 0, 0.5);
     padding: 4px 8px;
     font-size: 1rem;
     border-radius: 4px;

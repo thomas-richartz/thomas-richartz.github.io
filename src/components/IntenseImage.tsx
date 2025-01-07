@@ -4,7 +4,7 @@ import { useIntersectionObserver } from "usehooks-ts";
 import styles from "./IntenseImage.module.css";
 import { LightBoxImage } from "./LightBoxImage";
 // import { ExitFullScreenIcon } from "@radix-ui/react-icons";
-
+//
 interface IIntenseImage {
   nextImage: () => void;
   prevImage: () => void;
@@ -51,7 +51,7 @@ export const IntenseImage = ({
       if (e.key === "ArrowRight") nextImage();
       if (e.key === "ArrowLeft") prevImage();
     },
-    [nextImage, prevImage]
+    [nextImage, prevImage],
   );
 
   useEffect(() => {
@@ -139,9 +139,10 @@ export const IntenseImage = ({
           className={styles.intenseImgKenBurns}
           src={currentSrc}
         />
+      </div>
+      <div className={styles.titleWrap}>
         <span className={styles.title}>{title}</span>
       </div>
-
       {/* Fullscreen Overlay */}
       {hasFullscreenSupport && (
         <div
