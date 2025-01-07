@@ -48,6 +48,9 @@
 .galleryCatScreen__imageTitle {
     color: #fff;
     text-align: center;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1rem;
 }
 
 /* Ken Burns wrapper for image effect */
@@ -260,11 +263,6 @@
     padding: 0.5rem;
     text-align: center;
     z-index: 2;
-}
-
-.galleryCatScreen__imageTitle {
-    font-size: 1.2rem;
-    font-weight: bold;
 }
 
 .galleryCatScreen__kenBurnsWrapper {

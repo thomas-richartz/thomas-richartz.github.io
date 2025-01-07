@@ -97,11 +97,6 @@ export const GalleryCatScreen = ({
             className={styles.galleryCatScreen__image}
             onClick={() => setShowImage(image)}
           >
-            <div className={styles.galleryCatScreen__imageOverlay}>
-              <h2 className={styles.galleryCatScreen__imageTitle}>
-                {image.title}
-              </h2>
-            </div>
             <div className={styles.galleryCatScreen__kenBurnsWrapper}>
               <LazyLoadImage
                 alt={image.title}
@@ -142,6 +137,11 @@ export const GalleryCatScreen = ({
             >
               <Cross2Icon />
             </button>
+            <div className={styles.galleryCatScreen__imageOverlay}>
+              <h2 className={styles.galleryCatScreen__imageTitle}>
+                {showImage.title}
+              </h2>
+            </div>
           </div>
         )}
       </div>
