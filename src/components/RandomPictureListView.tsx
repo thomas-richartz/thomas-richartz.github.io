@@ -15,11 +15,11 @@ export const RandomPictureListView = ({
   selectedImage,
 }: IRandomPictureListView): JSX.Element => {
   const nextImage = () => {
-    // Implement logic for showing the next image in the lightbox
+    console.log("RandomPictureListView:nextImage");
   };
 
   const prevImage = () => {
-    // Implement logic for showing the previous image in the lightbox
+    console.log("RandomPictureListView:prevImage");
   };
 
   return (
