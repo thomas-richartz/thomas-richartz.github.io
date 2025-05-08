@@ -35,7 +35,10 @@ export const BottomBar = ({
       {/*</button>*/}
 
       {/* Music Toggle Icon */}
-      <button className={styles.button} onClick={onMusicToggle}>
+      <button
+        className={`${styles.button} ${styles.paddingLeft}`}
+        onClick={onMusicToggle}
+      >
         {isPlaying ? (
           <SpeakerLoudIcon color="#cde" />
         ) : (
@@ -56,7 +59,7 @@ export const BottomBar = ({
 
       <span
         onClick={() => onNavigate(Screen.CONTACT)}
-        className={styles.footerText}
+        className={`${styles.footerText} ${styles.paddingRight}`}
       >
         &copy; Thomas Richartz 2025
       </span>

@@ -1,4 +1,4 @@
-export const categoryDescriptions: Record<string, string> = {
+export const categoryIntepretations: Record<string, string> = {
   "3 Monde (2018)": "",
   "32 Denkmäler (1993-1999)": "",
   "Africa-Europa (2016)": "",

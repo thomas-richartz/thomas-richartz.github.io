@@ -4,9 +4,9 @@
     --color-secondary: #ffffff; /* Replace with `defaultTheme.colors.secondary` */
     --font-size-medium: 1.5rem; /* Replace with `defaultTheme.fontSizes.medium` */
     --shadow-large: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Replace with `defaultTheme.shadows.large` */
-  }
-  
-  .bottomBar {
+}
+
+.bottomBar {
     background-color: var(--background-primary);
     color: var(--color-primary);
     position: fixed;
@@ -14,9 +14,9 @@
     width: 100vw;
     display: flex;
     align-items: center;
-  }
-  
-  .button {
+}
+
+.button {
     border: 0;
     color: var(--color-primary);
     background: var(--background-primary);
@@ -29,62 +29,62 @@
     position: absolute;
     top: 0;
     z-index: 1;
-  }
-  
-  .buttonLeft {
+}
+
+.buttonLeft {
     left: 0;
     margin-left: 0;
-  }
-  
-  .buttonRight {
+}
+
+.buttonRight {
     right: 0;
     margin-right: 0;
-  }
-  
-  .h2 {
+}
+
+.h2 {
     color: var(--color-secondary);
     text-shadow: none;
     padding: 4px;
     margin-left: 1vw;
-  }
-  
-  .underHeadline {
+}
+
+.underHeadline {
     color: var(--color-secondary);
     text-shadow: none;
     padding: 4px;
     text-align: center;
     margin: auto;
     /*margin-left: 1vw;*/
-  }
-  
-  .centeredImage {
+}
+
+.centeredImage {
     display: block;
     margin: auto;
     width: 340px;
-  }
-  
-  @media (min-width: 1028px) {
+}
+
+@media (min-width: 1028px) {
     .centeredImage {
-      width: 640px;
+        width: 640px;
     }
-  }
-  
-  .warehouseWrap {
+}
+
+.warehouseWrap {
     display: block;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh;
     background: url("/assets/img/warehouse.jpg") center / cover;
-  }
-  
-  .landingWrap {
+}
+
+.landingWrap {
     color: var(--color-secondary);
     text-shadow: var(--shadow-large);
     margin: auto;
     width: 100vw;
     padding: 12px 4px 4px;
-  }
-  
-  .spinner {
+}
+
+.spinner {
     margin: auto;
     border: 7px solid var(--background-primary);
     border-radius: 50%;
@@ -92,23 +92,23 @@
     width: 48px;
     height: 48px;
     animation: spinnerAnimation 8s linear infinite;
-  }
-  
-  @keyframes spinnerAnimation {
+}
+
+@keyframes spinnerAnimation {
     0% {
-      transform: rotate(0deg);
-      opacity: 0.3;
+        transform: rotate(0deg);
+        opacity: 0.3;
     }
     50% {
-      opacity: 0.7;
+        opacity: 0.7;
     }
     100% {
-      transform: rotate(360deg);
-      opacity: 0.3;
+        transform: rotate(360deg);
+        opacity: 0.3;
     }
-  }
-  
-  .lightBox {
+}
+
+.lightBox {
     z-index: 1;
     position: fixed;
     top: 0;
@@ -119,6 +119,4 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  
-  
+}

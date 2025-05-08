@@ -1999,12 +1999,12 @@ export const allImages: GalleryImage[] = [
     cat: "Dovcenko2 (2022)",
     range: [2022],
   },
-  {
-    filename: "dovcenko2-2022/dsc_0893a.jpg.webp",
-    title: "Arsenal",
-    cat: "Dovcenko2 (2022)",
-    range: [2022],
-  },
+  // {
+  //   filename: "dovcenko2-2022/dsc_0893a.jpg.webp",
+  //   title: "Arsenal",
+  //   cat: "Dovcenko2 (2022)",
+  //   range: [2022],
+  // },
   {
     filename: "dovcenko2-2022/dsc_0894a.jpg.webp",
     title: "Arsenal",
