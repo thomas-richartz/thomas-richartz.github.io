@@ -64,6 +64,10 @@ export const GalleryCatScreen = ({
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const bindGesture = useDrag(
     ({ down, movement: [mx], velocity: [vx] }) => {
       if (!down && Math.abs(vx) > 0.5) {
