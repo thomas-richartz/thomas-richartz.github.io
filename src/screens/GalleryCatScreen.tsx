@@ -23,10 +23,19 @@ export const GalleryCatScreen = ({
   const [hide, setHide] = useState<boolean>(true);
   const [showImage, setShowImage] = useState<GalleryImage | null>(null);
 
-  const images = useMemo(
-    () => allImages.filter((image) => image.cat === cat),
-    [cat],
-  );
+  const images = useMemo(() => {
+    const filtered = allImages.filter((image) => image.cat === cat);
+    const remainder = filtered.length % 3;
+    if (remainder === 0) return filtered;
+
+    const padCount = 3 - remainder;
+    const padded = [...filtered];
+    for (let i = 0; i < padCount; i++) {
+      padded.push(filtered[i % filtered.length]);
+    }
+
+    return padded;
+  }, [cat]);
 
   const showNextImage = () => {
     if (!showImage) return;
