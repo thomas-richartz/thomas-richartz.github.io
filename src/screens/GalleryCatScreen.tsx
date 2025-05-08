@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { allImages } from "../assets/assets";
+import { categoryDescriptions } from "../assets/resurrection";
 import { LazyLoadImage } from "../components/LazyLoadImage";
 import { LightBoxImage } from "../components/LightBoxImage";
 import styles from "./GalleryCatScreen.module.css";
@@ -81,12 +82,15 @@ export const GalleryCatScreen = ({
     { axis: "x" },
   );
 
+  const desc = categoryDescriptions[cat] || "";
+
   return (
     <>
       {/* Introductory paragraph */}
       <div className={styles.galleryCatScreen__introText}>
         <p>
           <strong>{cat}</strong>
+          <div>{desc}</div>
         </p>
       </div>
 
