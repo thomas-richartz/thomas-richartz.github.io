@@ -125,6 +125,12 @@ export const GalleryCatScreen = ({
               className={styles.galleryCatScreen__lightBoxImage}
               onClick={() => setShowImage(null)}
             />
+            <div className={styles.galleryCatScreen__imageOverlay}>
+              <h2 className={styles.galleryCatScreen__imageTitle}>
+                {showImage.title}
+              </h2>
+            </div>
+
             <button
               className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonRight}`}
               onClick={showNextImage}
@@ -137,11 +143,6 @@ export const GalleryCatScreen = ({
             >
               <Cross2Icon />
             </button>
-            <div className={styles.galleryCatScreen__imageOverlay}>
-              <h2 className={styles.galleryCatScreen__imageTitle}>
-                {showImage.title}
-              </h2>
-            </div>
           </div>
         )}
       </div>

@@ -58,7 +58,7 @@ export const BottomBar = ({
         onClick={() => onNavigate(Screen.CONTACT)}
         className={styles.footerText}
       >
-        &copy; Thomas Richartz 2024
+        &copy; Thomas Richartz 2025
       </span>
     </div>
   );
