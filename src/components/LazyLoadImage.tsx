@@ -37,20 +37,42 @@ export const LazyLoadImage = ({ alt, src, className }: ILazyLoadImage) => {
     }
   }, [src, isVisible]);
 
-  if (isLoading) {
-    return <Spinner onClick={() => {}} />;
-  }
-
-  return zoomTransition(
-    (styles, item) =>
-      item && (
-        <animated.img
-          loading="lazy"
-          alt={alt}
-          style={styles}
-          className={className} // Apply className here
-          src={currentSrc}
-        />
-      ),
+  return (
+    <div
+      ref={ref}
+      className={className}
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      {isLoading ? (
+        <div
+          // style={{ position: "absolute", top: "40%", left: "40%" }}
+          style={{ position: "absolute", top: "0", left: "0" }}
+          className={lightBoxStyles.spinnerWrapper}
+        >
+          <Spinner onClick={() => {}} />
+        </div>
+      ) : (
+        zoomTransition(
+          (style, item) =>
+            item && (
+              <animated.img
+                loading="lazy"
+                alt={alt}
+                style={{
+                  ...style,
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                }}
+                src={currentSrc}
+              />
+            ),
+        )
+      )}
+    </div>
   );
 };
