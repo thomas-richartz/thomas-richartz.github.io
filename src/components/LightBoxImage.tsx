@@ -23,14 +23,14 @@ export const LightBoxImage = ({
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    delay: 200,
+    delay: 400,
   });
 
   const blurPulse = useSpring({
     loop: { reverse: true },
-    from: { transform: "scale(0.95)", opacity: 0.4 },
-    to: { transform: "scale(1.5)", opacity: 0.8 },
-    config: { duration: 6000, easing: (t) => t },
+    from: { transform: "scale(0.95)", opacity: 0.2 },
+    to: { transform: "scale(1.5)", opacity: 0.5 },
+    config: { duration: 12000, easing: (t) => t },
   });
 
   useEffect(() => {
