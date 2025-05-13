@@ -92,18 +92,6 @@ export const allImages: GalleryImage[] = [
     range: [1993, 1999],
   },
   {
-    filename: "32-denkmaler-1993-1999/dismembration.jpg.webp",
-    title: "Dismembration",
-    cat: "32 Denkmäler (1993-1999)",
-    range: [1993, 1999],
-  },
-  {
-    filename: "32-denkmaler-1993-1999/empiriokritizismus.jpg.webp",
-    title: "Empiriokritizismus",
-    cat: "32 Denkmäler (1993-1999)",
-    range: [1993, 1999],
-  },
-  {
     filename: "32-denkmaler-1993-1999/erection-collectivement.jpg.webp",
     title: "Erection Collectivement",
     cat: "32 Denkmäler (1993-1999)",
@@ -2132,18 +2120,6 @@ export const allImages: GalleryImage[] = [
     range: [2014],
   },
   {
-    filename: "kunst-und-so-2000-2021/amerikaner-in-paris.jpg.webp",
-    title: "Amerikaner in Paris",
-    cat: "Kunst und so (2000-2021)",
-    range: [2000, 2021],
-  },
-  {
-    filename: "kunst-und-so-2000-2021/die-deplacierten.jpg.webp",
-    title: "Die Deplacierten",
-    cat: "Kunst und so (2000-2021)",
-    range: [2000, 2021],
-  },
-  {
     filename: "kunst-und-so-2000-2021/die-ruckkehr-des-vaters.jpg.webp",
     title: "Die Rückkehr des Vaters",
     cat: "Kunst und so (2000-2021)",
@@ -2152,19 +2128,6 @@ export const allImages: GalleryImage[] = [
   {
     filename: "kunst-und-so-2000-2021/europa-vor-dem-regen.jpg.webp",
     title: "Europa vor dem Regen",
-    cat: "Kunst und so (2000-2021)",
-    range: [2000, 2021],
-  },
-  {
-    filename: "kunst-und-so-2000-2021/nur-die-ruhe.JPG.webp",
-    title: "Nur die Ruhe",
-    cat: "Kunst und so (2000-2021)",
-    range: [2000, 2021],
-  },
-  {
-    filename:
-      "kunst-und-so-2000-2021/ware-es-nicht-schon-dabei-zu-sein.jpg.webp",
-    title: "Wäre es nicht schön dabei zu sein",
     cat: "Kunst und so (2000-2021)",
     range: [2000, 2021],
   },
@@ -2375,12 +2338,6 @@ export const allImages: GalleryImage[] = [
     title: "Wege aus dem Ghetto",
     cat: "Wege aus dem Ghetto (2016)",
     range: [2016],
-  },
-  {
-    filename: "wille-und-vorstellung-2018/freiheitskampf1.jpg.webp",
-    title: "Freiheitskampf",
-    cat: "Wille und Vorstellung (2018)",
-    range: [2018],
   },
   {
     filename: "wille-und-vorstellung-2018/wille-und-vorstellung-1.jpg.webp",
