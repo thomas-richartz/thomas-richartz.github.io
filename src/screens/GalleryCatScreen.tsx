@@ -97,10 +97,10 @@ export const GalleryCatScreen = ({
     <>
       {/* Introductory paragraph */}
       <div className={styles.galleryCatScreen__introText}>
-        <p>
+        <div>
           <strong>{cat}</strong>
           <div>{desc}</div>
-        </p>
+        </div>
       </div>
 
       <div

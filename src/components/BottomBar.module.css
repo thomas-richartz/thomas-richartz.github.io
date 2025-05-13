@@ -22,7 +22,7 @@
 
 /* .footerText:hover,
 .footerText:focus {
-  color: #999;
+  color: var(--text-muted);
 } */
 
 .bottomBar {
@@ -45,7 +45,7 @@
     border: none;
     background: none;
     color: inherit;
-    font-size: 1.5rem;
+    font-size: var(--fs-md);
     cursor: pointer;
     /* padding-left: 18px; */
 }
@@ -65,6 +65,7 @@
 }
 
 .footerText {
-    font-size: 0.9rem;
+    /* font-size: 0.9rem; */
+    font-size: var(--fs-xs);
     cursor: pointer;
 }

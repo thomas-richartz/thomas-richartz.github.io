@@ -34,7 +34,8 @@
 /* Paragraph text styling */
 .paragraphText {
     color: #ccc;
-    font-size: 1rem;
+    /* font-size: 1rem; */
+    font-size: var(--fs-md);
     line-height: 1.6;
     text-align: center;
     margin: 0;
@@ -49,7 +50,7 @@
 /* Hover state for links */
 .paragraphLinkHover:global(.paragraphLink:hover) {
     text-decoration: underline;
-    color: #9999cc;
+    color: var(--text-muted-hover);
 }
 
 /* Icon styling for links */

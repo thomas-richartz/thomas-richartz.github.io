@@ -7,10 +7,10 @@
 }
 
 .preloader {
-    background-color: gray;
+    background-color: #111;
     width: 40px;
     height: 40px;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     border-top: 1px solid #fff;
     border-radius: 50%;
     animation: spin 1s linear infinite;

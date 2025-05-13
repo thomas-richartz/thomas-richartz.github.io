@@ -4,6 +4,16 @@
     --color-secondary: #ffffff; /* Replace with `defaultTheme.colors.secondary` */
     --font-size-medium: 1.5rem; /* Replace with `defaultTheme.fontSizes.medium` */
     --shadow-large: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Replace with `defaultTheme.shadows.large` */
+
+    --text-muted: #999;
+    --text-muted-hover: #9999cc;
+
+    --fs-xs: clamp(0.75rem, 1.2vw, 0.875rem); /* captions, meta */
+    --fs-sm: clamp(0.875rem, 1.5vw, 1rem); /* body */
+    --fs-md: clamp(1rem, 2vw, 1.25rem); /* section titles */
+    --fs-lg: clamp(1.25rem, 3vw, 1.5rem); /* h2 */
+    --fs-xl: clamp(1.5rem, 4vw, 2rem); /* h1 */
+    --fs-xxl: clamp(2rem, 6vw, 3rem); /* hero */
 }
 
 .bottomBar {
