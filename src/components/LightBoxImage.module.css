@@ -41,7 +41,7 @@
 
 .light {
     opacity: 0.9;
-    filter: blur(21px);
+    filter: blur(23px);
     position: absolute;
     top: 25px;
     left: 0;

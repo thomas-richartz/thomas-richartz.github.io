@@ -28,7 +28,7 @@ export const LightBoxImage = ({
 
   const blurPulse = useSpring({
     loop: { reverse: true },
-    from: { transform: "scale(1.05)", opacity: 0.4 },
+    from: { transform: "scale(0.95)", opacity: 0.4 },
     to: { transform: "scale(1.5)", opacity: 0.8 },
     config: { duration: 6000, easing: (t) => t },
   });
