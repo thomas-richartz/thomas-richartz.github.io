@@ -83,7 +83,11 @@
     display: block;
     width: 100%;
     min-height: 100vh;
-    background: url("/assets/img/warehouse.jpg") center / cover;
+    background: url("/assets/img/warehouse.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: scroll;
 }
 
 .landingWrap {
