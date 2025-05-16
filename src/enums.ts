@@ -4,3 +4,9 @@ export enum Screen {
   GALLERY_CAT,
   CONTACT,
 }
+
+export enum RandomPicureViewMode {
+  SCROLL = 1,
+  SCROLL_GRID,
+  SCROLL_PARALLAX,
+}

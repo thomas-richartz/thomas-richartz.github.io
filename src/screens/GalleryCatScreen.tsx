@@ -22,37 +22,27 @@ export const GalleryCatScreen = ({
 }: GalleryCatScreenProps): JSX.Element => {
   const [hide, setHide] = useState<boolean>(true);
   const [showImage, setShowImage] = useState<GalleryImage | null>(null);
+  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
   const images = useMemo(() => {
     const filtered = allImages.filter((image) => image.cat === cat);
-    const remainder = filtered.length % 3;
-    if (remainder === 0) return filtered;
-
-    const padCount = 3 - remainder;
-    const padded = [...filtered];
-    for (let i = 0; i < padCount; i++) {
-      padded.push(filtered[i % filtered.length]);
-    }
-
-    return padded;
+    return filtered;
   }, [cat]);
 
+  const updateImage = (index: number) => {
+    const validIndex = (index + images.length) % images.length;
+    setCurrentIndex(validIndex);
+    setShowImage(images[validIndex]);
+  };
+
   const showNextImage = () => {
-    if (!showImage) return;
-    const currentIndex = images.findIndex(
-      (image) => image.filename === showImage.filename,
-    );
-    const nextIndex = (currentIndex + 1) % images.length;
-    setShowImage(images[nextIndex]);
+    if (currentIndex === null) return;
+    updateImage(currentIndex + 1);
   };
 
   const showPrevImage = () => {
-    if (!showImage) return;
-    const currentIndex = images.findIndex(
-      (image) => image.title === showImage.title,
-    );
-    const prevIndex = (currentIndex - 1 + images.length) % images.length;
-    setShowImage(images[prevIndex]);
+    if (currentIndex === null) return;
+    updateImage(currentIndex - 1);
   };
 
   const keyDownHandler = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -65,6 +55,7 @@ export const GalleryCatScreen = ({
         break;
       case "Escape":
         setShowImage(null);
+        setCurrentIndex(null);
         break;
     }
   };
@@ -112,7 +103,10 @@ export const GalleryCatScreen = ({
           <article
             key={index}
             className={styles.galleryCatScreen__image}
-            onClick={() => setShowImage(image)}
+            onClick={() => {
+              setShowImage(image);
+              setCurrentIndex(index);
+            }}
           >
             <div className={styles.galleryCatScreen__kenBurnsWrapper}>
               <LazyLoadImage
@@ -156,7 +150,10 @@ export const GalleryCatScreen = ({
             </button>
             <button
               className={styles.galleryCatScreen__closeButton}
-              onClick={() => setShowImage(null)}
+              onClick={() => {
+                setShowImage(null);
+                setCurrentIndex(null);
+              }}
             >
               <Cross2Icon />
             </button>

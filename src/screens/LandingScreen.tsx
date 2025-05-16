@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RandomPictureViewer } from "../components/RandomPictureViewer";
-import { Screen } from "../enums";
+import { RandomPicureViewMode, Screen } from "../enums";
 import styles from "./LandingScreen.module.css";
 import { TextFx } from "../components/TextFx";
 
@@ -52,7 +52,7 @@ export const LandingScreen = ({
           </TextFx>
         </h2>
       </div>
-      <RandomPictureViewer />
+      <RandomPictureViewer mode={RandomPicureViewMode.SCROLL} />
     </div>
   );
 };

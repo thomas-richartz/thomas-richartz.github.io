@@ -21,14 +21,12 @@ export const GalleryScreen = ({
     return () => clearTimeout(timer);
   }, []);
 
-  // Memoized sorting of images by category and date
   const sortedImagesByCatAndRange = useMemo(() => {
     return [...allImages]
       .sort((a, b) => (a.cat < b.cat ? -1 : 1))
       .sort((a, b) => (a.range[0] > b.range[0] ? -1 : 1));
   }, []);
 
-  // Create unique category list with one image per category
   const uniqueCategoryImages = useMemo(() => {
     const seenCategories = new Set<string>();
     return sortedImagesByCatAndRange.filter((image) => {
@@ -38,7 +36,6 @@ export const GalleryScreen = ({
     });
   }, [sortedImagesByCatAndRange]);
 
-  // Handle image click with fade-out effect before navigating
   const handleImageClick = (category: string) => {
     setIsHidden(true);
     setTimeout(() => {

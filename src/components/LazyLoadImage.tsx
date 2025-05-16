@@ -49,7 +49,6 @@ export const LazyLoadImage = ({ alt, src, className }: ILazyLoadImage) => {
     >
       {isLoading ? (
         <div
-          // style={{ position: "absolute", top: "40%", left: "40%" }}
           style={{ position: "absolute", top: "0", left: "0" }}
           className={lightBoxStyles.spinnerWrapper}
         >
