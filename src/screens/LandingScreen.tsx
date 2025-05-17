@@ -52,7 +52,8 @@ export const LandingScreen = ({
           </TextFx>
         </h2>
       </div>
-      <RandomPictureViewer mode={RandomPicureViewMode.SCROLL} />
+
+      <RandomPictureViewer />
     </div>
   );
 };
