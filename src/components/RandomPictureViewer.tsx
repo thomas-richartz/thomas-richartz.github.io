@@ -132,7 +132,7 @@ export const RandomPictureViewer =
         <div ref={loaderRef} style={{ height: "1px" }}></div>
         <button
           style={{
-            position: "absolute",
+            position: "fixed",
             top: 12,
             right: 12,
             width: 48,

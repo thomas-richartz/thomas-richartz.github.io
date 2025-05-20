@@ -57,15 +57,15 @@
 /* Ken Burns wrapper for image effect */
 .galleryCatScreen__kenBurnsWrapper {
     width: 100%;
-    /* height: 100%; */
-    aspect-ratio: 1 / 1; /* square view */
+    height: 100%;
+    /* aspect-ratio: 1 / 1; square view confliging with height */
     overflow: hidden;
     position: relative;
 }
 
 .galleryCatScreen__imageImg {
-    width: 100%;
-    height: 100%;
+    width: 111%;
+    height: 111%;
     object-fit: cover;
     position: absolute;
     top: 0;
@@ -78,10 +78,13 @@
         transform: scale(1.1) translate(0, 0) rotateX(0deg) rotateY(0deg);
     }
     50% {
-        transform: scale(1.2) translate(5%, -5%) rotateX(3deg) rotateY(3deg);
+        transform: scale(1.2) translate(5%, -5%);
     }
+    /* 100% {
+        transform: scale(1.1) translate(-5%, 5%);
+    } */
     100% {
-        transform: scale(1.1) translate(-5%, 5%) rotateX(-3deg) rotateY(-3deg);
+        transform: scale(1.35) translate(-3%, -3%);
     }
 }
 

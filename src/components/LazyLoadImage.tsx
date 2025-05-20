@@ -14,17 +14,29 @@ interface ILazyLoadImage {
 export const LazyLoadImage = ({ alt, src, className }: ILazyLoadImage) => {
   const [isLoading, setIsLoading] = useState(true);
   const [currentSrc, setCurrentSrc] = useState("");
+  const [shouldRender, setShouldRender] = useState(false);
 
   const ref = useRef<HTMLDivElement | HTMLImageElement | null>(null);
   const entry = useIntersectionObserver(ref, {});
   const isVisible = !!entry?.isIntersecting;
 
-  const zoomTransition = useTransition(!isLoading, {
-    from: { transform: "scale(0.79)", opacity: 0 },
+  const zoomTransition = useTransition(shouldRender, {
+    from: { transform: "scale(0.79)", opacity: 1 },
     enter: { transform: "scale(1.0)", opacity: 1 },
     leave: { transform: "scale(1.2)", opacity: 0 },
     delay: 500,
+    initial: null,
   });
+
+  useEffect(() => {
+    if (!isLoading) {
+      const timer = setTimeout(() => {
+        setShouldRender(true);
+      }, 10);
+
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
 
   useEffect(() => {
     if (isVisible) {

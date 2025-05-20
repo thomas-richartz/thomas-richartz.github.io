@@ -23,7 +23,7 @@ export const RandomPictureListView = ({
   };
 
   return (
-    <div className={styles.imageGrid}>
+    <div className={styles.listContainer}>
       {images.map((image, index) => (
         <div key={`${image.title}-${index}`} className={styles.imageContainer}>
           <IntenseImage

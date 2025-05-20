@@ -20,7 +20,7 @@ export const LightBoxImage = ({
   const [currentSrc, setCurrentSrc] = useState<string>("");
 
   const imgTransitions = useTransition(!isLoading, {
-    from: { opacity: 0 },
+    from: { opacity: 1 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
     delay: 400,
