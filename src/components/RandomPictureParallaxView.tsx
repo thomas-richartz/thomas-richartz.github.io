@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, useTexture, Text } from "@react-three/drei";
 import { GalleryImage } from "../types";
+import CameraController from "./CameraController";
 
 interface RandomPictureParallaxViewProps {
   images: GalleryImage[];
@@ -11,10 +12,12 @@ const ParallaxCube = ({
   image,
   title,
   position,
+  onClick,
 }: {
   image: string;
   title: string;
   position: [number, number, number];
+  onClick: () => void;
 }) => {
   const texture = useTexture(`/assets/images/${image}`);
   const meshRef = useRef<any>();
@@ -26,7 +29,7 @@ const ParallaxCube = ({
   });
 
   return (
-    <group ref={meshRef} position={position}>
+    <group ref={meshRef} position={position} onClick={onClick}>
       <mesh>
         <boxGeometry args={[1.5, 1, 0.5]} />
         <meshStandardMaterial map={texture} />
@@ -49,6 +52,12 @@ export const RandomPictureParallaxView = ({
 }: RandomPictureParallaxViewProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
+  const [targetPosition, setTargetPosition] = useState<
+    [number, number, number]
+  >([0, 0, 10]);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const cameraRef = useRef<any>();
 
   const onScroll = () => {
     if (scrollRef.current) {
@@ -72,7 +81,7 @@ export const RandomPictureParallaxView = ({
       <div style={{ height: `${images.length * 150}px` }}></div>
       <Canvas style={{ position: "fixed", top: 0, left: 0 }}>
         <ambientLight />
-        <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+        <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
         {images.map((img, i) => {
           const z = -i * 2 + scrollY / 50;
           const x = ((i % 3) - 1) * 3;
@@ -83,9 +92,24 @@ export const RandomPictureParallaxView = ({
               image={img.filename}
               title={img.title}
               position={[x, y, z]}
+              onClick={() => {
+                if (selectedIndex === i) {
+                  // Zoom out to overview
+                  setSelectedIndex(null);
+                  setTargetPosition([0, 0, 10]); // TODO or a saved overview, prev pos
+                } else {
+                  // Zoom into selected cube
+                  setSelectedIndex(i);
+                  setTargetPosition([x, y, z + 2]);
+                }
+              }}
             />
           );
         })}
+        <CameraController
+          cameraRef={cameraRef}
+          targetPosition={targetPosition}
+        />
       </Canvas>
     </div>
   );

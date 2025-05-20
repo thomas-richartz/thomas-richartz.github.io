@@ -64,10 +64,14 @@ export const RandomPictureViewer =
           return <RandomPictureGridView images={images} />;
         case RandomPicureViewMode.SCROLL_PARALLAX:
           return <RandomPictureParallaxView images={images} />;
+              // onRequestMore={handleRequestMore}
         case RandomPicureViewMode.SCROLL:
         default:
           return (
-            <RandomPictureListView images={images} selectedImage={undefined} />
+            <RandomPictureListView
+              images={images}
+              selectedImage={undefined}
+            />
           );
       }
     };
