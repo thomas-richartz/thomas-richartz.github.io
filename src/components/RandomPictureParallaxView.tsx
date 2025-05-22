@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, useTexture, Text } from "@react-three/drei";
+import {
+  EffectComposer,
+  DepthOfField,
+  Bloom,
+  Noise,
+} from "@react-three/postprocessing";
 import { GalleryImage } from "../types";
 import CameraController from "./CameraController";
 
@@ -144,6 +150,20 @@ export const RandomPictureParallaxView = ({
           cameraRef={cameraRef}
           targetPosition={targetPosition}
         />
+        <EffectComposer>
+          <DepthOfField
+            focusDistance={0.015}
+            focalLength={0.02}
+            bokehScale={2}
+            height={480}
+          />
+          {/* <Bloom
+            luminanceThreshold={0.2}
+            luminanceSmoothing={0.9}
+            height={300}
+          /> */}
+          {/* <Noise opacity={0.05} /> */}
+        </EffectComposer>
       </Canvas>
     </div>
   );
