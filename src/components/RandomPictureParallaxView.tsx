@@ -21,25 +21,53 @@ const ParallaxCube = ({
 }) => {
   const texture = useTexture(`/assets/images/${image}`);
   const meshRef = useRef<any>();
+  // const meshRef = useRef<THREE.Group>(null);
+  const [dimensions, setDimensions] = useState<[number, number] | null>(null);
+  const [startTime] = useState(() => Date.now());
 
   useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.002;
-    }
+    if (!meshRef.current) return;
+
+    const elapsed = (Date.now() - startTime) / 1000; // in seconds
+    const angle = Math.sin(elapsed) * (Math.PI / 180) * 5; // ±5 degrees
+
+    // Apply to Y-axis rotation
+    meshRef.current.rotation.y = angle;
   });
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = `/assets/images/${image}`;
+    img.onload = () => {
+      setDimensions([img.width, img.height]);
+    };
+  }, [image]);
+
+  const canvasDepth = 0.05;
+  const baseWidth = 1.5;
+
+  let geometryArgs: [number, number, number] = [1, 1, canvasDepth]; // fallback
+
+  if (dimensions) {
+    const [imgWidth, imgHeight] = dimensions;
+    const aspectRatio = imgHeight / imgWidth;
+    geometryArgs = [baseWidth, baseWidth * aspectRatio, canvasDepth];
+  }
 
   return (
     <group ref={meshRef} position={position} onClick={onClick}>
       <mesh>
-        <boxGeometry args={[1.5, 1, 0.5]} />
-        <meshStandardMaterial map={texture} />
+        <mesh>
+          <boxGeometry args={geometryArgs} />
+          <meshStandardMaterial map={texture} />
+        </mesh>
       </mesh>
       <Text
         fontSize={0.2}
         color="white"
         anchorX="center"
         anchorY="top"
-        position={[0, -0.8, 0]}
+        position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}
       >
         {title}
       </Text>
