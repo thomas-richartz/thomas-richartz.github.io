@@ -110,6 +110,12 @@ export const RandomPictureParallaxView = ({
       <Canvas style={{ position: "fixed", top: 0, left: 0 }}>
         <ambientLight />
         <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
+
+        <mesh position={[0, 0, -50]}>
+          <planeGeometry args={[200, 200]} />
+          <meshBasicMaterial color="#1a1a1a" />
+        </mesh>
+
         {images.map((img, i) => {
           const z = -i * 2 + scrollY / 50;
           const x = ((i % 3) - 1) * 3;
