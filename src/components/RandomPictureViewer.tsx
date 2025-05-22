@@ -3,9 +3,9 @@ import { useTransition } from "@react-spring/web";
 import { allImages } from "../assets/assets";
 import { RandomPicureViewMode } from "../enums";
 import { GalleryImage } from "../types";
-import { RandomPictureListView } from "./RandomPictureListView";
-import { RandomPictureGridView } from "./RandomPictureGridView";
-import { RandomPictureParallaxView } from "./RandomPictureParallaxView";
+import { RandomPictureListView } from "./random-picture/views/RandomPictureListView";
+import { RandomPictureGridView } from "./random-picture/views/RandomPictureGridView";
+import { RandomPictureParallaxView } from "./random-picture/views/RandomPictureParallaxView";
 
 interface RandomPictureViewerProps {}
 
@@ -64,14 +64,11 @@ export const RandomPictureViewer =
           return <RandomPictureGridView images={images} />;
         case RandomPicureViewMode.SCROLL_PARALLAX:
           return <RandomPictureParallaxView images={images} />;
-              // onRequestMore={handleRequestMore}
+        // onRequestMore={handleRequestMore}
         case RandomPicureViewMode.SCROLL:
         default:
           return (
-            <RandomPictureListView
-              images={images}
-              selectedImage={undefined}
-            />
+            <RandomPictureListView images={images} selectedImage={undefined} />
           );
       }
     };

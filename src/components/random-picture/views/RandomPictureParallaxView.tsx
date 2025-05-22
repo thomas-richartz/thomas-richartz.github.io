@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, useTexture, Text } from "@react-three/drei";
-import { GalleryImage } from "../types";
-import CameraController from "./CameraController";
+import { GalleryImage } from "../../../types";
+import CameraController from "../../CameraController";
+import "../../../materials/BlurImageMaterial";
 
 interface RandomPictureParallaxViewProps {
   images: GalleryImage[];
@@ -13,11 +14,13 @@ const ParallaxCube = ({
   title,
   position,
   onClick,
+  blur = 0,
 }: {
   image: string;
   title: string;
   position: [number, number, number];
   onClick: () => void;
+  blur?: number;
 }) => {
   const texture = useTexture(`/assets/images/${image}`);
   const meshRef = useRef<any>();
@@ -59,7 +62,13 @@ const ParallaxCube = ({
       <mesh>
         <mesh>
           <boxGeometry args={geometryArgs} />
-          <meshStandardMaterial map={texture} />
+          <blurImageMaterial
+            uTexture={texture}
+            uResolution={[1024, 1024]}
+            uTime={0}
+            uLod={blur}
+          />
+          {/* <meshStandardMaterial map={texture} /> */}
         </mesh>
       </mesh>
       <Text
@@ -137,6 +146,7 @@ export const RandomPictureParallaxView = ({
                   setTargetPosition([x, y, z + 2]);
                 }
               }}
+              blur={selectedIndex === i ? 0.0 : 2.5}
             />
           );
         })}

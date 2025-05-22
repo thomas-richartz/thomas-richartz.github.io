@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { GalleryImage } from "../types";
-import { IntenseImage } from "./IntenseImage";
-import { LightBoxImage } from "./LightBoxImage";
+import { GalleryImage } from "@/types";
+import { IntenseImage } from "@/components/IntenseImage";
+import { LightBoxImage } from "@/components/LightBoxImage";
+import lightBoxStyles from "@/components/LightBoxImage.module.css";
 import styles from "./RandomPictureListView.module.css";
-import lightBoxStyles from "./LightBoxImage.module.css";
 
 interface IRandomPictureListView {
   images: GalleryImage[];
