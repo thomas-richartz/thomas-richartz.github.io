@@ -1,9 +1,10 @@
+import * as THREE from "three";
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, useTexture, Text } from "@react-three/drei";
-import { GalleryImage } from "../../../types";
-import CameraController from "../../CameraController";
-import "../../../materials/BlurImageMaterial";
+import { GalleryImage } from "@/types";
+import CameraController from "@/components/CameraController";
+import "@/materials/BlurImageMaterial";
 
 interface RandomPictureParallaxViewProps {
   images: GalleryImage[];
@@ -23,33 +24,40 @@ const ParallaxCube = ({
   blur?: number;
 }) => {
   const texture = useTexture(`/assets/images/${image}`);
-  const meshRef = useRef<any>();
-  // const meshRef = useRef<THREE.Group>(null);
+  // const meshRef = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<any>(null);
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
   const [startTime] = useState(() => Date.now());
+  const [hovered, setHovered] = useState(false);
+  const elapsedRef = useRef(0);
+  const lastUpdateTimeRef = useRef(performance.now());
 
   useFrame(() => {
     if (!meshRef.current) return;
 
-    const elapsed = (Date.now() - startTime) / 1000; // in seconds
-    const angle = Math.sin(elapsed) * (Math.PI / 180) * 5; // ±5 degrees
+    const now = performance.now();
+    const delta = (now - lastUpdateTimeRef.current) / 1000;
+    lastUpdateTimeRef.current = now;
 
-    // Apply to Y-axis rotation
-    meshRef.current.rotation.y = angle;
+    if (!hovered) {
+      elapsedRef.current += delta;
+      const angle =
+        Math.sin(elapsedRef.current * 1.5) * THREE.MathUtils.degToRad(5); // ±5°
+      meshRef.current.rotation.y = angle;
+    }
   });
 
   useEffect(() => {
-    const img = new Image();
-    img.src = `/assets/images/${image}`;
-    img.onload = () => {
-      setDimensions([img.width, img.height]);
-    };
-  }, [image]);
+    if (texture.image) {
+      const { width, height } = texture.image;
+      setDimensions([width, height]);
+    }
+  }, [texture]);
 
   const canvasDepth = 0.05;
   const baseWidth = 1.5;
 
-  let geometryArgs: [number, number, number] = [1, 1, canvasDepth]; // fallback
+  let geometryArgs: [number, number, number] = [1, 1, canvasDepth];
 
   if (dimensions) {
     const [imgWidth, imgHeight] = dimensions;
@@ -58,28 +66,36 @@ const ParallaxCube = ({
   }
 
   return (
-    <group ref={meshRef} position={position} onClick={onClick}>
+    <group
+      ref={meshRef}
+      position={position}
+      onClick={onClick}
+      onPointerOver={() => setHovered(true)}
+      onPointerOut={() => setHovered(false)}
+    >
       <mesh>
         <mesh>
           <boxGeometry args={geometryArgs} />
           <blurImageMaterial
             uTexture={texture}
-            uResolution={[1024, 1024]}
+            uResolution={[window.innerWidth, window.innerHeight]}
             uTime={0}
             uLod={blur}
           />
           {/* <meshStandardMaterial map={texture} /> */}
         </mesh>
       </mesh>
-      <Text
-        fontSize={0.2}
-        color="white"
-        anchorX="center"
-        anchorY="top"
-        position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}
-      >
-        {title}
-      </Text>
+      {hovered && (
+        <Text
+          fontSize={0.2}
+          color="white"
+          anchorX="center"
+          anchorY="top"
+          position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}
+        >
+          {title}
+        </Text>
+      )}
     </group>
   );
 };
@@ -93,7 +109,6 @@ export const RandomPictureParallaxView = ({
     [number, number, number]
   >([0, 0, 10]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-
   const cameraRef = useRef<any>();
 
   const onScroll = () => {
@@ -113,6 +128,14 @@ export const RandomPictureParallaxView = ({
     };
   }, []);
 
+  useEffect(() => {
+    // scroll down = zoom out
+    const depth = 10 + scrollY / 100;
+    if (selectedIndex === null) {
+      setTargetPosition([0, 0, depth]);
+    }
+  }, [scrollY, selectedIndex]);
+
   return (
     <div ref={scrollRef} style={{ height: "100vh", overflowY: "scroll" }}>
       <div style={{ height: `${images.length * 150}px` }}></div>
@@ -126,7 +149,7 @@ export const RandomPictureParallaxView = ({
         </mesh>
 
         {images.map((img, i) => {
-          const z = -i * 2 + scrollY / 50;
+          const z = -i * 2;
           const x = ((i % 3) - 1) * 3;
           const y = Math.floor(i / 3) * -2.5;
           return (
@@ -140,10 +163,12 @@ export const RandomPictureParallaxView = ({
                   // Zoom out to overview
                   setSelectedIndex(null);
                   setTargetPosition([0, 0, 10]); // TODO or a saved overview, prev pos
+                  // setTargetPosition([x, y, z - 4]); // zoom out
+                  // setTargetPosition([x, y, z - 4]); // zoom out
                 } else {
                   // Zoom into selected cube
                   setSelectedIndex(i);
-                  setTargetPosition([x, y, z + 2]);
+                  setTargetPosition([x, y, z + 3.3]);
                 }
               }}
               blur={selectedIndex === i ? 0.0 : 2.5}
