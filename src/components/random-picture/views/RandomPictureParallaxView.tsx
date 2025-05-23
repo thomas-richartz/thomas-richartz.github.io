@@ -24,7 +24,13 @@ const ParallaxCube = ({
   onClick: () => void;
   blur?: number;
 }) => {
-  const texture = useTexture(`/assets/images/${image}`);
+  const texture = useTexture({
+    map: `/assets/images/${image}`,
+    normalMap: "/assets/normalmaps/default.jpg",
+    // normalMap: "/assets/normalmaps/freiheitskampf-4.jpg_specular.png",
+    // normalMap: `/assets/normalmaps/${image.replace(/\.[^.]+$/, ".png")}`,
+  });
+
   // const meshRef = useRef<THREE.Mesh>(null);
   const meshRef = useRef<any>(null);
   const [dimensions, setDimensions] = useState<[number, number] | null>(null);
@@ -49,8 +55,8 @@ const ParallaxCube = ({
   });
 
   useEffect(() => {
-    if (texture.image) {
-      const { width, height } = texture.image;
+    if (texture.map?.image) {
+      const { width, height } = texture.map.image;
       setDimensions([width, height]);
     }
   }, [texture]);
@@ -78,10 +84,11 @@ const ParallaxCube = ({
         <mesh>
           <boxGeometry args={geometryArgs} />
           <blurImageMaterial
-            uTexture={texture}
+            uTexture={texture.map}
             uResolution={[window.innerWidth, window.innerHeight]}
             uTime={0}
             uLod={blur}
+            normalMap={texture.normalMap}
           />
           {/* <meshStandardMaterial map={texture} /> */}
         </mesh>
@@ -149,8 +156,9 @@ export const RandomPictureParallaxView = ({
           background: "black",
         }}
       >
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow />
+        <ambientLight intensity={0.5} />
+        {/* <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow /> */}
+        <directionalLight position={[5, 10, 5]} intensity={1} castShadow />
         <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
 
         <mesh position={[0, 0, -150]}>
