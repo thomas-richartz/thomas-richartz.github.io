@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, useTexture, Text } from "@react-three/drei";
 // import { OrbitControls } from "@react-three/drei";
+import { Reflector } from "@react-three/drei";
 import { GalleryImage } from "@/types";
 import CameraController from "@/components/CameraController";
 import "@/materials/BlurImageMaterial";
@@ -86,6 +87,20 @@ const ParallaxCube = ({
           {/* <meshStandardMaterial map={texture} /> */}
         </mesh>
       </mesh>
+      <Reflector
+        resolution={512}
+        args={[200, 200]} // size of the floor
+        mirror={0.3} // reflection intensity
+        mixBlur={1} // soft blur
+        mixStrength={1}
+        rotation={[-Math.PI / 2, 0, 0]} // horizontal plane
+        position={[0, -2.6, 0]} // slightly below image cubes
+      >
+        {(Material, props) => (
+          <Material color="#111" metalness={0.6} roughness={1} {...props} />
+        )}
+      </Reflector>
+
       {hovered && (
         <Text
           fontSize={0.2}
@@ -153,8 +168,8 @@ export const RandomPictureParallaxView = ({
         <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow />
         <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
 
-        <mesh position={[0, 0, -50]}>
-          <planeGeometry args={[200, 200]} />
+        <mesh position={[0, 0, -150]}>
+          <planeGeometry args={[window.innerWidth, window.innerHeight]} />
           <meshBasicMaterial color="#1a1a1a" />
         </mesh>
 
