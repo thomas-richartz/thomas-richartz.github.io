@@ -2,6 +2,7 @@ import * as THREE from "three";
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, useTexture, Text } from "@react-three/drei";
+// import { OrbitControls } from "@react-three/drei";
 import { GalleryImage } from "@/types";
 import CameraController from "@/components/CameraController";
 import "@/materials/BlurImageMaterial";
@@ -139,8 +140,17 @@ export const RandomPictureParallaxView = ({
   return (
     <div ref={scrollRef} style={{ height: "100vh", overflowY: "scroll" }}>
       <div style={{ height: `${images.length * 150}px` }}></div>
-      <Canvas style={{ position: "fixed", top: 0, left: 0 }}>
-        <ambientLight />
+      <Canvas
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          // pointerEvents: selectedIndex !== null ? "auto" : "none",
+          background: "black",
+        }}
+      >
+        <ambientLight intensity={0.3} />
+        <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow />
         <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
 
         <mesh position={[0, 0, -50]}>
@@ -179,6 +189,14 @@ export const RandomPictureParallaxView = ({
           cameraRef={cameraRef}
           targetPosition={targetPosition}
         />
+        {/* {selectedIndex !== null && (
+          <OrbitControls
+            enableZoom
+            enablePan={false}
+            enableRotate
+            target={targetPosition}
+          />
+        )} */}
       </Canvas>
     </div>
   );
