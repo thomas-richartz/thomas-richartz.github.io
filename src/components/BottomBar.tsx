@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Screen } from "../enums";
+import { Screen } from "@/enums";
 import {
   HomeIcon,
   ImageIcon,

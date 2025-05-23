@@ -7,7 +7,7 @@ export class WavStereoPlayer {
   private reverbEffect: GainNode | null = null;
   private verbose: boolean;
 
-  constructor(maxVoices: number, verbose: boolean = false) {
+  constructor(maxVoices: number = 4, verbose: boolean = false) {
     this.maxVoices = maxVoices;
     this.verbose = verbose;
     this.audioContext = new window.AudioContext();

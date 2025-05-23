@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useTransition } from "@react-spring/web";
-import { allImages } from "../assets/assets";
-import { RandomPicureViewMode } from "../enums";
-import { GalleryImage } from "../types";
-import { RandomPictureListView } from "./random-picture/views/RandomPictureListView";
-import { RandomPictureGridView } from "./random-picture/views/RandomPictureGridView";
-import { RandomPictureParallaxView } from "./random-picture/views/RandomPictureParallaxView";
+import { allImages } from "@/assets/assets";
+import { RandomPicureViewMode } from "@/enums";
+import { GalleryImage } from "@/types";
+import { RandomPictureListView } from "@/components/random-picture/views/RandomPictureListView";
+import { RandomPictureGridView } from "@/components/random-picture/views/RandomPictureGridView";
+import { RandomPictureParallaxView } from "@/components/random-picture/views/RandomPictureParallaxView";
 
 interface RandomPictureViewerProps {}
 
@@ -83,7 +83,7 @@ export const RandomPictureViewer =
               viewBox="0 0 64 64"
               xmlns="http://www.w3.org/2000/svg"
               stroke="#FF9999"
-              strokeWidth="4"
+              strokeWidth="1"
               fill="none"
             >
               <rect x="8" y="8" width="16" height="16" />
@@ -100,7 +100,7 @@ export const RandomPictureViewer =
               viewBox="0 0 64 64"
               xmlns="http://www.w3.org/2000/svg"
               stroke="#664455"
-              strokeWidth="4"
+              strokeWidth="1"
               fill="none"
             >
               <path d="M16,48 L48,16" />
@@ -117,7 +117,7 @@ export const RandomPictureViewer =
               viewBox="0 0 64 64"
               xmlns="http://www.w3.org/2000/svg"
               stroke="#EEEEEE"
-              strokeWidth="4"
+              strokeWidth="1"
               fill="none"
             >
               <rect x="12" y="12" width="40" height="40" />

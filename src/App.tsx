@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { SearchOverlay } from "./components/SearchOverlay";
-import { GalleryContextProvider } from "./context/GalleryContext";
-import { Screen } from "./enums";
-import { GalleryCatScreen } from "./screens/GalleryCatScreen";
-import { GalleryScreen } from "./screens/GalleryScreen";
-import { LandingScreen } from "./screens/LandingScreen";
-import styles from "./App.module.css";
-import { BottomBar } from "./components/BottomBar";
-import { ContactScreen } from "./screens/ContactScreen";
-import MusicSystem from "./components/MusicSystem";
-import { FileSoundBlock } from "./audio/FileSoundBlock";
+import { SearchOverlay } from "@/components/SearchOverlay";
+import { GalleryContextProvider } from "@/context/GalleryContext";
+import { Screen } from "@/enums";
+import { GalleryCatScreen } from "@/screens/GalleryCatScreen";
+import { GalleryScreen } from "@/screens/GalleryScreen";
+import { LandingScreen } from "@/screens/LandingScreen";
+import styles from "@/App.module.css";
+import { BottomBar } from "@/components/BottomBar";
+import { ContactScreen } from "@/screens/ContactScreen";
+import MusicSystem from "@/components/MusicSystem";
+import { FileSoundBlock } from "@/audio/FileSoundBlock";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -19,8 +19,8 @@ function App() {
   const [isLoadingImages, setLoadingImages] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [blocks, setBlocks] = useState<FileSoundBlock[]>([]);
-  // const [verbose, setVerbose] = useState(false);
-  const [verbose, setVerbose] = useState(true);
+  const [verbose, setVerbose] = useState(false);
+  // const [verbose, setVerbose] = useState(true);
 
   useEffect(() => {
     // Fetch sound blocks

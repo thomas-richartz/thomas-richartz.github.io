@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
-import {Screen} from "../enums";
+import React, { useEffect, useState } from "react";
+import { Screen } from "@/enums";
 import styles from "./ContactScreen.module.css";
-import {Paragraph} from "../components/Paragraph";
-import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
+import { Paragraph } from "@/components/Paragraph";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 type ContactScreenProps = {
   onCatClick: (cat: string) => void;
@@ -11,10 +11,10 @@ type ContactScreenProps = {
 };
 
 export const ContactScreen = ({
-                                onCatClick,
-                                onNavigate,
-                                onSearch,
-                              }: ContactScreenProps): JSX.Element => {
+  onCatClick,
+  onNavigate,
+  onSearch,
+}: ContactScreenProps): JSX.Element => {
   const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
@@ -64,11 +64,13 @@ export const ContactScreen = ({
         ]}
       />
       <Paragraph
-        children={<>
-          <button className={styles.button} onClick={onSearch}>
-            <MagnifyingGlassIcon color="#cde"/>
-          </button>
-        </>}
+        children={
+          <>
+            <button className={styles.button} onClick={onSearch}>
+              <MagnifyingGlassIcon color="#cde" />
+            </button>
+          </>
+        }
       />
     </div>
   );

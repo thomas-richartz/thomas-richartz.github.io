@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
-import { WavStereoPlayer } from "../audio/WavStereoPlayer";
-import { MusicScene } from "../audio/MusicScene";
-import { FileSoundBlock } from "../audio/FileSoundBlock";
+import { WavStereoPlayer } from "@/audio/WavStereoPlayer";
+import { MusicScene } from "@/audio/MusicScene";
+import { FileSoundBlock } from "@/audio/FileSoundBlock";
 
 interface MusicSystemProps {
   play: boolean;
@@ -17,7 +17,7 @@ const MusicSystem: React.FC<MusicSystemProps> = ({ play, blocks, verbose }) => {
   // Initialize the audio player and MusicScene
   useEffect(() => {
     if (!wavStereoPlayerRef.current) {
-      wavStereoPlayerRef.current = new WavStereoPlayer(4, verbose); // 4 voices
+      wavStereoPlayerRef.current = new WavStereoPlayer();
     }
 
     if (blocks.length > 0) {
@@ -25,12 +25,10 @@ const MusicSystem: React.FC<MusicSystemProps> = ({ play, blocks, verbose }) => {
         wavStereoPlayerRef.current,
         blocks,
         true, // Enable reverb
-        verbose,
       );
-
-      console.log("Initialized MusicScene:", musicSceneRef.current);
+      // console.log("Initialized MusicScene:", musicSceneRef.current);
     }
-  }, [blocks, verbose]);
+  }, [blocks]);
 
   // Periodically advance the blockIndex
   useEffect(() => {

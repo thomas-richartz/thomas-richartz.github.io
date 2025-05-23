@@ -11,7 +11,7 @@ export class MusicScene {
     player: WavStereoPlayer,
     blocks: FileSoundBlock[],
     reverb: boolean,
-    verbose: boolean,
+    verbose: boolean = false,
   ) {
     this.player = player;
     this.blocks = blocks;
@@ -35,7 +35,9 @@ export class MusicScene {
 
     const block = this.blocks[index];
     if (!block.audioBuffer) {
-      console.log(`Loading audio buffer for block: ${block.name}`);
+      if (this.verbose) {
+        console.log(`Loading audio buffer for block: ${block.name}`);
+      }
       await this.loadAudioForBlock(block);
     }
 

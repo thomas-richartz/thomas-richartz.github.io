@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { RandomPictureViewer } from "../components/RandomPictureViewer";
-import { RandomPicureViewMode, Screen } from "../enums";
+import { RandomPictureViewer } from "@/components/RandomPictureViewer";
+import { RandomPicureViewMode, Screen } from "@/enums";
 import styles from "./LandingScreen.module.css";
-import { TextFx } from "../components/TextFx";
+import { TextFx } from "@/components/TextFx";
 
 interface ILandingScreen {
   onCatClick: (cat: string) => void;

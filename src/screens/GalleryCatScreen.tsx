@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { allImages } from "../assets/assets";
-import { categoryDescriptions } from "../assets/resurrection";
-import { LazyLoadImage } from "../components/LazyLoadImage";
-import { LightBoxImage } from "../components/LightBoxImage";
+import { allImages } from "@/assets/assets";
+import { categoryDescriptions } from "@/assets/resurrection";
+import { LazyLoadImage } from "@/components/LazyLoadImage";
+import { LightBoxImage } from "@/components/LightBoxImage";
 import styles from "./GalleryCatScreen.module.css";
-import { GalleryImage } from "../types";
+import { GalleryImage } from "@/types";
 import {
   ChevronLeftIcon,
   ChevronRightIcon,
