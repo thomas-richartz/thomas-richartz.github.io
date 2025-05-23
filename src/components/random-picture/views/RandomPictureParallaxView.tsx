@@ -153,8 +153,8 @@ export const RandomPictureParallaxView = ({
         <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow />
         <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
 
-        <mesh position={[0, 0, -50]}>
-          <planeGeometry args={[200, 200]} />
+        <mesh position={[0, 0, -150]}>
+          <planeGeometry args={[window.innerWidth, window.innerHeight]} />
           <meshBasicMaterial color="#1a1a1a" />
         </mesh>
 
