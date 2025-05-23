@@ -45,6 +45,10 @@
 
 .gridContainer {
     display: grid;
+    /* display: masonary; https://developer.chrome.com/blog/masonry?hl=en  */
+    grid-template-rows: masonry; /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Masonry_layout */
+    /* grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); */
+    /* grid-template-columns: repeat(4, 1fr); */
     grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     gap: 1rem;
     padding: 2rem;
