@@ -2193,6 +2193,18 @@ export const allImages: GalleryImage[] = [
     range: [2017],
   },
   {
+    filename: "la-trasformazione-2017/fruhling.jpg.webp",
+    title: "Frühling",
+    cat: "La Trasformazione (2017)",
+    range: [2017],
+  },
+  {
+    filename: "la-trasformazione-2017/religionsunterricht.jpg.webp",
+    title: "Religionsunterricht",
+    cat: "La Trasformazione (2017)",
+    range: [2017],
+  },
+  {
     filename: "reformation-2017/reformation-1.jpg.webp",
     title: "Reformation",
     cat: "Reformation (2017)",
