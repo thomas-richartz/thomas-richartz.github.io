@@ -16,12 +16,14 @@ const ParallaxCube = ({
   title,
   position,
   onClick,
+  selected,
   blur = 0,
 }: {
   image: string;
   title: string;
   position: [number, number, number];
   onClick: () => void;
+  selected: boolean;
   blur?: number;
 }) => {
   const texture = useTexture({
@@ -46,7 +48,7 @@ const ParallaxCube = ({
     const delta = (now - lastUpdateTimeRef.current) / 1000;
     lastUpdateTimeRef.current = now;
 
-    if (!hovered) {
+    if (!selected) {
       elapsedRef.current += delta;
       const angle =
         Math.sin(elapsedRef.current * 1.5) * THREE.MathUtils.degToRad(5); // ±5°
@@ -93,9 +95,9 @@ const ParallaxCube = ({
           {/* <meshStandardMaterial map={texture} /> */}
         </mesh>
       </mesh>
-      {hovered && (
+      {selected && (
         <Text
-          fontSize={0.2}
+          fontSize={0.1}
           color="white"
           anchorX="center"
           anchorY="top"
@@ -172,6 +174,7 @@ export const RandomPictureParallaxView = ({
           const y = Math.floor(i / 3) * -2.5;
           return (
             <ParallaxCube
+              selected={selectedIndex === i ? true : false}
               key={img.filename}
               image={img.filename}
               title={img.title}
