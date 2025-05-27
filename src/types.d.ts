@@ -3,4 +3,5 @@ export type GalleryImage = {
   title: string;
   cat: string;
   range: number[];
+  keyPiece?: boolean = false;
 };
