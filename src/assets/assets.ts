@@ -6,7 +6,6 @@ export const allImages: GalleryImage[] = [
     title: "Eine Stadt mit drei Monden",
     cat: "3 Monde (2018)",
     range: [2018],
-    keyPiece: true,
   },
   {
     filename: "3-monde-2018/3-monde-10.jpg.webp",
@@ -103,7 +102,6 @@ export const allImages: GalleryImage[] = [
     title: "Exaudi",
     cat: "32 Denkmäler (1993-1999)",
     range: [1993, 1999],
-    keyPiece: true,
   },
   {
     filename: "32-denkmaler-1993-1999/freimaurer.jpg.webp",
@@ -242,7 +240,6 @@ export const allImages: GalleryImage[] = [
     filename: "africa-europa-2016/africa-europa-2.jpg.webp",
     title: "Africa-Europa",
     cat: "Africa-Europa (2016)",
-    keyPiece: true,
     range: [2016],
   },
   {
@@ -268,7 +265,6 @@ export const allImages: GalleryImage[] = [
     title: "AMETAT",
     cat: "Ametat (2020)",
     range: [2020],
-    keyPiece: true,
   },
   {
     filename: "ametat-2020/ametat-4.jpg.webp",
@@ -2355,12 +2351,31 @@ export const allImages: GalleryImage[] = [
     cat: "Wege aus dem Ghetto (2016)",
     range: [2016],
   },
+  // {
+  //   filename: "wille-und-vorstellung-2018/wille-und-vorstellung-1.jpg.webp",
+  //   title: "Wille und Vorstellung",
+  //   cat: "Wille und Vorstellung (2018)",
+  //   range: [2018],
+  // },
+  // {
+  //   filename: "wille-und-vorstellung-2018/wille-und-vorstellung-2.jpg.webp",
+  //   title: "Wille und Vorstellung",
+  //   cat: "Wille und Vorstellung (2018)",
+  //   range: [2018],
+  // },
   {
-    filename: "wille-und-vorstellung-2018/wille-und-vorstellung-1.jpg.webp",
+    filename: "wille-und-vorstellung-2018/wille-und-vorstellung-17.jpg.webp",
     title: "Wille und Vorstellung",
     cat: "Wille und Vorstellung (2018)",
+    keyPiece: true,
     range: [2018],
   },
+  // {
+  //   filename: "wille-und-vorstellung-2018/wille-und-vorstellung-3.jpg.webp",
+  //   title: "Wille und Vorstellung",
+  //   cat: "Wille und Vorstellung (2018)",
+  //   range: [2018],
+  // },
   {
     filename: "wille-und-vorstellung-2018/wille-und-vorstellung-10.jpg.webp",
     title: "Wille und Vorstellung",
@@ -2399,25 +2414,6 @@ export const allImages: GalleryImage[] = [
   },
   {
     filename: "wille-und-vorstellung-2018/wille-und-vorstellung-16.jpg.webp",
-    title: "Wille und Vorstellung",
-    cat: "Wille und Vorstellung (2018)",
-    range: [2018],
-  },
-  {
-    filename: "wille-und-vorstellung-2018/wille-und-vorstellung-17.jpg.webp",
-    title: "Wille und Vorstellung",
-    cat: "Wille und Vorstellung (2018)",
-    keyPiece: true,
-    range: [2018],
-  },
-  {
-    filename: "wille-und-vorstellung-2018/wille-und-vorstellung-2.jpg.webp",
-    title: "Wille und Vorstellung",
-    cat: "Wille und Vorstellung (2018)",
-    range: [2018],
-  },
-  {
-    filename: "wille-und-vorstellung-2018/wille-und-vorstellung-3.jpg.webp",
     title: "Wille und Vorstellung",
     cat: "Wille und Vorstellung (2018)",
     range: [2018],

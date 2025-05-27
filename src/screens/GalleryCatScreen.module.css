@@ -295,3 +295,7 @@
     object-fit: cover;
     animation: galleryCatScreen__kenBurns 10s infinite alternate;
 }
+
+.galleryCatScreen__imageKeyPiece {
+    width: 100%;
+}

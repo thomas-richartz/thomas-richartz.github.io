@@ -99,24 +99,31 @@ export const GalleryCatScreen = ({
         onKeyDown={keyDownHandler}
         tabIndex={0}
       >
-        {images.map((image, index) => (
-          <article
-            key={index}
-            className={styles.galleryCatScreen__image}
-            onClick={() => {
-              setShowImage(image);
-              setCurrentIndex(index);
-            }}
-          >
-            <div className={styles.galleryCatScreen__kenBurnsWrapper}>
-              <LazyLoadImage
-                alt={image.title}
-                className={styles.galleryCatScreen__imageImg}
-                src={`assets/images/${image.filename}`}
-              />
-            </div>
-          </article>
-        ))}
+        {images.map((image, index) => {
+          const isKey = image.keyPiece;
+          const itemClass = `${styles.galleryCatScreen__image} ${
+            isKey ? styles.galleryCatScreen__imageKeyPiece : ""
+          } ${index % 2 === 0 ? styles.galleryItemEven : styles.galleryItemOdd}`;
+
+          return (
+            <article
+              key={index}
+              className={itemClass}
+              onClick={() => {
+                setShowImage(image);
+                setCurrentIndex(index);
+              }}
+            >
+              <div className={styles.galleryCatScreen__kenBurnsWrapper}>
+                <LazyLoadImage
+                  alt={image.title}
+                  className={styles.galleryCatScreen__imageImg}
+                  src={`assets/images/${image.filename}`}
+                />
+              </div>
+            </article>
+          );
+        })}
 
         {/* Lightbox for selected image */}
         {showImage && (

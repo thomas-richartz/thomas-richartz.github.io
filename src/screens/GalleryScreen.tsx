@@ -1,7 +1,7 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { allImages } from "@/assets/assets";
 import { Screen } from "@/enums";
-import { GalleryImage } from "@/types";
+// import { GalleryImage } from "@/types";
 import styles from "./GalleryScreen.module.css";
 
 type GalleryScreenProps = {
