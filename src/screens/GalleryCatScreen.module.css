@@ -299,3 +299,17 @@
 .galleryCatScreen__imageKeyPiece {
     width: 100%;
 }
+
+.galleryCatScreen__introTextContent {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    overflow: hidden;
+    transition: all 600ms ease;
+}
+
+.galleryCatScreen__introTextContentShow {
+    max-height: 500px; /* or a large enough value */
+    opacity: 1;
+    transform: translateY(0);
+}

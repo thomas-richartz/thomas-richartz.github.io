@@ -90,7 +90,13 @@ export const GalleryCatScreen = ({
       <div className={styles.galleryCatScreen__introText}>
         <div>
           <strong>{cat}</strong>
-          <div>{desc}</div>
+          <div
+            className={`${styles.galleryCatScreen__introTextContent} ${
+              !hide ? styles.galleryCatScreen__introTextContentShow : ""
+            }`}
+          >
+            {desc}
+          </div>
         </div>
       </div>
 
