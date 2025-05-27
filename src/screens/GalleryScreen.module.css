@@ -1,6 +1,9 @@
 .galleryContainer {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(360px, 1fr)
+    ); /* responsive columns */
     gap: 1rem;
     opacity: 1;
     transition: opacity 800ms;
@@ -29,6 +32,7 @@
 }
 
 .galleryImageWrapper {
+    /* aspect-ratio: 4 / 3; */
     width: 100%;
     height: 33vh;
     overflow: hidden;
@@ -92,4 +96,8 @@
     font-size: var(--fs-lg);
     z-index: 1;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.galleryItem.keyPiece {
+    grid-column: span 2;
 }
