@@ -301,6 +301,7 @@
 }
 
 .galleryCatScreen__introTextContent {
+    margin-top: 10px;
     max-height: 0;
     opacity: 0;
     transform: translateY(-10px);
@@ -311,5 +312,5 @@
 .galleryCatScreen__introTextContentShow {
     max-height: 500px; /* or a large enough value */
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(10px);
 }

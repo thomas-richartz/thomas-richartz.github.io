@@ -10,7 +10,7 @@
     width: 40px;
     height: 40px;
     border: 1px solid #000;
-    border-top: 2px solid #fff;
+    border-top: 1px solid #fff;
     border-radius: 50%;
     border-style: dotted;
     animation: spin 1s linear infinite;

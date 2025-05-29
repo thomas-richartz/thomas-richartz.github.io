@@ -26,7 +26,18 @@ export const GalleryCatScreen = ({
 
   const images = useMemo(() => {
     const filtered = allImages.filter((image) => image.cat === cat);
-    return filtered;
+    const remainder = filtered.length % 3;
+
+    if (remainder === 0 || filtered.length === 0) return filtered;
+
+    const padCount = 3 - remainder;
+    const padded = [...filtered];
+
+    for (let i = 0; i < padCount; i++) {
+      padded.push(filtered[i % filtered.length]);
+    }
+
+    return padded;
   }, [cat]);
 
   const updateImage = (index: number) => {
