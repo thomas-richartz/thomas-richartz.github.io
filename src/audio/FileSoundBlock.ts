@@ -6,6 +6,8 @@ export class FileSoundBlock {
   playbackRate: number = 1;
   loop: boolean = false;
   pan: number = 0;
+  positional?: boolean;
+  position?: [number, number, number];
 
   constructor(name: string, filePath: string) {
     this.name = name;

@@ -28,20 +28,16 @@ export class MusicScene {
   }
 
   public async playBlock(index: number) {
-    if (index < 0 || index >= this.blocks.length) {
-      console.error(`Invalid block index: ${index}`);
-      return;
-    }
-
     const block = this.blocks[index];
     if (!block.audioBuffer) {
-      if (this.verbose) {
-        console.log(`Loading audio buffer for block: ${block.name}`);
-      }
       await this.loadAudioForBlock(block);
     }
 
-    this.player.playBlock(block);
+    if (block.positional && block.position) {
+      this.player.playOneShotAtPosition(block, block.position);
+    } else {
+      this.player.playBlock(block);
+    }
   }
 
   private async loadAudioForBlock(block: FileSoundBlock) {

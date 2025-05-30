@@ -70,11 +70,26 @@ export class WavStereoPlayer {
   }
 
   public setReverbEffect(reverb: boolean) {
-    this.log(`Setting reverb effect: ${reverb}`);
     if (reverb) {
       const wetDryMix = 0.8;
-      const revTime = 2; // in seconds
-      this.reverbEffect = this.createReverb(wetDryMix, revTime);
+      const revTime = 2;
+      const convolver = this.audioContext.createConvolver();
+
+      const length = this.audioContext.sampleRate * revTime;
+      const impulse = this.audioContext.createBuffer(
+        2,
+        length,
+        this.audioContext.sampleRate,
+      );
+      for (let c = 0; c < 2; c++) {
+        const ch = impulse.getChannelData(c);
+        for (let i = 0; i < length; i++) {
+          ch[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / length, 2);
+        }
+      }
+      convolver.buffer = impulse;
+
+      this.reverbEffect = convolver;
     } else {
       this.reverbEffect = null;
     }
@@ -107,18 +122,13 @@ export class WavStereoPlayer {
     // Set panning value (-1 = full left, 1 = full right, 0 = center)
     pannerNode.pan.value = block.pan || 0; // Default to center if `pan` isn't set
 
-    // Connect audio nodes
+    source.connect(pannerNode);
+    pannerNode.connect(gainNode);
     if (this.reverbEffect) {
-      // Wet signal: connect to reverb
-      source.connect(pannerNode);
-      pannerNode.connect(this.reverbEffect);
+      gainNode.connect(this.reverbEffect);
       this.reverbEffect.connect(this.audioContext.destination);
-    } else {
-      // Dry signal: connect directly
-      source.connect(pannerNode);
-      pannerNode.connect(gainNode);
-      gainNode.connect(this.audioContext.destination);
     }
+    gainNode.connect(this.audioContext.destination);
 
     if (block.loop) {
       source.loop = true;
@@ -137,6 +147,40 @@ export class WavStereoPlayer {
         this.log(`Error playing block ${block.name}: ${error.message}`);
       }
     }
+  }
+
+  public async playOneShotAtPosition(
+    block: FileSoundBlock,
+    position: [number, number, number],
+    randomize = true,
+  ) {
+    if (!block.audioBuffer) {
+      block.audioBuffer = await this.loadAudio(block.filePath);
+    }
+
+    const source = this.audioContext.createBufferSource();
+    source.buffer = block.audioBuffer;
+
+    const gainNode = this.audioContext.createGain();
+    const panner = this.audioContext.createPanner();
+    panner.panningModel = "HRTF";
+    panner.distanceModel = "inverse";
+    panner.setPosition(...position);
+
+    gainNode.gain.value = block.volume;
+
+    if (randomize) {
+      source.playbackRate.value = 0.8 + Math.random() * 0.4; // 0.8–1.2
+      gainNode.gain.value *= 0.7 + Math.random() * 0.6;
+    } else {
+      source.playbackRate.value = block.playbackRate;
+    }
+
+    source.connect(panner);
+    panner.connect(gainNode);
+    gainNode.connect(this.audioContext.destination);
+
+    source.start();
   }
 
   // Stop all voices
