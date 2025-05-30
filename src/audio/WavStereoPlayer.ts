@@ -4,7 +4,7 @@ export class WavStereoPlayer {
   public audioContext: AudioContext;
   private maxVoices: number;
   private voices: AudioBufferSourceNode[] = [];
-  private reverbEffect: GainNode | null = null;
+  private reverbEffect: AudioNode | null = null;
   private verbose: boolean;
 
   constructor(maxVoices: number = 4, verbose: boolean = false) {
