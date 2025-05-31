@@ -1,15 +1,11 @@
-.randomImg {
+/* .randomImg {
     max-height: 90vh;
     max-width: 90vw;
     object-fit: cover;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    /* Optional media query */
-    /* @media (min-width: 1028px) {
-        width: 240px;
-    } */
-}
+  */
 
 .imageContainer {
     margin-top: 20px;
@@ -70,4 +66,23 @@
 
 .gridItem img:hover {
     transform: scale(1.05);
+}
+
+.scroll3DContainer {
+    perspective: 1000px;
+}
+
+.scroll3DInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 4rem;
+}
+
+.imageWrapper {
+    scroll-snap-align: center;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    will-change: transform;
 }
