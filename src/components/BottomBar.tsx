@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 import { Screen } from "@/enums";
 import {
   HomeIcon,
   ImageIcon,
-  MagnifyingGlassIcon,
+  // MagnifyingGlassIcon,
   SpeakerLoudIcon,
   SpeakerOffIcon,
 } from "@radix-ui/react-icons";
