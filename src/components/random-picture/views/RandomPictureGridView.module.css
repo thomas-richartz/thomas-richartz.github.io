@@ -1,0 +1,22 @@
+.gridContainer {
+    /* display: masonary; https://developer.chrome.com/blog/masonry?hl=en  */
+    /* grid-template-rows: masonry;  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Masonry_layout */
+    /* grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); */
+    /* grid-template-columns: repeat(4, 1fr); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+    align-items: center;
+}
+
+.gridItem {
+    overflow: hidden;
+}
+
+.gridItem img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 0px;
+}
