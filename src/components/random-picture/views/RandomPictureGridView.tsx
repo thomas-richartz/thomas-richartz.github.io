@@ -1,7 +1,7 @@
 import React from "react";
 import { GalleryImage } from "@/types";
 import { IntenseImage } from "@/components/IntenseImage";
-import styles from "./RandomPictureListView.module.css";
+import styles from "./RandomPictureGridView.module.css";
 
 interface ViewProps {
   images: GalleryImage[];

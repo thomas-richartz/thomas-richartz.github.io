@@ -16,14 +16,14 @@ export const RandomPictureListView = ({
   const prevImage = () => console.log("RandomPictureListView:prevImage");
 
   return (
-    <div className={styles.scroll3DContainer}>
-      <div className={styles.scroll3DInner}>
+    <div className={styles.listImagesWrapper}>
+      <div className={styles.listContainer}>
         {images.map((image, index) => {
           const factor = (index - Math.floor(images.length / 2)) * 0.2;
           return (
             <div
               key={`${image.title}-${index}`}
-              className={styles.imageWrapper}
+              className={styles.imageContainer}
             >
               <IntenseImage
                 nextImage={nextImage}

@@ -1,88 +1,29 @@
-/* .randomImg {
-    max-height: 90vh;
-    max-width: 90vw;
-    object-fit: cover;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-  */
-
-.imageContainer {
-    margin-top: 20px;
-}
-
 .listContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-gap: 2rem;
+    justify-items: center;
+    margin: 0;
+    padding: 0;
     padding: 2rem;
 }
 
 .imageContainer {
-    width: 100%;
-    max-width: 600px;
+    /* width: 100%; */
+    /* max-width: 600px; */
+    /* max-height: 600px; */
+    transition:
+        transform 0.6s ease,
+        opacity 0.6s ease;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
 }
 
-.randomImg {
-    width: 100%;
-    height: auto;
-    max-height: 70vh;
-    /* max-width: 90vh; */
-    object-fit: contain;
-    border-radius: 0px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-}
-
-.randomImg:hover {
-    transform: scale(1.02);
-}
-
-.gridContainer {
-    display: grid;
-    /* display: masonary; https://developer.chrome.com/blog/masonry?hl=en  */
-    grid-template-rows: masonry; /* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Masonry_layout */
-    /* grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); */
-    /* grid-template-columns: repeat(4, 1fr); */
-    grid-template-columns: repeat(auto-fit, minmax(125px, 1fr));
-    gap: 1rem;
-    padding: 2rem;
-    align-items: center;
-}
-
-.gridItem {
-    overflow: hidden;
-}
-
-.gridItem img {
-    width: 100%;
+.imageContainer img {
+    max-width: 100%;
     height: auto;
     object-fit: cover;
-    border-radius: 0px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
 }
 
-.gridItem img:hover {
-    transform: scale(1.05);
-}
-
-.scroll3DContainer {
-    perspective: 1000px;
-}
-
-.scroll3DInner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-    gap: 4rem;
-}
-
-.imageWrapper {
-    scroll-snap-align: center;
-    transform-style: preserve-3d;
-    transition: all 0.5s ease;
-    will-change: transform;
+.listImagesWrapper {
 }
