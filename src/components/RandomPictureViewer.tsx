@@ -24,6 +24,7 @@ export const RandomPictureViewer =
           : ((prev + 1) as RandomPicureViewMode),
       );
       setIconMode(viewMode);
+      window.scrollTo(0, 0);
     };
 
     const loadRandomImages = useCallback((count: number) => {
@@ -57,6 +58,10 @@ export const RandomPictureViewer =
         if (loaderRef.current) observer.unobserve(loaderRef.current);
       };
     }, [loadRandomImages, hasMore]);
+
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
 
     const renderView = () => {
       switch (viewMode) {
