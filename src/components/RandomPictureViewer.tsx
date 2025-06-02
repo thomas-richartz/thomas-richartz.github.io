@@ -42,22 +42,29 @@ export const RandomPictureViewer =
 
     useEffect(() => {
       setImages(loadRandomImages(10));
+    }, [loadRandomImages]);
 
-      const observer = new IntersectionObserver((entries) => {
-        const lastEntry = entries[0];
-        if (lastEntry.isIntersecting && hasMore) {
-          setImages((prevImages) => [...prevImages, ...loadRandomImages(5)]);
+    useEffect(() => {
+      if (
+        viewMode === RandomPicureViewMode.SCROLL ||
+        viewMode === RandomPicureViewMode.SCROLL_GRID
+      ) {
+        const observer = new IntersectionObserver((entries) => {
+          const lastEntry = entries[0];
+          if (lastEntry.isIntersecting && hasMore) {
+            setImages((prevImages) => [...prevImages, ...loadRandomImages(5)]);
+          }
+        });
+
+        if (loaderRef.current) {
+          observer.observe(loaderRef.current);
         }
-      });
 
-      if (loaderRef.current) {
-        observer.observe(loaderRef.current);
+        return () => {
+          if (loaderRef.current) observer.unobserve(loaderRef.current);
+        };
       }
-
-      return () => {
-        if (loaderRef.current) observer.unobserve(loaderRef.current);
-      };
-    }, [loadRandomImages, hasMore]);
+    }, [loadRandomImages, hasMore, viewMode]);
 
     useEffect(() => {
       window.scrollTo(0, 0);
@@ -66,14 +73,28 @@ export const RandomPictureViewer =
     const renderView = () => {
       switch (viewMode) {
         case RandomPicureViewMode.SCROLL_GRID:
-          return <RandomPictureGridView images={images} />;
+          return (
+            <>
+              <RandomPictureGridView images={images} />
+              <div ref={loaderRef} style={{ height: "1px" }}></div>
+            </>
+          );
         case RandomPicureViewMode.SCROLL_PARALLAX:
-          return <RandomPictureParallaxView images={images} />;
-        // onRequestMore={handleRequestMore}
+          return (
+            <div style={{ height: "100vh", overflow: "hidden" }}>
+              <RandomPictureParallaxView images={images} />
+            </div>
+          );
         case RandomPicureViewMode.SCROLL:
         default:
           return (
-            <RandomPictureListView images={images} selectedImage={undefined} />
+            <>
+              <RandomPictureListView
+                images={images}
+                selectedImage={undefined}
+              />
+              <div ref={loaderRef} style={{ height: "1px" }}></div>
+            </>
           );
       }
     };
@@ -135,7 +156,6 @@ export const RandomPictureViewer =
     return (
       <div style={{ marginTop: "101px" }}>
         {renderView()}
-        <div ref={loaderRef} style={{ height: "1px" }}></div>
         <button
           style={{
             position: "fixed",
