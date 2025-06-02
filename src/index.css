@@ -21,6 +21,30 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #eee;
     background-color: #111;
+    background: linear-gradient(#000, #111);
+}
+
+.animatedBg {
+    width: 100%;
+    height: 100%;
+    background-size: 150% 250%;
+    background-image: repeating-linear-gradient(
+        -120deg,
+        #000 0%,
+        #010101 15%,
+        #111111 30%,
+        #121010 45%
+    );
+    animation: diagonal alternate 3s infinite;
+}
+
+@keyframes diagonal {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
 }
 
 code {
@@ -66,9 +90,8 @@ img:fullscreen {
     border: 0;
 }
 
-@media
-(prefers-reduced-motion: reduce) {
-    *{
+@media (prefers-reduced-motion: reduce) {
+    * {
         cursor: auto; /* default cursor */
         animation: none;
     }
