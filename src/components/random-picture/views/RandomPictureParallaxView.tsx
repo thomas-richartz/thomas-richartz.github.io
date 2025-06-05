@@ -9,6 +9,8 @@ import "@/materials/BlurImageMaterial";
 
 interface RandomPictureParallaxViewProps {
   images: GalleryImage[];
+  loadRandomImages: (count: number) => GalleryImage[];
+  setImages: React.Dispatch<React.SetStateAction<GalleryImage[]>>;
 }
 
 const ParallaxCube = ({
@@ -112,6 +114,8 @@ const ParallaxCube = ({
 
 export const RandomPictureParallaxView = ({
   images,
+  loadRandomImages,
+  setImages,
 }: RandomPictureParallaxViewProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
@@ -119,6 +123,8 @@ export const RandomPictureParallaxView = ({
     [number, number, number]
   >([0, 0, 10]);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [windowOffset, setWindowOffset] = useState(0);
+  const windowSize = 9;
   const cameraRef = useRef<any>();
 
   const onScroll = () => {
@@ -145,6 +151,14 @@ export const RandomPictureParallaxView = ({
       setTargetPosition([0, 0, depth]);
     }
   }, [scrollY, selectedIndex]);
+
+  const shiftWindow = () => {
+    const nextOffset = windowOffset + 1;
+    if (nextOffset + windowSize > images.length) {
+      setImages((prev) => [...prev, ...loadRandomImages(5)]);
+    }
+    setWindowOffset(nextOffset);
+  };
 
   return (
     <div ref={scrollRef} style={{ height: "100vh", overflowY: "scroll" }}>
@@ -189,6 +203,7 @@ export const RandomPictureParallaxView = ({
                 } else {
                   // Zoom into selected cube
                   setSelectedIndex(i);
+                  shiftWindow();
                   setTargetPosition([x, y, z + 3.3]);
                 }
               }}
