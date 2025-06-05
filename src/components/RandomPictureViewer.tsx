@@ -66,6 +66,20 @@ export const RandomPictureViewer =
       }
     }, [loadRandomImages, hasMore, viewMode]);
 
+    // Auto-advance every 10 seconds
+    // useEffect(() => {
+    //   if (viewMode === RandomPicureViewMode.SCROLL_PARALLAX) {
+    //     const interval = setInterval(() => {
+    //       setImages((prevImages) => {
+    //         const next = [...prevImages];
+    //         next.push(...loadRandomImages(1));
+    //         return next.slice(1);
+    //       });
+    //     }, 10000);
+    //     return () => clearInterval(interval);
+    //   }
+    // }, [viewMode, loadRandomImages]);
+
     useEffect(() => {
       window.scrollTo(0, 0);
     }, []);
@@ -82,7 +96,11 @@ export const RandomPictureViewer =
         case RandomPicureViewMode.SCROLL_PARALLAX:
           return (
             <div style={{ height: "100vh", overflow: "hidden" }}>
-              <RandomPictureParallaxView images={images} />
+              <RandomPictureParallaxView
+                loadRandomImages={loadRandomImages}
+                images={images}
+                setImages={setImages}
+              />
             </div>
           );
         case RandomPicureViewMode.SCROLL:
