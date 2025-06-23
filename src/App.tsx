@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import * as Tone from "tone";
+import React, { useState, useEffect, useCallback } from "react";
 import { SearchOverlay } from "@/components/SearchOverlay";
 import { GalleryContextProvider } from "@/context/GalleryContext";
 import { Screen } from "@/enums";
@@ -8,8 +9,8 @@ import { LandingScreen } from "@/screens/LandingScreen";
 import styles from "@/App.module.css";
 import { BottomBar } from "@/components/BottomBar";
 import { ContactScreen } from "@/screens/ContactScreen";
-import MusicSystem from "@/components/MusicSystem";
-import { FileSoundBlock } from "@/audio/FileSoundBlock";
+import ToneMusicSystem from "@/components/ToneMusicSystem";
+import { FileSoundBlock } from "@/audio/ToneMusicScene";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -22,13 +23,18 @@ function App() {
   const [verbose, setVerbose] = useState(false);
   // const [verbose, setVerbose] = useState(true);
 
+  const handleMusicToggle = useCallback(async () => {
+    if (Tone.context.state !== "running") {
+      await Tone.start();
+    }
+    setIsPlaying((prev) => !prev);
+  }, []);
+
   useEffect(() => {
     // Fetch sound blocks
     const fetchBlocks = async () => {
       try {
-        const response = await fetch(
-          "/assets/soundblocks/kalimba_piano_scene.json",
-        );
+        const response = await fetch("/assets/soundblocks/kalimba_piano_scene.json");
         const data = await response.json();
         setBlocks(data);
       } catch (error) {
@@ -70,44 +76,24 @@ function App() {
         <main className={styles.warehouseWrap}>
           <>
             {selectedScreen === Screen.LANDING ? (
-              <LandingScreen
-                onCatClick={(cat) => setSelectedCat(cat)}
-                onNavigate={onNavigate}
-              />
+              <LandingScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
             ) : selectedScreen === Screen.GALLERY ? (
-              <GalleryScreen
-                onCatClick={(cat) => setSelectedCat(cat)}
-                onNavigate={onNavigate}
-              />
+              <GalleryScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
             ) : selectedScreen === Screen.CONTACT ? (
-              <ContactScreen
-                onCatClick={(cat) => setSelectedCat(cat)}
-                onNavigate={onNavigate}
-                onSearch={handleSearchOpen}
-              />
+              <ContactScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} onSearch={handleSearchOpen} />
             ) : (
-              <GalleryCatScreen
-                cat={selectedCat}
-                onClick={(cat) => setSelectedCat(cat)}
-              />
+              <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
             )}
-            <MusicSystem play={isPlaying} blocks={blocks} verbose={verbose} />
+            <ToneMusicSystem play={isPlaying} blocks={blocks} verbose={verbose} />
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
               onSearch={handleSearchOpen}
-              onMusicToggle={() => setIsPlaying((prev) => !prev)}
+              onMusicToggle={handleMusicToggle}
               isPlaying={isPlaying}
             />
           </>
-          {isSearchVisible && (
-            <SearchOverlay
-              items={images}
-              isLoading={isLoadingImages}
-              onClose={handleSearchClose}
-              onItemSelect={handleItemSelect}
-            />
-          )}
+          {isSearchVisible && <SearchOverlay items={images} isLoading={isLoadingImages} onClose={handleSearchClose} onItemSelect={handleItemSelect} />}
         </main>
       </div>
     </GalleryContextProvider>
