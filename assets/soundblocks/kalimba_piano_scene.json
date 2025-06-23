@@ -1,30 +1,30 @@
 [
   {
-    "name": "Kalimba Loop 1",
-    "pattern": [0.8, 0.7, 1.0, 0.9],
-    "patternCycle": "forward",
-    "scale": [55, 110, 165, 220, 261.63, 311.13, 392],
+    "name": "Kalimba 2",
     "filePath": "/assets/wav/kalimba_gb_prt2.wav",
-    "reverb": true,
     "volume": 0.8,
     "loop": true,
-    "playbackRate": 1.0,
-    "duration": 10,
-    "maxVoices": 4,
-    "pan": 0.3
+    "loopStart": 20.0,
+    "loopEnd": 40.0,
+    "quantize": "2m",
+    "reverb": true,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.8,
+    "pan": 0.4
   },
   {
-    "name": "Kalimba Loop 2",
-    "pattern": [0.8, 0.4, 0.1, 0.4],
-    "patternCycle": "random",
-    "scale": [55, 311.13, 110, 392, 165, 261.63, 220],
+    "name": "Kalimba Loop 1",
     "filePath": "/assets/wav/kalimba_gb_prt2.wav",
+    "volume": 0.8,
     "reverb": true,
-    "volume": 0.3,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.5,
+    "pan": 0.6,
     "loop": true,
-    "playbackRate": 1.0,
-    "duration": 0,
-    "maxVoices": 4,
-    "pan": -0.3
+    "loopStart": 10.0,
+    "loopEnd": 120.0,
+    "quantize": "4:3:2"
   }
 ]
