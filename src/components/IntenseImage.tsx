@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useIntersectionObserver } from "usehooks-ts";
 import styles from "./IntenseImage.module.css";
 
 interface IIntenseImage {
@@ -15,24 +14,19 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title }: IIntense
   const [isOpen, setIsOpen] = useState(false);
   const [currentSrc, setCurrentSrc] = useState("");
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  const ref = useRef<HTMLDivElement>(null);
-  const options = { threshold: 0.5 };
-  const entry = useIntersectionObserver(ref, options);
-  const isVisible = !!entry?.isIntersecting;
   const hasFullscreenSupport = typeof document !== "undefined" && !!document.fullscreenEnabled;
   // const hasFullscreenSupport = false;
 
-  // Preload the image
+  // Preload the image whenever src changes
   useEffect(() => {
-    if (isVisible) {
-      const image = new window.Image();
-      image.src = src;
-      image.onload = () => {
-        setIsLoading(false);
-        setCurrentSrc(src);
-      };
-    }
-  }, [src, isVisible]);
+    setIsLoading(true);
+    const image = new window.Image();
+    image.src = src;
+    image.onload = () => {
+      setIsLoading(false);
+      setCurrentSrc(src);
+    };
+  }, [src]);
 
   // Keyboard navigation
   const handleKeyUp = useCallback(
@@ -52,7 +46,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title }: IIntense
       if (hasFullscreenSupport && overlayRef.current) {
         overlayRef.current.requestFullscreen?.().catch(() => {});
       }
-    }, 10); // Delay to allow overlay to mount
+    }, 10);
   };
 
   // Close overlay/fullscreen
@@ -85,13 +79,12 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title }: IIntense
 
   if (isLoading) {
     return (
-      <div ref={ref}>
+      <div>
         <div className={styles.preloader}></div>
       </div>
     );
   }
 
-  // Overlay/Fullscreen: only one image, centered
   if (isOpen) {
     return (
       <div className={styles.intense__lightBoxOverlay} ref={overlayRef} tabIndex={-1} onClick={handleClose} aria-modal="true" role="dialog">
@@ -108,7 +101,6 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title }: IIntense
     );
   }
 
-  // Main view
   return (
     <>
       <div className={styles.figureKenBurns}>
