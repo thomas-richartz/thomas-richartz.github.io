@@ -197,4 +197,61 @@ export class ToneMusicScene {
       player.start();
     }
   }
+
+  // Fade out all blocks
+  public async fadeOut(duration: number = 2): Promise<void> {
+    const promises: Promise<void>[] = [];
+    this.players.forEach((player, name) => {
+      const block = this.blocks.find((b) => b.name === name);
+      if (!block) return;
+      const fromDb = player.volume.value;
+      const toDb = Tone.gainToDb(0.0);
+      player.volume.cancelAndHoldAtTime();
+      player.volume.setValueAtTime(fromDb, Tone.now());
+      player.volume.linearRampToValueAtTime(toDb, Tone.now() + duration);
+      promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
+    });
+    await Promise.all(promises);
+  }
+
+  // Fade in all blocks
+  public async fadeIn(duration: number = 2): Promise<void> {
+    const promises: Promise<void>[] = [];
+    this.players.forEach((player, name) => {
+      const block = this.blocks.find((b) => b.name === name);
+      if (!block) return;
+      const toDb = Tone.gainToDb(block.volume ?? 1.0);
+      player.volume.cancelAndHoldAtTime();
+      player.volume.setValueAtTime(Tone.gainToDb(0.0), Tone.now());
+      player.volume.linearRampToValueAtTime(toDb, Tone.now() + duration);
+      promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
+    });
+    await Promise.all(promises);
+  }
+
+  /**
+   * Static helper to handle scene transitions.
+   * @param currentScene The current ToneMusicScene instance (or null/undefined)
+   * @param nextBlocks The new FileSoundBlock[] for the next scene
+   * @param withReverb Whether to use reverb for new scene
+   * @param withDelay Whether to use delay for new scene
+   * @param fadeDuration Fade time in seconds
+   * @returns The new ToneMusicScene instance
+   */
+  public static async transitionToScene(
+    currentScene: ToneMusicScene | null,
+    nextBlocks: FileSoundBlock[],
+    withReverb: boolean = false,
+    withDelay: boolean = false,
+    fadeDuration: number = 2,
+  ): Promise<ToneMusicScene> {
+    if (currentScene) {
+      await currentScene.fadeOut(fadeDuration);
+      currentScene.stop();
+    }
+    const newScene = new ToneMusicScene(nextBlocks, withReverb, withDelay);
+    await newScene.load();
+    await newScene.fadeIn(fadeDuration);
+    return newScene;
+  }
 }
