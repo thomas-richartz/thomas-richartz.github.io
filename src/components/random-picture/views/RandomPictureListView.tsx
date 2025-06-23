@@ -8,10 +8,7 @@ interface IRandomPictureListView {
   selectedImage?: GalleryImage;
 }
 
-export const RandomPictureListView = ({
-  images,
-  selectedImage,
-}: IRandomPictureListView): JSX.Element => {
+export const RandomPictureListView = ({ images, selectedImage }: IRandomPictureListView): JSX.Element => {
   const nextImage = () => console.log("RandomPictureListView:nextImage");
   const prevImage = () => console.log("RandomPictureListView:prevImage");
 
@@ -21,17 +18,8 @@ export const RandomPictureListView = ({
         {images.map((image, index) => {
           const factor = (index - Math.floor(images.length / 2)) * 0.2;
           return (
-            <div
-              key={`${image.title}-${index}`}
-              className={styles.imageContainer}
-            >
-              <IntenseImage
-                nextImage={nextImage}
-                prevImage={prevImage}
-                alt={image.title}
-                title={image.title}
-                src={`assets/images/${image.filename}`}
-              />
+            <div key={`${image.title}-${index}`} className={styles.imageContainer}>
+              <IntenseImage nextImage={nextImage} prevImage={prevImage} alt={image.title} title={image.title} src={`/assets/images/${image.filename}`} />
             </div>
           );
         })}

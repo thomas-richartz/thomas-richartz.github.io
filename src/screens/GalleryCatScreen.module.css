@@ -117,12 +117,12 @@
     touch-action: "none";
 }
 
-.galleryCatScreen__lightBoxImage {
+/* .galleryCatScreen__lightBoxImage {
     max-width: 85vw;
     max-height: 85vh;
     object-fit: contain;
     border: 1px solid #fff;
-}
+} */
 
 .galleryCatScreen__button {
     background: transparent;

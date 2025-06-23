@@ -1,41 +1,31 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-// import throttle from "lodash.throttle";
 import { useIntersectionObserver } from "usehooks-ts";
 import styles from "./IntenseImage.module.css";
-import { LightBoxImage } from "./LightBoxImage";
-// import { ExitFullScreenIcon } from "@radix-ui/react-icons";
-//
+
 interface IIntenseImage {
   nextImage: () => void;
   prevImage: () => void;
   alt: string;
   src: string;
   title: string;
-  // className?: string;
 }
 
-export const IntenseImage = ({
-  nextImage,
-  prevImage,
-  alt,
-  src,
-  title,
-}: IIntenseImage) => {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [currentSrc, setCurrentSrc] = useState<string>("");
-  const imgRef = useRef<HTMLImageElement | null>(null);
-  const fullscreenContainerRef = useRef<HTMLDivElement | null>(null);
+export const IntenseImage = ({ nextImage, prevImage, alt, src, title }: IIntenseImage) => {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState("");
+  const overlayRef = useRef<HTMLDivElement | null>(null);
   const ref = useRef<HTMLDivElement>(null);
   const options = { threshold: 0.5 };
   const entry = useIntersectionObserver(ref, options);
   const isVisible = !!entry?.isIntersecting;
-  const hasFullscreenSupport = document.fullscreenEnabled;
+  const hasFullscreenSupport = typeof document !== "undefined" && !!document.fullscreenEnabled;
+  // const hasFullscreenSupport = false;
 
   // Preload the image
   useEffect(() => {
     if (isVisible) {
-      const image = new Image();
+      const image = new window.Image();
       image.src = src;
       image.onload = () => {
         setIsLoading(false);
@@ -44,66 +34,54 @@ export const IntenseImage = ({
     }
   }, [src, isVisible]);
 
-  // Handle keyboard navigation
+  // Keyboard navigation
   const handleKeyUp = useCallback(
     (e: KeyboardEvent) => {
-      if (e.key === "Escape") hideFullscreen();
+      if (!isOpen) return;
+      if (e.key === "Escape") handleClose();
       if (e.key === "ArrowRight") nextImage();
       if (e.key === "ArrowLeft") prevImage();
     },
-    [nextImage, prevImage],
+    [isOpen, nextImage, prevImage],
   );
 
-  useEffect(() => {
-    window.addEventListener("keyup", handleKeyUp);
-    return () => {
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  }, [handleKeyUp]);
-
-  // Open fullscreen
-  const showFullscreen = () => {
-    if (hasFullscreenSupport && fullscreenContainerRef.current) {
-      fullscreenContainerRef.current.style.display = "flex";
-      fullscreenContainerRef.current.requestFullscreen().catch((err) => {
-        console.error("Fullscreen failed:", err);
-      });
-      setIsOpen(true);
-    } else {
-      // Fallback: for devices without fullscreen support
-      setIsOpen(true);
-    }
-  };
-
-  // Close fullscreen
-  const hideFullscreen = () => {
-    if (hasFullscreenSupport && document.fullscreenElement) {
-      document.exitFullscreen().catch((err) => {
-        console.error("Exiting fullscreen failed:", err);
-      });
-    }
-    setIsOpen(false);
-    if (fullscreenContainerRef.current) {
-      fullscreenContainerRef.current.style.display = "none";
-    }
-  };
-
-  // Handle fullscreen exit cleanup
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      if (!document.fullscreenElement) {
-        setIsOpen(false);
-        if (fullscreenContainerRef.current) {
-          fullscreenContainerRef.current.style.display = "none";
-        }
+  // Open overlay/fullscreen
+  const handleOpen = () => {
+    setIsOpen(true);
+    setTimeout(() => {
+      if (hasFullscreenSupport && overlayRef.current) {
+        overlayRef.current.requestFullscreen?.().catch(() => {});
       }
-    };
+    }, 10); // Delay to allow overlay to mount
+  };
 
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => {
-      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+  // Close overlay/fullscreen
+  const handleClose = () => {
+    setIsOpen(false);
+    if (hasFullscreenSupport && document.fullscreenElement) {
+      document.exitFullscreen?.().catch(() => {});
+    }
+  };
+
+  // Fullscreen exit and scroll lock
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add(styles.noScroll);
+      window.addEventListener("keyup", handleKeyUp);
+    } else {
+      document.body.classList.remove(styles.noScroll);
+      window.removeEventListener("keyup", handleKeyUp);
+    }
+    const fsListener = () => {
+      if (!document.fullscreenElement) setIsOpen(false);
     };
-  }, []);
+    document.addEventListener("fullscreenchange", fsListener);
+    return () => {
+      document.body.classList.remove(styles.noScroll);
+      window.removeEventListener("keyup", handleKeyUp);
+      document.removeEventListener("fullscreenchange", fsListener);
+    };
+  }, [isOpen, handleKeyUp]);
 
   if (isLoading) {
     return (
@@ -113,51 +91,32 @@ export const IntenseImage = ({
     );
   }
 
-  // Mobile Fallback
-  if (isOpen && !hasFullscreenSupport) {
+  // Overlay/Fullscreen: only one image, centered
+  if (isOpen) {
     return (
-      <div className={styles.lightBox}>
-        <LightBoxImage
-          onClick={hideFullscreen}
-          alt={title}
-          src={currentSrc}
-          className={styles.intenseImg}
-        />
+      <div className={styles.intense__lightBoxOverlay} ref={overlayRef} tabIndex={-1} onClick={handleClose} aria-modal="true" role="dialog">
+        <div
+          className={styles.intense__lightboxImageWrap}
+          onClick={(e) => {
+            handleClose();
+            e.stopPropagation();
+          }}
+        >
+          <img className={styles.intense__lightboxImage} src={currentSrc} alt={alt} draggable={false} />
+        </div>
       </div>
     );
   }
 
+  // Main view
   return (
     <>
-      {/* Main Image */}
       <div className={styles.figureKenBurns}>
-        <img
-          ref={imgRef}
-          onClick={showFullscreen}
-          loading="lazy"
-          alt={alt}
-          className={styles.intenseImgKenBurns}
-          src={currentSrc}
-        />
+        <img onClick={handleOpen} loading="lazy" alt={alt} className={styles.intenseImgKenBurns} src={currentSrc} />
       </div>
       <div className={styles.titleWrap}>
         <span className={styles.title}>{title}</span>
       </div>
-      {/* Fullscreen Overlay */}
-      {hasFullscreenSupport && (
-        <div
-          ref={fullscreenContainerRef}
-          className={styles.fullscreenContainer}
-          style={{ display: "none" }} // Hidden by default
-        >
-          <img
-            alt={alt}
-            className={styles.fullscreenImg}
-            src={currentSrc}
-            onClick={hideFullscreen} // Exit fullscreen on click
-          />
-        </div>
-      )}
     </>
   );
 };

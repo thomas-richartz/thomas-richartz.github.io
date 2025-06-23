@@ -6,106 +6,6 @@
     margin-left: auto;
     margin-right: auto;
 }
-
-.preloader {
-    margin: auto;
-    border: 7px solid #311b0e;
-    border-radius: 50%;
-    border-top: 7px solid #733a69;
-    width: 48px;
-    height: 48px;
-    animation: spinnerAnimation 8s linear infinite;
-}
-
-@keyframes spinnerAnimation {
-    0% {
-        transform: rotate(0deg);
-        opacity: 0.3;
-    }
-    50% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: rotate(360deg);
-        opacity: 0.3;
-    }
-}
-
-.lightBox {
-    z-index: 3;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.79);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.figure {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.fullscreenContainer {
-    display: flex;
-    align-items: normal;
-    justify-content: center;
-    text-align: center;
-}
-
-/* Styles for the Ken Burns container */
-.figureKenBurns {
-    width: 100%;
-    /* 2-third of the screen height */
-    max-height: 66vh;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 8px 0; /* Space between rows */
-}
-
-.intenseImgKenBurns {
-    /* width: 100%; */
-    /* height: 100%; */
-    min-height: 63%;
-    /* max-width: 100%; */
-    max-width: 90%;
-    /* object-fit: contain; */
-    object-fit: contain;
-    transform: scale(1);
-    transition: transform 0.5s;
-}
-/* Ken Burns Effect */
-.intenseImgKenBurns:hover {
-    transform: scale(1.05);
-}
-
-/* Title Overlay */
-.titleWrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.title {
-    /* position: absolute; */
-    /* bottom: 8px; */
-    /* left: 16px; */
-    color: white;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 4px 8px;
-    /* font-size: 1rem; */
-    font-size: var(--fs-xs);
-    border-radius: 4px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-    z-index: 2;
-}
-
 /* Grid for Images */
 .imageGrid {
     display: grid;
@@ -117,4 +17,158 @@
 .imageContainer {
     position: relative;
     overflow: hidden;
+}
+.preloader {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+    animation: pulse 1.5s infinite;
+    border-radius: 10px;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.figureKenBurns {
+    overflow: hidden;
+    border-radius: 10px;
+    margin: 0 auto;
+    max-width: 100vw;
+    max-height: 70vh;
+    /* background: #181818; */
+}
+
+.intenseImgKenBurns {
+    width: 100%;
+    height: auto;
+    max-height: 70vh;
+    object-fit: contain;
+    cursor: zoom-in;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s;
+}
+
+.titleWrap {
+    text-align: center;
+    margin: 16px 0 0 0;
+}
+
+.title {
+    color: #fff;
+    background: rgba(30, 30, 30, 0.6);
+    padding: 4px 16px;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    display: inline-block;
+}
+
+/* LIGHTBOX/FULLSCREEN */
+.lightboxOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.96);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+    /* Remove any unwanted padding/margin */
+    padding: 0;
+    margin: 0;
+    animation: fadeIn 0.2s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.lightboxImageWrap {
+    /* Ensure the wrapper uses all available space to center its content */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Prevent unwanted height issues */
+    width: 100vw;
+    height: 100vh;
+}
+
+.lightboxImage {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 10px;
+    box-shadow: 0 4px 40px #000b;
+    background: #222;
+    object-fit: contain;
+    cursor: zoom-out;
+    user-select: none;
+    /* Center image within the wrapper */
+    display: block;
+    margin: 0 auto;
+}
+
+.lightboxTitle {
+    color: #eee;
+    margin-top: 18px;
+    font-size: 1.1rem;
+    background: rgba(30, 30, 30, 0.7);
+    padding: 6px 20px;
+    border-radius: 8px;
+    max-width: 90vw;
+    text-align: center;
+    word-break: break-word;
+}
+
+/* Prevent background scroll when lightbox open */
+.noScroll {
+    overflow: hidden !important;
+    height: 100vh !important;
+}
+
+/* Lightbox and navigation styles */
+.intense__lightBoxOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    z-index: 9999;
+    touch-action: none;
+}
+
+.intense__lightboxImageWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.intense__lightboxImage {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 1px solid #fff;
+    box-shadow: 0 8px 40px #000a;
+    background: #111;
+    display: block;
 }
