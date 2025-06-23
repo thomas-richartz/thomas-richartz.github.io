@@ -24,7 +24,6 @@ jobs:
       - name: Build site
         run: npm run build
 
-      # If using Vite, output is usually 'dist'
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
