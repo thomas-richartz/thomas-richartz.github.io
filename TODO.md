@@ -1,6 +1,16 @@
 # thomas-richartz.github.io
 
+
+Fullscreen
+https://saimon.org/sigal-demo/photoswipe/Climbing/
+
+https://github.com/matze/splat without fullscren
+
+zine?
+
 ## TODO
+
+- [ ] GalleryCats last item margin or padding-bottom?
 
 - [ ] LightBox Styles (from parent?)
 - [ ] Find Close on Escape / click
@@ -11,40 +21,74 @@
 - [x] remove unused images
 - [x] lazy load images
 - [x] website title
-- [x] Lightbox: Title?, mobile? 
+- [x] Lightbox: Title?, mobile?
 - [x] Landingpage
-- [x] Landingpage: Random 
-        - [x] Diashow -> SlideShow Fullscreen API 
+- [x] Landingpage: Random
+        - [x] Diashow -> SlideShow Fullscreen API
         - [ ]         -> SlideShow Fullscreen API with fallback?
         - [ ] optional "Masonry"
         - [ ] optional Random Texts / Zitate (deutsch / english)
 - [ ] Meta Tags - SEO
-- [ ] bin/upsert.js: Fix Filenames (replace slugified titles with orignal titles, slugs.json[titles] file?) 
+- [ ] bin/upsert.js: Fix Filenames (replace slugified titles with orignal titles, slugs.json[titles] file?)
 - [ ] bin/upsert.js: (make it idompotent) -> slugs.json[cats] file?
 - [ ] New Menu: Sculptures ...
-        - Skulpturen, Installation: Reformation (2017),   
-        - Gemälde, 
-        - Grafik: Baudelaire (2009-2012)  
+        - Skulpturen, Installation: Reformation (2017),
+        - Gemälde,
+        - Grafik: Baudelaire (2009-2012)
 - [ ] GallerySlider Keyboard Events
-- [ ] Youtube Link 
+- [ ] Youtube Link
 
       <a href="https://www.youtube.com/@thomasrichartz6276" title="YouTube">
           <VideoIcon />
-      </a> 
+      </a>
         <a href="https://instagram.com/@" title="insta">
           <InstagramLogoIcon />
-      </a> 
+      </a>
 
+
+
+## Deploy
+
+Working:
+
+    docker build -t vite-deploy .
+
+Using ssh keys:
+
+docker run -it --rm \
+-v ~/.ssh:/root/.ssh \
+vite-deploy bash -c "
+git config --global user.name 'pce' && \
+git config --global user.email 'info@pc-e.org' && \
+npm run deploy
+"
+
+
+ssh readlonly *:ro does not work:
+
+    docker run -it --rm \
+    -v ~/.ssh:/root/.ssh:ro \
+    vite-deploy bash -c "cp -R /root/.ssh /root/.ssh; npm run deploy"
+
+
+
+Buildkit?
+
+    export DOCKER_BUILDKIT=1
+    docker build --ssh default -t vite-deploy .
+
+
+    docker build --ssh default .
 
 
 ## Scripts
 
 
-Complie Script to JS (`npm install typescript ts-node --save-dev --legacy-peer-deps`) :  
-`npx tsc scripts/deduplicate.ts` 
+Complie Script to JS (`npm install typescript ts-node --save-dev --legacy-peer-deps`) :
+`npx tsc scripts/deduplicate.ts`
 
         ➜  thomas-richartz.github.io git:(main) ✗ npx tsc scripts/deduplicate.ts
-        ➜  thomas-richartz.github.io git:(main) ✗ node scripts/deduplicate.js   
+        ➜  thomas-richartz.github.io git:(main) ✗ node scripts/deduplicate.js
         Duplicates found: [
         {
         filename: 'ametat-2020/ametat-1.jpg.webp',
@@ -373,10 +417,115 @@ Complie Script to JS (`npm install typescript ts-node --save-dev --legacy-peer-d
         ]
 
 
-`node scripts/deduplicate.js` - duplicates 
+`node scripts/deduplicate.js` - duplicates
 
-`bin/upsert.sh` - builds a pipe- or copyable list of files 
+`bin/upsert.sh` - builds a pipe- or copyable list of files
 
 `bin/upsert.sh > src/assets/assets.ts`  (idompontent?)
 
 
+# thomas-richartz.github.io
+
+
+## Getting Started
+
+Run and Build
+
+    docker-compose up
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+    docker-compose build
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+Enter the Container:
+
+    docker exec -it <container_id_or_name> bash
+
+or Run in Container:
+
+    docker run -it --rm app bash -c "npm run build"
+
+
+Docker:
+
+    docker run -it -p 3000:3000 -v $(pwd):/app vite-dev
+    docker build -t vite-dev .
+
+## Deploy
+
+Build a Docker Container "vite-deploy"
+
+    docker build -t vite-deploy .
+
+NPM install:
+
+    docker run -it vite-deploy bash -c "npm i"
+    docker run -it vite-deploy bash -c "npm build"
+
+NPM Dev:
+
+    docker run -it -p 3000:3000 -v $(pwd):/app vite-deploy
+
+
+Using ssh keys:
+
+docker run -it --rm \
+-v ~/.ssh:/root/.ssh \
+thomas-richartzgithubio-app bash -c "
+git config --global user.name 'pce' && \
+git config --global user.email 'info@pc-e.org' && \
+npm run deploy
+"
+
+
+
+docker run -it --rm \
+-v ~/.ssh:/root/.ssh \
+vite-deploy bash -c "
+git config --global user.name 'pce' && \
+git config --global user.email 'info@pc-e.org' && \
+npm run deploy
+"
+
+
+docker run -it 2660241f48d9525b4c18c3875a4d3d99a8cbc8d1416bc5852d6739958a5ba2f0 --rm \
+-v ~/.ssh:/root/.ssh \
+vite-deploy bash -c "
+git config --global user.name 'pce' && \
+git config --global user.email 'info@pc-e.org' && \
+npm run deploy
+"
+`npm run deploy`
+
+`yarn add gh-pages`
+`yarn deploy -- -m "deploy app to github-pages"`
+
+
+## Scripts
+
+
+Compile Script to JS (`npm install typescript ts-node --save-dev --legacy-peer-deps`) :
+`npx tsc scripts/deduplicate.ts`
+
+        ➜  thomas-richartz.github.io git:(main) ✗ npx tsc scripts/deduplicate.ts
+        ➜  thomas-richartz.github.io git:(main) ✗ node scripts/deduplicate.js
+
+
+`node scripts/deduplicate.js` - duplicates
+
+`bin/upsert.sh` - builds a pipe- or copyable list of files
+
+`bin/upsert.sh > src/assets/assets.ts`  (idompontent?)
+
+
+## Zitate
+
+TBD Warum Praeteritum? Praesenz: Gelten, gilt usw.
+
+Das Bestreben dem Dasein einen Sinn ab zu gewinnen, ihm Geheimnisse ein zu schreiben und dann versuchen sie zu entschleiern, ist uraltes Bedürfnis des Menschen und wurde von Religionsstiftern, Philosophen und Wissenschaftlern zu allen Zeiten bedient. In der heutigen Zeit widmen sich auch vermehrt wieder die Künstler dem Hinterfragen des Scheins und der Suche nach „Wirklichkeit“ und „Wahrheit“.
+
+Unsere Vorstellung der Welt ist das Ergebnis von Wertungen und Präferenzen, die gesellschaftlichen Konventionen entspringen. Aber Wertungen, Interpretationen und Definitionen, ist es nicht alles von Menschen gemacht, also relativ und wandelbar? Könnte nicht alles auch ganz anders sein? Das Oben unten, das Schwarze weiß und harmonisch das Disharmonische?

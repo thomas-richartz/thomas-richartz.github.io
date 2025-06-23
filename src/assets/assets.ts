@@ -152,8 +152,7 @@ export const allImages: GalleryImage[] = [
     range: [1993, 1999],
   },
   {
-    filename:
-      "32-denkmaler-1993-1999/la-plus-grande-necessite-du-monde.jpg.webp",
+    filename: "32-denkmaler-1993-1999/la-plus-grande-necessite-du-monde.jpg.webp",
     title: "La plus grande necessite du monde",
     cat: "32 Denkmäler (1993-1999)",
     range: [1993, 1999],
@@ -285,8 +284,7 @@ export const allImages: GalleryImage[] = [
     range: [2020],
   },
   {
-    filename:
-      "auswahl-1-1995-2008/angst-des-kapitalisten-vor-der-einigkeit-der-arbeiter.jpg.webp",
+    filename: "auswahl-1-1995-2008/angst-des-kapitalisten-vor-der-einigkeit-der-arbeiter.jpg.webp",
     title: "Angst des Kapitalisten vor der Einigkeit der Arbeiter",
     cat: "Auswahl 1 (1995-2008)",
     range: [1995, 2008],
@@ -730,15 +728,13 @@ export const allImages: GalleryImage[] = [
     range: [2008, 2013],
   },
   {
-    filename:
-      "auswahl-2-2008-2013/die-philosophen-und-ihre-kerngedanken.jpg.webp",
+    filename: "auswahl-2-2008-2013/die-philosophen-und-ihre-kerngedanken.jpg.webp",
     title: "Die Philosophen und ihre Kerngedanken",
     cat: "Auswahl 2 (2008-2013)",
     range: [2008, 2013],
   },
   {
-    filename:
-      "auswahl-2-2008-2013/gedanken-eines-arbeiters-an-einer-kreissage.jpg.webp",
+    filename: "auswahl-2-2008-2013/gedanken-eines-arbeiters-an-einer-kreissage.jpg.webp",
     title: "Gedanken eines Arbeiters an einer Kreissäge",
     cat: "Auswahl 2 (2008-2013)",
     range: [2008, 2013],
@@ -864,8 +860,7 @@ export const allImages: GalleryImage[] = [
     range: [2008, 2013],
   },
   {
-    filename:
-      "auswahl-2-2008-2013/zwei-malerfursten-besuchen-donald-judd-um-ihn-auf-zu-lockern.jpg.webp",
+    filename: "auswahl-2-2008-2013/zwei-malerfursten-besuchen-donald-judd-um-ihn-auf-zu-lockern.jpg.webp",
     title: "Zwei Malerfürsten besuchen Donald Judd um ihn auf zu lockern",
     cat: "Auswahl 2 (2008-2013)",
     range: [2008, 2013],
@@ -895,8 +890,7 @@ export const allImages: GalleryImage[] = [
     range: [2008, 2012],
   },
   {
-    filename:
-      "auswahl-3-2008-2012/gedanken_eines_arbeiters_an_einer_kreissage.jpg.webp",
+    filename: "auswahl-3-2008-2012/gedanken_eines_arbeiters_an_einer_kreissage.jpg.webp",
     title: "Gedanken eines Arbeiters an einer Kreissäge",
     cat: "Auswahl 3 (2008-2012)",
     range: [2008, 2012],
@@ -1106,15 +1100,13 @@ export const allImages: GalleryImage[] = [
     range: [2009, 2012],
   },
   {
-    filename:
-      "baudelaire-2009-2012/die-verleugnung-des-heiligen-petrus.jpg.webp",
+    filename: "baudelaire-2009-2012/die-verleugnung-des-heiligen-petrus.jpg.webp",
     title: "Die Verleugnung des heiligen Petrus",
     cat: "Baudelaire (2009-2012)",
     range: [2009, 2012],
   },
   {
-    filename:
-      "baudelaire-2009-2012/du-nahmst-die-ganze-welt-ins-bett-zum-zeitvertreib.jpg.webp",
+    filename: "baudelaire-2009-2012/du-nahmst-die-ganze-welt-ins-bett-zum-zeitvertreib.jpg.webp",
     title: "Du nahmst die ganze Welt ins Bett zum Zeitvertreib",
     cat: "Baudelaire (2009-2012)",
     range: [2009, 2012],
@@ -1216,29 +1208,25 @@ export const allImages: GalleryImage[] = [
     range: [2009, 2012],
   },
   {
-    filename:
-      "baudelaire-2009-2012/spleen-der-regenmond-erbost-auf-die-ganze-sadt.jpg.webp",
+    filename: "baudelaire-2009-2012/spleen-der-regenmond-erbost-auf-die-ganze-sadt.jpg.webp",
     title: "Spleen der Regenmond erbost auf die ganze Sadt",
     cat: "Baudelaire (2009-2012)",
     range: [2009, 2012],
   },
   {
-    filename:
-      "baudelaire-2009-2012/spleen-ich-bin-dem-konig-eines-regenlandes-gleich.jpg.webp",
+    filename: "baudelaire-2009-2012/spleen-ich-bin-dem-konig-eines-regenlandes-gleich.jpg.webp",
     title: "Spleen ich bin dem König eines Regenlandes gleich",
     cat: "Baudelaire (2009-2012)",
     range: [2009, 2012],
   },
   {
-    filename:
-      "baudelaire-2009-2012/spleen-ich-habe-mehr-erinnerung-als-zahlt-ich-tausend-jahre.jpg.webp",
+    filename: "baudelaire-2009-2012/spleen-ich-habe-mehr-erinnerung-als-zahlt-ich-tausend-jahre.jpg.webp",
     title: "Spleen ich habe mehr Erinnerung als zählt ich tausend Jahre",
     cat: "Baudelaire (2009-2012)",
     range: [2009, 2012],
   },
   {
-    filename:
-      "baudelaire-2009-2012/spleen-wenn-der-tiefe-himmel-wie-ein-deckel-lastet.jpg.webp",
+    filename: "baudelaire-2009-2012/spleen-wenn-der-tiefe-himmel-wie-ein-deckel-lastet.jpg.webp",
     title: "Spleen wenn der tiefe Himmel wie ein Deckel lastet",
     cat: "Baudelaire (2009-2012)",
     range: [2009, 2012],
@@ -2144,8 +2132,7 @@ export const allImages: GalleryImage[] = [
     range: [2009],
   },
   {
-    filename:
-      "la-belle-et-la-bete-2009/la-confiance-de-la-bete-en-la-belle.jpg.webp",
+    filename: "la-belle-et-la-bete-2009/la-confiance-de-la-bete-en-la-belle.jpg.webp",
     title: "La Confiance De La Bête En La Belle",
     cat: "LA BELLE ET LA BETE (2009)",
     range: [2009],
@@ -2259,8 +2246,7 @@ export const allImages: GalleryImage[] = [
     range: [2013, 2014],
   },
   {
-    filename:
-      "religionsunterricht-2-2013-2014/das-lied-von-der-gleichgulgtigkeit.jpg.webp",
+    filename: "religionsunterricht-2-2013-2014/das-lied-von-der-gleichgulgtigkeit.jpg.webp",
     title: "Das Lied von der Gleichgülgtigkeit",
     cat: "Religionsunterricht (2013-2014)",
     range: [2013, 2014],
@@ -2278,8 +2264,7 @@ export const allImages: GalleryImage[] = [
     range: [2013, 2014],
   },
   {
-    filename:
-      "religionsunterricht-2-2013-2014/einst-saen-wir-im-zuchthaus-und-lagen-in-ketten.jpg.webp",
+    filename: "religionsunterricht-2-2013-2014/einst-saen-wir-im-zuchthaus-und-lagen-in-ketten.jpg.webp",
     title: "Einst saßen wir im Zuchthaus und lagen in Ketten",
     cat: "Religionsunterricht (2013-2014)",
     range: [2013, 2014],
@@ -2297,8 +2282,7 @@ export const allImages: GalleryImage[] = [
     range: [2013, 2014],
   },
   {
-    filename:
-      "religionsunterricht-2-2013-2014/sehnsucht-nach-der-sehnsucht.jpg.webp",
+    filename: "religionsunterricht-2-2013-2014/sehnsucht-nach-der-sehnsucht.jpg.webp",
     title: "Sehnsucht nach der Sehnsucht",
     cat: "Religionsunterricht (2013-2014)",
     range: [2013, 2014],
@@ -2664,12 +2648,12 @@ export const allImages: GalleryImage[] = [
     cat: "Schmöckwitz0.5",
     range: [2023, 2024],
   },
-  {
-    filename: "schmockwitz05/schmockwitz_1_36.webp",
-    title: "Gott ist der Inbegriff aller Gegensätze",
-    cat: "Schmöckwitz0.5",
-    range: [2023, 2024],
-  },
+  // {
+  //   filename: "schmockwitz05/schmockwitz_1_36.webp",
+  //   title: "Gott ist der Inbegriff aller Gegensätze",
+  //   cat: "Schmöckwitz0.5",
+  //   range: [2023, 2024],
+  // },
   {
     filename: "schmockwitz05/schmockwitz_1_37.webp",
     title: "Maßvolle Freiheit",

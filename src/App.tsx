@@ -1,5 +1,5 @@
 import * as Tone from "tone";
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { SearchOverlay } from "@/components/SearchOverlay";
 import { GalleryContextProvider } from "@/context/GalleryContext";
 import { Screen } from "@/enums";
@@ -9,8 +9,8 @@ import { LandingScreen } from "@/screens/LandingScreen";
 import styles from "@/App.module.css";
 import { BottomBar } from "@/components/BottomBar";
 import { ContactScreen } from "@/screens/ContactScreen";
-import ToneMusicSystem from "@/components/ToneMusicSystem";
 import { FileSoundBlock } from "@/audio/ToneMusicScene";
+import ToneMusicSystem from "./components/ToneMusicSystem";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -20,8 +20,9 @@ function App() {
   const [isLoadingImages, setLoadingImages] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [blocks, setBlocks] = useState<FileSoundBlock[]>([]);
-  const [verbose, setVerbose] = useState(false);
-  // const [verbose, setVerbose] = useState(true);
+  // const [verbose, setVerbose] = useState(false);
+  const [verbose, setVerbose] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleMusicToggle = useCallback(async () => {
     if (Tone.context.state !== "running") {
@@ -84,7 +85,7 @@ function App() {
             ) : (
               <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
             )}
-            <ToneMusicSystem play={isPlaying} blocks={blocks} verbose={verbose} />
+            {blocks.length > 0 && <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} />}
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}

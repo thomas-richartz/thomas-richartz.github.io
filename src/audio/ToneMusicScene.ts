@@ -6,38 +6,154 @@ export interface FileSoundBlock {
   volume: number;
   pan?: number;
   loop?: boolean;
+  loopStart?: number; // in seconds
+  loopEnd?: number; // in seconds
   playbackRate?: number;
   scale?: number[];
   originalFrequency?: number; // sample tune
+  quantize?: string; // e.g. "3n" for triplet, "8n" for eighth, etc.
+  reverb?: boolean;
+  delay?: boolean;
+  delayTime?: string; // e.g. "4n"
+  delayFeedback?: number; // 0...1
+  panValue?: number;
 }
 
 export class ToneMusicScene {
   private players: Map<string, Tone.Player> = new Map();
   private blocks: FileSoundBlock[];
   private reverb: Tone.Reverb | null = null;
+  private delay: Tone.FeedbackDelay | null = null;
+  private panners: Map<string, Tone.Panner> = new Map();
+  private scheduledIds: number[] = [];
+  private isLoaded = false;
 
-  constructor(blocks: FileSoundBlock[], withReverb: boolean) {
+  constructor(blocks: FileSoundBlock[], withReverb = false, withDelay = false) {
     this.blocks = blocks;
     if (withReverb) {
-      this.reverb = new Tone.Reverb({ decay: 2, wet: 0.8 }).toDestination();
+      this.reverb = new Tone.Reverb({ decay: 2, wet: 0.5 }).toDestination();
       this.reverb.generate();
     }
-    this.loadBlocks();
-  }
-
-  private async loadBlocks() {
-    for (const block of this.blocks) {
-      const player = new Tone.Player(block.filePath).toDestination();
-      player.volume.value = Tone.gainToDb(block.volume ?? 1);
-      if (this.reverb) player.connect(this.reverb);
-      this.players.set(block.name, player);
+    if (withDelay) {
+      this.delay = new Tone.FeedbackDelay("4n", 0.4).toDestination();
     }
   }
 
-  public playBlock(index: number, scaleIndex?: number) {
+  /**
+   * Loads all required audio files, only once.
+   * Logs errors and throws if any block fails to load or decode.
+   */
+  public async load() {
+    if (this.isLoaded) return;
+    const loadPromises = this.blocks.map(async (block) => {
+      if (!block.filePath) {
+        console.warn(`[ToneMusicScene] Skipping block with missing filePath:`, block);
+        return;
+      }
+      const player = new Tone.Player({
+        url: block.filePath,
+        onerror: (e) => {
+          console.error(`[ToneMusicScene] Tone.Player failed:`, block.name, block.filePath, e);
+        },
+        loop: !!block.loop,
+        loopStart: block.loopStart,
+        loopEnd: block.loopEnd,
+      }).toDestination();
+
+      // const player = new Tone.Player({
+      //   url: block.filePath,
+      //   onerror: (e) => {
+      //     console.error(`[ToneMusicScene] Tone.Player failed:`, block.name, block.filePath, e);
+      //   },
+      // }).toDestination();
+      // try {
+      //   await player.load();
+      // } catch (e) {
+      //   console.error(`[ToneMusicScene] Could not load/decode audio for block:`, block.name, block.filePath, e);
+      //   throw new Error(`Failed to load: ${block.filePath}`);
+      // }
+
+      player.volume.value = Tone.gainToDb(block.volume ?? 1);
+      player.loop = !!block.loop;
+      if (typeof block.loopStart === "number") player.loopStart = block.loopStart;
+      if (typeof block.loopEnd === "number") player.loopEnd = block.loopEnd;
+      player.playbackRate = block.playbackRate ?? 1;
+
+      // Pan
+      let output: Tone.ToneAudioNode = player;
+      if (typeof block.pan === "number") {
+        const panner = new Tone.Panner(block.pan).toDestination();
+        player.connect(panner);
+        this.panners.set(block.name, panner);
+        output = panner;
+      }
+
+      // FX
+      if (block.reverb && this.reverb) output.connect(this.reverb);
+      if (block.delay && this.delay) {
+        this.delay.delayTime.value = block.delayTime ?? "4n";
+        this.delay.feedback.value = block.delayFeedback ?? 0.4;
+        output.connect(this.delay);
+      }
+
+      player.toDestination();
+      this.players.set(block.name, player);
+    });
+
+    await Promise.all(loadPromises);
+    this.isLoaded = true;
+  }
+
+  /**
+   * Wait for all players to load, then schedule all blocks to play quantized.
+   * Throws if loading fails.
+   */
+  public async scheduleQuantizedPlayback() {
+    await this.load();
+    this.stop();
+    this.scheduledIds = [];
+
+    for (let i = 0; i < this.blocks.length; i++) {
+      const block = this.blocks[i];
+      if (block.volume === 0) continue;
+
+      // If block has a defined loop region, schedule by that region length
+      if (block.loop && typeof block.loopStart === "number" && typeof block.loopEnd === "number" && block.loopEnd > block.loopStart) {
+        const loopLength = block.loopEnd - block.loopStart;
+        // Schedule first play at 0
+        const id0 = Tone.Transport.schedule((time) => {
+          // Play from loopStart for the first time as well (or from 0 if you want)
+          this.playBlock(i, undefined, time, block.loopStart);
+        }, 0);
+        this.scheduledIds.push(id0);
+        // Schedule repeat every loopLength seconds, always from loopStart
+        const id = Tone.Transport.scheduleRepeat(
+          (time) => {
+            this.playBlock(i, undefined, time, block.loopStart);
+          },
+          loopLength,
+          loopLength,
+        ); // offset = loopLength so next play is right after first play ends
+        this.scheduledIds.push(id);
+      } else {
+        // Classic grid retrigger
+        const quant = block.quantize ?? "4n";
+        const id = Tone.Transport.scheduleRepeat((time) => {
+          this.playBlock(i, undefined, time);
+        }, quant);
+        this.scheduledIds.push(id);
+      }
+    }
+    Tone.Transport.start();
+  }
+
+  /**
+   * Play a block at index, optionally at a given musical time
+   */
+  public playBlock(index: number, scaleIndex?: number, time?: Tone.Unit.Time, offset: number = 0) {
     const block = this.blocks[index];
     const player = this.players.get(block.name);
-    if (player) {
+    if (player && player.loaded) {
       let playbackRate = block.playbackRate ?? 1;
       if (block.scale && typeof scaleIndex === "number") {
         const rootFreq = block.originalFrequency ?? block.scale[0];
@@ -45,16 +161,40 @@ export class ToneMusicScene {
         playbackRate = targetFreq / rootFreq;
       }
       player.playbackRate = playbackRate;
-      player.start();
+      try {
+        player.start(time, offset);
+      } catch (e) {
+        console.warn(`[ToneMusicScene] Failed to play block:`, block.name, e);
+      }
     }
   }
 
+  /**
+   * Stop playback and clear all scheduled events
+   */
   public stop() {
-    this.players.forEach((player) => player.stop());
+    Tone.Transport.stop();
+    for (const id of this.scheduledIds) {
+      Tone.Transport.clear(id);
+    }
+    this.scheduledIds = [];
+    this.players.forEach((player) => {
+      try {
+        player.stop();
+      } catch (e) {
+        // Ignore stop errors if not started
+      }
+    });
   }
 
-  public playOneShot(name: string) {
+  /**
+   * Play a single block instantly (oneshot)
+   */
+  public async playOneShot(name: string) {
+    await this.load();
     const player = this.players.get(name);
-    if (player) player.start();
+    if (player && player.loaded) {
+      player.start();
+    }
   }
 }

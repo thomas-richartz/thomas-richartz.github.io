@@ -6,6 +6,12 @@
     justify-items: center;
     margin: 0;
     padding: 2rem;
+    scrollbar-width: none; /* Firefox */
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
 }
 
 .imageContainer {
