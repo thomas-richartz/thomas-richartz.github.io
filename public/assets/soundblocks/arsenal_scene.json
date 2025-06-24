@@ -11,7 +11,8 @@
     "duration": 1800,
     "delay": true,
     "delayTime": "8n",
-    "delayFeedback": 0.8
+    "delayFeedback": 0.8,
+    "pan": 0.4
   },
   {
     "name": "Intro 2",
@@ -25,7 +26,7 @@
     "delay": true,
     "delayTime": "8n",
     "delayFeedback": 0.8,
-    "pan": 0.4,
+    "pan": -0.4,
     "reverse": true
   }
 ]

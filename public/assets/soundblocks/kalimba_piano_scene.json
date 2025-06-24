@@ -11,7 +11,7 @@
     "delay": true,
     "delayTime": "8n",
     "delayFeedback": 0.8,
-    "pan": 0.4,
+    "pan": 0.5,
     "reverse": true
   },
   {
@@ -22,7 +22,7 @@
     "delay": true,
     "delayTime": "8n",
     "delayFeedback": 0.5,
-    "pan": 0.6,
+    "pan": -0.5,
     "loop": true,
     "loopStart": 10.0,
     "loopEnd": 83.5,
