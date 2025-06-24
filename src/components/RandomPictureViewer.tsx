@@ -96,7 +96,7 @@ export const RandomPictureViewer = ({}: RandomPictureViewerProps): JSX.Element =
       default:
         return (
           <>
-            <RandomPictureListView images={images} selectedImage={undefined} />
+            <RandomPictureListView images={images} />
             <div ref={loaderRef} style={{ height: "1px" }}></div>
           </>
         );

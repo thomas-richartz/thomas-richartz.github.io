@@ -80,12 +80,12 @@ function App() {
     // Fetch blocks for the new screen
     const urls = ["/assets/soundblocks/kalimba_piano_scene.json", "/assets/soundblocks/kalimba_piano_scene3.json"];
     let url = urls[Math.floor(Math.random() * urls.length)];
-    // console.log(screen);
+    console.log(screen);
     // console.log(selectedCat);
     if (screen === Screen.GALLERY && !selectedCat) {
       url = "/assets/soundblocks/kalimba_piano_scene2.json";
     }
-    if (selectedCat === "Dovcenko2 (2022)") {
+    if (screen !== Screen.GALLERY && selectedCat === "Dovcenko2 (2022)") {
       const arsenalUrls = ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"];
       url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
     }

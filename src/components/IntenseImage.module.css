@@ -141,7 +141,7 @@
 }
 
 /* Lightbox and navigation styles */
-.intense__lightBoxOverlay {
+/* .intense__lightBoxOverlay {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -153,6 +153,29 @@
     background: #000;
     z-index: 9999;
     touch-action: none;
+}
+*/
+
+.intense__lightBoxOverlay {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.96);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(0.97);
+    transition:
+        opacity 1.3s cubic-bezier(0.4, 0.2, 0.2, 1),
+        transform 1.38s cubic-bezier(0.4, 0.2, 0.2, 1);
+    pointer-events: none;
+}
+
+.intense__lightBoxOverlayOpen {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
 }
 
 .intense__lightboxImageWrap {
@@ -171,4 +194,17 @@
     box-shadow: 0 8px 40px #000a;
     background: #111;
     display: block;
+    border-radius: 3px;
+}
+
+.prevButton,
+.nextButton {
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 2em;
+    /* background: #111; */
+    color: #eee;
+    cursor: pointer;
+    z-index: 2;
 }
