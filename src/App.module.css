@@ -8,6 +8,7 @@
     --text-muted: #999;
     --text-muted-hover: #9999cc;
 
+    --fs-xss: clamp(0.5rem, 1vw, 0.75rem); /* captions, meta */
     --fs-xs: clamp(0.75rem, 1.2vw, 0.875rem); /* captions, meta */
     --fs-sm: clamp(0.875rem, 1.5vw, 1rem); /* body */
     --fs-md: clamp(1rem, 2vw, 1.25rem); /* section titles */

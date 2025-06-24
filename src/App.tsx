@@ -13,6 +13,7 @@ import { FileSoundBlock, ToneMusicScene } from "@/audio/ToneMusicScene";
 import ToneMusicSystem from "./components/ToneMusicSystem";
 import { useRef } from "react";
 import ToneMusicOverlay from "./components/ToneMusicSystemOverlay";
+import { ToneMusicOverlayChangeHandler } from "./components/ToneMusicSystemOverlay";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -81,9 +82,13 @@ function App() {
   const onNavigate = async (screen: Screen) => {
     setSelectedScreen(screen);
     // Fetch blocks for the new screen
-    const urls = ["/assets/soundblocks/kalimba_piano_scene.json", "/assets/soundblocks/kalimba_piano_scene3.json"];
+    const urls = [
+      "/assets/soundblocks/kalimba_piano_scene.json",
+      "/assets/soundblocks/kalimba_piano_scene1.json",
+      "/assets/soundblocks/kalimba_piano_scene3.json",
+    ];
     let url = urls[Math.floor(Math.random() * urls.length)];
-    console.log(screen);
+    // console.log(screen);
     // console.log(selectedCat);
     if (screen === Screen.GALLERY && !selectedCat) {
       url = "/assets/soundblocks/kalimba_piano_scene2.json";
@@ -93,7 +98,7 @@ function App() {
       url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
     }
 
-    console.log(url);
+    // console.log(url);
 
     try {
       setLoading(true);
@@ -135,7 +140,14 @@ function App() {
     setSearchVisible(false);
   };
 
-  const onBlocksChange = () => {};
+  const onBlocksChange: ToneMusicOverlayChangeHandler = (updatedBlocks, changedIndex, changedParam, value) => {
+    setBlocks(updatedBlocks);
+    if (typeof changedIndex === "number" && changedParam && ["volume", "pan", "playbackRate"].includes(changedParam)) {
+      // For structural (e.g. FX on/off), let ToneMusicSystem reload
+      const blockName = updatedBlocks[changedIndex].name;
+      currentSceneRef.current?.setBlockParam(blockName, changedParam, value);
+    }
+  };
 
   return (
     <GalleryContextProvider>
@@ -154,13 +166,14 @@ function App() {
 
             {/* showOverlay */}
             {blocks.length > 0 && <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} />}
-            {blocks.length > 0 && isPlaying && <ToneMusicOverlay blocks={blocks} onChange={onBlocksChange} onClose={() => setShowOverlay(false)} />}
+            {showOverlay && blocks.length > 0 && <ToneMusicOverlay blocks={blocks} onChange={onBlocksChange} onClose={() => setShowOverlay(false)} />}
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
               onSearch={handleSearchOpen}
               onMusicToggle={handleMusicToggle}
               isPlaying={isPlaying}
+              setShowToneOverlay={setShowOverlay}
             />
           </>
           {isSearchVisible && <SearchOverlay items={images} isLoading={isLoadingImages} onClose={handleSearchClose} onItemSelect={handleItemSelect} />}

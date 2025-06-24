@@ -33,12 +33,7 @@
     /* background-color: #333;  */
     color: #fff;
     background: rgb(0, 0, 0);
-    background: linear-gradient(
-        0deg,
-        rgba(34, 34, 34, 1) 0%,
-        rgba(0, 0, 0, 1) 95%,
-        rgba(34, 34, 34, 1) 100%
-    );
+    background: linear-gradient(0deg, rgba(34, 34, 34, 1) 0%, rgba(0, 0, 0, 1) 95%, rgba(34, 34, 34, 1) 100%);
 }
 
 .button {
@@ -64,8 +59,20 @@
     transform: translateX(-50%);
 }
 
+.settingsButton {
+    position: absolute;
+    left: 27%;
+    transform: translateX(-50%);
+}
+
 .footerText {
     /* font-size: 0.9rem; */
     font-size: var(--fs-xs);
     cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .footerText {
+        font-size: var(--fs-xss);
+    }
 }

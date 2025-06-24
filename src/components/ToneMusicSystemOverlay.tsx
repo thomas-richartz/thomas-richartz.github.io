@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { FileSoundBlock } from "@/audio/ToneMusicScene";
 
+export type ToneMusicOverlayChangeHandler = (blocks: FileSoundBlock[], changedIndex?: number, changedParam?: keyof FileSoundBlock, value?: any) => void;
+
 interface ToneMusicOverlayProps {
   blocks: FileSoundBlock[];
-  onChange: (blocks: FileSoundBlock[]) => void;
+  onChange: ToneMusicOverlayChangeHandler;
   onClose: () => void;
 }
+
+const quantizeOptions = ["1m", "2n", "4n", "8n", "16n", "32n", "3n", "6n", "12n"];
 
 const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ blocks, onChange, onClose }) => {
   const [localBlocks, setLocalBlocks] = useState<FileSoundBlock[]>(blocks);
@@ -13,7 +17,8 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ blocks, onChange, o
   const handleBlockChange = (idx: number, changes: Partial<FileSoundBlock>) => {
     const updated = localBlocks.map((b, i) => (i === idx ? { ...b, ...changes } : b));
     setLocalBlocks(updated);
-    onChange(updated); // propagate to parent (can update the scene)
+    const [changedParam] = Object.keys(changes) as (keyof FileSoundBlock)[];
+    onChange(updated, idx, changedParam, (changes as any)[changedParam]);
   };
 
   return (
@@ -34,6 +39,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ blocks, onChange, o
       {localBlocks.map((block, idx) => (
         <div key={block.name} style={{ margin: 20, padding: 20, background: "#222", borderRadius: 10 }}>
           <h4>{block.name}</h4>
+          {/* Volume */}
           <label>
             Volume: {block.volume}
             <input
@@ -46,6 +52,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ blocks, onChange, o
             />
           </label>
           <br />
+          {/* Pan */}
           <label>
             Pan: {block.pan ?? 0}
             <input
@@ -58,11 +65,12 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ blocks, onChange, o
             />
           </label>
           <br />
+          {/* Playback Rate */}
           <label>
             Playback Rate: {block.playbackRate ?? 1}
             <input
               type="range"
-              min={0.5}
+              min={0.2}
               max={2}
               step={0.01}
               value={block.playbackRate ?? 1}
@@ -70,15 +78,85 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ blocks, onChange, o
             />
           </label>
           <br />
+          {/* Loop */}
           <label>
-            Reverb:
-            <input type="checkbox" checked={!!block.reverb} onChange={(e) => handleBlockChange(idx, { reverb: e.target.checked })} />
+            Loop:
+            <input type="checkbox" checked={!!block.loop} onChange={(e) => handleBlockChange(idx, { loop: e.target.checked })} />
           </label>
+          <br />
+          {/* Loop Start/End */}
+          <label>
+            Loop Start: {block.loopStart ?? ""}
+            <input
+              type="number"
+              min={0}
+              step={0.01}
+              value={block.loopStart ?? ""}
+              onChange={(e) => handleBlockChange(idx, { loopStart: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
+            />
+          </label>
+          <label>
+            Loop End: {block.loopEnd ?? ""}
+            <input
+              type="number"
+              min={0}
+              step={0.01}
+              value={block.loopEnd ?? ""}
+              onChange={(e) => handleBlockChange(idx, { loopEnd: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
+            />
+          </label>
+          <br />
+          {/* Quantize */}
+          <label>
+            Quantize:
+            <select value={block.quantize ?? ""} onChange={(e) => handleBlockChange(idx, { quantize: e.target.value })}>
+              <option value="">(none)</option>
+              {quantizeOptions.map((q) => (
+                <option key={q} value={q}>
+                  {q}
+                </option>
+              ))}
+            </select>
+          </label>
+          <br />
+          {/* Delay/FX */}
           <label>
             Delay:
             <input type="checkbox" checked={!!block.delay} onChange={(e) => handleBlockChange(idx, { delay: e.target.checked })} />
           </label>
-          {/* Add more controls for delayTime, delayFeedback, etc. as needed */}
+          <label>
+            Delay Time:
+            <input
+              type="text"
+              value={block.delayTime ?? ""}
+              placeholder="e.g. 4n"
+              onChange={(e) => handleBlockChange(idx, { delayTime: e.target.value })}
+              style={{ width: "4em" }}
+            />
+          </label>
+          <label>
+            Delay Feedback:
+            <input
+              type="number"
+              min={0}
+              max={1}
+              step={0.01}
+              value={block.delayFeedback ?? ""}
+              onChange={(e) => handleBlockChange(idx, { delayFeedback: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
+            />
+          </label>
+          <br />
+          {/* Reverb */}
+          <label>
+            Reverb:
+            <input type="checkbox" checked={!!block.reverb} onChange={(e) => handleBlockChange(idx, { reverb: e.target.checked })} />
+          </label>
+          <br />
+          {/* Reverse */}
+          <label>
+            Reverse:
+            <input type="checkbox" checked={!!block.reverse} onChange={(e) => handleBlockChange(idx, { reverse: e.target.checked })} />
+          </label>
         </div>
       ))}
     </div>
