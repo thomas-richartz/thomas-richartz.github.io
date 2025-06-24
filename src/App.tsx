@@ -12,6 +12,7 @@ import { ContactScreen } from "@/screens/ContactScreen";
 import { FileSoundBlock, ToneMusicScene } from "@/audio/ToneMusicScene";
 import ToneMusicSystem from "./components/ToneMusicSystem";
 import { useRef } from "react";
+import ToneMusicOverlay from "./components/ToneMusicSystemOverlay";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -25,6 +26,8 @@ function App() {
   const [verbose, setVerbose] = useState(true);
   const [loading, setLoading] = useState(false);
   const currentSceneRef = useRef<ToneMusicScene | null>(null);
+
+  const [showOverlay, setShowOverlay] = useState(false);
 
   // const handleMusicToggle = useCallback(async () => {
   //   if (Tone.context.state !== "running") {
@@ -132,6 +135,8 @@ function App() {
     setSearchVisible(false);
   };
 
+  const onBlocksChange = () => {};
+
   return (
     <GalleryContextProvider>
       <div tabIndex={0}>
@@ -146,7 +151,10 @@ function App() {
             ) : (
               <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
             )}
+
+            {/* showOverlay */}
             {blocks.length > 0 && <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} />}
+            {blocks.length > 0 && isPlaying && <ToneMusicOverlay blocks={blocks} onChange={onBlocksChange} onClose={() => setShowOverlay(false)} />}
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
