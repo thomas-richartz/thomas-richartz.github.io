@@ -90,6 +90,8 @@ function App() {
       url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
     }
 
+    console.log(url);
+
     try {
       setLoading(true);
       const response = await fetch(url);

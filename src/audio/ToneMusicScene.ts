@@ -17,6 +17,7 @@ export interface FileSoundBlock {
   delayTime?: string; // e.g. "4n"
   delayFeedback?: number; // 0...1
   panValue?: number;
+  reverse?: boolean;
 }
 
 export class ToneMusicScene {
@@ -28,10 +29,11 @@ export class ToneMusicScene {
   private scheduledIds: number[] = [];
   private isLoaded = false;
 
-  constructor(blocks: FileSoundBlock[], withReverb = false, withDelay = false) {
+  constructor(blocks: FileSoundBlock[], withReverb = true, withDelay = true) {
     this.blocks = blocks;
     if (withReverb) {
       this.reverb = new Tone.Reverb({ decay: 2, wet: 0.5 }).toDestination();
+      // this.reverb = reverb ? new Tone.Reverb({ decay: 2.5, wet: 0.3 }) : null;
       this.reverb.generate();
     }
     if (withDelay) {
@@ -50,59 +52,121 @@ export class ToneMusicScene {
         console.warn(`[ToneMusicScene] Skipping block with missing filePath:`, block);
         return;
       }
-      const player = new Tone.Player({
-        url: block.filePath,
-        onerror: (e) => {
-          console.error(`[ToneMusicScene] Tone.Player failed:`, block.name, block.filePath, e);
-        },
-        loop: !!block.loop,
-        loopStart: block.loopStart,
-        loopEnd: block.loopEnd,
-      }).toDestination();
-
-      // const player = new Tone.Player({
-      //   url: block.filePath,
-      //   onerror: (e) => {
-      //     console.error(`[ToneMusicScene] Tone.Player failed:`, block.name, block.filePath, e);
-      //   },
-      // }).toDestination();
-      // try {
-      //   await player.load();
-      // } catch (e) {
-      //   console.error(`[ToneMusicScene] Could not load/decode audio for block:`, block.name, block.filePath, e);
-      //   throw new Error(`Failed to load: ${block.filePath}`);
-      // }
+      const player = await new Promise<Tone.Player>((resolve, reject) => {
+        const p = new Tone.Player({
+          url: block.filePath,
+          reverse: !!block.reverse,
+          loop: !!block.loop,
+          loopStart: block.loopStart,
+          loopEnd: block.loopEnd,
+          onload: () => resolve(p),
+          onerror: (err: any) => reject(err),
+        });
+      });
 
       player.volume.value = Tone.gainToDb(block.volume ?? 1);
       player.loop = !!block.loop;
       if (typeof block.loopStart === "number") player.loopStart = block.loopStart;
       if (typeof block.loopEnd === "number") player.loopEnd = block.loopEnd;
-      player.playbackRate = block.playbackRate ?? 1;
 
       // Pan
       let output: Tone.ToneAudioNode = player;
       if (typeof block.pan === "number") {
-        const panner = new Tone.Panner(block.pan).toDestination();
+        const panner = new Tone.Panner(block.pan);
         player.connect(panner);
         this.panners.set(block.name, panner);
         output = panner;
       }
 
-      // FX
-      if (block.reverb && this.reverb) output.connect(this.reverb);
-      if (block.delay && this.delay) {
+      // --- FX Routing ---
+      // Set FX params (for per-block params)
+      if (this.delay) {
         this.delay.delayTime.value = block.delayTime ?? "4n";
         this.delay.feedback.value = block.delayFeedback ?? 0.4;
-        output.connect(this.delay);
+        this.delay.wet.value = 1;
+      }
+      if (this.reverb) {
+        this.reverb.wet.value = 1;
       }
 
-      player.toDestination();
+      // Chain: output -> [delay?] -> [reverb?] -> destination
+      let finalNode: Tone.ToneAudioNode = output;
+      if (block.delay && this.delay) {
+        finalNode.connect(this.delay);
+        finalNode = this.delay;
+      }
+      if (block.reverb && this.reverb) {
+        finalNode.connect(this.reverb);
+        finalNode = this.reverb;
+      }
+      finalNode.connect(Tone.Destination);
+
       this.players.set(block.name, player);
     });
 
     await Promise.all(loadPromises);
     this.isLoaded = true;
   }
+  // public async load() {
+  //   if (this.isLoaded) return;
+  //   const loadPromises = this.blocks.map(async (block) => {
+  //     if (!block.filePath) {
+  //       console.warn(`[ToneMusicScene] Skipping block with missing filePath:`, block);
+  //       return;
+  //     }
+  //     const player = new Tone.Player({
+  //       url: block.filePath,
+  //       onerror: (e) => {
+  //         console.error(`[ToneMusicScene] Tone.Player failed:`, block.name, block.filePath, e);
+  //       },
+  //       loop: !!block.loop,
+  //       loopStart: block.loopStart,
+  //       loopEnd: block.loopEnd,
+  //     });
+
+  //     // await player.load();
+
+  //     player.volume.value = Tone.gainToDb(block.volume ?? 1);
+  //     player.loop = !!block.loop;
+  //     if (typeof block.loopStart === "number") player.loopStart = block.loopStart;
+  //     if (typeof block.loopEnd === "number") player.loopEnd = block.loopEnd;
+  //     player.playbackRate = block.playbackRate ?? 0.7;
+
+  //     // Pan
+  //     let output: Tone.ToneAudioNode = player;
+  //     if (typeof block.pan === "number") {
+  //       const panner = new Tone.Panner(block.pan);
+  //       player.connect(panner);
+  //       this.panners.set(block.name, panner);
+  //       output = panner;
+  //     }
+
+  //     // FX
+  //     if (block.reverb && this.reverb && block.delay && this.delay) {
+  //       // delay and reverb chain: delay->reverb
+  //       this.delay.delayTime.value = block.delayTime ?? "4n";
+  //       this.delay.feedback.value = block.delayFeedback ?? 0.4;
+  //       output.connect(this.delay);
+  //       this.delay.connect(this.reverb);
+  //       this.reverb.connect(Tone.Destination);
+  //     } else if (block.reverb && this.reverb) {
+  //       output.connect(this.reverb);
+  //       this.reverb.connect(Tone.Destination);
+  //     } else if (block.delay && this.delay) {
+  //       this.delay.delayTime.value = block.delayTime ?? "4n";
+  //       this.delay.feedback.value = block.delayFeedback ?? 0.4;
+  //       output.connect(this.delay);
+  //       this.delay.connect(Tone.Destination);
+  //     } else {
+  //       output.connect(Tone.Destination);
+  //     }
+
+  //     this.players.set(block.name, player);
+  //   });
+
+  //   await Promise.all(loadPromises);
+  //   this.isLoaded = true;
+  // }
 
   /**
    * Wait for all players to load, then schedule all blocks to play quantized.

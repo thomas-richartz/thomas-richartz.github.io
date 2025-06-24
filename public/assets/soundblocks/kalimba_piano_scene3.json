@@ -9,8 +9,8 @@
     "delayTime": "8n",
     "delayFeedback": 0.5,
     "loop": true,
-    "loopStart": 70.0,
-    "loopEnd": 100.0,
+    "loopStart": 69.0,
+    "loopEnd": 83.5,
     "pan": 0.4
   },
   {
@@ -23,8 +23,9 @@
     "delayFeedback": 0.2,
     "pan": 0.6,
     "loop": true,
-    "loopStart": 120.0,
-    "loopEnd": 180.0,
-    "quantize": "8m"
+    "loopStart": 20.0,
+    "loopEnd": 80.0,
+    "quantize": "8m",
+    "reverse": true
   }
 ]

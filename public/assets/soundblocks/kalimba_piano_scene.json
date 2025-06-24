@@ -4,14 +4,15 @@
     "filePath": "/assets/wav/kalimba_gb_prt2.wav",
     "volume": 0.8,
     "loop": true,
-    "loopStart": 20.0,
+    "loopStart": 23.0,
     "loopEnd": 40.0,
     "quantize": "2m",
     "reverb": true,
     "delay": true,
     "delayTime": "8n",
     "delayFeedback": 0.8,
-    "pan": 0.4
+    "pan": 0.4,
+    "reverse": true
   },
   {
     "name": "Kalimba Loop 1",
@@ -24,7 +25,7 @@
     "pan": 0.6,
     "loop": true,
     "loopStart": 10.0,
-    "loopEnd": 120.0,
+    "loopEnd": 83.5,
     "quantize": "4:3:2"
   }
 ]
