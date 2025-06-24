@@ -7,8 +7,9 @@
     "loop": true,
     "loopStart": 90.0,
     "loopEnd": 140.0,
-    "playbackRate": 1.0,
-    "duration": 1800
+    "playbackRate": 0.5,
+    "duration": 1800,
+    "reverse": true
   },
   {
     "name": "Intro 2",
@@ -22,6 +23,7 @@
     "delay": true,
     "delayTime": "8n",
     "delayFeedback": 0.8,
+    "playbackRate": 0.5,
     "pan": 0.4
   }
 ]
