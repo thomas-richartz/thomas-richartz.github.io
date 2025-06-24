@@ -24,7 +24,7 @@
     "delay": true,
     "delayTime": "5n",
     "delayFeedback": 0.2,
-    "pan": 0.4,
+    "pan": -0.4,
     "playbackRate": 0.7,
     "loop": true,
     "loopStart": 45.0,
