@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Kalimba Loop 1",
+    "filePath": "/assets/wav/kalimba_gb_prt2.wav",
+    "volume": 0.8,
+    "quantize": "5n",
+    "reverb": true,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.5,
+    "pan": 0.6
+  },
+  {
+    "name": "Kalimba 2",
+    "filePath": "/assets/wav/kalimba_gb_prt2.wav",
+    "volume": 0.8,
+    "quantize": "3n",
+    "reverb": true,
+    "delay": true,
+    "delayTime": "5n",
+    "delayFeedback": 0.2,
+    "pan": 0.4
+  }
+]

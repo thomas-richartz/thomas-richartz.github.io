@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Intro",
+    "filePath": "/assets/wav/arsenal_intro.wav",
+    "reverb": true,
+    "volume": 0.4,
+    "loop": true,
+    "loopStart": 90.0,
+    "loopEnd": 140.0,
+    "playbackRate": 1.0,
+    "duration": 1800
+  },
+  {
+    "name": "Intro 2",
+    "filePath": "/assets/wav/arsenal_intro.wav",
+    "volume": 0.7,
+    "loop": true,
+    "loopStart": 70.0,
+    "loopEnd": 98.0,
+    "quantize": "2m",
+    "reverb": true,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.8,
+    "pan": 0.4
+  }
+]
