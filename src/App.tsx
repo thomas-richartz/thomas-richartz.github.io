@@ -50,7 +50,7 @@ function App() {
   }, [isPlaying]);
 
   useEffect(() => {
-    if (screen === Screen.LANDING) {
+    if (selectedScreen === Screen.LANDING) {
       const fetchBlocks = async () => {
         try {
           const response = await fetch("/assets/soundblocks/kalimba_piano_scene.json");

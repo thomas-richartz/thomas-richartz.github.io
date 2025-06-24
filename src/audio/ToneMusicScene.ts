@@ -206,7 +206,7 @@ export class ToneMusicScene {
       if (!block) return;
       const fromDb = player.volume.value;
       const toDb = Tone.gainToDb(0.0);
-      player.volume.cancelAndHoldAtTime();
+      player.volume.cancelAndHoldAtTime(player.context.currentTime); // or Tone.now()
       player.volume.setValueAtTime(fromDb, Tone.now());
       player.volume.linearRampToValueAtTime(toDb, Tone.now() + duration);
       promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
@@ -221,7 +221,7 @@ export class ToneMusicScene {
       const block = this.blocks.find((b) => b.name === name);
       if (!block) return;
       const toDb = Tone.gainToDb(block.volume ?? 1.0);
-      player.volume.cancelAndHoldAtTime();
+      player.volume.cancelAndHoldAtTime(player.context.currentTime); // or Tone.now()
       player.volume.setValueAtTime(Tone.gainToDb(0.0), Tone.now());
       player.volume.linearRampToValueAtTime(toDb, Tone.now() + duration);
       promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
