@@ -12,6 +12,8 @@ import { ContactScreen } from "@/screens/ContactScreen";
 import { FileSoundBlock, ToneMusicScene } from "@/audio/ToneMusicScene";
 import ToneMusicSystem from "./components/ToneMusicSystem";
 import { useRef } from "react";
+import ToneMusicOverlay from "./components/ToneMusicSystemOverlay";
+import { ToneMusicOverlayChangeHandler } from "./components/ToneMusicSystemOverlay";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -25,6 +27,8 @@ function App() {
   const [verbose, setVerbose] = useState(true);
   const [loading, setLoading] = useState(false);
   const currentSceneRef = useRef<ToneMusicScene | null>(null);
+
+  const [showOverlay, setShowOverlay] = useState(false);
 
   // const handleMusicToggle = useCallback(async () => {
   //   if (Tone.context.state !== "running") {
@@ -78,9 +82,13 @@ function App() {
   const onNavigate = async (screen: Screen) => {
     setSelectedScreen(screen);
     // Fetch blocks for the new screen
-    const urls = ["/assets/soundblocks/kalimba_piano_scene.json", "/assets/soundblocks/kalimba_piano_scene3.json"];
+    const urls = [
+      "/assets/soundblocks/kalimba_piano_scene.json",
+      "/assets/soundblocks/kalimba_piano_scene1.json",
+      "/assets/soundblocks/kalimba_piano_scene3.json",
+    ];
     let url = urls[Math.floor(Math.random() * urls.length)];
-    console.log(screen);
+    // console.log(screen);
     // console.log(selectedCat);
     if (screen === Screen.GALLERY && !selectedCat) {
       url = "/assets/soundblocks/kalimba_piano_scene2.json";
@@ -90,7 +98,7 @@ function App() {
       url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
     }
 
-    console.log(url);
+    // console.log(url);
 
     try {
       setLoading(true);
@@ -132,6 +140,15 @@ function App() {
     setSearchVisible(false);
   };
 
+  const onBlocksChange: ToneMusicOverlayChangeHandler = (updatedBlocks, changedIndex, changedParam, value) => {
+    setBlocks(updatedBlocks);
+    if (typeof changedIndex === "number" && changedParam && ["volume", "pan", "playbackRate"].includes(changedParam)) {
+      // For structural (e.g. FX on/off), let ToneMusicSystem reload
+      const blockName = updatedBlocks[changedIndex].name;
+      currentSceneRef.current?.setBlockParam(blockName, changedParam, value);
+    }
+  };
+
   return (
     <GalleryContextProvider>
       <div tabIndex={0}>
@@ -146,13 +163,17 @@ function App() {
             ) : (
               <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
             )}
+
+            {/* showOverlay */}
             {blocks.length > 0 && <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} />}
+            {showOverlay && blocks.length > 0 && <ToneMusicOverlay blocks={blocks} onChange={onBlocksChange} onClose={() => setShowOverlay(false)} />}
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
               onSearch={handleSearchOpen}
               onMusicToggle={handleMusicToggle}
               isPlaying={isPlaying}
+              setShowToneOverlay={setShowOverlay}
             />
           </>
           {isSearchVisible && <SearchOverlay items={images} isLoading={isLoadingImages} onClose={handleSearchClose} onItemSelect={handleItemSelect} />}
