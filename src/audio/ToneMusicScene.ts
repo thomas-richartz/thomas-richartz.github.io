@@ -53,7 +53,7 @@ export class ToneMusicScene {
         return;
       }
       const player = await new Promise<Tone.Player>((resolve, reject) => {
-        const p = new Tone.Player({
+        const p: Tone.Player = new Tone.Player({
           url: block.filePath,
           reverse: !!block.reverse,
           loop: !!block.loop,

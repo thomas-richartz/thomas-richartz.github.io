@@ -11,7 +11,8 @@
     "loop": true,
     "loopStart": 69.0,
     "loopEnd": 83.5,
-    "pan": 0.4
+    "pan": 0.4,
+    "playbackRate": 0.33
   },
   {
     "name": "Kalimba 2",
