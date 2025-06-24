@@ -78,11 +78,18 @@ function App() {
   const onNavigate = async (screen: Screen) => {
     setSelectedScreen(screen);
     // Fetch blocks for the new screen
-    let url = "/assets/soundblocks/kalimba_piano_scene.json";
-    console.log(selectedCat);
-    if (screen === Screen.GALLERY_CAT && selectedCat === "Dovcenko2 (2022)") {
-      url = "/assets/soundblocks/arsenal_scene.json";
+    const urls = ["/assets/soundblocks/kalimba_piano_scene.json", "/assets/soundblocks/kalimba_piano_scene3.json"];
+    let url = urls[Math.floor(Math.random() * urls.length)];
+    // console.log(screen);
+    // console.log(selectedCat);
+    if (screen === Screen.GALLERY && !selectedCat) {
+      url = "/assets/soundblocks/kalimba_piano_scene2.json";
     }
+    if (selectedCat === "Dovcenko2 (2022)") {
+      const arsenalUrls = ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"];
+      url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
+    }
+
     try {
       setLoading(true);
       const response = await fetch(url);
