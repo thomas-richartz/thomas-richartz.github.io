@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Intro",
+    "filePath": "/assets/wav/singing_bowl.wav",
+    "reverb": true,
+    "volume": 0.4,
+    "loop": true,
+    "loopStart": 60.0,
+    "loopEnd": 91.0,
+    "playbackRate": 1.5,
+    "delay": true,
+    "delayTime": "4n",
+    "delayFeedback": 0.8,
+    "duration": 900,
+    "reverse": false
+  },
+  {
+    "name": "Intro 2",
+    "filePath": "/assets/wav/cycle.wav",
+    "volume": 0.4,
+    "loop": true,
+    "quantize": "3m",
+    "reverb": true,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.8,
+    "playbackRate": 0.5,
+    "pan": 0.4
+  }
+]

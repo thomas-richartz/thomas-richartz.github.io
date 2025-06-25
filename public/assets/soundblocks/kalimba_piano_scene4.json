@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Kalimba 1",
+    "filePath": "/assets/wav/kalimba_gb_prt2.wav",
+    "volume": 0.5,
+    "quantize": "5m",
+    "reverb": true,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.7,
+    "loop": true,
+    "loopStart": 69.0,
+    "loopEnd": 83.5,
+    "pan": 0.55,
+    "playbackRate": 0.33
+  },
+  {
+    "name": "Kalimba 2",
+    "filePath": "/assets/wav/kalimba_gb_prt2.wav",
+    "volume": 0.5,
+    "reverb": true,
+    "delay": true,
+    "delayTime": "5n",
+    "delayFeedback": 0.2,
+    "pan": -0.6,
+    "loop": true,
+    "loopStart": 45.07,
+    "loopEnd": 69.0,
+    "quantize": "6n",
+    "reverse": true
+  }
+]

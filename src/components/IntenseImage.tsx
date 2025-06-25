@@ -1,3 +1,4 @@
+import { useDrag } from "@use-gesture/react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./IntenseImage.module.css";
 
@@ -16,6 +17,16 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
   const [isFullscreen, setIsFullscreen] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const hasFullscreenSupport = typeof document !== "undefined" && !!document.fullscreenEnabled;
+
+  const bind = useDrag(
+    ({ last, movement: [mx], velocity: [vx] }) => {
+      if (last && Math.abs(vx) > 0.2) {
+        if (mx < 0) nextImage();
+        else if (mx > 0) prevImage();
+      }
+    },
+    { axis: "x", enabled: isOpen },
+  );
 
   // Preload image
   useEffect(() => {
@@ -111,6 +122,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
         onClick={handleClose}
         aria-modal="true"
         role="dialog"
+        {...bind()}
       >
         <div className={styles.intense__lightboxImageWrap} onClick={(e) => e.stopPropagation()}>
           <img
@@ -174,10 +186,37 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
               }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" style={{ width: 24, height: 24 }}>
+                {/* <!-- Top-left --> */}
                 <path
+                  d="M4 9V5
+                       Q4 4 5 4
+                       H9"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M6 20.25h12m-7.5-3v3m3-3v3m-10.125-3h17.25c.621 0 1.125-.504 1.125-1.125V4.875c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125Z"
+                />
+                {/* <!-- Top-right --> */}
+                <path
+                  d="M15 4h4
+                       Q20 4 20 5
+                       v4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                {/* <!-- Bottom-right --> */}
+                <path
+                  d="M20 15v4
+                       Q20 20 19 20
+                       h-4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                {/* <!-- Bottom-left --> */}
+                <path
+                  d="M9 20H5
+                       Q4 20 4 19
+                       v-4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>

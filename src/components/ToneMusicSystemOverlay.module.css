@@ -1,0 +1,62 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    z-index: 9999;
+    overflow-y: auto;
+}
+
+.card {
+    margin: 20px auto;
+    padding: 20px;
+    background: #222;
+    border-radius: 10px;
+    max-width: 540px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+}
+
+.heading {
+    text-align: center;
+}
+
+.blockName {
+    margin-top: 0;
+    margin-bottom: 1em;
+}
+
+.propertyGrid {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    align-items: center;
+    gap: 0.3em 1.2em;
+    width: 100%;
+}
+
+.label {
+    justify-self: end;
+    text-align: right;
+    font-weight: 500;
+    max-width: 50%;
+    white-space: nowrap;
+    padding: 0.25em 1em 0.25em 0;
+}
+
+.value {
+    justify-self: start;
+    text-align: left;
+    padding: 0.25em 0;
+    min-width: 120px;
+}
+
+.saveButton {
+    position: sticky;
+    bottom: 12px;
+    right: 12px;
+}
+
+.closeButton {
+    position: sticky;
+    top: 12px;
+    right: 12px;
+}

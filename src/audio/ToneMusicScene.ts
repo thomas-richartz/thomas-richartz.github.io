@@ -107,6 +107,26 @@ export class ToneMusicScene {
     await Promise.all(loadPromises);
     this.isLoaded = true;
   }
+
+  public setBlockParam(name: string, param: keyof FileSoundBlock, value: any) {
+    const player = this.players.get(name);
+    if (!player) return;
+    switch (param) {
+      case "volume":
+        player.volume.value = Tone.gainToDb(value);
+        break;
+      case "pan":
+        const panner = this.panners.get(name);
+        if (panner) panner.pan.value = value;
+        break;
+      case "playbackRate":
+        player.playbackRate = value;
+        break;
+      default:
+        break;
+    }
+  }
+
   // public async load() {
   //   if (this.isLoaded) return;
   //   const loadPromises = this.blocks.map(async (block) => {
@@ -173,6 +193,9 @@ export class ToneMusicScene {
    * Throws if loading fails.
    */
   public async scheduleQuantizedPlayback() {
+    Tone.Transport.bpm.value = 101;
+    Tone.Transport.timeSignature = [3, 4];
+
     await this.load();
     this.stop();
     this.scheduledIds = [];
