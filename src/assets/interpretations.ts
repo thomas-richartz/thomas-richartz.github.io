@@ -1,14 +1,14 @@
 export const categoryInterpretations: Record<string, string> = {
-  "3 Monde (2018)": "Lorem Ipsum",
-  "32 Denkmäler (1993-1999)": "Lorem Ipsum",
-  "Africa-Europa (2016)": "Lorem Ipsum",
-  "Ametat (2020)": "Lorem Ipsum",
-  "Auswahl 1 (1995-2008)": "Lorem Ipsum",
-  "Auswahl 2 (2008-2013)": "Lorem Ipsum",
-  "Bilder (1995-2008)": "Lorem Ipsum",
-  "Wege aus dem Ghetto (2016)": "Lorem Ipsum",
-  "Dovcenko2 (2022)": "Lorem Ipsum",
-  "CORONA-ART (2020)": "Lorem Ipsum",
+  "3 Monde (2018)": "",
+  "32 Denkmäler (1993-1999)": "",
+  "Africa-Europa (2016)": "",
+  "Ametat (2020)": "",
+  "Auswahl 1 (1995-2008)": "",
+  "Auswahl 2 (2008-2013)": "",
+  "Bilder (1995-2008)": "",
+  "Wege aus dem Ghetto (2016)": "",
+  "Dovcenko2 (2022)": "",
+  "CORONA-ART (2020)": "",
   "Büro (2019)":
     "Diese Arbeit ist mehr als nur eine nostalgische Reminiszenz an ein vergangenes Bürozeitalter. Sie ist eine vielschichtige Kritik an institutionalisierten Abläufen, an konservierten Strukturen und an einer Gesellschaft, die sich zu sehr auf das Bekannte verlässt. Das deformierte Möbelstück wird zur Skulptur eines Systems im Niedergang – und zur Projektionsfläche für eine Transformation, wie sie Beuys forderte: Durch künstlerisches Denken hin zu mehr Freiheit und Eigenverantwortung.",
   "Wille und Vorstellung (2018)": "",
@@ -28,6 +28,5 @@ export const categoryInterpretations: Record<string, string> = {
 
 export const imageInterpretations: Record<string, string> = {
   // key: filename (or a unique image key)
-  "3-monde-2018/3-monde-1.jpg.webp": "Image interpretation for this image...",
-  // ...
+  "3-monde-2018/3-monde-1.jpg.webp": "...",
 };

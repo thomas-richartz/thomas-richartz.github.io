@@ -231,7 +231,8 @@
     border-radius: 20px;
     width: 40px;
     height: 40px;
-    font-size: 24px;
+    font-size: 11px;
+    line-height: 1;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
