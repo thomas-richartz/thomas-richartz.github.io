@@ -53,6 +53,7 @@ export const RandomPictureGridView = ({ images }: ViewProps) => {
               alt={image.title}
               title={image.title}
               src={`/assets/images/${image.filename}`}
+              category={image.cat}
               nextImage={showNextImage}
               prevImage={showPrevImage}
               onClose={handleClose}
@@ -69,6 +70,7 @@ export const RandomPictureGridView = ({ images }: ViewProps) => {
           <IntenseImage
             alt={memoImages[showIndex].title}
             title={memoImages[showIndex].title}
+            category={memoImages[showIndex].cat}
             src={`assets/images/${memoImages[showIndex].filename}`}
             nextImage={showNextImage}
             prevImage={showPrevImage}

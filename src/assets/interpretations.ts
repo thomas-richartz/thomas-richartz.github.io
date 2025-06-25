@@ -1,4 +1,4 @@
-export const categoryIntepretations: Record<string, string> = {
+export const categoryInterpretations: Record<string, string> = {
   "3 Monde (2018)": "",
   "32 Denkmäler (1993-1999)": "",
   "Africa-Europa (2016)": "",
@@ -24,4 +24,9 @@ export const categoryIntepretations: Record<string, string> = {
   "Dystopie (2011)": "",
   "Baudelaire (2009-2012)": "",
   "LA BELLE ET LA BETE (2009)": "",
+};
+
+export const imageInterpretations: Record<string, string> = {
+  // key: filename (or a unique image key)
+  "3-monde-2018/3-monde-1.jpg.webp": "...",
 };

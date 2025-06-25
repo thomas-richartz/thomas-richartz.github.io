@@ -1,6 +1,7 @@
 import { useDrag } from "@use-gesture/react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./IntenseImage.module.css";
+import { categoryInterpretations, imageInterpretations } from "@/assets/interpretations";
 
 interface IIntenseImage {
   nextImage: () => void;
@@ -8,15 +9,26 @@ interface IIntenseImage {
   alt: string;
   src: string;
   title: string;
+  category?: string;
   onClose?: () => void;
   isOpen?: boolean;
 }
 
-export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, isOpen = false }: IIntenseImage) => {
+export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category = "", onClose, isOpen = false }: IIntenseImage) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
-  const hasFullscreenSupport = typeof document !== "undefined" && !!document.fullscreenEnabled;
+
+  const categoryInterpretation = categoryInterpretations[category];
+  const imageKey = src.replace(/^.*assets\/images\//, "");
+  const imageInterpretation = imageInterpretations[imageKey];
+  const hasInterpretation = !!(categoryInterpretation || imageInterpretation);
+
+  const [showInterpretation, setShowInterpretation] = useState(hasInterpretation);
+
+  useEffect(() => {
+    setShowInterpretation(hasInterpretation);
+  }, [hasInterpretation, src, title]);
 
   const bind = useDrag(
     ({ last, movement: [mx], velocity: [vx] }) => {
@@ -47,11 +59,11 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
     [isOpen, nextImage, prevImage, onClose],
   );
 
-  // Listen for fullscreen changes to update state
+  const hasFullscreenSupport = typeof document !== "undefined" && !!document.fullscreenEnabled;
+
   useEffect(() => {
     const fsListener = () => {
       setIsFullscreen(!!document.fullscreenElement);
-      // If exited fullscreen via ESC, also close overlay
       if (!document.fullscreenElement && isFullscreen && onClose) onClose();
     };
     document.addEventListener("fullscreenchange", fsListener);
@@ -60,7 +72,6 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
     };
   }, [isFullscreen, onClose]);
 
-  // Scroll lock and handle keyboard
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add(styles.noScroll);
@@ -80,14 +91,11 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
     if (hasFullscreenSupport && overlayRef.current && !document.fullscreenElement) {
       overlayRef.current
         .requestFullscreen?.()
-        .then(() => {
-          setIsFullscreen(true);
-        })
+        .then(() => setIsFullscreen(true))
         .catch(() => {});
     }
   };
 
-  // Close & exit fullscreen if needed
   const handleClose = (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
     if (hasFullscreenSupport && document.fullscreenElement) {
@@ -135,92 +143,91 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
               e.stopPropagation();
             }}
           />
-          {/* <div className={styles.titleOverlay}>{title}</div> */}
-          <button
-            className={styles.closeButton}
-            onClick={handleClose}
-            aria-label="Close"
-            style={{
-              position: "absolute",
-              top: 20,
-              right: 20,
-              background: "rgba(0,0,0,0.5)",
-              color: "rgba(169,169,169,0.5)",
-              border: "none",
-              borderRadius: 20,
-              width: 40,
-              height: 40,
-              fontSize: 24,
-              cursor: "pointer",
-              zIndex: 2,
-              verticalAlign: "middle",
-              display: isFullscreen ? "none" : "inline-flex",
-            }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-            </svg>
-          </button>
-          {hasFullscreenSupport && (
-            <button
-              className={styles.fullscreenButton}
-              onClick={handleRequestFullscreen}
-              aria-label="Show fullscreen"
-              style={{
-                position: "absolute",
-                top: 20,
-                right: 70,
-                background: "rgba(0,0,0,0.5)",
-                color: "rgba(169,169,169,0.5)",
-                border: "none",
-                borderRadius: 20,
-                width: 40,
-                height: 40,
-                fontSize: 24,
-                cursor: "pointer",
-                zIndex: 2,
-                display: isFullscreen ? "none" : "inline-block",
-                alignItems: "center",
-                verticalAlign: "middle",
-                justifyContent: "center",
-              }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" style={{ width: 24, height: 24 }}>
-                {/* <!-- Top-left --> */}
-                <path
-                  d="M4 9V5
-                       Q4 4 5 4
-                       H9"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* <!-- Top-right --> */}
-                <path
-                  d="M15 4h4
-                       Q20 4 20 5
-                       v4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* <!-- Bottom-right --> */}
-                <path
-                  d="M20 15v4
-                       Q20 20 19 20
-                       h-4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* <!-- Bottom-left --> */}
-                <path
-                  d="M9 20H5
-                       Q4 20 4 19
-                       v-4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+          {/* Flex row for action icons */}
+          <div className={styles.iconRow}>
+            {/* INTERPRETATION ICON & POPOVER */}
+            {hasInterpretation && (
+              <div className={styles.interpretationIconWrap}>
+                <button
+                  className={styles.interpretationButton}
+                  aria-label="Show interpretation"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setShowInterpretation((v) => !v);
+                  }}
+                  style={{
+                    display: isFullscreen ? "none" : "inline-flex",
+                  }}
+                >
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <circle cx="12" cy="8" r="1" />
+                  </svg>
+                </button>
+                {showInterpretation && (
+                  <div
+                    className={styles.interpretationPopover}
+                    style={{
+                      display: isFullscreen ? "none" : "flex",
+                    }}
+                  >
+                    {categoryInterpretation && (
+                      <div>
+                        <div style={{ fontWeight: "bold", marginBottom: 4 }}>{category}</div>
+                        <div style={{ marginBottom: imageInterpretation ? 12 : 0 }}>{categoryInterpretation}</div>
+                      </div>
+                    )}
+                    {imageInterpretation && (
+                      <div>
+                        <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+                        <div>{imageInterpretation}</div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+            {/* FULLSCREEN BUTTON */}
+            {hasFullscreenSupport && (
+              <button
+                className={styles.fullscreenButton}
+                onClick={handleRequestFullscreen}
+                aria-label="Show fullscreen"
+                type="button"
+                style={{ display: isFullscreen ? "none" : "inline-flex" }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  style={{ width: 24, height: 24 }}
+                >
+                  <path d="M4 9V5 Q4 4 5 4 H9" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M15 4h4 Q20 4 20 5 v4" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M20 15v4 Q20 20 19 20 h-4" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M9 20H5 Q4 20 4 19 v-4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            )}
+            <button className={styles.closeButton} onClick={handleClose} aria-label="Close" type="button" style={{ display: isFullscreen ? "none" : "block" }}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
             </button>
-          )}
+          </div>
         </div>
         <button
           className={styles.prevButton}
@@ -229,6 +236,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
             prevImage();
           }}
           aria-label="Previous"
+          type="button"
           style={{ position: "absolute", left: 10, top: "50%" }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FF9999" strokeWidth="1">
@@ -242,6 +250,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
             nextImage();
           }}
           aria-label="Next"
+          type="button"
           style={{ position: "absolute", right: 10, top: "50%" }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#FF9999" strokeWidth="1">

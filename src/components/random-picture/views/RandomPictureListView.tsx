@@ -45,6 +45,7 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
               <IntenseImage
                 alt={image.title}
                 title={image.title}
+                category={image.cat}
                 src={`/assets/images/${image.filename}`}
                 nextImage={showNextImage}
                 prevImage={showPrevImage}
@@ -61,6 +62,7 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
         <IntenseImage
           alt={memoImages[showIndex].title}
           title={memoImages[showIndex].title}
+          category={memoImages[showIndex].cat}
           src={`/assets/images/${memoImages[showIndex].filename}`}
           nextImage={showNextImage}
           prevImage={showPrevImage}
