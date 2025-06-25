@@ -13,7 +13,6 @@ const ToneMusicSystem: React.FC<Props> = ({ play, blocks, verbose, onLoadingChan
   const sceneRef = useRef<ToneMusicScene | null>(null);
   const [loading, setLoading] = useState(false);
 
-  // Single effect: handles both play and block changes
   useEffect(() => {
     let cancelled = false;
 

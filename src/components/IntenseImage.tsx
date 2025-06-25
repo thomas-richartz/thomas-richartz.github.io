@@ -191,32 +191,32 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
                   d="M4 9V5
                        Q4 4 5 4
                        H9"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 {/* <!-- Top-right --> */}
                 <path
                   d="M15 4h4
                        Q20 4 20 5
                        v4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 {/* <!-- Bottom-right --> */}
                 <path
                   d="M20 15v4
                        Q20 20 19 20
                        h-4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
                 {/* <!-- Bottom-left --> */}
                 <path
                   d="M9 20H5
                        Q4 20 4 19
                        v-4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </button>
