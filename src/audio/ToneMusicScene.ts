@@ -193,6 +193,9 @@ export class ToneMusicScene {
    * Throws if loading fails.
    */
   public async scheduleQuantizedPlayback() {
+    Tone.Transport.bpm.value = 101;
+    Tone.Transport.timeSignature = [3, 4];
+
     await this.load();
     this.stop();
     this.scheduledIds = [];
