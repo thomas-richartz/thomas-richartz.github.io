@@ -12,82 +12,53 @@ interface Props {
 const ToneMusicSystem: React.FC<Props> = ({ play, blocks, verbose, onLoadingChange, fadeDuration = 2 }) => {
   const sceneRef = useRef<ToneMusicScene | null>(null);
   const [loading, setLoading] = useState(false);
-  const blocksRef = useRef<FileSoundBlock[]>(blocks);
 
-  // Fade out and stop old scene, then replace
-  async function fadeOutAndStopOldScene(current: ToneMusicScene | null, fadeDuration: number) {
-    if (current) {
-      if (verbose) console.log("Fading out old scene");
-      await current.fadeOut?.(fadeDuration);
-      current.stop();
-    }
-  }
-
-  // Handle scene switch (blocks change)
+  // Single effect: handles both play and block changes
   useEffect(() => {
     let cancelled = false;
-    blocksRef.current = blocks;
 
     const switchScene = async () => {
-      setLoading(true);
-      if (onLoadingChange) onLoadingChange(true);
-
       if (sceneRef.current) {
-        await fadeOutAndStopOldScene(sceneRef.current, fadeDuration);
+        if (verbose) console.log("Fading out old scene");
+        await sceneRef.current.fadeOut?.(fadeDuration);
+        sceneRef.current.stop();
         sceneRef.current = null;
       }
 
-      if (!play) {
+      // Only switch/create scene if playing and blocks present
+      if (play && blocks.length > 0) {
+        setLoading(true);
+        if (onLoadingChange) onLoadingChange(true);
+
+        const scene = new ToneMusicScene(blocks);
+        sceneRef.current = scene;
+        await scene.load();
+        if (cancelled) return;
+        await scene.fadeIn?.(fadeDuration);
+        scene.scheduleQuantizedPlayback();
+
         setLoading(false);
         if (onLoadingChange) onLoadingChange(false);
-        return;
+        if (verbose) console.log("Scene switched and faded in");
+      } else {
+        setLoading(false);
+        if (onLoadingChange) onLoadingChange(false);
+        if (verbose) console.log("Scene stopped (not playing or no blocks)");
       }
-
-      const scene = new ToneMusicScene(blocksRef.current);
-      sceneRef.current = scene;
-      await scene.load();
-      if (cancelled) return;
-      await scene.fadeIn?.(fadeDuration);
-      scene.scheduleQuantizedPlayback();
-      setLoading(false);
-      if (onLoadingChange) onLoadingChange(false);
-      if (verbose) console.log("Scene switched and faded in");
     };
 
     switchScene();
 
     return () => {
       cancelled = true;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [blocks]);
-
-  // Handle play/pause transitions
-  useEffect(() => {
-    let cancelled = false;
-
-    const handlePlayPause = async () => {
-      if (!play) {
-        if (sceneRef.current) {
-          await sceneRef.current.fadeOut?.(fadeDuration);
-          sceneRef.current.stop();
-        }
-        setLoading(false);
-        if (onLoadingChange) onLoadingChange(false);
-        if (verbose) console.log("Scene stopped and faded out");
-        return;
+      // Clean up scene on unmount
+      if (sceneRef.current) {
+        sceneRef.current.stop();
+        sceneRef.current = null;
       }
-      // Already handled by the blocks effect if blocks change
     };
-
-    handlePlayPause();
-
-    return () => {
-      cancelled = true;
-    };
-    // Only depend on play, not blocks (blocks handled above)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [play]);
+    // Depend on both play and blocks
+  }, [play, blocks, fadeDuration, onLoadingChange, verbose]);
 
   return null;
 };

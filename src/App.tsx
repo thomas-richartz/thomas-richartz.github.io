@@ -43,14 +43,14 @@ function App() {
     }
     setIsPlaying((prev) => !prev);
     // If turning OFF music, fade out and stop scene
-    if (isPlaying && currentSceneRef.current) {
-      await currentSceneRef.current.fadeOut?.(2);
-      currentSceneRef.current.stop();
-    }
-    // If turning ON, fade in current scene (if any)
-    if (!isPlaying && currentSceneRef.current) {
-      await currentSceneRef.current.fadeIn?.(2);
-    }
+    // if (isPlaying && currentSceneRef.current) {
+    //   await currentSceneRef.current.fadeOut?.(2);
+    //   currentSceneRef.current.stop();
+    // }
+    // // If turning ON, fade in current scene (if any)
+    // if (!isPlaying && currentSceneRef.current) {
+    //   await currentSceneRef.current.fadeIn?.(2);
+    // }
   }, [isPlaying]);
 
   useEffect(() => {

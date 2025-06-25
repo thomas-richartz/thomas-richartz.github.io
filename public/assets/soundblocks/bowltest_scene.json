@@ -5,11 +5,14 @@
     "reverb": true,
     "volume": 0.4,
     "loop": true,
-    "loopStart": 90.0,
-    "loopEnd": 140.0,
-    "playbackRate": 0.5,
-    "duration": 1800,
-    "reverse": true
+    "loopStart": 60.0,
+    "loopEnd": 91.0,
+    "playbackRate": 1.5,
+    "delay": true,
+    "delayTime": "4n",
+    "delayFeedback": 0.8,
+    "duration": 900,
+    "reverse": false
   },
   {
     "name": "Intro 2",
