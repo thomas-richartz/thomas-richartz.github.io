@@ -1,6 +1,7 @@
 import { useDrag } from "@use-gesture/react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./IntenseImage.module.css";
+import { categoryInterpretations, imageInterpretations } from "@/assets/interpretations";
 
 interface IIntenseImage {
   nextImage: () => void;
@@ -8,15 +9,31 @@ interface IIntenseImage {
   alt: string;
   src: string;
   title: string;
+  category?: string;
   onClose?: () => void;
   isOpen?: boolean;
 }
 
-export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, isOpen = false }: IIntenseImage) => {
+export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category = "", onClose, isOpen = false }: IIntenseImage) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
   const hasFullscreenSupport = typeof document !== "undefined" && !!document.fullscreenEnabled;
+  const categoryInterpretation = categoryInterpretations[category];
+  // Extract filename key for image interpretation, e.g. "3-monde-2018/3-monde-1.jpg.webp"
+  const imageKey = src.replace(/^.*assets\/images\//, "");
+  const imageInterpretation = imageInterpretations[imageKey];
+
+  const hasInterpretation = !!(categoryInterpretation || imageInterpretation);
+  // const hasInterpretation = true;
+  const [showInterpretation, setShowInterpretation] = useState(true);
+
+  console.log(title);
+  console.log(categoryInterpretations[title]);
+
+  useEffect(() => {
+    setShowInterpretation(hasInterpretation);
+  }, [hasInterpretation, src, title]);
 
   const bind = useDrag(
     ({ last, movement: [mx], velocity: [vx] }) => {
@@ -161,6 +178,84 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, onClose, i
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
             </svg>
           </button>
+
+          {/* INTERPRETATION ICON & POPOVER */}
+          {/* INTERPRETATION ICON & POPOVER */}
+          {hasInterpretation && (
+            <div
+              className={styles.interpretationIconWrap}
+              style={{
+                position: "absolute",
+                top: 20,
+                right: 120,
+                zIndex: 3,
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <button
+                className={styles.interpretationButton}
+                aria-label="Show interpretation"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowInterpretation((v) => !v);
+                }}
+                style={{
+                  background: "rgba(0,0,0,0.5)",
+                  color: "#ffd700",
+                  border: "none",
+                  borderRadius: 20,
+                  width: 40,
+                  height: 40,
+                  fontSize: 22,
+                  cursor: "pointer",
+                  marginRight: 8,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <circle cx="12" cy="8" r="1" />
+                </svg>
+              </button>
+              {showInterpretation && (
+                <div
+                  className={styles.interpretationPopover}
+                  style={{
+                    position: "absolute",
+                    top: 50,
+                    right: 0,
+                    minWidth: 220,
+                    maxWidth: 320,
+                    background: "rgba(30,30,30,0.98)",
+                    color: "#fff",
+                    borderRadius: 12,
+                    boxShadow: "0 2px 16px rgba(0,0,0,0.3)",
+                    padding: "1em",
+                    fontSize: "1em",
+                    zIndex: 10,
+                  }}
+                >
+                  {categoryInterpretation && (
+                    <>
+                      <div style={{ fontWeight: "bold", marginBottom: 4 }}>Kategorie:</div>
+                      <div style={{ marginBottom: imageInterpretation ? 12 : 0 }}>{categoryInterpretation}</div>
+                    </>
+                  )}
+                  {imageInterpretation && (
+                    <>
+                      <div style={{ fontWeight: "bold", marginBottom: 4 }}>Bild:</div>
+                      <div>{imageInterpretation}</div>
+                    </>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
+
           {hasFullscreenSupport && (
             <button
               className={styles.fullscreenButton}
