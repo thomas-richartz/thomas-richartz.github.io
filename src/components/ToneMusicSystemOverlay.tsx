@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import styles from "@/components/ToneMusicSystemOverlay.module.css";
+
 import { FileSoundBlock } from "@/audio/ToneMusicScene";
 
 export type ToneMusicOverlayChangeHandler = (blocks: FileSoundBlock[], changedIndex?: number, changedParam?: keyof FileSoundBlock, value?: any) => void;
@@ -21,144 +23,148 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ blocks, onChange, o
     onChange(updated, idx, changedParam, (changes as any)[changedParam]);
   };
 
+  const handleSave = () => {
+    const blob = new Blob([JSON.stringify(localBlocks, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "soundblocks.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(0,0,0,0.8)",
-        color: "#fff",
-        zIndex: 9999,
-        overflowY: "auto",
-      }}
-    >
-      <button style={{ position: "absolute", top: 12, right: 12 }} onClick={onClose}>
+    <div className={styles.overlay}>
+      <button className={styles.closeButton} onClick={onClose}>
         Close
       </button>
-      <h2 style={{ textAlign: "center" }}>Audio Controls</h2>
+      <h2 className={styles.heading}>Audio Controls</h2>
       {localBlocks.map((block, idx) => (
-        <div key={block.name} style={{ margin: 20, padding: 20, background: "#222", borderRadius: 10 }}>
-          <h4>{block.name}</h4>
-          {/* Volume */}
-          <label>
-            Volume: {block.volume}
-            <input
-              type="range"
-              min={0}
-              max={1}
-              step={0.01}
-              value={block.volume}
-              onChange={(e) => handleBlockChange(idx, { volume: parseFloat(e.target.value) })}
-            />
-          </label>
-          <br />
-          {/* Pan */}
-          <label>
-            Pan: {block.pan ?? 0}
-            <input
-              type="range"
-              min={-1}
-              max={1}
-              step={0.01}
-              value={block.pan ?? 0}
-              onChange={(e) => handleBlockChange(idx, { pan: parseFloat(e.target.value) })}
-            />
-          </label>
-          <br />
-          {/* Playback Rate */}
-          <label>
-            Playback Rate: {block.playbackRate ?? 1}
-            <input
-              type="range"
-              min={0.2}
-              max={2}
-              step={0.01}
-              value={block.playbackRate ?? 1}
-              onChange={(e) => handleBlockChange(idx, { playbackRate: parseFloat(e.target.value) })}
-            />
-          </label>
-          <br />
-          {/* Loop */}
-          <label>
-            Loop:
-            <input type="checkbox" checked={!!block.loop} onChange={(e) => handleBlockChange(idx, { loop: e.target.checked })} />
-          </label>
-          <br />
-          {/* Loop Start/End */}
-          <label>
-            Loop Start: {block.loopStart ?? ""}
-            <input
-              type="number"
-              min={0}
-              step={0.01}
-              value={block.loopStart ?? ""}
-              onChange={(e) => handleBlockChange(idx, { loopStart: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
-            />
-          </label>
-          <label>
-            Loop End: {block.loopEnd ?? ""}
-            <input
-              type="number"
-              min={0}
-              step={0.01}
-              value={block.loopEnd ?? ""}
-              onChange={(e) => handleBlockChange(idx, { loopEnd: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
-            />
-          </label>
-          <br />
-          {/* Quantize */}
-          <label>
-            Quantize:
-            <select value={block.quantize ?? ""} onChange={(e) => handleBlockChange(idx, { quantize: e.target.value })}>
-              <option value="">(none)</option>
-              {quantizeOptions.map((q) => (
-                <option key={q} value={q}>
-                  {q}
-                </option>
-              ))}
-            </select>
-          </label>
-          <br />
-          {/* Delay/FX */}
-          <label>
-            Delay:
-            <input type="checkbox" checked={!!block.delay} onChange={(e) => handleBlockChange(idx, { delay: e.target.checked })} />
-          </label>
-          <label>
-            Delay Time:
-            <input
-              type="text"
-              value={block.delayTime ?? ""}
-              placeholder="e.g. 4n"
-              onChange={(e) => handleBlockChange(idx, { delayTime: e.target.value })}
-              style={{ width: "4em" }}
-            />
-          </label>
-          <label>
-            Delay Feedback:
-            <input
-              type="number"
-              min={0}
-              max={1}
-              step={0.01}
-              value={block.delayFeedback ?? ""}
-              onChange={(e) => handleBlockChange(idx, { delayFeedback: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
-            />
-          </label>
-          <br />
-          {/* Reverb */}
-          <label>
-            Reverb:
-            <input type="checkbox" checked={!!block.reverb} onChange={(e) => handleBlockChange(idx, { reverb: e.target.checked })} />
-          </label>
-          <br />
-          {/* Reverse */}
-          <label>
-            Reverse:
-            <input type="checkbox" checked={!!block.reverse} onChange={(e) => handleBlockChange(idx, { reverse: e.target.checked })} />
-          </label>
+        <div key={block.name} className={styles.card}>
+          <h4 className={styles.blockName}>{block.name}</h4>
+          <div className={styles.propertyGrid}>
+            {/* Volume */}
+            <div className={styles.label}>Volume:</div>
+            <div className={styles.value}>
+              <input
+                type="range"
+                min={0}
+                max={1}
+                step={0.01}
+                value={block.volume}
+                onChange={(e) => handleBlockChange(idx, { volume: parseFloat(e.target.value) })}
+              />{" "}
+              {block.volume}
+            </div>
+            {/* Pan */}
+            <div className={styles.label}>Pan:</div>
+            <div className={styles.value}>
+              <input
+                type="range"
+                min={-1}
+                max={1}
+                step={0.01}
+                value={block.pan ?? 0}
+                onChange={(e) => handleBlockChange(idx, { pan: parseFloat(e.target.value) })}
+              />{" "}
+              {block.pan ?? 0}
+            </div>
+            {/* Playback Rate */}
+            <div className={styles.label}>Playback Rate:</div>
+            <div className={styles.value}>
+              <input
+                type="range"
+                min={0.2}
+                max={2}
+                step={0.01}
+                value={block.playbackRate ?? 1}
+                onChange={(e) => handleBlockChange(idx, { playbackRate: parseFloat(e.target.value) })}
+              />{" "}
+              {block.playbackRate ?? 1}
+            </div>
+            {/* Loop */}
+            <div className={styles.label}>Loop:</div>
+            <div className={styles.value}>
+              <input type="checkbox" checked={!!block.loop} onChange={(e) => handleBlockChange(idx, { loop: e.target.checked })} />
+            </div>
+            {/* Loop Start */}
+            <div className={styles.label}>Loop Start:</div>
+            <div className={styles.value}>
+              <input
+                type="number"
+                min={0}
+                step={0.01}
+                value={block.loopStart ?? ""}
+                onChange={(e) => handleBlockChange(idx, { loopStart: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
+              />
+            </div>
+            {/* Loop End */}
+            <div className={styles.label}>Loop End:</div>
+            <div className={styles.value}>
+              <input
+                type="number"
+                min={0}
+                step={0.01}
+                value={block.loopEnd ?? ""}
+                onChange={(e) => handleBlockChange(idx, { loopEnd: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
+              />
+            </div>
+            {/* Quantize */}
+            <div className={styles.label}>Quantize:</div>
+            <div className={styles.value}>
+              <select value={block.quantize ?? ""} onChange={(e) => handleBlockChange(idx, { quantize: e.target.value })} style={{ minWidth: 80 }}>
+                <option value="">(none)</option>
+                {quantizeOptions.map((q) => (
+                  <option key={q} value={q}>
+                    {q}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* Delay */}
+            <div className={styles.label}>Delay:</div>
+            <div className={styles.value}>
+              <input type="checkbox" checked={!!block.delay} onChange={(e) => handleBlockChange(idx, { delay: e.target.checked })} />
+            </div>
+            {/* Delay Time */}
+            <div className={styles.label}>Delay Time:</div>
+            <div className={styles.value}>
+              <input
+                type="text"
+                value={block.delayTime ?? ""}
+                placeholder="e.g. 4n"
+                onChange={(e) => handleBlockChange(idx, { delayTime: e.target.value })}
+                style={{ width: "4em" }}
+              />
+            </div>
+            {/* Delay Feedback */}
+            <div className={styles.label}>Delay Feedback:</div>
+            <div className={styles.value}>
+              <input
+                type="number"
+                min={0}
+                max={1}
+                step={0.01}
+                value={block.delayFeedback ?? ""}
+                onChange={(e) => handleBlockChange(idx, { delayFeedback: e.target.value === "" ? undefined : parseFloat(e.target.value) })}
+              />
+            </div>
+            {/* Reverb */}
+            <div className={styles.label}>Reverb:</div>
+            <div className={styles.value}>
+              <input type="checkbox" checked={!!block.reverb} onChange={(e) => handleBlockChange(idx, { reverb: e.target.checked })} />
+            </div>
+            {/* Reverse */}
+            <div className={styles.label}>Reverse:</div>
+            <div className={styles.value}>
+              <input type="checkbox" checked={!!block.reverse} onChange={(e) => handleBlockChange(idx, { reverse: e.target.checked })} />
+            </div>
+          </div>
         </div>
       ))}
+      <button className={styles.saveButton} onClick={handleSave}>
+        Save as JSON
+      </button>
     </div>
   );
 };

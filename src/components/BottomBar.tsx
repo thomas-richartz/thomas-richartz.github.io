@@ -22,6 +22,8 @@ export const BottomBar = ({ onNavigate, selectedScreen, onSearch, onMusicToggle,
   const isGalleryScreen = selectedScreen === Screen.GALLERY;
   const parentScreen = isGalleryScreen ? Screen.LANDING : Screen.GALLERY;
 
+  const editMode = false;
+
   return (
     <div className={styles.bottomBar}>
       {/* Search Icon */}
@@ -39,7 +41,7 @@ export const BottomBar = ({ onNavigate, selectedScreen, onSearch, onMusicToggle,
           <SpeakerOffIcon color="#cde" />
         )}
       </button>
-      {isPlaying && (
+      {isPlaying && editMode && (
         <button className={`${styles.button} ${styles.settingsButton} ${styles.footerText}`} onClick={() => setShowToneOverlay(true)} style={{ margin: 2 }}>
           Audio Settings
         </button>

@@ -10,10 +10,10 @@ import styles from "@/App.module.css";
 import { BottomBar } from "@/components/BottomBar";
 import { ContactScreen } from "@/screens/ContactScreen";
 import { FileSoundBlock, ToneMusicScene } from "@/audio/ToneMusicScene";
-import ToneMusicSystem from "./components/ToneMusicSystem";
+import ToneMusicSystem from "@/components/ToneMusicSystem";
 import { useRef } from "react";
-import ToneMusicOverlay from "./components/ToneMusicSystemOverlay";
-import { ToneMusicOverlayChangeHandler } from "./components/ToneMusicSystemOverlay";
+import ToneMusicOverlay from "@/components/ToneMusicSystemOverlay";
+import { ToneMusicOverlayChangeHandler } from "@/components/ToneMusicSystemOverlay";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -83,9 +83,11 @@ function App() {
     setSelectedScreen(screen);
     // Fetch blocks for the new screen
     const urls = [
+      "/assets/soundblocks/bowltest_scene.json",
       "/assets/soundblocks/kalimba_piano_scene.json",
       "/assets/soundblocks/kalimba_piano_scene1.json",
       "/assets/soundblocks/kalimba_piano_scene3.json",
+      "/assets/soundblocks/kalimba_piano_scene4.json",
     ];
     let url = urls[Math.floor(Math.random() * urls.length)];
     // console.log(screen);
