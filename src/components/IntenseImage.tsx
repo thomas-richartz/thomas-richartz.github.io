@@ -24,7 +24,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
   const imageInterpretation = imageInterpretations[imageKey];
   const hasInterpretation = !!(categoryInterpretation || imageInterpretation);
 
-  const [showInterpretation, setShowInterpretation] = useState(hasInterpretation);
+  const [showInterpretation, setShowInterpretation] = useState(false);
 
   useEffect(() => {
     setShowInterpretation(hasInterpretation);
