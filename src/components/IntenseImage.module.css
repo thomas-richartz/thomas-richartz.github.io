@@ -181,8 +181,7 @@
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
-    border: 1px solid #fff;
-    box-shadow: 0 8px 40px #000a;
+    border: 1px solid #333;
     background: #111;
     display: block;
     border-radius: 3px;
