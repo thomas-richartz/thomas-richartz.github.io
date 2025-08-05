@@ -65,7 +65,7 @@
 
 .title {
     color: #fff;
-    background: rgba(30, 30, 30, 0.6);
+    /* background: rgba(30, 30, 30, 0.6); */
     padding: 4px 16px;
     border-radius: 6px;
     font-size: 1.05rem;
@@ -273,6 +273,12 @@
     z-index: 10;
     animation: fadeIn 0.2s;
     word-break: break-word;
+    opacity: 0.7;
+}
+
+.interpretationPopover:focus,
+.interpretationPopover:hover {
+    opacity: 1;
 }
 
 @media (max-width: 600px) {
