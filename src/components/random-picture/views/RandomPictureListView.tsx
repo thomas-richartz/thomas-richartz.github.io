@@ -35,9 +35,9 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowUp" && focusedIndex !== null) {
-        setFocusedIndex((prev) => (prev - 1 + memoImages.length) % memoImages.length);
+        setFocusedIndex((prev) => (prev !== null ? (prev - 1 + memoImages.length) % memoImages.length : null));
       } else if (e.key === "ArrowDown" && focusedIndex !== null) {
-        setFocusedIndex((prev) => (prev + 1) % memoImages.length);
+        setFocusedIndex((prev) => (prev !== null ? (prev + 1) % memoImages.length : null));
       }
     };
 
