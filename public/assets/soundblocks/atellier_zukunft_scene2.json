@@ -1,0 +1,32 @@
+[
+  {
+    "name": "az 1",
+    "filePath": "/assets/mp3/atellier-zukunft_01.mp3",
+    "reverb": true,
+    "volume": 0.4,
+    "loop": true,
+    "loopStart": 0.0,
+    "loopEnd": 360.0,
+    "playbackRate": 1.0,
+    "duration": 1800,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.8,
+    "pan": 0.4
+  },
+  {
+    "name": "az 2",
+    "filePath": "/assets/mp3/atellier-zukunft_01.mp3",
+    "volume": 0.7,
+    "loop": true,
+    "loopStart": 20.0,
+    "loopEnd": 360.0,
+    "quantize": "2m",
+    "reverb": true,
+    "delay": true,
+    "delayTime": "8n",
+    "delayFeedback": 0.8,
+    "pan": -0.4,
+    "reverse": true
+  }
+]

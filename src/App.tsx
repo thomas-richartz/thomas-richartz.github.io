@@ -83,22 +83,31 @@ function App() {
     setSelectedScreen(screen);
     // Fetch blocks for the new screen
     const urls = [
-      "/assets/soundblocks/bowltest_scene.json",
-      "/assets/soundblocks/kalimba_piano_scene.json",
-      "/assets/soundblocks/kalimba_piano_scene1.json",
-      "/assets/soundblocks/kalimba_piano_scene3.json",
-      "/assets/soundblocks/kalimba_piano_scene4.json",
+      "/assets/soundblocks/atellier_zukunft_scene.json",
+      "/assets/soundblocks/atellier_zukunft2_scene.json",
+      "/assets/soundblocks/atellier_zukunft3_scene.json",
+      "/assets/soundblocks/atellier_zukunft4_scene.json",
     ];
     let url = urls[Math.floor(Math.random() * urls.length)];
     // console.log(screen);
     // console.log(selectedCat);
     if (screen === Screen.GALLERY && !selectedCat) {
-      url = "/assets/soundblocks/kalimba_piano_scene2.json";
+      // url = "/assets/soundblocks/kalimba_piano_scene2.json";
+      const urls2 = [
+        "/assets/soundblocks/bowltest_scene.json",
+        "/assets/soundblocks/kalimba_piano_scene.json",
+        "/assets/soundblocks/kalimba_piano_scene1.json",
+        "/assets/soundblocks/kalimba_piano_scene3.json",
+        "/assets/soundblocks/kalimba_piano_scene4.json",
+      ];
+      let url = urls2[Math.floor(Math.random() * urls.length)];
     }
     if (screen !== Screen.GALLERY && selectedCat === "Dovcenko2 (2022)") {
       const arsenalUrls = ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"];
       url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
     }
+
+    url = "/assets/soundblocks/atellier_zukunft_scene.json";
 
     // console.log(url);
 
