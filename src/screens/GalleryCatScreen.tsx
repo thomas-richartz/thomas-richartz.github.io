@@ -4,12 +4,10 @@ import { categoryDescriptions } from "@/assets/resurrection";
 import { LazyLoadImage } from "@/components/LazyLoadImage";
 import { LightBoxImage } from "@/components/LightBoxImage";
 import styles from "./GalleryCatScreen.module.css";
+import galleryStyles from "./GalleryScreen.module.css";
+
 import { GalleryImage } from "@/types";
-import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  Cross2Icon,
-} from "@radix-ui/react-icons";
+import { ChevronLeftIcon, ChevronRightIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { useDrag } from "@use-gesture/react";
 
 type GalleryCatScreenProps = {
@@ -17,26 +15,35 @@ type GalleryCatScreenProps = {
   onClick: (cat: string) => void;
 };
 
-export const GalleryCatScreen = ({
-  cat,
-}: GalleryCatScreenProps): JSX.Element => {
+export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element => {
   const [hide, setHide] = useState<boolean>(true);
   const [showImage, setShowImage] = useState<GalleryImage | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
   const images = useMemo(() => {
     const filtered = allImages.filter((image) => image.cat === cat);
-    const remainder = filtered.length % 3;
+    // each keyPiece takes up three spaces
+    // let remainder = filtered.length % 3;
+    // remainder -= filtered.filter((img) => img.keyPiece).length * 2;
+    let totalSpacesNeeded = filtered.length;
 
+    filtered.forEach((img) => {
+      if (img.keyPiece) {
+        totalSpacesNeeded += 2;
+      }
+    });
+
+    let remainder = totalSpacesNeeded % 3;
+
+    if (remainder < 0) remainder = 0;
     if (remainder === 0 || filtered.length === 0) return filtered;
 
     const padCount = 3 - remainder;
-    const padded = [...filtered];
+    let padded = [...filtered];
 
     for (let i = 0; i < padCount; i++) {
       padded.push(filtered[i % filtered.length]);
     }
-
     return padded;
   }, [cat]);
 
@@ -101,29 +108,21 @@ export const GalleryCatScreen = ({
       <div className={styles.galleryCatScreen__introText}>
         <div>
           <strong>{cat}</strong>
-          <div
-            className={`${styles.galleryCatScreen__introTextContent} ${
-              !hide ? styles.galleryCatScreen__introTextContentShow : ""
-            }`}
-          >
-            {desc}
-          </div>
+          <div className={`${styles.galleryCatScreen__introTextContent} ${!hide ? styles.galleryCatScreen__introTextContentShow : ""}`}>{desc}</div>
         </div>
       </div>
 
-      <div
-        className={styles.galleryCatScreen__imageWrapper}
-        onKeyDown={keyDownHandler}
-        tabIndex={0}
-      >
+      <div className={styles.galleryCatScreen__imageWrapper} onKeyDown={keyDownHandler} tabIndex={0}>
         {images.map((image, index) => {
           const isKey = image.keyPiece;
           const itemClass = `${styles.galleryCatScreen__image} ${
             isKey ? styles.galleryCatScreen__imageKeyPiece : ""
-          } ${index % 2 === 0 ? styles.galleryItemEven : styles.galleryItemOdd}`;
+          } ${index % 2 === 0 ? galleryStyles.galleryItemEven : galleryStyles.galleryItemOdd}`;
 
           return (
             <article
+              itemScope
+              itemType="https://schema.org/CreativeWork"
               key={index}
               className={itemClass}
               onClick={() => {
@@ -132,11 +131,7 @@ export const GalleryCatScreen = ({
               }}
             >
               <div className={styles.galleryCatScreen__kenBurnsWrapper}>
-                <LazyLoadImage
-                  alt={image.title}
-                  className={styles.galleryCatScreen__imageImg}
-                  src={`assets/images/${image.filename}`}
-                />
+                <LazyLoadImage alt={image.title} className={styles.galleryCatScreen__imageImg} src={`assets/images/${image.filename}`} />
               </div>
             </article>
           );
@@ -144,14 +139,8 @@ export const GalleryCatScreen = ({
 
         {/* Lightbox for selected image */}
         {showImage && (
-          <div
-            className={styles.galleryCatScreen__lightBoxOverlay}
-            {...bindGesture()}
-          >
-            <button
-              className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonLeft}`}
-              onClick={showPrevImage}
-            >
+          <div className={styles.galleryCatScreen__lightBoxOverlay} {...bindGesture()}>
+            <button className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonLeft}`} onClick={showPrevImage}>
               <ChevronLeftIcon />
             </button>
             <LightBoxImage
@@ -161,15 +150,10 @@ export const GalleryCatScreen = ({
               onClick={() => setShowImage(null)}
             />
             <div className={styles.galleryCatScreen__imageOverlay}>
-              <h2 className={styles.galleryCatScreen__imageTitle}>
-                {showImage.title}
-              </h2>
+              <h2 className={styles.galleryCatScreen__imageTitle}>{showImage.title}</h2>
             </div>
 
-            <button
-              className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonRight}`}
-              onClick={showNextImage}
-            >
+            <button className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonRight}`} onClick={showNextImage}>
               <ChevronRightIcon />
             </button>
             <button

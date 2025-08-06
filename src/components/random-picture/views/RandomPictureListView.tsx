@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { GalleryImage } from "@/types";
 import { IntenseImage } from "@/components/IntenseImage";
 import styles from "./RandomPictureListView.module.css";
@@ -10,10 +10,18 @@ interface IRandomPictureListView {
 export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.Element => {
   const [showIndex, setShowIndex] = useState<number | null>(null);
   const memoImages = useMemo(() => images, [images]);
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   // For grid: open overlay on click
-  const handleImageClick = (index: number) => setShowIndex(index);
-  const handleClose = () => setShowIndex(null);
+  const handleImageClick = (index: number) => {
+    setShowIndex(index);
+    setFocusedIndex(index);
+  };
+
+  const handleClose = () => {
+    setShowIndex(null);
+    setFocusedIndex(null);
+  };
 
   // Overlay navigation
   const showNextImage = useCallback(() => {
@@ -24,6 +32,22 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
     setShowIndex((prev) => (prev !== null ? (prev - 1 + memoImages.length) % memoImages.length : null));
   }, [memoImages.length]);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowUp" && focusedIndex !== null) {
+        setFocusedIndex((prev) => (prev - 1 + memoImages.length) % memoImages.length);
+      } else if (e.key === "ArrowDown" && focusedIndex !== null) {
+        setFocusedIndex((prev) => (prev + 1) % memoImages.length);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [memoImages.length, focusedIndex]);
+
   return (
     <>
       <div className={styles.listImagesWrapper}>
@@ -32,7 +56,7 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
             <div
               key={`${image.title}-${index}`}
               className={styles.imageContainer}
-              tabIndex={0}
+              tabIndex={Number(index)}
               onClick={() => handleImageClick(index)}
               onKeyDown={(e) => {
                 if (e.key === "Enter" || e.key === " ") handleImageClick(index);
@@ -40,8 +64,6 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
               aria-label={`Open image ${image.title}`}
               role="button"
             >
-              {/* <img alt={image.title} title={image.title} src={`/assets/images/${image.filename}`} className={styles.figureKenBurns} loading="lazy" /> */}
-
               <IntenseImage
                 alt={image.title}
                 title={image.title}
@@ -67,7 +89,7 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
           nextImage={showNextImage}
           prevImage={showPrevImage}
           onClose={handleClose}
-          isOpen // always open in overlay
+          isOpen={true} // always open in overlay
         />
       )}
     </>

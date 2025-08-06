@@ -23,10 +23,8 @@ export function renderIntepretation(text: string) {
 function convertMarkdownToHtml(mdText: string): string {
   // Replace bold with HTML strong tag
   mdText = mdText.replace(/\*([^*]+)\*/g, "<strong>$1</strong>");
-
   // Replace single quotes (>) as blockquotes
   mdText = mdText.replace(/> ([^\n]+)/g, "<blockquote>$1</blockquote>");
-
   // Replace double line breaks with <br />
   mdText = mdText.replace(/\n{2}/g, "<br /><br />");
 
@@ -196,7 +194,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
                 </button>
                 {showInterpretation && (
                   <div
-                    className={styles.interpretationPopover}
+                    className={styles.infoPanel}
                     style={{
                       display: isFullscreen ? "none" : "flex",
                     }}
