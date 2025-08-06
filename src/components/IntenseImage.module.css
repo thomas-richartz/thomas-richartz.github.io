@@ -259,13 +259,8 @@
 }
 
 .interpretationPopover {
-    position: absolute;
-    top: 50px;
-    right: 0;
     min-width: 320px;
     max-width: 420px;
-    background: rgba(30, 30, 30, 0.98);
-    color: #fff;
     border-radius: 12px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
     padding: 1em;
@@ -276,23 +271,30 @@
     opacity: 0.7;
 }
 
-.interpretationPopover:focus,
-.interpretationPopover:hover {
-    opacity: 1;
-}
-
 @media (max-width: 600px) {
     .iconRow {
         right: 10px;
         top: 10px;
         gap: 8px;
     }
-    .interpretationPopover {
-        /* min-width: 150px; */
-        padding: 0.7em;
-        font-size: 0.97em;
-    }
 }
 
 .infoPanel {
+    padding: 2rem;
+}
+
+@media (max-width: 600px) {
+    .infoPanel {
+        /* flex-grow: 1; */
+        position: relative;
+        width: 100%;
+        display: block;
+        margin-top: 2rem;
+    }
+    .intense__lightboxImageWrap {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+    }
 }

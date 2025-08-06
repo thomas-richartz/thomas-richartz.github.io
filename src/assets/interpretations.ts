@@ -1,7 +1,7 @@
 export const categoryInterpretations: Record<string, string> = {
   "3 Monde (2018)": "",
   "32 Denkmäler (1993-1999)":
-    "*Material und Form* **Die Verwendung von Ytong-Steinen und Fliesenkleber lässt an rohe, industrielle Materialien denken. Diese Abkehr von luxuriösen Skulpturmaterialien (wie Bronze oder Marmor) verleiht den Werken radikale Einfachheit und unmittelbare Materialienähe. Die geometrischen Formen - Blöcke, Würfel, Quader - suggerieren Stabilität und gleichsam eine ästhetische Schlichtheit, die intuitive Bildwelt öffnet.**",
+    "*Material und Form*  **Die Verwendung von Ytong-Steinen und Fliesenkleber lässt an rohe, industrielle Materialien denken. Diese Abkehr von luxuriösen Skulpturmaterialien (wie Bronze oder Marmor) verleiht den Werken radikale Einfachheit und unmittelbare Materialienähe. Die geometrischen Formen - Blöcke, Würfel, Quader - suggerieren Stabilität und gleichsam eine ästhetische Schlichtheit, die intuitive Bildwelt öffnet.**",
   "Africa-Europa (2016)": "",
   "Ametat (2020)": "",
   "Auswahl 1 (1995-2008)":

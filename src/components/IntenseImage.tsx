@@ -25,8 +25,9 @@ function convertMarkdownToHtml(mdText: string): string {
   mdText = mdText.replace(/\*([^*]+)\*/g, "<strong>$1</strong>");
   // Replace single quotes (>) as blockquotes
   mdText = mdText.replace(/> ([^\n]+)/g, "<blockquote>$1</blockquote>");
-  // Replace double line breaks with <br />
+  // Replace double line breaks and two spaces with <br />
   mdText = mdText.replace(/\n{2}/g, "<br /><br />");
+  mdText = mdText.replace(/\s{2}/g, "<br />");
 
   return mdText;
 }
@@ -43,9 +44,9 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
 
   const [showInterpretation, setShowInterpretation] = useState(false);
 
-  useEffect(() => {
-    setShowInterpretation(hasInterpretation);
-  }, [hasInterpretation, src, title]);
+  // useEffect(() => {
+  //   setShowInterpretation(hasInterpretation);
+  // }, [hasInterpretation, src, title]);
 
   const bind = useDrag(
     ({ last, movement: [mx], velocity: [vx] }) => {
@@ -160,6 +161,28 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
               e.stopPropagation();
             }}
           />
+
+          {showInterpretation && (
+            <div
+              className={styles.infoPanel}
+              style={{
+                display: isFullscreen ? "none" : "flex",
+              }}
+            >
+              {categoryInterpretation && (
+                <div>
+                  <div style={{ fontWeight: "bold", marginBottom: 4 }}>{category}</div>
+                  <div style={{ marginBottom: imageInterpretation ? 12 : 0 }}>{renderIntepretation(categoryInterpretation)}</div>
+                </div>
+              )}
+              {imageInterpretation && (
+                <div>
+                  <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+                  <div>{imageInterpretation}</div>
+                </div>
+              )}
+            </div>
+          )}
           {/* Flex row for action icons */}
           <div className={styles.iconRow}>
             {/* INTERPRETATION ICON & POPOVER */}
@@ -192,27 +215,6 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
                     <circle cx="12" cy="8" r="1" />
                   </svg>
                 </button>
-                {showInterpretation && (
-                  <div
-                    className={styles.infoPanel}
-                    style={{
-                      display: isFullscreen ? "none" : "flex",
-                    }}
-                  >
-                    {categoryInterpretation && (
-                      <div>
-                        <div style={{ fontWeight: "bold", marginBottom: 4 }}>{category}</div>
-                        <div style={{ marginBottom: imageInterpretation ? 12 : 0 }}>{renderIntepretation(categoryInterpretation)}</div>
-                      </div>
-                    )}
-                    {imageInterpretation && (
-                      <div>
-                        <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-                        <div>{imageInterpretation}</div>
-                      </div>
-                    )}
-                  </div>
-                )}
               </div>
             )}
             {/* FULLSCREEN BUTTON */}
