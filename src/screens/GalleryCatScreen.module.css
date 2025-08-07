@@ -314,3 +314,36 @@
     opacity: 1;
     transform: translateY(10px);
 }
+
+.galleryCatScreen__infoButton {
+    background: transparent;
+    border: none;
+    font-size: var(--fs-xl);
+    color: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    z-index: 5;
+}
+
+.galleryCatScreen__infoButton:hover {
+    color: #ccc;
+}
+
+.infoPanel {
+    padding: 2rem;
+    max-width: 40%;
+    transition: all 0.3s ease-in-out;
+}
+
+@media (max-width: 600px) {
+    .infoPanel {
+        /* flex-grow: 1; */
+        position: relative;
+        width: 100%;
+        max-width: unset;
+        display: block;
+        margin-top: 2rem;
+    }
+}

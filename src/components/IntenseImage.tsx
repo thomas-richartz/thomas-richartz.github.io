@@ -2,6 +2,7 @@ import { useDrag } from "@use-gesture/react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./IntenseImage.module.css";
 import { categoryInterpretations, imageInterpretations } from "@/assets/interpretations";
+import { convertMarkdownToHtml } from "@/utils/textUtils";
 
 interface IIntenseImage {
   nextImage: () => void;
@@ -14,22 +15,10 @@ interface IIntenseImage {
   isOpen?: boolean;
 }
 
-export function renderIntepretation(text: string) {
+function renderIntepretation(text: string) {
   const escapedText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
   return <div dangerouslySetInnerHTML={{ __html: convertMarkdownToHtml(escapedText) }} />;
-}
-
-function convertMarkdownToHtml(mdText: string): string {
-  // Replace bold with HTML strong tag
-  mdText = mdText.replace(/\*([^*]+)\*/g, "<strong>$1</strong>");
-  // Replace single quotes (>) as blockquotes
-  mdText = mdText.replace(/> ([^\n]+)/g, "<blockquote>$1</blockquote>");
-  // Replace double line breaks and two spaces with <br />
-  mdText = mdText.replace(/\n{2}/g, "<br /><br />");
-  mdText = mdText.replace(/\s{2}/g, "<br />");
-
-  return mdText;
 }
 
 export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category = "", onClose, isOpen = false }: IIntenseImage) => {
