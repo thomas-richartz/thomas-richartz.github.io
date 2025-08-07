@@ -14,6 +14,7 @@ import ToneMusicSystem from "@/components/ToneMusicSystem";
 import { useRef } from "react";
 import ToneMusicOverlay from "@/components/ToneMusicSystemOverlay";
 import { ToneMusicOverlayChangeHandler } from "@/components/ToneMusicSystemOverlay";
+import CollectionsMicrodata from "@/components/CollectionsMicrodata";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
@@ -162,6 +163,7 @@ function App() {
 
   return (
     <GalleryContextProvider>
+      <CollectionsMicrodata />
       <div tabIndex={0}>
         <main className={styles.warehouseWrap}>
           <>
