@@ -5,20 +5,33 @@ import { LazyLoadImage } from "@/components/LazyLoadImage";
 import { LightBoxImage } from "@/components/LightBoxImage";
 import styles from "./GalleryCatScreen.module.css";
 import galleryStyles from "./GalleryScreen.module.css";
+import { categoryInterpretations, imageInterpretations } from "@/assets/interpretations";
 
 import { GalleryImage } from "@/types";
 import { ChevronLeftIcon, ChevronRightIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { useDrag } from "@use-gesture/react";
+import { convertMarkdownToHtml } from "@/utils/textUtils";
 
 type GalleryCatScreenProps = {
   cat: string;
   onClick: (cat: string) => void;
 };
 
+function renderIntepretation(text: string) {
+  const escapedText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+  return <div dangerouslySetInnerHTML={{ __html: convertMarkdownToHtml(escapedText) }} />;
+}
+
 export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element => {
   const [hide, setHide] = useState<boolean>(true);
   const [showImage, setShowImage] = useState<GalleryImage | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
+
+  const categoryInterpretation = categoryInterpretations[cat];
+  const hasInterpretation = !!categoryInterpretation;
+
+  const [showInterpretation, setShowInterpretation] = useState(false);
 
   const images = useMemo(() => {
     const filtered = allImages.filter((image) => image.cat === cat);
@@ -143,6 +156,27 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             <button className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonLeft}`} onClick={showPrevImage}>
               <ChevronLeftIcon />
             </button>
+            {showInterpretation && (
+              <div
+                className={styles.infoPanel}
+                style={{
+                  display: "flex",
+                }}
+              >
+                {categoryInterpretation && (
+                  <div>
+                    <div style={{ fontWeight: "bold", marginBottom: 4 }}>{cat}</div>
+                    <div style={{ marginBottom: 12 }}>{renderIntepretation(categoryInterpretation)}</div>
+                  </div>
+                )}
+                {/* {imageInterpretation && (
+                  <div>
+                    <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
+                    <div>{imageInterpretation}</div>
+                  </div>
+                )} */}
+              </div>
+            )}
             <LightBoxImage
               alt={showImage.title}
               src={`assets/images/${showImage.filename}`}
@@ -156,6 +190,29 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             <button className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonRight}`} onClick={showNextImage}>
               <ChevronRightIcon />
             </button>
+
+            {/* INTERPRETATION ICON & POPOVER */}
+            {hasInterpretation && (
+              <button
+                className={styles.galleryCatScreen__infoButton}
+                aria-label="Show interpretation"
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowInterpretation((v) => !v);
+                }}
+                style={{
+                  display: "inline-flex",
+                }}
+              >
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <circle cx="12" cy="8" r="1" />
+                </svg>
+              </button>
+            )}
+
             <button
               className={styles.galleryCatScreen__closeButton}
               onClick={() => {
