@@ -9,3 +9,18 @@ export function convertMarkdownToHtml(mdText: string): string {
 
   return mdText;
 }
+
+export function slugify(str) {
+  const removeAccents = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+  return removeAccents(str)
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// export function slugifyUrl(path, title) {
+//   const slug = slugify(title);
+//   return `${path}/${slug}`;
+// }

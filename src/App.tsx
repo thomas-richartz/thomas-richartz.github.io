@@ -14,6 +14,7 @@ import ToneMusicOverlay from "@/components/ToneMusicSystemOverlay";
 import { ToneMusicOverlayChangeHandler } from "@/components/ToneMusicSystemOverlay";
 import CollectionsMicrodata from "@/components/CollectionsMicrodata";
 import styles from "@/App.module.css";
+import { InterpretationsPageScreen } from "@/screens/IntepretationsPageScreen";
 
 function App() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
