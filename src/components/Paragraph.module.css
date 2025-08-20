@@ -1,11 +1,10 @@
-/* Container for the paragraph component with 3D effect */
 .paragraphWindow {
     perspective: 1000px; /* 3D perspective */
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100px;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 9px;
     padding: 20px;
     margin: 20px auto;
@@ -16,25 +15,21 @@
         opacity 0.5s ease;
 }
 
-/* Content inside the paragraph window */
 .paragraphContent {
     transform: rotateX(0deg) rotateY(0deg); /* Default flat position */
     transform-origin: center; /* Pivot for 3D transformations */
     transition:
-        transform 0.5s ease,
+        transform 1.5s ease,
         opacity 0.3s ease; /* Smooth hover effects */
 }
 
-/* Hover effect for the 3D tilt */
-.paragraphWindowHover:global(.paragraphWindow:hover) .paragraphContent {
-    transform: rotateX(10deg) rotateY(-10deg); /* Adjust angles for 3D tilt */
+.paragraphWindow:hover .paragraphContent {
+    transform: rotateX(360deg) rotateY(-0deg); /* Adjust angles for 3D tilt */
     opacity: 1;
 }
 
-/* Paragraph text styling */
 .paragraphText {
-    color: #ccc;
-    /* font-size: 1rem; */
+    color: #999;
     font-size: var(--fs-md);
     line-height: 1.6;
     text-align: center;
@@ -42,20 +37,33 @@
 }
 
 .paragraphLink {
-    color: #777799;
+    color: #ff7733;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-/* Hover state for links */
-.paragraphLinkHover:global(.paragraphLink:hover) {
+.paragraphLink:hover {
     text-decoration: underline;
-    color: var(--text-muted-hover);
+    color: #ff4400;
 }
 
-/* Icon styling for links */
 .ccIcon {
     height: 22px !important;
     margin-left: 3px;
     vertical-align: text-bottom;
+}
+
+.glassCard {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow:
+        0 8px 32px rgba(31, 38, 135, 0.37),
+        0 1 1.95px rgba(31, 38, 135, 0.19);
+}
+
+.glassCard:hover {
+    transform: scale(1.05);
+    box-shadow:
+        0 16px 64px rgba(31, 38, 135, 0.37),
+        0 2 4.5px rgba(31, 38, 135, 0.19);
 }

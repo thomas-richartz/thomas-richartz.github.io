@@ -15,10 +15,22 @@ type ContactScreenProps = {
 export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScreenProps): JSX.Element => {
   const [isHidden, setIsHidden] = useState(true);
   const [isControlsHidden, setIsControlsHidden] = useState(true);
+  const [email, setEmail] = useState<string | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsHidden(false), 800);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    // Generate the mailto URL when the component mounts
+    const generateMailtoUrl = () => {
+      const username = "thomas.richartz";
+      const domain = "gmail.com";
+      setEmail(`mailto:${username}@${domain}`);
+    };
+
+    generateMailtoUrl();
   }, []);
 
   const toggleControls = () => {
@@ -27,26 +39,21 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
 
   return (
     <div className={`${styles.screenContainer} ${isHidden ? styles.hidden : ""}`}>
-      {/*<div className={styles.Controls}>
-        <ToneMusicOverlay />
-      </div>*/}
       {isControlsHidden ? null : (
         <div className={styles.Controls}>
+          {/*Administrative*/}
+          {/* tabs? */}
+          {/*<ToneMusicOverlay />*/}
           <InterpretationsPageScreen onClose={toggleControls} />
         </div>
       )}
-      <Paragraph
-        children={<>Copyright by Thomas Richartz, Mainz. Verantworlich i.S.d.P:</>}
-        links={[
-          {
-            href: "https://thomas-richartz.com",
-            text: "Thomas Richartz",
-          },
-        ]}
-      />
+      <Paragraph>
+        <h2>Contact</h2>
+        <p>Copyright by Thomas Richartz, Mainz.</p>
+        Feel free to reach out to me at {email && <a href={email}>thomas.richartz.com at gmail.com</a>}
+      </Paragraph>
 
       <Paragraph
-        children={<>About</>}
         links={[
           {
             href: "https://thomas-richartz.com",
@@ -59,16 +66,20 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
             imgAlt: "CC",
           },
         ]}
-      />
+      >
+        <h2>About</h2>
+      </Paragraph>
+
       <Paragraph
-        children={<>Videos</>}
         links={[
           {
             href: "https://www.youtube.com/@thomasrichartz6276",
             text: "YouTube",
           },
         ]}
-      />
+      >
+        <h2>Social</h2>
+      </Paragraph>
       <Paragraph
         children={
           <>

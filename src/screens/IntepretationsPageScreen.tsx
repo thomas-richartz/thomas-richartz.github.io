@@ -13,8 +13,11 @@ function mergeInitialWithStored<T extends Record<string, string>>(initial: T, st
 }
 
 export function InterpretationsPageScreen({ onClose }: InterpretationsPageScreenProps) {
-  const storedImageInterpretations = JSON.parse(localStorage.getItem("imageInterpretations")) || {};
-  const storedCategoryInterpretations = JSON.parse(localStorage.getItem("categoryInterpretations")) || {};
+  // const storedImageInterpretations = JSON.parse(localStorage.getItem("imageInterpretations")) || {};
+  // const storedCategoryInterpretations = JSON.parse(localStorage.getItem("categoryInterpretations")) || {};
+
+  const storedImageInterpretations = JSON.parse(localStorage.getItem("imageInterpretations") ?? "{}") || {};
+  const storedCategoryInterpretations = JSON.parse(localStorage.getItem("categoryInterpretations") ?? "{}") || {};
 
   const [imageInterpretations, setImageInterpretations] = useState(() => mergeInitialWithStored(initialImageInterpretations, storedImageInterpretations));
   const [categoryInterpretations, setCategoryInterpretations] = useState(() =>
@@ -35,7 +38,7 @@ export function InterpretationsPageScreen({ onClose }: InterpretationsPageScreen
   return (
     <div style={{ padding: 10 }}>
       <CrossCircledIcon onClick={onClose} style={{ float: "right" }} />
-      <CrudTable title="Category Interpretations" data={categoryInterpretations} onDataChange={setCategoryInterpretations} possibleKeys={allCategoryKeys} />
+      <CrudTable title="Rubrik Interpretationen" data={categoryInterpretations} onDataChange={setCategoryInterpretations} possibleKeys={allCategoryKeys} />
       <CrudTable title="Image Interpretations" data={imageInterpretations} onDataChange={setImageInterpretations} possibleKeys={allImageKeys} />
     </div>
   );

@@ -10,8 +10,8 @@ export function convertMarkdownToHtml(mdText: string): string {
   return mdText;
 }
 
-export function slugify(str) {
-  const removeAccents = (str) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+export function slugify(str: string): string {
+  const removeAccents = (str: string) => str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
   return removeAccents(str)
     .toLowerCase()

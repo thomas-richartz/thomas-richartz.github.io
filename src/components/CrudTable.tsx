@@ -96,9 +96,9 @@ export const CrudTable: React.FC<CrudTableProps> = ({ title, data, possibleKeys,
                     <button className={styles.button} onClick={() => startEdit(key, data[key])}>
                       Edit
                     </button>
-                    <button className={styles.button} onClick={() => handleDelete(key)}>
+                    {/*<button className={styles.button} onClick={() => handleDelete(key)}>
                       Delete
-                    </button>
+                    </button>*/}
                   </>
                 ) : (
                   <button className={styles.button} onClick={() => startEdit(key, "")}>

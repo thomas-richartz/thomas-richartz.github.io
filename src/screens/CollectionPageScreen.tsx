@@ -173,7 +173,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                   display: "flex",
                 }}
               >
-                {categoryInterpretation && renderParallaxTexts(categoryInterpretation)}
+                {categoryInterpretation && renderParallaxTexts()}
                 {categoryInterpretation && (
                   <div>
                     <div style={{ fontWeight: "bold", marginBottom: 4 }}>{cat}</div>
