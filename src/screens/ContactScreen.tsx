@@ -19,18 +19,14 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
 
   useEffect(() => {
     const timer = setTimeout(() => setIsHidden(false), 800);
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
-    // Generate the mailto URL when the component mounts
     const generateMailtoUrl = () => {
-      const username = "thomas.richartz";
+      const username = "thomas.richartz.com";
       const domain = "gmail.com";
       setEmail(`mailto:${username}@${domain}`);
     };
 
     generateMailtoUrl();
+    return () => clearTimeout(timer);
   }, []);
 
   const toggleControls = () => {
