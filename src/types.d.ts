@@ -5,3 +5,12 @@ export type GalleryImage = {
   range: number[];
   keyPiece?: boolean = false;
 };
+
+export interface Interpretation {
+  id: string;
+  title: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  // Add more fields as needed
+}

@@ -52,8 +52,7 @@ const ParallaxCube = ({
 
     if (!selected) {
       elapsedRef.current += delta;
-      const angle =
-        Math.sin(elapsedRef.current * 1.5) * THREE.MathUtils.degToRad(5); // ±5°
+      const angle = Math.sin(elapsedRef.current * 1.5) * THREE.MathUtils.degToRad(5); // ±5°
       meshRef.current.rotation.y = angle;
     }
   });
@@ -77,34 +76,16 @@ const ParallaxCube = ({
   }
 
   return (
-    <group
-      ref={meshRef}
-      position={position}
-      onClick={onClick}
-      onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}
-    >
+    <group ref={meshRef} position={position} onClick={onClick} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
       <mesh>
         <mesh>
           <boxGeometry args={geometryArgs} />
-          <blurImageMaterial
-            uTexture={texture.map}
-            uResolution={[window.innerWidth, window.innerHeight]}
-            uTime={0}
-            uLod={blur}
-            normalMap={texture.normalMap}
-          />
+          <blurImageMaterial uTexture={texture.map} uResolution={[window.innerWidth, window.innerHeight]} uTime={0} uLod={blur} normalMap={texture.normalMap} />
           {/* <meshStandardMaterial map={texture} /> */}
         </mesh>
       </mesh>
       {selected && (
-        <Text
-          fontSize={0.1}
-          color="white"
-          anchorX="center"
-          anchorY="top"
-          position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}
-        >
+        <Text fontSize={0.1} color="white" anchorX="center" anchorY="top" position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}>
           {title}
         </Text>
       )}
@@ -112,14 +93,9 @@ const ParallaxCube = ({
   );
 };
 
-export const RandomPictureParallaxView = ({
-  images,
-  loadRandomImages,
-  setImages,
-}: RandomPictureParallaxViewProps) => {
+export const RandomPictureParallaxView = ({ images, loadRandomImages, setImages }: RandomPictureParallaxViewProps) => {
   const defaultCamTargetPos: [number, number, number] = [0, 0, 10];
-  const [targetPosition, setTargetPosition] =
-    useState<[number, number, number]>(defaultCamTargetPos);
+  const [targetPosition, setTargetPosition] = useState<[number, number, number]>(defaultCamTargetPos);
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [windowOffset, setWindowOffset] = useState(0);
   const windowSize = 9;
@@ -139,9 +115,12 @@ export const RandomPictureParallaxView = ({
         position: "fixed",
         top: 0,
         left: 0,
+        width: "100vw",
+        height: "100vh",
         // pointerEvents: selectedIndex !== null ? "auto" : "none",
         background: "black",
       }}
+      // vr
     >
       <ambientLight intensity={0.5} />
       {/* <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow /> */}
@@ -183,14 +162,7 @@ export const RandomPictureParallaxView = ({
         );
       })}
       <CameraController cameraRef={cameraRef} targetPosition={targetPosition} />
-      {selectedIndex !== null && (
-        <OrbitControls
-          enableZoom
-          enablePan={false}
-          enableRotate
-          target={targetPosition}
-        />
-      )}
+      {selectedIndex !== null && <OrbitControls enableZoom enablePan={false} enableRotate target={targetPosition} />}
     </Canvas>
   );
 };

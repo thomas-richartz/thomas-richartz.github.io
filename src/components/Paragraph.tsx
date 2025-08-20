@@ -15,7 +15,7 @@ type ParagraphProps = {
 
 export const Paragraph: React.FC<ParagraphProps> = ({ children, links }) => {
   return (
-    <div className={styles.paragraphWindow}>
+    <div className={`${styles.paragraphWindow} ${styles.glassCard}`}>
       <div className={styles.paragraphContent}>
         <p className={styles.paragraphText}>
           {children}
@@ -23,16 +23,9 @@ export const Paragraph: React.FC<ParagraphProps> = ({ children, links }) => {
             links.map(({ href, text, imgSrc, imgAlt }, idx) => (
               <React.Fragment key={idx}>
                 {" "}
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.paragraphLink}
-                >
+                <a href={href} target="_blank" rel="noopener noreferrer" className={styles.paragraphLink}>
                   {text}
-                  {imgSrc && (
-                    <img className={styles.ccIcon} src={imgSrc} alt={imgAlt} />
-                  )}
+                  {imgSrc && <img className={styles.ccIcon} src={imgSrc} alt={imgAlt} />}
                 </a>
               </React.Fragment>
             ))}

@@ -26,3 +26,8 @@ img.ccIcon {
     font-size: var(--fs-md);
     cursor: pointer;
 }
+
+a {
+    text-decoration: none;
+    color: #742;
+}

@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { allImages } from "@/assets/assets";
+import { slugify } from "@/utils/textUtils";
 
 const generateCollectionsJsonLd = () => {
   const categories = [...new Set(allImages.map((image) => image.cat))];
@@ -11,7 +12,7 @@ const generateCollectionsJsonLd = () => {
       "@context": "https://schema.org",
       "@type": "CollectionPage",
       name: cat,
-      url: `/collection/${cat.replace(/\s+/g, "-").toLowerCase()}`,
+      url: `/collection/${slugify(cat)}`,
       itemListElement: imagesInCategory.map((image, index) => ({
         "@type": "ListItem",
         position: index + 1,
@@ -19,7 +20,7 @@ const generateCollectionsJsonLd = () => {
           "@type": "ImageObject",
           name: image.title,
           contentUrl: `/assets/images/${image.filename}`,
-          url: `/collection/${cat.replace(/\s+/g, "-").toLowerCase()}/${image.filename.replace(/\.webp$/, "")}`,
+          url: `/collection/${slugify(cat)}/${image.filename.replace(/\.webp$/, "")}`,
         },
       })),
     });
