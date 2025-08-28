@@ -23,7 +23,7 @@ function renderIntepretation(text: string) {
   return <div dangerouslySetInnerHTML={{ __html: convertMarkdownToHtml(escapedText) }} />;
 }
 
-export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element => {
+export const CollectionPageScreen = ({ cat }: GalleryCatScreenProps): JSX.Element => {
   const [hide, setHide] = useState<boolean>(true);
   const [showImage, setShowImage] = useState<GalleryImage | null>(null);
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);

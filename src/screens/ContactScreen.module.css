@@ -27,6 +27,15 @@ img.ccIcon {
     cursor: pointer;
 }
 
+.Controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
 a {
     text-decoration: none;
     color: #742;

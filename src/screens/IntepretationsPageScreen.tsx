@@ -4,15 +4,15 @@ import { categoryInterpretations as initialCategoryInterpretations, imageInterpr
 import { allImages } from "@/assets/assets";
 import { CrossCircledIcon } from "@radix-ui/react-icons";
 
-type InterpretationsPageScreenProps = {
-  onClose: () => void;
-};
+// type InterpretationsPageScreenProps = {
+//   onClose: () => void;
+// };
 
 function mergeInitialWithStored<T extends Record<string, string>>(initial: T, stored: Record<string, string>): T {
   return Object.fromEntries(Object.entries(initial).map(([key, initialValue]) => [key, key in stored ? stored[key] : initialValue])) as T;
 }
 
-export function InterpretationsPageScreen({ onClose }: InterpretationsPageScreenProps) {
+export function InterpretationsPageScreen() {
   // const storedImageInterpretations = JSON.parse(localStorage.getItem("imageInterpretations")) || {};
   // const storedCategoryInterpretations = JSON.parse(localStorage.getItem("categoryInterpretations")) || {};
 
@@ -37,7 +37,6 @@ export function InterpretationsPageScreen({ onClose }: InterpretationsPageScreen
 
   return (
     <div style={{ padding: 10 }}>
-      <CrossCircledIcon onClick={onClose} style={{ float: "right" }} />
       <CrudTable title="Rubrik Interpretationen" data={categoryInterpretations} onDataChange={setCategoryInterpretations} possibleKeys={allCategoryKeys} />
       <CrudTable title="Image Interpretations" data={imageInterpretations} onDataChange={setImageInterpretations} possibleKeys={allImageKeys} />
     </div>

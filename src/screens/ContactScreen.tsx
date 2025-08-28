@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Screen } from "@/enums";
 import styles from "./ContactScreen.module.css";
 import { Paragraph } from "@/components/Paragraph";
-import { BadgeIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
-// import ToneMusicOverlay from "@/components/ToneMusicSystemOverlay";
-import { InterpretationsPageScreen } from "./IntepretationsPageScreen";
+import { GearIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { AdminControlsView } from "@/components/AdminControls/AdminControlsView";
 
 type ContactScreenProps = {
   onCatClick: (cat: string) => void;
@@ -37,10 +36,7 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
     <div className={`${styles.screenContainer} ${isHidden ? styles.hidden : ""}`}>
       {isControlsHidden ? null : (
         <div className={styles.Controls}>
-          {/*Administrative*/}
-          {/* tabs? */}
-          {/*<ToneMusicOverlay />*/}
-          <InterpretationsPageScreen onClose={toggleControls} />
+          <AdminControlsView onClose={toggleControls} />
         </div>
       )}
       <Paragraph>
@@ -76,15 +72,11 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
       >
         <h2>Social</h2>
       </Paragraph>
-      <Paragraph
-        children={
-          <>
-            <button className={styles.button} onClick={toggleControls}>
-              <BadgeIcon color="#dce" />
-            </button>
-          </>
-        }
-      />
+      <Paragraph>
+        <button className={styles.button} onClick={toggleControls}>
+          <GearIcon color="#dce" />
+        </button>
+      </Paragraph>
       <Paragraph
         children={
           <>
