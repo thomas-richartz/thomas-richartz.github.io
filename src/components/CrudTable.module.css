@@ -1,20 +1,52 @@
 .crudTable {
-    margin: 2rem auto;
+    margin: var(--admin-spacing-xl) auto;
     max-width: 900px;
-    background: #333;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
-    color: #fff;
+    background: var(--admin-panel-bg);
+    border-radius: var(--admin-radius-lg);
+    padding: var(--admin-spacing-lg);
+    box-shadow: var(--admin-shadow-moderate);
+    color: var(--admin-text-primary);
+}
+
+.markdownInfo {
+    background: var(--admin-element-bg);
+    padding: 0.75rem;
+    border-radius: var(--admin-radius-sm);
+    margin-bottom: var(--admin-spacing-md);
+    font-size: 0.85rem;
+    border: 1px solid var(--admin-border-moderate);
+}
+
+.markdownInfo p {
+    margin: 0;
+    color: var(--admin-text-secondary);
+}
+
+.markdownInfo code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.15rem 0.3rem;
+    border-radius: 3px;
+    margin: 0 0.15rem;
+    font-family: monospace;
+    color: var(--admin-text-primary);
 }
 .heading {
-    margin-bottom: 1rem;
+    margin-bottom: var(--admin-spacing-md);
+    color: var(--admin-text-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 .exportButtons {
-    margin-bottom: 1rem;
+    margin-bottom: var(--admin-spacing-md);
 }
 .exportButton {
-    margin-right: 0.5rem;
+    margin-right: var(--admin-spacing-xs);
+    background: var(--admin-button-secondary);
+    color: var(--admin-text-primary);
+    border: 1px solid var(--admin-border-subtle);
+    padding: 0.5rem 1rem;
+    border-radius: var(--admin-radius-sm);
+    cursor: pointer;
+    transition: all var(--admin-transition-fast);
 }
 .table {
     width: 100%;
@@ -22,41 +54,50 @@
 }
 .th,
 .td {
-    border: 1px solid #eee;
-    padding: 0.5rem;
+    border: 1px solid var(--admin-border-subtle);
+    padding: var(--admin-spacing-xs);
     vertical-align: top;
 }
 .placeholder {
-    color: #bbb;
+    color: var(--admin-text-muted);
     font-style: italic;
 }
 .textarea {
     width: 100%;
     resize: vertical;
     font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    padding: 4px;
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+    background: var(--admin-element-bg);
+    color: var(--admin-text-primary);
+    padding: 8px;
     height: fit-content;
 }
 .input {
     font-size: 1rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    padding: 4px;
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+    background: var(--admin-element-bg);
+    color: var(--admin-text-primary);
+    padding: 8px;
 }
 .button {
     margin-right: 0.2rem;
-    padding: 2px 8px;
-    border-radius: 4px;
+    padding: 6px 12px;
+    border-radius: var(--admin-radius-sm);
     border: none;
-    background: #1976d2;
-    color: #fff;
+    background: var(--admin-button-primary);
+    color: var(--admin-text-primary);
     cursor: pointer;
+    transition: all var(--admin-transition-fast);
+    box-shadow: var(--admin-shadow-subtle);
 }
 .button:hover {
-    background: #1565c0;
+    background: var(--admin-button-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--admin-shadow-moderate);
 }
 .activeRow {
-    background: #02060c;
+    background: var(--admin-element-bg);
+    border-color: var(--admin-border-highlight);
 }

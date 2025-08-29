@@ -1,0 +1,10 @@
+.container {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    overflow: hidden;
+    background: var(--admin-element-bg);
+    border-radius: var(--admin-radius-md);
+    border: 1px solid var(--admin-border-moderate);
+    box-shadow: var(--admin-shadow-subtle);
+}

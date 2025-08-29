@@ -1,0 +1,3 @@
+/* Admin themes are now handled programmatically via ThemeContext */
+/* This file is kept for compatibility but all theme variables */
+/* are now applied dynamically through JavaScript */

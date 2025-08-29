@@ -15,10 +15,9 @@ interface BottomBarProps {
   onSearch: () => void; // Triggered when the search button is clicked
   onMusicToggle: () => void;
   isPlaying: boolean;
-  setShowToneOverlay: (show: boolean) => void;
 }
 
-export const BottomBar = ({ onNavigate, selectedScreen, onSearch, onMusicToggle, isPlaying, setShowToneOverlay }: BottomBarProps): JSX.Element => {
+export const BottomBar = ({ onNavigate, selectedScreen, onSearch, onMusicToggle, isPlaying }: BottomBarProps): JSX.Element => {
   const isGalleryScreen = selectedScreen === Screen.GALLERY;
   const parentScreen = isGalleryScreen ? Screen.LANDING : Screen.GALLERY;
 
@@ -41,11 +40,6 @@ export const BottomBar = ({ onNavigate, selectedScreen, onSearch, onMusicToggle,
           <SpeakerOffIcon color="#cde" />
         )}
       </button>
-      {isPlaying && editMode && (
-        <button className={`${styles.button} ${styles.settingsButton} ${styles.footerText}`} onClick={() => setShowToneOverlay(true)} style={{ margin: 2 }}>
-          Audio Settings
-        </button>
-      )}
       {/* Home/Gallery Icon in the center */}
       <button className={`${styles.button} ${styles.centerButton}`} onClick={() => onNavigate(parentScreen)}>
         {isGalleryScreen ? <HomeIcon color="#cde" /> : <ImageIcon color="#cde" />}

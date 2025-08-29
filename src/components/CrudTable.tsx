@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { exportJSON, exportCSV } from "@/utils/exporters";
 import styles from "./CrudTable.module.css";
+import Markdown from "@/components/Markdown";
 
 type InterpretationData = Record<string, string>;
 
@@ -47,6 +48,11 @@ export const CrudTable: React.FC<CrudTableProps> = ({ title, data, possibleKeys,
   return (
     <div className={styles.crudTable}>
       <h2 className={styles.heading}>{title}</h2>
+      <div className={styles.markdownInfo}>
+        <p>
+          Markdown supported: <code>**bold**</code>, <code>*italic*</code>, <code># Heading</code>, <code>- List items</code>, <code>[Link](url)</code>
+        </p>
+      </div>
       <div className={styles.exportButtons}>
         <button className={styles.exportButton} onClick={() => exportJSON(data, `${title}.json`)}>
           Export JSON
@@ -77,8 +83,10 @@ export const CrudTable: React.FC<CrudTableProps> = ({ title, data, possibleKeys,
                     rows={12}
                     autoFocus
                   />
+                ) : data[key] ? (
+                  <Markdown content={data[key]} />
                 ) : (
-                  data[key] || <span className={styles.placeholder}>(none)</span>
+                  <span className={styles.placeholder}>(none)</span>
                 )}
               </td>
               <td className={styles.td}>

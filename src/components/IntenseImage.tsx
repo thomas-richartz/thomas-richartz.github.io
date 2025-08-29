@@ -2,7 +2,7 @@ import { useDrag } from "@use-gesture/react";
 import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./IntenseImage.module.css";
 import { categoryInterpretations, imageInterpretations } from "@/assets/interpretations";
-import { convertMarkdownToHtml } from "@/utils/textUtils";
+import Markdown from "@/components/Markdown";
 
 interface IIntenseImage {
   nextImage: () => void;
@@ -15,11 +15,7 @@ interface IIntenseImage {
   isOpen?: boolean;
 }
 
-function renderIntepretation(text: string) {
-  const escapedText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-  return <div dangerouslySetInnerHTML={{ __html: convertMarkdownToHtml(escapedText) }} />;
-}
+// Function moved to a shared Markdown component
 
 export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category = "", onClose, isOpen = false }: IIntenseImage) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -161,13 +157,17 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
               {categoryInterpretation && (
                 <div>
                   <div style={{ fontWeight: "bold", marginBottom: 4 }}>{category}</div>
-                  <div style={{ marginBottom: imageInterpretation ? 12 : 0 }}>{renderIntepretation(categoryInterpretation)}</div>
+                  <div style={{ marginBottom: imageInterpretation ? 12 : 0 }}>
+                    <Markdown content={categoryInterpretation} />
+                  </div>
                 </div>
               )}
               {imageInterpretation && (
                 <div>
                   <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-                  <div>{imageInterpretation}</div>
+                  <div>
+                    <Markdown content={imageInterpretation} />
+                  </div>
                 </div>
               )}
             </div>

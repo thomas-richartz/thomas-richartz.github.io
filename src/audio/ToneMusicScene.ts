@@ -32,7 +32,7 @@ export class ToneMusicScene {
   constructor(blocks: FileSoundBlock[], withReverb = true, withDelay = true) {
     this.blocks = blocks;
     if (withReverb) {
-      this.reverb = new Tone.Reverb({ decay: 2, wet: 0.5 }).toDestination();
+      this.reverb = new Tone.Reverb({ decay: 2.3, wet: 0.25 }).toDestination();
       // this.reverb = reverb ? new Tone.Reverb({ decay: 2.5, wet: 0.3 }) : null;
       this.reverb.generate();
     }
@@ -47,6 +47,9 @@ export class ToneMusicScene {
    */
   public async load() {
     if (this.isLoaded) return;
+    // First dispose of any existing players to prevent memory leaks
+    this.dispose();
+
     const loadPromises = this.blocks.map(async (block) => {
       if (!block.filePath) {
         console.warn(`[ToneMusicScene] Skipping block with missing filePath:`, block);
@@ -81,7 +84,7 @@ export class ToneMusicScene {
       // --- FX Routing ---
       // Set FX params (for per-block params)
       if (this.delay) {
-        this.delay.delayTime.value = block.delayTime ?? "4n";
+        this.delay.delayTime.value = block.delayTime ?? ("4n" as any);
         this.delay.feedback.value = block.delayFeedback ?? 0.4;
         this.delay.wet.value = 1;
       }
@@ -237,7 +240,7 @@ export class ToneMusicScene {
   /**
    * Play a block at index, optionally at a given musical time
    */
-  public playBlock(index: number, scaleIndex?: number, time?: Tone.Unit.Time, offset: number = 0) {
+  public playBlock(index: number, scaleIndex?: number, time?: number | string, offset: number = 0) {
     const block = this.blocks[index];
     const player = this.players.get(block.name);
     if (player && player.loaded) {
@@ -275,6 +278,64 @@ export class ToneMusicScene {
   }
 
   /**
+   * Disposes all ToneJS nodes to prevent memory leaks and audio issues
+   */
+  public dispose() {
+    // Stop playback first
+    this.stop();
+
+    // Dispose all players
+    this.players.forEach((player) => {
+      try {
+        player.disconnect();
+        player.dispose();
+      } catch (e) {
+        console.warn("Error disposing player:", e);
+      }
+    });
+    this.players.clear();
+
+    // Dispose effects
+    if (this.reverb) {
+      try {
+        this.reverb.disconnect();
+        this.reverb.dispose();
+        this.reverb = null;
+      } catch (e) {
+        console.warn("Error disposing reverb:", e);
+      }
+    }
+
+    if (this.delay) {
+      try {
+        this.delay.disconnect();
+        this.delay.dispose();
+        this.delay = null;
+      } catch (e) {
+        console.warn("Error disposing delay:", e);
+      }
+    }
+
+    // Dispose panners
+    this.panners.forEach((panner) => {
+      try {
+        panner.disconnect();
+        panner.dispose();
+      } catch (e) {
+        console.warn("Error disposing panner:", e);
+      }
+    });
+    this.panners.clear();
+
+    // Reset loading state
+    this.isLoaded = false;
+  }
+
+  public getBlocks() {
+    return this.blocks;
+  }
+
+  /**
    * Play a single block instantly (oneshot)
    */
   public async playOneShot(name: string) {
@@ -288,6 +349,14 @@ export class ToneMusicScene {
   // Fade out all blocks
   public async fadeOut(duration: number = 2): Promise<void> {
     const promises: Promise<void>[] = [];
+
+    // Also fade out the master volume for effects like reverb/delay tails
+    const masterVol = Tone.getDestination().volume.value;
+    Tone.getDestination().volume.cancelAndHoldAtTime(Tone.now());
+    Tone.getDestination().volume.setValueAtTime(masterVol, Tone.now());
+    Tone.getDestination().volume.linearRampToValueAtTime(-60, Tone.now() + duration);
+
+    // Fade out each player
     this.players.forEach((player, name) => {
       const block = this.blocks.find((b) => b.name === name);
       if (!block) return;
@@ -298,12 +367,19 @@ export class ToneMusicScene {
       player.volume.linearRampToValueAtTime(toDb, Tone.now() + duration);
       promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
     });
+
     await Promise.all(promises);
+
+    // Reset master volume after fadeout is complete
+    Tone.getDestination().volume.cancelScheduledValues(Tone.now());
+    Tone.getDestination().volume.value = masterVol;
   }
 
   // Fade in all blocks
   public async fadeIn(duration: number = 2): Promise<void> {
     const promises: Promise<void>[] = [];
+
+    // Start with silent players
     this.players.forEach((player, name) => {
       const block = this.blocks.find((b) => b.name === name);
       if (!block) return;
@@ -313,6 +389,7 @@ export class ToneMusicScene {
       player.volume.linearRampToValueAtTime(toDb, Tone.now() + duration);
       promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
     });
+
     await Promise.all(promises);
   }
 
@@ -332,10 +409,17 @@ export class ToneMusicScene {
     withDelay: boolean = false,
     fadeDuration: number = 2,
   ): Promise<ToneMusicScene> {
+    // Clean up Tone.js scheduling before any transition
+    Tone.Transport.cancel();
+
     if (currentScene) {
       await currentScene.fadeOut(fadeDuration);
       currentScene.stop();
+      // Properly dispose the previous scene to clean up memory
+      currentScene.dispose();
     }
+
+    // Create and initialize the new scene
     const newScene = new ToneMusicScene(nextBlocks, withReverb, withDelay);
     await newScene.load();
     await newScene.fadeIn(fadeDuration);

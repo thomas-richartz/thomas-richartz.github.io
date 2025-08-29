@@ -1,0 +1,288 @@
+.crudTable {
+    margin: var(--admin-spacing-lg) auto;
+    max-width: 1200px;
+    background: var(--admin-panel-bg);
+    border-radius: var(--admin-radius-lg);
+    padding: var(--admin-spacing-lg);
+    box-shadow: var(--admin-shadow-moderate);
+    color: var(--admin-text-primary);
+}
+
+.heading {
+    margin-bottom: var(--admin-spacing-md);
+    color: var(--admin-text-primary);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.6rem;
+}
+
+.markdownInfo {
+    background: var(--admin-element-bg);
+    padding: 0.75rem;
+    border-radius: var(--admin-radius-sm);
+    margin-bottom: var(--admin-spacing-md);
+    font-size: 0.85rem;
+    border: 1px solid var(--admin-border-moderate);
+}
+
+.markdownInfo p {
+    margin: 0;
+    color: var(--admin-text-secondary);
+}
+
+.markdownInfo code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.15rem 0.3rem;
+    border-radius: 3px;
+    margin: 0 0.15rem;
+    font-family: monospace;
+    color: var(--admin-text-primary);
+}
+
+.controlsBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--admin-spacing-md);
+}
+
+.exportButtons {
+    display: flex;
+    gap: var(--admin-spacing-xs);
+}
+
+.exportButton {
+    background: var(--admin-button-secondary);
+    color: var(--admin-text-primary);
+    border: 1px solid var(--admin-border-subtle);
+    padding: 0.5rem 1rem;
+    border-radius: var(--admin-radius-sm);
+    cursor: pointer;
+    transition: all var(--admin-transition-fast);
+    font-size: 0.9rem;
+}
+
+.exportButton:hover {
+    background: var(--admin-button-secondary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--admin-shadow-subtle);
+}
+
+.dataStats {
+    color: var(--admin-text-secondary);
+    font-size: 0.9rem;
+    background: var(--admin-element-bg);
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    margin-bottom: var(--admin-spacing-md);
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.th,
+.td {
+    padding: var(--admin-spacing-sm);
+    vertical-align: top;
+}
+
+.th {
+    background: var(--admin-element-bg);
+    color: var(--admin-text-primary);
+    font-weight: 500;
+    text-align: left;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid var(--admin-border-moderate);
+}
+
+.td {
+    border-bottom: 1px solid var(--admin-border-subtle);
+}
+
+.tdFullWidth {
+    padding: var(--admin-spacing-md);
+    background: var(--admin-element-bg);
+    border-bottom: 1px solid var(--admin-border-subtle);
+}
+
+.tdActions {
+    width: 150px;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--admin-border-subtle);
+}
+
+.placeholder {
+    color: var(--admin-text-muted);
+    font-style: italic;
+}
+
+.editHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--admin-spacing-md);
+    padding-bottom: var(--admin-spacing-sm);
+    border-bottom: 1px solid var(--admin-border-subtle);
+}
+
+.editKeyInfo {
+    font-size: 1rem;
+    color: var(--admin-text-secondary);
+}
+
+.editKeyInfo strong {
+    color: var(--admin-text-primary);
+    font-weight: 500;
+}
+
+.editContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--admin-spacing-xs);
+}
+
+.textarea {
+    width: 100%;
+    resize: vertical;
+    font-size: 1rem;
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+    background: var(--admin-element-bg);
+    color: var(--admin-text-primary);
+    padding: 12px;
+    min-height: 300px;
+    line-height: 1.5;
+}
+
+.textarea:focus {
+    outline: none;
+    border-color: var(--admin-element-highlight);
+    box-shadow: 0 0 0 3px var(--admin-element-highlight-bg);
+}
+
+.saveStatus {
+    font-size: 0.85rem;
+    color: var(--admin-text-secondary);
+    padding-left: var(--admin-spacing-xs);
+    height: 20px;
+}
+
+.input {
+    font-size: 1rem;
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+    background: var(--admin-element-bg);
+    color: var(--admin-text-primary);
+    padding: 8px;
+}
+
+.actionButtons {
+    display: flex;
+    gap: var(--admin-spacing-xs);
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.button {
+    padding: 6px 12px;
+    border-radius: var(--admin-radius-sm);
+    border: none;
+    color: var(--admin-text-primary);
+    cursor: pointer;
+    transition: all var(--admin-transition-fast);
+    box-shadow: var(--admin-shadow-subtle);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 70px;
+}
+
+.button:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--admin-shadow-moderate);
+}
+
+.saveButton {
+    background: var(--admin-button-primary);
+}
+
+.saveButton:hover {
+    background: var(--admin-button-primary-hover);
+}
+
+.cancelButton {
+    background: rgba(100, 100, 100, 0.4);
+}
+
+.cancelButton:hover {
+    background: rgba(120, 120, 120, 0.5);
+}
+
+.editButton {
+    background: var(--admin-button-primary);
+}
+
+.deleteButton {
+    background: rgba(180, 70, 70, 0.7);
+}
+
+.deleteButton:hover {
+    background: rgba(200, 70, 70, 0.8);
+}
+
+.addButton {
+    background: rgba(70, 160, 80, 0.7);
+}
+
+.addButton:hover {
+    background: rgba(70, 180, 90, 0.8);
+}
+
+.activeRow {
+    background: var(--admin-element-bg);
+    box-shadow: var(--admin-shadow-moderate);
+}
+
+.noResults {
+    text-align: center;
+    padding: var(--admin-spacing-xl);
+    color: var(--admin-text-secondary);
+    background: var(--admin-element-bg);
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+}
+
+@media (max-width: 768px) {
+    .controlsBar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--admin-spacing-sm);
+    }
+
+    .dataStats {
+        width: 100%;
+        text-align: center;
+    }
+
+    .exportButtons {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .button {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+        min-width: 60px;
+    }
+}

@@ -10,18 +10,14 @@ import { categoryInterpretations, imageInterpretations } from "@/assets/interpre
 import { GalleryImage } from "@/types";
 import { ChevronLeftIcon, ChevronRightIcon, Cross2Icon } from "@radix-ui/react-icons";
 import { useDrag } from "@use-gesture/react";
-import { convertMarkdownToHtml } from "@/utils/textUtils";
+import Markdown from "@/components/Markdown";
 
 type GalleryCatScreenProps = {
   cat: string;
   onClick: (cat: string) => void;
 };
 
-function renderIntepretation(text: string) {
-  const escapedText = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-  return <div dangerouslySetInnerHTML={{ __html: convertMarkdownToHtml(escapedText) }} />;
-}
+// Function moved to a shared Markdown component
 
 export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element => {
   const [hide, setHide] = useState<boolean>(true);
@@ -166,15 +162,19 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 {categoryInterpretation && (
                   <div>
                     <div style={{ fontWeight: "bold", marginBottom: 4 }}>{cat}</div>
-                    <div style={{ marginBottom: 12 }}>{renderIntepretation(categoryInterpretation)}</div>
+                    <div style={{ marginBottom: 12 }}>
+                      <Markdown content={categoryInterpretation} />
+                    </div>
                   </div>
                 )}
-                {/* {imageInterpretation && (
+                {showImage && imageInterpretations[showImage.filename] && (
                   <div>
-                    <div style={{ fontWeight: "bold", marginBottom: 4 }}>{title}</div>
-                    <div>{imageInterpretation}</div>
+                    <div style={{ fontWeight: "bold", marginBottom: 4 }}>{showImage.title}</div>
+                    <div>
+                      <Markdown content={imageInterpretations[showImage.filename]} />
+                    </div>
                   </div>
-                )} */}
+                )}
               </div>
             )}
             <LightBoxImage

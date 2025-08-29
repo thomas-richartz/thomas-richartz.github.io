@@ -1,4 +1,3 @@
-import * as Tone from "tone";
 import { useState, useEffect, useCallback, useRef } from "react";
 import { SearchOverlay } from "@/components/SearchOverlay";
 import { GalleryContextProvider } from "@/context/GalleryContext";
@@ -8,77 +7,82 @@ import { GalleryScreen } from "@/screens/GalleryScreen";
 import { LandingScreen } from "@/screens/LandingScreen";
 import { BottomBar } from "@/components/BottomBar";
 import { ContactScreen } from "@/screens/ContactScreen";
-import { FileSoundBlock, ToneMusicScene } from "@/audio/ToneMusicScene";
 import ToneMusicSystem from "@/components/ToneMusicSystem";
-import ToneMusicOverlay from "@/components/ToneMusicSystemOverlay";
-import { ToneMusicOverlayChangeHandler } from "@/components/ToneMusicSystemOverlay";
 import CollectionsMicrodata from "@/components/CollectionsMicrodata";
 import styles from "@/App.module.css";
-import { InterpretationsPageScreen } from "@/screens/IntepretationsPageScreen";
+import { ToneMusicProvider, useToneMusic } from "@/context/ToneMusicContext";
 
-function App() {
+function AppContent() {
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
   const [selectedCat, setSelectedCat] = useState<string>("");
   const [isSearchVisible, setSearchVisible] = useState<boolean>(false);
   const [images, setImages] = useState<any[]>([]); // Initially empty
   const [isLoadingImages, setLoadingImages] = useState<boolean>(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [blocks, setBlocks] = useState<FileSoundBlock[]>([]);
-  // const [verbose, setVerbose] = useState(false);
-  const [verbose, setVerbose] = useState(true);
   const [loading, setLoading] = useState(false);
-  const currentSceneRef = useRef<ToneMusicScene | null>(null);
+  const [verbose] = useState(true);
 
-  const [showOverlay, setShowOverlay] = useState(false);
+  // Use our new context
+  const { isPlaying, togglePlay, setAudioBlocks, blocks, resetAudio } = useToneMusic();
 
-  // const handleMusicToggle = useCallback(async () => {
-  //   if (Tone.context.state !== "running") {
-  //     await Tone.start();
-  //   }
-  //   setIsPlaying((prev) => !prev);
-  // }, []);
-
-  const handleMusicToggle = useCallback(async () => {
-    if (Tone.context.state !== "running") {
-      await Tone.start();
+  // Use the togglePlay function from the context
+  const handleMusicToggle = useCallback(() => {
+    console.log("App: Toggling music playback, current state:", isPlaying);
+    if (blocks.length === 0) {
+      console.warn("App: Cannot toggle music - no blocks loaded");
+      return;
     }
-    setIsPlaying((prev) => !prev);
-    // If turning OFF music, fade out and stop scene
-    // if (isPlaying && currentSceneRef.current) {
-    //   await currentSceneRef.current.fadeOut?.(2);
-    //   currentSceneRef.current.stop();
-    // }
-    // // If turning ON, fade in current scene (if any)
-    // if (!isPlaying && currentSceneRef.current) {
-    //   await currentSceneRef.current.fadeIn?.(2);
-    // }
-  }, [isPlaying]);
+    togglePlay().catch((err) => console.error("Error toggling music:", err));
+  }, [togglePlay, isPlaying, blocks.length]);
 
   useEffect(() => {
     if (selectedScreen === Screen.LANDING) {
       const fetchBlocks = async () => {
         try {
           const response = await fetch("/assets/soundblocks/kalimba_piano_scene.json");
-          const data = await response.json();
-          setBlocks(data);
-          // Create and fade in initial scene if auto-play
-          if (isPlaying) {
-            currentSceneRef.current = await ToneMusicScene.transitionToScene(
-              currentSceneRef.current,
-              data,
-              true, // reverb
-              true, // delay
-              2, // fade duration
-            );
+          if (!response.ok) {
+            throw new Error(`Failed to fetch blocks: ${response.status}`);
           }
+          const data = await response.json();
+          console.log("App: Loaded initial blocks:", data.length);
+          setAudioBlocks(data);
         } catch (error) {
           console.error("Error fetching blocks:", error);
         }
       };
       fetchBlocks();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }
+  }, [selectedScreen, setAudioBlocks]);
+
+  // Initialize audio context on first user interaction
+  useEffect(() => {
+    const initAudio = async () => {
+      try {
+        // This will ensure the audio context is created and running
+        await import("tone").then((Tone) => {
+          if (Tone.context.state !== "running") {
+            console.log("App: Initializing Tone.js audio context");
+            document.addEventListener(
+              "click",
+              async () => {
+                await Tone.start();
+                console.log("App: Tone.js context started on user interaction");
+              },
+              { once: true },
+            );
+          }
+        });
+      } catch (error) {
+        console.error("App: Failed to initialize audio:", error);
+      }
+    };
+
+    initAudio();
   }, []);
+
+  // Log when audio playback state changes
+  useEffect(() => {
+    console.log("App: Audio playback state changed to:", isPlaying);
+  }, [isPlaying]);
 
   const onNavigate = async (screen: Screen) => {
     setSelectedScreen(screen);
@@ -90,10 +94,8 @@ function App() {
       "/assets/soundblocks/atellier_zukunft4_scene.json",
     ];
     let url = urls[Math.floor(Math.random() * urls.length)];
-    // console.log(screen);
-    // console.log(selectedCat);
+
     if (screen === Screen.GALLERY && !selectedCat) {
-      // url = "/assets/soundblocks/kalimba_piano_scene2.json";
       const urls2 = [
         "/assets/soundblocks/bowltest_scene.json",
         "/assets/soundblocks/kalimba_piano_scene.json",
@@ -101,32 +103,30 @@ function App() {
         "/assets/soundblocks/kalimba_piano_scene3.json",
         "/assets/soundblocks/kalimba_piano_scene4.json",
       ];
-      let url = urls2[Math.floor(Math.random() * urls.length)];
+      url = urls2[Math.floor(Math.random() * urls2.length)];
     }
+
     if (screen !== Screen.GALLERY && selectedCat === "Dovcenko2 (2022)") {
       const arsenalUrls = ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"];
       url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
     }
 
+    // Override for testing
     url = "/assets/soundblocks/atellier_zukunft_scene.json";
-
-    // console.log(url);
 
     try {
       setLoading(true);
       const response = await fetch(url);
-      const data = await response.json();
-      setBlocks(data);
-
-      if (isPlaying) {
-        currentSceneRef.current = await ToneMusicScene.transitionToScene(currentSceneRef.current, data, true, true, 2);
-      } else if (currentSceneRef.current) {
-        currentSceneRef.current.stop();
+      if (!response.ok) {
+        throw new Error(`Failed to fetch blocks: ${response.status}`);
       }
-      setLoading(false);
+      const data = await response.json();
+      console.log(`App: Loaded ${data.length} sound blocks for ${screen.toString()}`);
+      setAudioBlocks(data);
     } catch (error) {
-      setLoading(false);
       console.error("Error fetching blocks:", error);
+    } finally {
+      setLoading(false);
     }
   };
   const handleSearchOpen = async () => {
@@ -152,15 +152,6 @@ function App() {
     setSearchVisible(false);
   };
 
-  const onBlocksChange: ToneMusicOverlayChangeHandler = (updatedBlocks, changedIndex, changedParam, value) => {
-    setBlocks(updatedBlocks);
-    if (typeof changedIndex === "number" && changedParam && ["volume", "pan", "playbackRate"].includes(changedParam)) {
-      // For structural (e.g. FX on/off), let ToneMusicSystem reload
-      const blockName = updatedBlocks[changedIndex].name;
-      currentSceneRef.current?.setBlockParam(blockName, changedParam, value);
-    }
-  };
-
   return (
     <GalleryContextProvider>
       <CollectionsMicrodata />
@@ -177,22 +168,27 @@ function App() {
               <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
             )}
 
-            {/* showOverlay */}
-            {blocks.length > 0 && <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} />}
-            {showOverlay && blocks.length > 0 && <ToneMusicOverlay blocks={blocks} onChange={onBlocksChange} onClose={() => setShowOverlay(false)} />}
+            {blocks.length > 0 && <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} fadeDuration={1.5} />}
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
               onSearch={handleSearchOpen}
               onMusicToggle={handleMusicToggle}
               isPlaying={isPlaying}
-              setShowToneOverlay={setShowOverlay}
             />
           </>
           {isSearchVisible && <SearchOverlay items={images} isLoading={isLoadingImages} onClose={handleSearchClose} onItemSelect={handleItemSelect} />}
         </main>
       </div>
     </GalleryContextProvider>
+  );
+}
+
+function App() {
+  return (
+    <ToneMusicProvider initialVerbose={true}>
+      <AppContent />
+    </ToneMusicProvider>
   );
 }
 

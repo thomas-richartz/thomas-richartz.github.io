@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { ToneMusicScene, FileSoundBlock } from "@/audio/ToneMusicScene";
+import React, { useEffect } from "react";
+import { FileSoundBlock } from "@/audio/ToneMusicScene";
+import { useToneMusic } from "@/context/ToneMusicContext";
 
 interface Props {
   play: boolean;
@@ -10,56 +11,73 @@ interface Props {
 }
 
 const ToneMusicSystem: React.FC<Props> = ({ play, blocks, verbose, onLoadingChange, fadeDuration = 2 }) => {
-  const sceneRef = useRef<ToneMusicScene | null>(null);
-  const [loading, setLoading] = useState(false);
+  // Use the shared Tone Music context
+  const { isLoading, setAudioBlocks, updateAllBlocks, isPlaying, togglePlay, setVerbose, getCurrentScene } = useToneMusic();
 
+  // For tracking initialization state
+  const isInitialized = React.useRef(false);
+
+  // Update verbose setting
   useEffect(() => {
-    let cancelled = false;
+    if (verbose !== undefined) {
+      setVerbose(verbose);
+    }
+  }, [verbose, setVerbose]);
 
-    const switchScene = async () => {
-      if (sceneRef.current) {
-        if (verbose) console.log("Fading out old scene");
-        await sceneRef.current.fadeOut?.(fadeDuration);
-        sceneRef.current.stop();
-        sceneRef.current = null;
-      }
+  // Forward loading state to parent
+  useEffect(() => {
+    if (onLoadingChange) {
+      onLoadingChange(isLoading);
+    }
+  }, [isLoading, onLoadingChange]);
 
-      // Only switch/create scene if playing and blocks present
-      if (play && blocks.length > 0) {
-        setLoading(true);
-        if (onLoadingChange) onLoadingChange(true);
-
-        const scene = new ToneMusicScene(blocks);
-        sceneRef.current = scene;
-        await scene.load();
-        if (cancelled) return;
-        await scene.fadeIn?.(fadeDuration);
-        scene.scheduleQuantizedPlayback();
-
-        setLoading(false);
-        if (onLoadingChange) onLoadingChange(false);
-        if (verbose) console.log("Scene switched and faded in");
+  // Synchronize blocks with context
+  useEffect(() => {
+    if (blocks.length > 0) {
+      console.log("ToneMusicSystem: Updating blocks, count:", blocks.length);
+      // If already playing, use updateAllBlocks to avoid restarting audio
+      if (isPlaying) {
+        updateAllBlocks(blocks);
       } else {
-        setLoading(false);
-        if (onLoadingChange) onLoadingChange(false);
-        if (verbose) console.log("Scene stopped (not playing or no blocks)");
+        setAudioBlocks(blocks);
       }
-    };
+      isInitialized.current = true;
+    }
+  }, [blocks, isPlaying, setAudioBlocks, updateAllBlocks]);
 
-    switchScene();
+  // Synchronize play state with context
+  useEffect(() => {
+    // Only attempt to toggle playback if we're initialized with blocks
+    if (play !== isPlaying && isInitialized.current && blocks.length > 0) {
+      console.log(`ToneMusicSystem: Play state changed from ${isPlaying} to ${play}`);
 
-    return () => {
-      cancelled = true;
-      // Clean up scene on unmount
-      if (sceneRef.current) {
-        sceneRef.current.stop();
-        sceneRef.current = null;
-      }
-    };
-    // Depend on both play and blocks
-  }, [play, blocks, fadeDuration, onLoadingChange, verbose]);
+      // Add a small delay to ensure blocks are loaded
+      const timer = setTimeout(() => {
+        console.log("ToneMusicSystem: Toggling playback");
+        togglePlay().catch((err) => {
+          console.error("Error toggling playback:", err);
+        });
+      }, 100);
 
-  return null;
+      return () => clearTimeout(timer);
+    }
+  }, [play, isPlaying, togglePlay, blocks.length]);
+
+  // Log state changes for debugging
+  useEffect(() => {
+    console.log(`ToneMusicSystem: Playback state: ${isPlaying ? "PLAYING" : "STOPPED"}`);
+  }, [isPlaying]);
+
+  return (
+    <div
+      data-tonemusicscene="main"
+      style={{ display: "none" }}
+      data-playing={isPlaying ? "true" : "false"}
+      data-blocks-count={blocks.length}
+      data-scene-loaded={!!getCurrentScene()}
+      data-initialized={isInitialized.current ? "true" : "false"}
+    ></div>
+  );
 };
 
 export default ToneMusicSystem;

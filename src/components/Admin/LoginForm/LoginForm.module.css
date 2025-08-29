@@ -1,0 +1,223 @@
+.loginContainer {
+    max-width: 380px;
+    background: var(--admin-overlay-bg);
+    padding: var(--admin-spacing-xl);
+    border-radius: var(--admin-radius-lg);
+    box-shadow:
+        var(--admin-shadow-strong),
+        0 0 0 1px var(--admin-border-subtle),
+        0 0 80px rgba(20, 100, 120, 0.1);
+    backdrop-filter: var(--admin-backdrop-blur);
+    position: relative;
+    margin: 3rem auto;
+    border: 1px solid var(--admin-border-moderate);
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.closeButton {
+    position: absolute;
+    top: var(--admin-spacing-md);
+    right: var(--admin-spacing-md);
+    background: var(--admin-element-bg);
+    border: none;
+    cursor: pointer;
+    color: var(--admin-text-secondary);
+    padding: var(--admin-spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all var(--admin-transition-fast);
+    width: 32px;
+    height: 32px;
+}
+
+.closeButton:hover {
+    background-color: var(--admin-button-secondary);
+    color: var(--admin-text-primary);
+    transform: rotate(90deg);
+}
+
+.loginDesc {
+    margin-bottom: var(--admin-spacing-xl);
+    color: var(--admin-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--admin-spacing-lg);
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--admin-spacing-xs);
+    position: relative;
+}
+
+.formGroup label {
+    font-size: 0.9rem;
+    color: var(--admin-text-secondary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    margin-left: 0.2rem;
+}
+
+.formGroup input {
+    padding: 0.9rem 1rem;
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid var(--admin-border-subtle);
+    background: var(--admin-element-bg);
+    color: var(--admin-text-primary);
+    font-size: 1rem;
+    transition: all var(--admin-transition-fast);
+}
+
+.formGroup input:focus {
+    outline: none;
+    border-color: var(--admin-element-highlight);
+    box-shadow: 0 0 0 3px var(--admin-element-highlight-bg);
+}
+
+.errorMessage {
+    color: #ff7a7a;
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+    padding: var(--admin-spacing-xs);
+    background: rgba(255, 0, 0, 0.1);
+    border-radius: var(--admin-radius-sm);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translateX(-1px);
+    }
+    20%,
+    80% {
+        transform: translateX(2px);
+    }
+    30%,
+    50%,
+    70% {
+        transform: translateX(-3px);
+    }
+    40%,
+    60% {
+        transform: translateX(3px);
+    }
+}
+
+.loginButton {
+    background: var(--admin-button-primary);
+    color: var(--admin-text-primary);
+    padding: 0.9rem;
+    border: none;
+    border-radius: var(--admin-radius-sm);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all var(--admin-transition-medium);
+    margin-top: var(--admin-spacing-sm);
+    box-shadow: var(--admin-shadow-moderate);
+    position: relative;
+    overflow: hidden;
+}
+
+.loginButton:hover {
+    background: var(--admin-button-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+.loginButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.loginButton::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transform: scale(0.5);
+    transition:
+        opacity 0.5s,
+        transform 0.5s;
+}
+
+.loginButton:hover::after {
+    opacity: 0.2;
+    transform: scale(1);
+}
+
+.loginTitle {
+    text-align: center;
+    margin-bottom: var(--admin-spacing-sm);
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #f0e6d9 20%, #ad7d58 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+}
+
+.buttonIcon {
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+    transition: transform 0.3s;
+    display: inline-block;
+}
+
+.loginButton:hover .buttonIcon {
+    transform: translateX(3px);
+}
+
+.loginFooter {
+    margin-top: var(--admin-spacing-lg);
+    font-size: 0.8rem;
+    color: var(--admin-text-muted);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.secureNote {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    opacity: 0.7;
+    transition: opacity var(--admin-transition-fast);
+}
+
+.secureNote:hover {
+    opacity: 1;
+}
+
+.secureNote svg {
+    color: var(--admin-element-highlight);
+}
