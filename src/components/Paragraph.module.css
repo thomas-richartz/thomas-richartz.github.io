@@ -24,7 +24,7 @@
 }
 
 .paragraphWindow:hover .paragraphContent {
-    transform: rotateX(360deg) rotateY(-0deg); /* Adjust angles for 3D tilt */
+    /*transform: rotateX(360deg) rotateY(-0deg); angles for 3D tilt */
     opacity: 1;
 }
 

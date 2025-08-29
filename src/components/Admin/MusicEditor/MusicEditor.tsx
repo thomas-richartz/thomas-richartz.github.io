@@ -8,15 +8,16 @@ import styles from "./MusicEditor.module.css";
  * Wraps the AudioBlockEditor component and handles audio playback
  */
 export function MusicEditor() {
-  const { isPlaying, togglePlay } = useToneMusic();
+  const { isPlaying, togglePlay, fadeDuration = 1.5 } = useToneMusic();
 
   const handleChange = useCallback(
     (blocks: any, idx: any, param: any) => {
       if (param === "close" && isPlaying) {
-        togglePlay().catch((err: any) => console.error("Error stopping playback:", err));
+        // Use fadeDuration to ensure smooth fade-out when closing
+        togglePlay(fadeDuration).catch((err: any) => console.error("Error stopping playback:", err));
       }
     },
-    [isPlaying, togglePlay],
+    [isPlaying, togglePlay, fadeDuration],
   );
 
   return (

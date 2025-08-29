@@ -18,12 +18,14 @@ interface ToneMusicContextType {
   isLoading: boolean;
   verbose: boolean;
   visualizationData: Uint8Array;
+  fadeDuration: number;
 
   // Actions
-  togglePlay: () => Promise<void>;
+  togglePlay: (customFadeDuration?: number) => Promise<void>;
   setAudioBlocks: (blocks: FileSoundBlock[]) => void;
   updateBlock: (index: number, changes: Partial<FileSoundBlock>) => void;
   updateAllBlocks: (blocks: FileSoundBlock[]) => void;
+  setFadeDuration: (duration: number) => void;
   loadBlocksFromFile: (url: string) => Promise<void>;
   setVerbose: (verbose: boolean) => void;
 
@@ -57,16 +59,24 @@ interface WaveformData {
 interface ToneMusicProviderProps {
   children: React.ReactNode;
   initialBlocks?: FileSoundBlock[];
-  autoPlay?: boolean;
+  initialPlay?: boolean;
   initialVerbose?: boolean;
+  initialFadeDuration?: number;
 }
 
-export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, initialBlocks = [], autoPlay = false, initialVerbose = false }) => {
+export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({
+  children,
+  initialBlocks = [],
+  initialPlay = false,
+  initialVerbose = false,
+  initialFadeDuration = 2,
+}) => {
   // State
-  const [isPlaying, setIsPlaying] = useState<boolean>(autoPlay);
+  const [isPlaying, setIsPlaying] = useState<boolean>(initialPlay);
   const [blocks, setBlocks] = useState<FileSoundBlock[]>(initialBlocks);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [verbose, setVerbose] = useState<boolean>(initialVerbose);
+  const [fadeDuration, setFadeDuration] = useState<number>(initialFadeDuration || 2);
   const [visualizationData, setVisualizationData] = useState<Uint8Array>(new Uint8Array(128).fill(0));
   const [waveforms, setWaveforms] = useState<Map<string, WaveformData>>(new Map());
 
@@ -250,86 +260,91 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
   }, [blocks, generateWaveformData, waveforms, verbose]);
 
   // Toggle play/pause
-  const togglePlay = useCallback(async () => {
-    try {
-      console.log("ToneMusicContext: Toggle play called. Current state:", isPlaying);
-      console.log("ToneMusicContext: Blocks available:", blocks.length);
+  const togglePlay = useCallback(
+    async (customFadeDuration?: number) => {
+      const fadeTime = customFadeDuration !== undefined ? customFadeDuration : fadeDuration || 2;
+      try {
+        console.log("ToneMusicContext: Toggle play called. Current state:", isPlaying);
+        console.log("ToneMusicContext: Blocks available:", blocks.length);
 
-      // Ensure audio context is running
-      if (Tone.context.state !== "running") {
-        console.log("ToneMusicContext: Starting Tone.js audio context");
-        await Tone.start();
-      }
-
-      if (isPlaying) {
-        // Stop playback
-        if (sceneRef.current) {
-          if (verbose) console.log("ToneMusicContext: Stopping playback and fading out");
-          try {
-            await sceneRef.current.fadeOut?.(2);
-            sceneRef.current.stop();
-            // Clean up Tone.js
-            Tone.Transport.cancel();
-            Tone.Transport.stop();
-          } catch (error) {
-            console.error("ToneMusicContext: Error during fadeout:", error);
-          }
+        // Ensure audio context is running
+        if (Tone.context.state !== "running") {
+          console.log("ToneMusicContext: Starting Tone.js audio context");
+          await Tone.start();
         }
-        setIsPlaying(false);
-      } else {
-        // Start playback
-        if (verbose) console.log("ToneMusicContext: Starting playback with", blocks.length, "blocks");
-        console.log("ToneMusicContext: Audio context state:", Tone.context.state);
 
-        if (blocks.length > 0) {
-          // Set state first to avoid race conditions
-          setIsPlaying(true);
-
-          try {
-            // Initialize and start Tone.js if needed
-            if (Tone.context.state !== "running") {
-              await Tone.start();
-              console.log("ToneMusicContext: Tone.js started successfully");
-              await new Promise((resolve) => setTimeout(resolve, 300)); // Longer delay to ensure Tone.js is ready
-            }
-
-            // Force create a new scene (not reusing existing one to avoid issues)
-            if (sceneRef.current) {
+        if (isPlaying) {
+          // Stop playback
+          if (sceneRef.current) {
+            if (verbose) console.log("ToneMusicContext: Stopping playback and fading out");
+            try {
+              console.log(`ToneMusicContext: Fading out with duration: ${fadeTime}s`);
+              await sceneRef.current.fadeOut?.(fadeTime);
               sceneRef.current.stop();
-              sceneRef.current.dispose();
-              sceneRef.current = null;
+              // Clean up Tone.js
+              Tone.Transport.cancel();
+              Tone.Transport.stop();
+            } catch (error) {
+              console.error("ToneMusicContext: Error during fadeout:", error);
             }
-
-            // Create the new scene explicitly
-            console.log("ToneMusicContext: Creating new ToneMusicScene with", blocks.length, "blocks");
-            const newScene = new ToneMusicScene(blocks, true, true);
-            console.log("ToneMusicContext: Loading audio files...");
-            await newScene.load();
-            console.log("ToneMusicContext: Audio files loaded successfully");
-            sceneRef.current = newScene;
-
-            // Actual playback
-            console.log("ToneMusicContext: Starting quantized playback...");
-            await newScene.scheduleQuantizedPlayback();
-            console.log("ToneMusicContext: Playback started successfully");
-
-            // Verify Tone.js is actually playing
-            // Check Transport state safely
-            console.log("ToneMusicContext: Transport state:", Tone.Transport.state || "unknown");
-            console.log("ToneMusicContext: Audio context state:", Tone.context.state);
-          } catch (error) {
-            console.error("ToneMusicContext: Error starting playback:", error);
-            setIsPlaying(false);
           }
+          setIsPlaying(false);
         } else {
-          if (verbose) console.warn("ToneMusicContext: No blocks available to play");
+          // Start playback
+          if (verbose) console.log("ToneMusicContext: Starting playback with", blocks.length, "blocks");
+          console.log("ToneMusicContext: Audio context state:", Tone.context.state);
+
+          if (blocks.length > 0) {
+            // Set state first to avoid race conditions
+            setIsPlaying(true);
+
+            try {
+              // Initialize and start Tone.js if needed
+              if (Tone.context.state !== "running") {
+                await Tone.start();
+                console.log("ToneMusicContext: Tone.js started successfully");
+                await new Promise((resolve) => setTimeout(resolve, 300)); // Longer delay to ensure Tone.js is ready
+              }
+
+              // Force create a new scene (not reusing existing one to avoid issues)
+              if (sceneRef.current) {
+                sceneRef.current.stop();
+                sceneRef.current.dispose();
+                sceneRef.current = null;
+              }
+
+              // Create the new scene explicitly
+              console.log("ToneMusicContext: Creating new ToneMusicScene with", blocks.length, "blocks");
+              const newScene = new ToneMusicScene(blocks, true, true);
+              console.log("ToneMusicContext: Loading audio files...");
+              await newScene.load();
+              console.log("ToneMusicContext: Audio files loaded successfully");
+              sceneRef.current = newScene;
+
+              // Actual playback
+              console.log("ToneMusicContext: Starting quantized playback...");
+              await newScene.scheduleQuantizedPlayback();
+              console.log("ToneMusicContext: Playback started successfully");
+
+              // Verify Tone.js is actually playing
+              // Check Transport state safely
+              console.log("ToneMusicContext: Transport state:", Tone.Transport.state || "unknown");
+              console.log("ToneMusicContext: Audio context state:", Tone.context.state);
+            } catch (error) {
+              console.error("ToneMusicContext: Error starting playback:", error);
+              setIsPlaying(false);
+            }
+          } else {
+            if (verbose) console.warn("ToneMusicContext: No blocks available to play");
+          }
         }
+      } catch (error) {
+        console.error("ToneMusicContext: Error in togglePlay:", error);
+        setIsPlaying(false);
       }
-    } catch (error) {
-      console.error("ToneMusicContext: Error in togglePlay:", error);
-      setIsPlaying(false);
-    }
-  }, [isPlaying, blocks, verbose]);
+    },
+    [isPlaying, blocks, verbose, fadeDuration],
+  );
 
   // Update a single block's properties
   const updateBlock = useCallback(
@@ -515,10 +530,12 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
     isLoading,
     verbose,
     visualizationData,
+    fadeDuration: fadeDuration || 2,
 
     // Actions
     togglePlay,
     setAudioBlocks,
+    setFadeDuration,
     updateBlock,
     updateAllBlocks,
     loadBlocksFromFile,

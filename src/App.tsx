@@ -22,7 +22,7 @@ function AppContent() {
   const [verbose] = useState(true);
 
   // Use our new context
-  const { isPlaying, togglePlay, setAudioBlocks, blocks, resetAudio } = useToneMusic();
+  const { isPlaying, togglePlay, setAudioBlocks, blocks, resetAudio, fadeDuration, setFadeDuration } = useToneMusic();
 
   // Use the togglePlay function from the context
   const handleMusicToggle = useCallback(() => {
@@ -31,8 +31,8 @@ function AppContent() {
       console.warn("App: Cannot toggle music - no blocks loaded");
       return;
     }
-    togglePlay().catch((err) => console.error("Error toggling music:", err));
-  }, [togglePlay, isPlaying, blocks.length]);
+    togglePlay(fadeDuration).catch((err) => console.error("Error toggling music:", err));
+  }, [togglePlay, isPlaying, blocks.length, fadeDuration]);
 
   useEffect(() => {
     if (selectedScreen === Screen.LANDING) {
@@ -168,7 +168,9 @@ function AppContent() {
               <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
             )}
 
-            {blocks.length > 0 && <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} fadeDuration={1.5} />}
+            {blocks.length > 0 && (
+              <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} fadeDuration={fadeDuration || 1.5} />
+            )}
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
@@ -186,7 +188,7 @@ function AppContent() {
 
 function App() {
   return (
-    <ToneMusicProvider initialVerbose={true}>
+    <ToneMusicProvider initialVerbose={true} initialFadeDuration={1.5}>
       <AppContent />
     </ToneMusicProvider>
   );

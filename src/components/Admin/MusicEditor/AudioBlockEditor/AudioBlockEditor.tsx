@@ -83,6 +83,8 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
     blocks,
     verbose,
     getCurrentScene,
+    fadeDuration,
+    setFadeDuration,
   } = useToneMusic();
 
   // Collect debug info on demand
@@ -155,7 +157,8 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
   // Cache over refs to persist and avoid redundant loading
   const fileCache = useRef<Map<string, FileSoundBlock[]>>(new Map());
 
-  const FADE_OUT_DURATION = 1.5;
+  // Use the fadeDuration from context or default to 1.5 seconds
+  const fadeOutDuration = fadeDuration || 1.5;
 
   const loadSoundBlocksFromFile = async (filePath: string) => {
     try {
@@ -247,10 +250,10 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
     updateAllBlocks(localBlocks);
 
     try {
-      // Use the context's toggle function
+      // Use the context's toggle function with the fadeOutDuration
       const wasPlaying = isPlaying;
-      await togglePlay();
-      console.log(`AudioBlockEditor: Toggled playback from ${wasPlaying} to ${!wasPlaying}`);
+      await togglePlay(fadeOutDuration);
+      console.log(`AudioBlockEditor: Toggled playback from ${wasPlaying} to ${!wasPlaying} with fade duration ${fadeOutDuration}s`);
 
       // Handle onChange for backward compatibility
       if (onChange && useMainSystem) {
@@ -276,7 +279,7 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
     // Toggle off playback if needed
     if (isPlaying) {
       try {
-        await togglePlay();
+        await togglePlay(fadeOutDuration);
       } catch (error) {
         console.error("Error stopping playback:", error);
       }
@@ -830,7 +833,7 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
               <button onClick={() => resetAudio()} className={styles.debugButton}>
                 Reset
               </button>
-              <button onClick={() => togglePlay()} className={styles.debugButton}>
+              <button onClick={() => togglePlay(fadeOutDuration)} className={styles.debugButton}>
                 Toggle Play
               </button>
               <button onClick={() => setShowDebug(false)} className={styles.debugButton}>

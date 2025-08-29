@@ -13,7 +13,7 @@ interface CrudTableProps {
   onDataChange: (data: InterpretationData) => void;
 }
 
-const AUTO_SAVE_DELAY = 2000; // milliseconds
+const DRAFT_STATUS_DELAY = 2000; // milliseconds
 
 export function CrudTable({ title, data, possibleKeys, onDataChange }: CrudTableProps) {
   // Track which key is being edited or added
@@ -21,11 +21,14 @@ export function CrudTable({ title, data, possibleKeys, onDataChange }: CrudTable
   const [editValue, setEditValue] = useState<string>("");
   const [tempSavedValue, setTempSavedValue] = useState<string | null>(null);
   const [filteredKeys, setFilteredKeys] = useState<string[]>(possibleKeys);
-  const [saveStatus, setSaveStatus] = useState<"idle" | "saving" | "saved">("idle");
+  const [draftStatus, setDraftStatus] = useState<"idle" | "storing" | "stored">("idle");
   const searchFilterRef = useRef<any>(null);
 
-  // Auto-save timer reference
-  const autoSaveTimerRef = useRef<NodeJS.Timeout | null>(null);
+  // Draft status timer reference
+  const draftTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Last saved draft reference to prevent infinite loops
+  const lastSavedDraftRef = useRef<string>("");
 
   const usedKeys = Object.keys(data);
   const unusedKeys = possibleKeys.filter((key) => !usedKeys.includes(key));
@@ -37,51 +40,58 @@ export function CrudTable({ title, data, possibleKeys, onDataChange }: CrudTable
     }
   }, [usedKeys]);
 
-  // Clean up auto-save timer on unmount
+  // Handle storing drafts without triggering infinite loops
+  const storeDraft = React.useCallback(
+    (key: string, value: string) => {
+      if (!key || value.trim() === "") return;
+
+      // Only store if different from last saved draft
+      if (lastSavedDraftRef.current !== value) {
+        // Store in localStorage
+        const tempKey = `temp_${title}_${key}`;
+        localStorage.setItem(tempKey, value);
+        lastSavedDraftRef.current = value;
+
+        // Update UI state
+        setTempSavedValue(value);
+
+        // Clear any existing timer
+        if (draftTimerRef.current) {
+          clearTimeout(draftTimerRef.current);
+        }
+
+        // Show temporary status messages
+        draftTimerRef.current = setTimeout(() => {
+          setDraftStatus("storing");
+
+          setTimeout(() => {
+            setDraftStatus("stored");
+
+            setTimeout(() => {
+              setDraftStatus("idle");
+            }, 1500);
+          }, 300);
+        }, DRAFT_STATUS_DELAY);
+      }
+    },
+    [title],
+  );
+
+  // Clean up timer on unmount
   useEffect(() => {
     return () => {
-      if (autoSaveTimerRef.current) {
-        clearTimeout(autoSaveTimerRef.current);
+      if (draftTimerRef.current) {
+        clearTimeout(draftTimerRef.current);
       }
     };
   }, []);
 
-  // Setup auto-save for the current edit
+  // Store draft when editValue changes
   useEffect(() => {
-    if (activeEditKey && editValue.trim() !== "") {
-      // Clear any existing timer
-      if (autoSaveTimerRef.current) {
-        clearTimeout(autoSaveTimerRef.current);
-      }
-
-      // Store temporary backup in localStorage
-      const tempKey = `temp_${title}_${activeEditKey}`;
-      localStorage.setItem(tempKey, editValue);
-      setTempSavedValue(editValue);
-
-      // Set up auto-save timer
-      autoSaveTimerRef.current = setTimeout(() => {
-        setSaveStatus("saving");
-
-        // Save to localStorage after a delay to simulate network activity
-        setTimeout(() => {
-          onDataChange({ ...data, [activeEditKey]: editValue });
-          setSaveStatus("saved");
-
-          // Clear the temp backup after successful save
-          setTimeout(() => {
-            setSaveStatus("idle");
-          }, 1500);
-        }, 300);
-      }, AUTO_SAVE_DELAY);
+    if (activeEditKey) {
+      storeDraft(activeEditKey, editValue);
     }
-
-    return () => {
-      if (autoSaveTimerRef.current) {
-        clearTimeout(autoSaveTimerRef.current);
-      }
-    };
-  }, [editValue, activeEditKey, data, onDataChange, title]);
+  }, [activeEditKey, editValue, storeDraft]);
 
   // Check for unsaved drafts when starting to edit
   const startEdit = (key: string, initialValue: string = "") => {
@@ -102,15 +112,16 @@ export function CrudTable({ title, data, possibleKeys, onDataChange }: CrudTable
     }
 
     setActiveEditKey(key);
-    setSaveStatus("idle");
+    setDraftStatus("idle");
+    lastSavedDraftRef.current = "";
   };
 
   const handleSave = (key: string) => {
     if (editValue.trim() !== "") {
-      // Clear any pending auto-save
-      if (autoSaveTimerRef.current) {
-        clearTimeout(autoSaveTimerRef.current);
-        autoSaveTimerRef.current = null;
+      // Clear any pending draft timer
+      if (draftTimerRef.current) {
+        clearTimeout(draftTimerRef.current);
+        draftTimerRef.current = null;
       }
 
       // Update the data
@@ -124,15 +135,16 @@ export function CrudTable({ title, data, possibleKeys, onDataChange }: CrudTable
       setActiveEditKey(null);
       setEditValue("");
       setTempSavedValue(null);
-      setSaveStatus("idle");
+      setDraftStatus("idle");
+      lastSavedDraftRef.current = "";
     }
   };
 
   const handleCancel = () => {
-    // Clear any pending auto-save
-    if (autoSaveTimerRef.current) {
-      clearTimeout(autoSaveTimerRef.current);
-      autoSaveTimerRef.current = null;
+    // Clear any pending draft timer
+    if (draftTimerRef.current) {
+      clearTimeout(draftTimerRef.current);
+      draftTimerRef.current = null;
     }
 
     // If we have a temp saved value and user tries to cancel, confirm
@@ -154,7 +166,8 @@ export function CrudTable({ title, data, possibleKeys, onDataChange }: CrudTable
     setActiveEditKey(null);
     setEditValue("");
     setTempSavedValue(null);
-    setSaveStatus("idle");
+    setDraftStatus("idle");
+    lastSavedDraftRef.current = "";
   };
 
   const handleDelete = (key: string) => {
@@ -242,9 +255,9 @@ export function CrudTable({ title, data, possibleKeys, onDataChange }: CrudTable
                           autoFocus
                         />
                         <div className={styles.saveStatus}>
-                          {saveStatus === "saving" && <span>Saving...</span>}
-                          {saveStatus === "saved" && <span>Draft saved</span>}
-                          {tempSavedValue && saveStatus === "idle" && <span>Draft stored</span>}
+                          {draftStatus === "storing" && <span>Storing draft...</span>}
+                          {draftStatus === "stored" && <span>Draft stored locally</span>}
+                          {tempSavedValue === editValue && draftStatus === "idle" && tempSavedValue !== null && <span>Draft stored locally</span>}
                         </div>
                       </div>
                     </td>

@@ -12,7 +12,7 @@ interface Props {
 
 const ToneMusicSystem: React.FC<Props> = ({ play, blocks, verbose, onLoadingChange, fadeDuration = 2 }) => {
   // Use the shared Tone Music context
-  const { isLoading, setAudioBlocks, updateAllBlocks, isPlaying, togglePlay, setVerbose, getCurrentScene } = useToneMusic();
+  const { isLoading, setAudioBlocks, updateAllBlocks, isPlaying, togglePlay, setVerbose, getCurrentScene, setFadeDuration } = useToneMusic();
 
   // For tracking initialization state
   const isInitialized = React.useRef(false);
@@ -22,7 +22,11 @@ const ToneMusicSystem: React.FC<Props> = ({ play, blocks, verbose, onLoadingChan
     if (verbose !== undefined) {
       setVerbose(verbose);
     }
-  }, [verbose, setVerbose]);
+    // Set fade duration from props
+    if (fadeDuration !== undefined) {
+      setFadeDuration(fadeDuration);
+    }
+  }, [verbose, setVerbose, fadeDuration, setFadeDuration]);
 
   // Forward loading state to parent
   useEffect(() => {
@@ -53,8 +57,8 @@ const ToneMusicSystem: React.FC<Props> = ({ play, blocks, verbose, onLoadingChan
 
       // Add a small delay to ensure blocks are loaded
       const timer = setTimeout(() => {
-        console.log("ToneMusicSystem: Toggling playback");
-        togglePlay().catch((err) => {
+        console.log("ToneMusicSystem: Toggling playback with fade duration:", fadeDuration);
+        togglePlay(fadeDuration).catch((err) => {
           console.error("Error toggling playback:", err);
         });
       }, 100);
