@@ -1,0 +1,90 @@
+.container {
+    padding: var(--admin-spacing-lg);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.heading {
+    font-size: 1.5rem;
+    margin-bottom: var(--admin-spacing-md);
+    color: var(--admin-text-primary);
+}
+
+.description {
+    margin-bottom: var(--admin-spacing-xl);
+    color: var(--admin-text-secondary);
+}
+
+.settingsPlaceholder {
+    display: flex;
+    flex-direction: column;
+    gap: var(--admin-spacing-xl);
+    margin-bottom: var(--admin-spacing-xl);
+}
+
+.settingGroup {
+    background: var(--admin-element-bg);
+    border-radius: var(--admin-radius-md);
+    padding: var(--admin-spacing-lg);
+    border: 1px solid var(--admin-border-subtle);
+}
+
+.groupHeading {
+    font-size: 1.1rem;
+    margin-bottom: var(--admin-spacing-md);
+    color: var(--admin-text-primary);
+}
+
+.settingContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--admin-spacing-md);
+}
+
+.settingOption {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--admin-spacing-xs);
+    border-bottom: 1px solid var(--admin-border-subtle);
+}
+
+.settingLabel {
+    font-size: 0.9rem;
+    color: var(--admin-text-secondary);
+}
+
+.settingControl {
+    background: var(--admin-element-bg);
+    border: 1px solid var(--admin-border-subtle);
+    border-radius: var(--admin-radius-sm);
+    padding: 0.4rem 0.8rem;
+    color: var(--admin-text-secondary);
+    min-width: 120px;
+}
+
+.buttonBar {
+    display: flex;
+    gap: var(--admin-spacing-md);
+    justify-content: flex-end;
+    margin-top: var(--admin-spacing-xl);
+}
+
+.button {
+    background: var(--admin-button-secondary);
+    border: none;
+    color: var(--admin-text-primary);
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--admin-radius-sm);
+    cursor: pointer;
+    transition: background var(--admin-transition-fast);
+}
+
+.button:hover:not(:disabled) {
+    background: var(--admin-button-secondary-hover);
+}
+
+.button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

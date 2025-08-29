@@ -1,0 +1,26 @@
+.container {
+    padding: var(--admin-spacing-xs);
+    overflow-y: auto;
+    height: calc(100vh - 140px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--admin-spacing-md);
+}
+
+@media (min-width: 1200px) {
+    .container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .container > * {
+        flex: 1;
+        max-width: 50%;
+    }
+}
+
+@media (max-height: 800px) {
+    .container {
+        height: calc(100vh - 120px);
+    }
+}

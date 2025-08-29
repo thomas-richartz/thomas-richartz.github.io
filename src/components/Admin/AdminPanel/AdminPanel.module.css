@@ -1,0 +1,141 @@
+.adminPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--admin-gradient-main);
+    color: var(--admin-text-primary);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.adminPanelLanding {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--admin-gradient-main);
+    color: var(--admin-text-primary);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.bgAnimation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.bgGradient {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--admin-gradient-main);
+    opacity: 0.85;
+}
+
+.bgMesh {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: var(--admin-mesh-bg);
+    background-size: 150% 150%;
+}
+
+/* Animation keyframes removed */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--admin-spacing-md) var(--admin-spacing-lg);
+    background: var(--admin-panel-bg);
+    box-shadow: var(--admin-shadow-subtle);
+    position: relative;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--admin-text-primary);
+}
+
+.adminSubtitle {
+    font-size: 0.9rem;
+    color: var(--admin-text-secondary);
+    margin-left: var(--admin-spacing-md);
+}
+
+.closeButton {
+    background: transparent;
+    border: none;
+    color: var(--admin-text-secondary);
+    cursor: pointer;
+    padding: var(--admin-spacing-xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition:
+        background-color var(--admin-transition-fast),
+        color var(--admin-transition-fast);
+}
+
+.closeButton:hover {
+    background-color: var(--admin-button-secondary);
+    color: var(--admin-text-primary);
+}
+
+.tabs {
+    display: flex;
+    background: var(--admin-panel-bg);
+    border-bottom: 1px solid var(--admin-border-subtle);
+    overflow-x: auto;
+}
+
+.tabButton {
+    padding: var(--admin-spacing-sm) var(--admin-spacing-lg);
+    background: transparent;
+    border: none;
+    color: var(--admin-text-secondary);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition:
+        background-color var(--admin-transition-fast),
+        color var(--admin-transition-fast),
+        border-color var(--admin-transition-fast);
+    white-space: nowrap;
+}
+
+.tabButton:hover {
+    background-color: var(--admin-button-secondary);
+    color: var(--admin-text-primary);
+}
+
+.activeTab {
+    color: var(--admin-text-primary);
+    border-bottom-color: var(--admin-element-highlight);
+    background-color: var(--admin-element-highlight-bg);
+}
+
+.tabContentContainer {
+    flex: 1;
+    overflow: auto;
+    background: transparent;
+    padding: var(--admin-spacing-sm);
+}

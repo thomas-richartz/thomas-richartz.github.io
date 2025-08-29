@@ -1,0 +1,73 @@
+.markdown {
+  font-family: inherit;
+  color: inherit;
+  line-height: 1.6;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  font-weight: 600;
+}
+
+.markdown h1 {
+  font-size: 1.75em;
+}
+
+.markdown h2 {
+  font-size: 1.5em;
+}
+
+.markdown h3 {
+  font-size: 1.25em;
+}
+
+.markdown p {
+  margin-bottom: 1em;
+}
+
+.markdown strong {
+  font-weight: 600;
+}
+
+.markdown em {
+  font-style: italic;
+}
+
+.markdown blockquote {
+  padding-left: 1em;
+  border-left: 3px solid #ccc;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 1em 0;
+}
+
+.markdown ul,
+.markdown ol {
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+
+.markdown li {
+  margin-bottom: 0.5em;
+}
+
+.markdown a {
+  color: #6ab0f3;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.markdown a:hover {
+  color: #4a8ec3;
+}
+
+/* Special case for the admin panel */
+:global(.crudTable) .markdown {
+  max-height: 250px;
+  overflow-y: auto;
+  padding: 0.5em;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
