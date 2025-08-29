@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
-import ToneMusicOverlay from "@/components/ToneMusicSystemOverlay";
+import AudioBlockEditor from "./AudioBlockEditor/AudioBlockEditor";
 import { useToneMusic } from "@/context/ToneMusicContext";
 import styles from "./MusicEditor.module.css";
 
 /**
  * MusicEditor component for the admin panel
- * Wraps the ToneMusicOverlay component and handles audio playback
+ * Wraps the AudioBlockEditor component and handles audio playback
  */
 export function MusicEditor() {
   const { isPlaying, togglePlay } = useToneMusic();
@@ -21,7 +21,7 @@ export function MusicEditor() {
 
   return (
     <div className={styles.container}>
-      <ToneMusicOverlay initialBlocks={[]} title="Audio Block Editor" onChange={handleChange} />
+      <AudioBlockEditor initialBlocks={[]} title="Audio Block Editor" onChange={handleChange} />
     </div>
   );
 }

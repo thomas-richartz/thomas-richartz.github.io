@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import styles from "@/components/ToneMusicSystemOverlay.module.css";
+import styles from "./AudioBlockEditor.module.css";
 import { FileSoundBlock } from "@/audio/ToneMusicScene";
 import { useToneMusic } from "@/context/ToneMusicContext";
+import { useTheme } from "@/context/ThemeContext";
 
 type ToneAnalyser = any; // Type definition for Tone.Analyser
 
@@ -10,7 +11,7 @@ interface WaveformData {
   duration: number;
 }
 
-interface ToneMusicOverlayProps {
+interface AudioBlockEditorProps {
   initialBlocks?: FileSoundBlock[];
   onChange?: (blocks: FileSoundBlock[], changedIndex?: number, changedParam?: keyof FileSoundBlock | string, value?: any) => void;
   title?: string;
@@ -50,7 +51,9 @@ const BLOCK_COLORS = [
 
 const quantizeOptions = ["1m", "2n", "4n", "8n", "16n", "32n", "3n", "6n", "12n"];
 
-const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onChange, title = "Sound Block Editor" }) => {
+const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onChange, title = "Audio Block Editor" }) => {
+  const { currentTheme } = useTheme(); // Use theme context
+
   const [selectedFile, setSelectedFile] = useState(SOUND_BLOCK_FILES[0]);
   const [localBlocks, setLocalBlocks] = useState<FileSoundBlock[]>(initialBlocks || []);
   const [activeBlockIndex, setActiveBlockIndex] = useState<number | null>(null);
@@ -122,9 +125,9 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
     const timer = setTimeout(() => {
       mainToneMusicSystem = document.querySelector("[data-tonemusicscene='main']");
       if (mainToneMusicSystem) {
-        console.log("ToneMusicSystemOverlay: Main ToneMusicSystem found in DOM");
+        console.log("AudioBlockEditor: Main ToneMusicSystem found in DOM");
       } else {
-        console.log("ToneMusicSystemOverlay: Main ToneMusicSystem not found in DOM - standalone mode only");
+        console.log("AudioBlockEditor: Main ToneMusicSystem not found in DOM - standalone mode only");
       }
     }, 500);
 
@@ -158,7 +161,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
     try {
       // Check if we've already loaded this file
       if (fileCache.current.has(filePath)) {
-        console.log(`ToneMusicSystemOverlay: Using cached sound blocks for ${filePath}`);
+        console.log(`AudioBlockEditor: Using cached sound blocks for ${filePath}`);
         const cachedData = fileCache.current.get(filePath)!;
         setLocalBlocks(cachedData);
         await setAudioBlocks(cachedData);
@@ -166,7 +169,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
         return;
       }
 
-      console.log(`ToneMusicSystemOverlay: Loading sound blocks from ${filePath}`);
+      console.log(`AudioBlockEditor: Loading sound blocks from ${filePath}`);
 
       // Use fetch directly instead of the context function to avoid type issues
       const response = await fetch(filePath);
@@ -175,7 +178,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
       }
 
       const data = await response.json();
-      console.log(`ToneMusicSystemOverlay: Loaded ${data.length} sound blocks`);
+      console.log(`AudioBlockEditor: Loaded ${data.length} sound blocks`);
 
       // Cache the data
       fileCache.current.set(filePath, data);
@@ -183,18 +186,18 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
       // Update local state
       setLocalBlocks(data);
 
-      // XXX Update the context? with second param
+      // Update the context
       await setAudioBlocks(data);
 
       setSelectedFile(filePath);
-      console.log("ToneMusicSystemOverlay: Sound blocks loaded successfully");
+      console.log("AudioBlockEditor: Sound blocks loaded successfully");
     } catch (error) {
-      console.error("ToneMusicSystemOverlay: Error loading sound blocks:", error);
+      console.error("AudioBlockEditor: Error loading sound blocks:", error);
     }
   };
 
   const handleBlockChange = (idx: number, changes: Partial<FileSoundBlock>) => {
-    console.log(`ToneMusicSystemOverlay: Changing block ${idx}:`, changes);
+    console.log(`AudioBlockEditor: Changing block ${idx}:`, changes);
     const updated = localBlocks.map((b, i) => (i === idx ? { ...b, ...changes } : b));
     setLocalBlocks(updated);
 
@@ -205,7 +208,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
         x: block.pan || 0,
         y: block.volume || 0,
       };
-      console.log(`ToneMusicSystemOverlay: Updated XY values for ${block.name}`);
+      console.log(`AudioBlockEditor: Updated XY values for ${block.name}`);
     }
 
     // Update through our context
@@ -217,12 +220,12 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
       if (useMainSystem) {
         // For better integration with App.tsx, send the whole blocks array
         // with a command to replace all blocks (better than updating one at a time)
-        console.log(`ToneMusicSystemOverlay: Sending full blocks update to main app`);
+        console.log(`AudioBlockEditor: Sending full blocks update to main app`);
         onChange(updated, -1, "setBlocks" as any, true);
       } else {
         // Traditional change handling for backward compatibility
         const [changedParam] = Object.keys(changes) as (keyof FileSoundBlock)[];
-        console.log(`ToneMusicSystemOverlay: Sending change to main app - ${changedParam}:`, (changes as any)[changedParam]);
+        console.log(`AudioBlockEditor: Sending change to main app - ${changedParam}:`, (changes as any)[changedParam]);
         onChange(updated, idx, changedParam, (changes as any)[changedParam]);
       }
     }
@@ -238,7 +241,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
   };
 
   const handlePlayToggle = async () => {
-    console.log("ToneMusicSystemOverlay: Play/Stop button clicked, current state:", isPlaying);
+    console.log("AudioBlockEditor: Play/Stop button clicked, current state:", isPlaying);
 
     // First ensure we're using the latest blocks in the context
     updateAllBlocks(localBlocks);
@@ -247,14 +250,14 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
       // Use the context's toggle function
       const wasPlaying = isPlaying;
       await togglePlay();
-      console.log(`ToneMusicSystemOverlay: Toggled playback from ${wasPlaying} to ${!wasPlaying}`);
+      console.log(`AudioBlockEditor: Toggled playback from ${wasPlaying} to ${!wasPlaying}`);
 
       // Handle onChange for backward compatibility
       if (onChange && useMainSystem) {
         onChange(localBlocks, -1, wasPlaying ? ("stop" as any) : ("play" as any), !wasPlaying);
       }
     } catch (error) {
-      console.error("ToneMusicSystemOverlay: Error toggling playback:", error);
+      console.error("AudioBlockEditor: Error toggling playback:", error);
     }
   };
 
@@ -269,7 +272,7 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
   };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log("ToneMusicSystemOverlay: File selection changed");
+    console.log("AudioBlockEditor: File selection changed");
     // Toggle off playback if needed
     if (isPlaying) {
       try {
@@ -278,17 +281,17 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
         console.error("Error stopping playback:", error);
       }
     }
-    console.log(`ToneMusicSystemOverlay: Loading file: ${e.target.value}`);
+    console.log(`AudioBlockEditor: Loading file: ${e.target.value}`);
     await loadSoundBlocksFromFile(e.target.value);
   };
 
   const handleApplyChanges = async () => {
-    console.log("ToneMusicSystemOverlay: Applying changes to main system");
+    console.log("AudioBlockEditor: Applying changes to main system");
     await setAudioBlocks(localBlocks);
 
     // For backward compatibility
     if (onChange) {
-      console.log("ToneMusicSystemOverlay: Sending updated blocks to main app:", localBlocks);
+      console.log("AudioBlockEditor: Sending updated blocks to main app:", localBlocks);
       onChange(localBlocks, -1, "setBlocks" as any, true);
     }
   };
@@ -340,8 +343,21 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
   return (
     <div className={styles.overlay} id="music-editor-page">
       <div className={styles.pageHeader}>
-        <h2 className={styles.heading}>{title}</h2>
-
+        {/*<h2 className={styles.heading}>{title}</h2>*/}
+        {/* Audio Visualization */}
+        <div className={styles.visualizer}>
+          {Array.from(visualizationData.slice(0, 64)).map((value, i) => (
+            <div
+              key={i}
+              className={styles.visualizerBar}
+              style={{
+                height: `${Math.max(2, value / 2.55)}%`,
+                opacity: isPlaying ? 0.7 + value / 765 : 0.3,
+                backgroundColor: isPlaying ? `hsl(${200 + (i / 64) * 60}, 70%, ${40 + (value / 255) * 30}%)` : "#444",
+              }}
+            ></div>
+          ))}
+        </div>
         {/* Top Controls Bar */}
         <div className={styles.controlBar}>
           <div className={styles.fileSelector}>
@@ -368,51 +384,11 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
             <button className={styles.applyButton} onClick={handleApplyChanges} disabled={loading || !onChange}>
               Apply Changes
             </button>
-
-            <button className={styles.debugButton} onClick={() => debugAudio()} disabled={loading}>
-              Audio Debug
-            </button>
-
-            {onChange && (
-              <button className={styles.closeButton} onClick={() => onChange(localBlocks, -1, "close" as any, true)}>
-                Close
-              </button>
-            )}
           </div>
         </div>
       </div>
 
       <div className={styles.contentArea}>
-        {/* Audio Visualization */}
-        <div className={styles.visualizer}>
-          {Array.from(visualizationData.slice(0, 64)).map((value, i) => (
-            <div
-              key={i}
-              className={styles.visualizerBar}
-              style={{
-                height: `${Math.max(2, value / 2.55)}%`,
-                opacity: isPlaying ? 0.7 + value / 765 : 0.3,
-                backgroundColor: isPlaying ? `hsl(${200 + (i / 64) * 60}, 70%, ${40 + (value / 255) * 30}%)` : "#444",
-              }}
-            ></div>
-          ))}
-        </div>
-
-        {/* Audio mode selector */}
-        <div className={styles.playbackModeContainer} style={{ marginTop: "20px" }}>
-          <div className={styles.playbackModeSelector}>
-            <label className={styles.modeLabel}>
-              <input type="checkbox" checked={useMainSystem} onChange={() => setUseMainSystem(!useMainSystem)} disabled={isPlaying} />
-              Use main app audio system
-            </label>
-          </div>
-          <div className={styles.playbackNotice}>
-            {useMainSystem
-              ? "Using main app audio system - changes will be synced with the app"
-              : "Using standalone audio system - you can test sounds independently"}
-          </div>
-        </div>
-
         {/* Hidden ToneMusicSystem for standalone mode */}
         <div ref={internalMusicSystemRef} style={{ display: "none" }}>
           {!useMainSystem && <div data-tonemusicscene="internal"></div>}
@@ -790,60 +766,26 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
             Save as JSON
           </button>
         </div>
-      </div>
-      <div className={styles.pageFooter} style={{ fontSize: "0.8em", padding: "4px 0", background: "#222", color: "#aaa", minHeight: "32px" }}>
-        <div className={styles.buttonContainer} style={{ margin: "0 auto", display: "flex", justifyContent: "center", alignItems: "center" }}>
-          <button
-            onClick={handleSave}
-            className={styles.saveButton}
-            disabled={loading || localBlocks.length === 0}
-            style={{ fontSize: "0.9em", padding: "2px 10px" }}
-          >
-            Save to File
-          </button>
-          {/* Floating debug toggle */}
-          <button
-            onClick={handleDebugPanel}
-            style={{
-              position: "fixed",
-              bottom: "10px",
-              right: "10px",
-              background: "#333",
-              color: "#fff",
-              border: "none",
-              borderRadius: "50%",
-              width: "28px",
-              height: "28px",
-              fontSize: "14px",
-              zIndex: 1000,
-              cursor: "pointer",
-              boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
-            }}
-            title="Show Debug Panel"
-          >
-            D
-          </button>
-        </div>
+
         {/* Debug Panel */}
         {showDebug && (
-          <div
-            style={{
-              position: "fixed",
-              bottom: "48px",
-              right: "10px",
-              background: "rgba(20,20,20,0.98)",
-              padding: "12px 16px",
-              borderRadius: "8px",
-              color: "#fff",
-              zIndex: 1001,
-              fontSize: "12px",
-              maxWidth: "340px",
-              boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
-              overflowX: "auto",
-            }}
-          >
-            <div style={{ marginBottom: "8px", fontWeight: "bold", fontSize: "13px" }}>Audio Debug Info</div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
+          <div className={styles.debugPanel}>
+            {/* Audio mode selector */}
+            <div className={styles.playbackModeContainer} style={{ marginTop: "20px" }}>
+              <div className={styles.playbackModeSelector}>
+                <label className={styles.modeLabel}>
+                  <input type="checkbox" checked={useMainSystem} onChange={() => setUseMainSystem(!useMainSystem)} disabled={isPlaying} />
+                  Use main app audio system
+                </label>
+              </div>
+              <div className={styles.playbackNotice}>
+                {useMainSystem
+                  ? "Using main app audio system - changes will be synced with the app"
+                  : "Using standalone audio system - you can test sounds independently"}
+              </div>
+            </div>
+            <div className={styles.debugPanelHeader}>Audio Debug Info</div>
+            <div className={styles.debugPanelContent}>
               <div>
                 <strong>Playback:</strong>
                 <div>isPlaying: {String(debugInfo?.isPlaying)}</div>
@@ -854,21 +796,21 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
               </div>
               <div>
                 <strong>Blocks:</strong>
-                <div style={{ maxWidth: 140, overflowX: "auto" }}>
+                <div className={styles.debugSceneBlocks}>
                   {debugInfo?.sceneBlocks?.map((b: any, i: number) => (
-                    <div key={i} style={{ borderBottom: "1px solid #444", marginBottom: 2 }}>
-                      {b.name} <span style={{ color: "#888" }}>{b.filePath?.split("/").pop()}</span>
-                      <span style={{ marginLeft: 6 }}>vol:{b.volume}</span>
-                      <span style={{ marginLeft: 6 }}>pan:{b.pan}</span>
-                      <span style={{ marginLeft: 6 }}>rate:{b.playbackRate}</span>
-                      <span style={{ marginLeft: 6 }}>loop:{String(b.loop)}</span>
+                    <div key={i} className={styles.debugBlock}>
+                      {b.name} <span className={styles.debugFilePath}>{b.filePath?.split("/").pop()}</span>
+                      <span className={styles.debugParam}>vol:{b.volume}</span>
+                      <span className={styles.debugParam}>pan:{b.pan}</span>
+                      <span className={styles.debugParam}>rate:{b.playbackRate}</span>
+                      <span className={styles.debugParam}>loop:{String(b.loop)}</span>
                     </div>
                   ))}
                 </div>
               </div>
               <div>
                 <strong>Waveforms:</strong>
-                <div style={{ maxWidth: 120, overflowX: "auto" }}>
+                <div className={styles.debugWaveforms}>
                   {debugInfo?.waveforms?.map((w: any, i: number) => (
                     <div key={i}>
                       {w.file?.split("/").pop()} ({w.duration?.toFixed(2)}s): [{w.data.join(", ")}]
@@ -881,25 +823,36 @@ const ToneMusicOverlay: React.FC<ToneMusicOverlayProps> = ({ initialBlocks, onCh
                 <div>[{debugInfo?.visualizationData?.join(", ")}]</div>
               </div>
             </div>
-            <div style={{ marginTop: "8px", display: "flex", gap: "8px", flexWrap: "wrap" }}>
-              <button onClick={() => debugAudio()} style={{ fontSize: "11px", padding: "2px 6px" }}>
+            <div className={styles.debugPanelButtons}>
+              <button onClick={() => debugAudio()} className={styles.debugButton}>
                 Diagnose
               </button>
-              <button onClick={() => resetAudio()} style={{ fontSize: "11px", padding: "2px 6px" }}>
+              <button onClick={() => resetAudio()} className={styles.debugButton}>
                 Reset
               </button>
-              <button onClick={() => togglePlay()} style={{ fontSize: "11px", padding: "2px 6px" }}>
+              <button onClick={() => togglePlay()} className={styles.debugButton}>
                 Toggle Play
               </button>
-              <button onClick={() => setShowDebug(false)} style={{ fontSize: "11px", padding: "2px 6px" }}>
+              <button onClick={() => setShowDebug(false)} className={styles.debugButton}>
                 Close
               </button>
             </div>
           </div>
         )}
+        {/* Floating debug toggle */}
+        <button onClick={handleDebugPanel} className={styles.debugToggleButton} title="Show Debug Panel">
+          D
+        </button>
       </div>
+      {/*<div className={styles.pageFooter}>
+        <div className={styles.buttonContainer}>
+          <button onClick={handleSave} className={styles.saveButton} disabled={loading || localBlocks.length === 0}>
+            Save to File
+          </button>
+        </div>
+      </div>*/}
     </div>
   );
 };
 
-export default ToneMusicOverlay;
+export default AudioBlockEditor;
