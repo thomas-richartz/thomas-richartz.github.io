@@ -2,7 +2,16 @@
     display: flex;
     flex-wrap: wrap;
     opacity: 0;
-    transition: opacity 800ms ease;
+    transition: opacity 800ms ease-in-out;
+    justify-content: center;
+    max-width: 100%;
+    padding: 0 15px;
+}
+
+.screenContainer.animationsReady .paragraphContainer,
+.screenContainer.animationsReady .centerSearchBar,
+.screenContainer.animationsReady .fab {
+    animation-play-state: running;
 }
 
 .screenContainer.hidden {
@@ -17,14 +26,106 @@ img.ccIcon {
     height: 22px !important;
     margin-left: 3px;
     vertical-align: text-bottom;
+    transition: transform 0.2s ease;
+}
+
+img.ccIcon:hover {
+    transform: scale(1.1);
 }
 
 .button {
     border: none;
-    background: none;
+    background: rgba(255, 255, 255, 0.1);
     color: inherit;
     font-size: var(--fs-md);
     cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.fab {
+    border: none;
+    background: rgba(40, 40, 60, 0.8);
+    color: inherit;
+    font-size: var(--fs-md);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.3),
+        0 0 5px rgba(220, 204, 238, 0.4);
+    z-index: 100;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.fab {
+    animation: subtle-float 3s ease-in-out infinite alternate;
+    animation-play-state: paused;
+}
+
+@keyframes subtle-float {
+    0% {
+        transform: translateY(0);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.fab:active {
+    animation: none;
+    transform: scale(0.95);
+    background: rgba(60, 60, 80, 0.9);
+}
+
+.fabContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gearButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: black;
+}
+
+.gearButton svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Remove the pulse animation since we're using subtle-float */
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
 }
 
 .Controls {
@@ -38,5 +139,238 @@ img.ccIcon {
 
 a {
     text-decoration: none;
-    color: #742;
+    color: #ff7733;
+    transition:
+        color 0.3s ease,
+        text-shadow 0.3s ease;
+    position: relative;
+    padding: 0 2px;
+}
+
+/* Search styling */
+.searchSectionContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 10px;
+    margin-bottom: 20px;
+    transition:
+        transform 0.4s ease,
+        opacity 0.3s ease;
+}
+
+.searchButton:active {
+    transform: scale(0.98);
+}
+
+.searchForm {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 5;
+}
+
+.searchButton {
+    display: flex;
+    align-items: center;
+    background: rgba(40, 40, 60, 0.8);
+    border-radius: 24px;
+    padding: 10px 16px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: visible;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    cursor: pointer;
+    justify-content: flex-start;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    animation: gentle-breathing 4s infinite alternate;
+    animation-play-state: paused;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.centerSearchBar::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.centerSearchBar:hover::before {
+    opacity: 1;
+}
+
+.centerSearchBar.focused {
+    width: 90%;
+    border-color: rgba(255, 119, 51, 0.4);
+    box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(255, 119, 51, 0.2);
+}
+
+/* Removed pulse-glow animation */
+
+.searchButtonText {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    font-weight: 400;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.searchButton:hover .searchButtonText {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.screenContainer.animationsReady .searchButton {
+    animation-play-state: running;
+}
+
+.searchButton:hover {
+    background: rgba(50, 50, 70, 0.8);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.searchButton.active {
+    background: rgba(40, 40, 60, 0.2);
+    border-color: rgba(255, 119, 51, 0.3);
+    box-shadow: 0 0 15px rgba(255, 119, 51, 0.2);
+    pointer-events: none;
+    opacity: 0.6;
+    transform: scale(0.98);
+}
+
+.searchButton:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 119, 51, 0.3);
+}
+
+.spinnerSmall {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: #ff7733;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.centerSearchButton:active {
+    transform: scale(0.95);
+}
+
+.searchButton {
+    animation-play-state: running;
+}
+
+@keyframes gentle-breathing {
+    0% {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+    100% {
+        box-shadow:
+            0 5px 15px rgba(0, 0, 0, 0.4),
+            0 0 8px rgba(205, 238, 255, 0.3);
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+a:hover {
+    color: #ff4400;
+    text-shadow: 0 0 3px rgba(255, 68, 0, 0.2);
+}
+
+a::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff4400;
+    transition: width 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+}
+
+.paragraphContainer {
+    width: 100%;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.paragraphContainer {
+    animation: subtle-shift 6s ease-in-out infinite alternate;
+    animation-delay: calc(var(--animation-order, 0) * 0.5s);
+    animation-play-state: paused;
+}
+
+@keyframes subtle-shift {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-3px);
+    }
+}
+
+.paragraphContainer:nth-child(1) {
+    --animation-order: 1;
+}
+
+.paragraphContainer:nth-child(2) {
+    --animation-order: 2;
+}
+
+.paragraphContainer:nth-child(3) {
+    --animation-order: 3;
+}
+
+.paragraphContainer:nth-child(4) {
+    --animation-order: 4;
+}
+
+.paragraphContainer h2 {
+    margin-left: 1rem;
+    margin-bottom: 0.8rem;
+    color: #eee;
+    font-size: 1.8rem;
+    letter-spacing: 0.05em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    display: inline-block;
+}
+
+.paragraphContainer h2::after {
+    content: "";
+    position: absolute;
+    width: 50%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(90deg, #ff7733, transparent);
+    border-radius: 2px;
 }

@@ -9,12 +9,6 @@ type SpinnerProps = {
 export const Spinner = ({ onClick, withBackdrop = false }: SpinnerProps): JSX.Element => {
   const Loader = (
     <div className={styles.loaderInner}>
-      <div className={styles.loaderLogo}>
-        {/* You can replace this SVG with your logo or leave it as a dot */}
-        <svg viewBox="0 0 40 40" fill="none">
-          <circle cx="20" cy="20" r="17" fill="#fff" opacity="0.85" />
-        </svg>
-      </div>
       <div className={`${styles.box} ${styles.box1}`}></div>
       <div className={`${styles.box} ${styles.box2}`}></div>
       <div className={`${styles.box} ${styles.box3}`}></div>
