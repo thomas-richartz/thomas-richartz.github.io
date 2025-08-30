@@ -1,0 +1,67 @@
+{
+  "routes": [
+    {
+      "id": "landing",
+      "screenType": 1,
+      "path": "/",
+      "label": "Home",
+      "iconName": "Home",
+      "audioUrls": ["/assets/soundblocks/atellier_zukunft_scene3.json"],
+      "order": 1,
+      "visible": true
+    },
+    {
+      "id": "flow-editor",
+      "screenType": 5,
+      "path": "/flow-editor",
+      "label": "Flow Editor",
+      "iconName": "Grid",
+      "audioUrls": ["/assets/soundblocks/atellier_zukunft_scene.json"],
+      "order": 5,
+      "visible": true
+    },
+    {
+      "id": "gallery",
+      "screenType": 2,
+      "path": "/gallery",
+      "label": "Gallery",
+      "iconName": "Image",
+      "audioUrls": ["/assets/soundblocks/bowltest_scene.json", "/assets/soundblocks/test_scene.json"],
+      "order": 2,
+      "visible": true
+    },
+    {
+      "id": "gallery-cat",
+      "screenType": 3,
+      "path": "/gallery/:category",
+      "label": "Category",
+      "iconName": "Grid",
+      "audioUrls": [
+        "/assets/soundblocks/atellier_zukunft_scene.json",
+        "/assets/soundblocks/atellier_zukunft_scene2.json",
+        "/assets/soundblocks/atellier_zukunft_scene3.json",
+        "/assets/soundblocks/atellier_zukunft_scene4.json"
+      ],
+      "specialCategories": {
+        "Dovcenko2 (2022)": ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"]
+      },
+      "order": 3,
+      "visible": false
+    },
+    {
+      "id": "contact",
+      "screenType": 4,
+      "path": "/contact",
+      "label": "Contact",
+      "iconName": "Person",
+      "audioUrls": [
+        "/assets/soundblocks/atellier_zukunft_scene.json",
+        "/assets/soundblocks/atellier_zukunft_scene2.json",
+        "/assets/soundblocks/atellier_zukunft_scene3.json",
+        "/assets/soundblocks/atellier_zukunft_scene4.json"
+      ],
+      "order": 4,
+      "visible": true
+    }
+  ]
+}

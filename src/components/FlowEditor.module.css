@@ -1,0 +1,224 @@
+/* FlowEditor.module.css */
+.editorContainer {
+  background-color: #1e1e1e;
+  color: #e6e6e6;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.editorContainer h2 {
+  grid-column: 1 / -1;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #cde;
+}
+
+.loading {
+  padding: 20px;
+  text-align: center;
+  color: #cde;
+}
+
+/* Routes list styles */
+.routesList {
+  background-color: #252525;
+  border-radius: 6px;
+  padding: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.routeItem {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.routeItem:hover {
+  background-color: #3e3e3e;
+}
+
+.routeItem.selected {
+  background-color: #485a70;
+  border-left: 3px solid #7eabde;
+}
+
+.routeIcon {
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.routeLabel {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.routeActions {
+  display: flex;
+  gap: 5px;
+}
+
+.routeActions button {
+  background-color: #444;
+  border: none;
+  border-radius: 4px;
+  color: #cde;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.routeActions button:hover:not(:disabled) {
+  background-color: #555;
+}
+
+.routeActions button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.addButton {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #2a3f5f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: #354f71;
+}
+
+/* Route editor styles */
+.routeEditor {
+  background-color: #252525;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.routeEditor h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #cde;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  color: #aabdd8;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="number"],
+.formGroup select,
+.formGroup textarea {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: #333;
+  border: 1px solid #444;
+  border-radius: 4px;
+  color: #e6e6e6;
+  font-size: 14px;
+}
+
+.formGroup input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.buttonGroup {
+  margin-top: 20px;
+}
+
+.deleteButton {
+  background-color: #823338;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.deleteButton:hover {
+  background-color: #a13c41;
+}
+
+/* Action buttons at the bottom */
+.actionButtons {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.cancelButton,
+.saveButton {
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.cancelButton {
+  background-color: #444;
+  color: white;
+  border: none;
+}
+
+.cancelButton:hover {
+  background-color: #555;
+}
+
+.saveButton {
+  background-color: #2a6b3c;
+  color: white;
+  border: none;
+}
+
+.saveButton:hover {
+  background-color: #357a49;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .editorContainer {
+    grid-template-columns: 1fr;
+  }
+
+  .routesList,
+  .routeEditor {
+    max-height: none;
+  }
+}

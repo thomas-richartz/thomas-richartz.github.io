@@ -3,6 +3,7 @@ export enum Screen {
   GALLERY,
   GALLERY_CAT,
   CONTACT,
+  FLOW_EDITOR,
 }
 
 export enum RandomPicureViewMode {

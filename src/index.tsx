@@ -2,6 +2,7 @@ import React, { Profiler } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import ConfigurableApp from "./ConfigurableApp";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
@@ -23,6 +24,7 @@ root.render(
     >
         <App />
       </Profiler> */}
-    <App />
+    {/*<App />*/}
+    <ConfigurableApp />
   </React.StrictMode>,
 );
