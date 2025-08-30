@@ -1,0 +1,86 @@
+{
+  "version": "1.0.0",
+  "scenes": {
+    "1": {
+      "name": "LANDING",
+      "blocksFiles": ["assets/soundblocks/atellier_zukunft_scene.json", "assets/soundblocks/atellier_zukunft_scene2.json"],
+      "selectionStrategy": "random",
+      "description": "Peaceful, gentle soundscape for the landing page",
+      "fadeDuration": 2.0,
+      "defaultPlaying": true,
+      "preservePlaybackState": true
+    },
+    "2": {
+      "name": "GALLERY",
+      "blocksFiles": ["assets/soundblocks/bowltest_scene.json"],
+      "selectionStrategy": "random",
+      "description": "Ambient soundscape for the general gallery view",
+      "fadeDuration": 1.5,
+      "defaultPlaying": true,
+      "preservePlaybackState": true,
+      "children": {
+        "Dovcenko2 (2022)": {
+          "blocksFiles": ["assets/soundblocks/arsenal_scene.json"],
+          "description": "Dynamic soundscape for the Dovcenko2 collection",
+          "oneShots": [
+            {
+              "file": "assets/wav/ui_7.wav",
+              "volume": 0.8,
+              "delay": 0.5,
+              "triggerOnce": true
+            }
+          ],
+          "fadeDuration": 1.8
+        },
+        "Atelier Zukunft": {
+          "blocksFiles": [
+            "assets/soundblocks/atellier_zukunft_scene.json",
+            "assets/soundblocks/atellier_zukunft_scene2.json",
+            "assets/soundblocks/atellier_zukunft_scene3.json",
+            "assets/soundblocks/atellier_zukunft_scene4.json"
+          ],
+          "selectionStrategy": "random",
+          "description": "Experimental sounds for the Atelier Zukunft collection",
+          "fadeDuration": 2.0,
+          "defaultPlaying": true,
+          "preservePlaybackState": true
+        }
+      }
+    },
+    "3": {
+      "name": "GALLERY_CAT",
+      "blocksFiles": ["assets/soundblocks/atellier_zukunft_scene3.json", "assets/soundblocks/atellier_zukunft_scene4.json"],
+      "selectionStrategy": "random",
+      "description": "Atelier Zukunft drone sounds for the Gallery",
+      "fadeDuration": 2.0,
+      "defaultPlaying": true
+    },
+    "4": {
+      "name": "CONTACT",
+      "blocksFiles": ["assets/soundblocks/test_scene.json"],
+      "description": "Minimal, quiet soundscape for the contact page",
+      "fadeDuration": 1.0,
+      "defaultPlaying": false,
+      "preservePlaybackState": true
+    }
+  },
+  "global": {
+    "defaultFadeDuration": 1.5,
+    "volumeAdjustment": 1.0,
+    "enableReverb": true,
+    "enableDelay": true,
+    "audioLoadStrategy": "preload",
+    "preservePlaybackOnNavigation": true,
+    "soundEffects": {
+      "navigation": {
+        "file": "assets/wav/ui_1.wav",
+        "volume": 0.6
+      },
+      "hover": {
+        "file": "assets/wav/ui_7.wav",
+        "volume": 0.4
+      }
+    }
+  },
+  "preloadScenes": ["LANDING"]
+}

@@ -280,19 +280,23 @@
 }
 
 .infoPanel {
+    display: flex;
+    align-self: end;
     padding: 2rem;
     max-width: 40%;
     transition: all 0.3s ease-in-out;
+    overflow-y: auto;
+    scrollbar-width: smooth;
 }
 
 @media (max-width: 600px) {
     .infoPanel {
-        /* flex-grow: 1; */
-        position: relative;
+        flex-grow: 1;
+        /*position: relative;
         width: 100%;
         max-width: unset;
         display: block;
-        margin-top: 2rem;
+        margin-top: 2rem;*/
     }
     .intense__lightboxImageWrap {
         flex-direction: column;

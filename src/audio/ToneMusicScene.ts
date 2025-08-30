@@ -28,6 +28,7 @@ export class ToneMusicScene {
   private panners: Map<string, Tone.Panner> = new Map();
   private scheduledIds: number[] = [];
   private isLoaded = false;
+  private _isFadingOut = false;
 
   constructor(blocks: FileSoundBlock[], withReverb = true, withDelay = true) {
     this.blocks = blocks;
@@ -50,61 +51,74 @@ export class ToneMusicScene {
     // First dispose of any existing players to prevent memory leaks
     this.dispose();
 
+    // Make sure Tone.js is ready
+    try {
+      if (Tone.context.state !== "running") {
+        await Tone.start();
+      }
+    } catch (error) {
+      console.warn("[ToneMusicScene] Audio context not started yet, waiting for user interaction");
+    }
+
     const loadPromises = this.blocks.map(async (block) => {
       if (!block.filePath) {
         console.warn(`[ToneMusicScene] Skipping block with missing filePath:`, block);
         return;
       }
-      const player = await new Promise<Tone.Player>((resolve, reject) => {
-        const p: Tone.Player = new Tone.Player({
-          url: block.filePath,
-          reverse: !!block.reverse,
-          loop: !!block.loop,
-          loopStart: block.loopStart,
-          loopEnd: block.loopEnd,
-          onload: () => resolve(p),
-          onerror: (err: any) => reject(err),
+      try {
+        const player = await new Promise<Tone.Player>((resolve, reject) => {
+          const p: Tone.Player = new Tone.Player({
+            url: block.filePath,
+            reverse: !!block.reverse,
+            loop: !!block.loop,
+            loopStart: block.loopStart,
+            loopEnd: block.loopEnd,
+            onload: () => resolve(p),
+            onerror: (err: any) => reject(err),
+          });
         });
-      });
 
-      player.volume.value = Tone.gainToDb(block.volume ?? 1);
-      player.loop = !!block.loop;
-      if (typeof block.loopStart === "number") player.loopStart = block.loopStart;
-      if (typeof block.loopEnd === "number") player.loopEnd = block.loopEnd;
+        player.volume.value = Tone.gainToDb(block.volume ?? 1);
+        player.loop = !!block.loop;
+        if (typeof block.loopStart === "number") player.loopStart = block.loopStart;
+        if (typeof block.loopEnd === "number") player.loopEnd = block.loopEnd;
 
-      // Pan
-      let output: Tone.ToneAudioNode = player;
-      if (typeof block.pan === "number") {
-        const panner = new Tone.Panner(block.pan);
-        player.connect(panner);
-        this.panners.set(block.name, panner);
-        output = panner;
-      }
+        // Pan
+        let output: Tone.ToneAudioNode = player;
+        if (typeof block.pan === "number") {
+          const panner = new Tone.Panner(block.pan);
+          player.connect(panner);
+          this.panners.set(block.name, panner);
+          output = panner;
+        }
 
-      // --- FX Routing ---
-      // Set FX params (for per-block params)
-      if (this.delay) {
-        this.delay.delayTime.value = block.delayTime ?? ("4n" as any);
-        this.delay.feedback.value = block.delayFeedback ?? 0.4;
-        this.delay.wet.value = 1;
-      }
-      if (this.reverb) {
-        this.reverb.wet.value = 1;
-      }
+        // --- FX Routing ---
+        // Set FX params (for per-block params)
+        if (this.delay) {
+          this.delay.delayTime.value = block.delayTime ?? ("4n" as any);
+          this.delay.feedback.value = block.delayFeedback ?? 0.4;
+          this.delay.wet.value = 1;
+        }
+        if (this.reverb) {
+          this.reverb.wet.value = 1;
+        }
 
-      // Chain: output -> [delay?] -> [reverb?] -> destination
-      let finalNode: Tone.ToneAudioNode = output;
-      if (block.delay && this.delay) {
-        finalNode.connect(this.delay);
-        finalNode = this.delay;
-      }
-      if (block.reverb && this.reverb) {
-        finalNode.connect(this.reverb);
-        finalNode = this.reverb;
-      }
-      finalNode.connect(Tone.Destination);
+        // Chain: output -> [delay?] -> [reverb?] -> destination
+        let finalNode: Tone.ToneAudioNode = output;
+        if (block.delay && this.delay) {
+          finalNode.connect(this.delay);
+          finalNode = this.delay;
+        }
+        if (block.reverb && this.reverb) {
+          finalNode.connect(this.reverb);
+          finalNode = this.reverb;
+        }
+        finalNode.connect(Tone.Destination);
 
-      this.players.set(block.name, player);
+        this.players.set(block.name, player);
+      } catch (error) {
+        console.error(`[ToneMusicScene] Failed to load block "${block.name}" from "${block.filePath}":`, error);
+      }
     });
 
     await Promise.all(loadPromises);
@@ -196,54 +210,106 @@ export class ToneMusicScene {
    * Throws if loading fails.
    */
   public async scheduleQuantizedPlayback() {
-    Tone.Transport.bpm.value = 101;
-    Tone.Transport.timeSignature = [3, 4];
+    try {
+      // Ensure the Transport is in a clean state
+      this.stop();
 
-    await this.load();
-    this.stop();
-    this.scheduledIds = [];
+      // Set up Transport parameters
+      Tone.Transport.bpm.value = 101;
+      Tone.Transport.timeSignature = [3, 4];
 
-    for (let i = 0; i < this.blocks.length; i++) {
-      const block = this.blocks[i];
-      if (block.volume === 0) continue;
+      // Make sure audio files are loaded
+      await this.load();
+      this.scheduledIds = [];
 
-      // If block has a defined loop region, schedule by that region length
-      if (block.loop && typeof block.loopStart === "number" && typeof block.loopEnd === "number" && block.loopEnd > block.loopStart) {
-        const loopLength = block.loopEnd - block.loopStart;
-        // Schedule first play at 0
-        const id0 = Tone.Transport.schedule((time) => {
-          // Play from loopStart for the first time as well (or from 0 if you want)
-          this.playBlock(i, undefined, time, block.loopStart);
-        }, 0);
-        this.scheduledIds.push(id0);
-        // Schedule repeat every loopLength seconds, always from loopStart
-        const id = Tone.Transport.scheduleRepeat(
-          (time) => {
-            this.playBlock(i, undefined, time, block.loopStart);
-          },
-          loopLength,
-          loopLength,
-        ); // offset = loopLength so next play is right after first play ends
-        this.scheduledIds.push(id);
-      } else {
-        // Classic grid retrigger
-        const quant = block.quantize ?? "4n";
-        const id = Tone.Transport.scheduleRepeat((time) => {
-          this.playBlock(i, undefined, time);
-        }, quant);
-        this.scheduledIds.push(id);
+      // Check if we have any loaded players
+      if (this.players.size === 0) {
+        console.warn("[ToneMusicScene] No players loaded, can't schedule playback");
+        return;
       }
+
+      // Make sure Tone.js context is running
+      if (Tone.context.state !== "running") {
+        try {
+          await Tone.start();
+        } catch (error) {
+          console.warn("[ToneMusicScene] Couldn't start audio context, user interaction may be needed");
+        }
+      }
+
+      for (let i = 0; i < this.blocks.length; i++) {
+        const block = this.blocks[i];
+        if (block.volume === 0 || !this.players.has(block.name)) continue;
+
+        try {
+          // If block has a defined loop region, schedule by that region length
+          if (block.loop && typeof block.loopStart === "number" && typeof block.loopEnd === "number" && block.loopEnd > block.loopStart) {
+            const loopLength = block.loopEnd - block.loopStart;
+            // Schedule first play at 0
+            const id0 = Tone.Transport.schedule((time) => {
+              // Play from loopStart for the first time as well (or from 0 if you want)
+              this.playBlock(i, undefined, time, block.loopStart);
+            }, 0);
+            this.scheduledIds.push(id0);
+            // Schedule repeat every loopLength seconds, always from loopStart
+            const id = Tone.Transport.scheduleRepeat(
+              (time) => {
+                this.playBlock(i, undefined, time, block.loopStart);
+              },
+              loopLength,
+              loopLength,
+            ); // offset = loopLength so next play is right after first play ends
+            this.scheduledIds.push(id);
+          } else {
+            // Classic grid retrigger
+            const quant = block.quantize ?? "4n";
+            const id = Tone.Transport.scheduleRepeat((time) => {
+              this.playBlock(i, undefined, time);
+            }, quant);
+            this.scheduledIds.push(id);
+          }
+        } catch (error) {
+          console.error(`[ToneMusicScene] Error scheduling block "${block.name}":`, error);
+        }
+      }
+
+      // Start the Transport if we scheduled any events
+      if (this.scheduledIds.length > 0) {
+        Tone.Transport.start();
+      }
+    } catch (error) {
+      console.error("[ToneMusicScene] Error in scheduleQuantizedPlayback:", error);
+      throw error;
     }
-    Tone.Transport.start();
   }
 
   /**
    * Play a block at index, optionally at a given musical time
    */
   public playBlock(index: number, scaleIndex?: number, time?: number | string, offset: number = 0) {
-    const block = this.blocks[index];
-    const player = this.players.get(block.name);
-    if (player && player.loaded) {
+    try {
+      if (index < 0 || index >= this.blocks.length) {
+        console.warn(`[ToneMusicScene] Invalid block index: ${index}`);
+        return;
+      }
+
+      const block = this.blocks[index];
+      if (!block) {
+        console.warn(`[ToneMusicScene] Block at index ${index} is undefined`);
+        return;
+      }
+
+      const player = this.players.get(block.name);
+      if (!player) {
+        console.warn(`[ToneMusicScene] No player found for block: ${block.name}`);
+        return;
+      }
+
+      if (!player.loaded) {
+        console.warn(`[ToneMusicScene] Player not loaded for block: ${block.name}`);
+        return;
+      }
+
       let playbackRate = block.playbackRate ?? 1;
       if (block.scale && typeof scaleIndex === "number") {
         const rootFreq = block.originalFrequency ?? block.scale[0];
@@ -251,11 +317,14 @@ export class ToneMusicScene {
         playbackRate = targetFreq / rootFreq;
       }
       player.playbackRate = playbackRate;
+
       try {
         player.start(time, offset);
       } catch (e) {
         console.warn(`[ToneMusicScene] Failed to play block:`, block.name, e);
       }
+    } catch (error) {
+      console.error("[ToneMusicScene] Error in playBlock:", error);
     }
   }
 
@@ -263,18 +332,45 @@ export class ToneMusicScene {
    * Stop playback and clear all scheduled events
    */
   public stop() {
-    Tone.Transport.stop();
-    for (const id of this.scheduledIds) {
-      Tone.Transport.clear(id);
-    }
-    this.scheduledIds = [];
-    this.players.forEach((player) => {
+    try {
+      // First stop the Transport - safely with error handling
       try {
-        player.stop();
-      } catch (e) {
-        // Ignore stop errors if not started
+        if (Tone.Transport.state === "started") {
+          Tone.Transport.stop();
+        }
+      } catch (transportError) {
+        console.warn("[ToneMusicScene] Error stopping transport:", transportError);
       }
-    });
+
+      // Clear all scheduled events
+      for (const id of this.scheduledIds) {
+        try {
+          Tone.Transport.clear(id);
+        } catch (e) {
+          // Ignore clear errors
+        }
+      }
+      this.scheduledIds = [];
+
+      // Stop all players
+      this.players.forEach((player) => {
+        try {
+          // Try stopping the player regardless of state
+          try {
+            player.stop();
+          } catch (e) {
+            // Ignore errors during stopping
+          }
+        } catch (e) {
+          // Ignore stop errors if not started
+        }
+      });
+    } catch (error) {
+      console.error("[ToneMusicScene] Error in stop method:", error);
+    } finally {
+      // Reset the fading out flag when stopping, in case it was set during fadeOut
+      this._isFadingOut = false;
+    }
   }
 
   /**
@@ -348,31 +444,68 @@ export class ToneMusicScene {
 
   // Fade out all blocks
   public async fadeOut(duration: number = 2): Promise<void> {
-    const promises: Promise<void>[] = [];
+    // Return immediately if already in the process of fading out
+    if (this._isFadingOut) {
+      console.log("[ToneMusicScene] Fadeout already in progress, skipping duplicate call");
+      return Promise.resolve(); // Return resolved promise to allow chaining
+    }
 
-    // Also fade out the master volume for effects like reverb/delay tails
-    const masterVol = Tone.getDestination().volume.value;
-    Tone.getDestination().volume.cancelAndHoldAtTime(Tone.now());
-    Tone.getDestination().volume.setValueAtTime(masterVol, Tone.now());
-    Tone.getDestination().volume.linearRampToValueAtTime(-60, Tone.now() + duration);
+    try {
+      this._isFadingOut = true;
+      if (duration <= 0) duration = 0.1; // Ensure minimum duration
+      const now = Tone.now();
+      const promises: Promise<void>[] = [];
 
-    // Fade out each player
-    this.players.forEach((player, name) => {
-      const block = this.blocks.find((b) => b.name === name);
-      if (!block) return;
-      const fromDb = player.volume.value;
-      const toDb = Tone.gainToDb(0.0);
-      player.volume.cancelAndHoldAtTime(player.context.currentTime); // or Tone.now()
-      player.volume.setValueAtTime(fromDb, Tone.now());
-      player.volume.linearRampToValueAtTime(toDb, Tone.now() + duration);
-      promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
-    });
+      // Also fade out the master volume for effects like reverb/delay tails
+      let masterVol = 0;
+      try {
+        masterVol = Tone.getDestination().volume.value;
+        Tone.getDestination().volume.cancelAndHoldAtTime(now);
+        Tone.getDestination().volume.setValueAtTime(masterVol, now);
+        Tone.getDestination().volume.linearRampToValueAtTime(-60, now + duration);
+      } catch (error) {
+        console.warn("[ToneMusicScene] Error fading master volume:", error);
+      }
 
-    await Promise.all(promises);
+      // Fade out each player
+      this.players.forEach((player, name) => {
+        try {
+          const block = this.blocks.find((b) => b.name === name);
+          if (!block) return;
 
-    // Reset master volume after fadeout is complete
-    Tone.getDestination().volume.cancelScheduledValues(Tone.now());
-    Tone.getDestination().volume.value = masterVol;
+          // Only fade if the player is actually loaded and active
+          if (player.loaded) {
+            const fromDb = player.volume.value;
+            const toDb = Tone.gainToDb(0.0);
+
+            player.volume.cancelAndHoldAtTime(now);
+            player.volume.setValueAtTime(fromDb, now);
+            player.volume.linearRampToValueAtTime(toDb, now + duration);
+
+            // Create a promise that resolves when the fade is complete
+            promises.push(new Promise((res) => setTimeout(res, duration * 1000)));
+          }
+        } catch (error) {
+          console.warn(`[ToneMusicScene] Error fading player "${name}":`, error);
+        }
+      });
+
+      // Wait for all fades to complete
+      await Promise.all(promises);
+
+      // Reset master volume after fadeout is complete
+      try {
+        Tone.getDestination().volume.cancelScheduledValues(now + duration);
+        Tone.getDestination().volume.value = masterVol;
+      } catch (error) {
+        console.warn("[ToneMusicScene] Error resetting master volume:", error);
+      }
+    } catch (error) {
+      console.error("[ToneMusicScene] Error in fadeOut method:", error);
+    } finally {
+      // Reset the fading out flag regardless of success or failure
+      this._isFadingOut = false;
+    }
   }
 
   // Fade in all blocks
@@ -413,10 +546,18 @@ export class ToneMusicScene {
     Tone.Transport.cancel();
 
     if (currentScene) {
-      await currentScene.fadeOut(fadeDuration);
-      currentScene.stop();
-      // Properly dispose the previous scene to clean up memory
-      currentScene.dispose();
+      try {
+        await currentScene.fadeOut(fadeDuration);
+      } catch (error) {
+        console.warn("[ToneMusicScene] Error during scene transition fadeout:", error);
+      }
+      try {
+        currentScene.stop();
+        // Properly dispose the previous scene to clean up memory
+        currentScene.dispose();
+      } catch (error) {
+        console.warn("[ToneMusicScene] Error cleaning up previous scene:", error);
+      }
     }
 
     // Create and initialize the new scene

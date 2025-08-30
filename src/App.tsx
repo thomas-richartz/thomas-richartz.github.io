@@ -7,128 +7,240 @@ import { GalleryScreen } from "@/screens/GalleryScreen";
 import { LandingScreen } from "@/screens/LandingScreen";
 import { BottomBar } from "@/components/BottomBar";
 import { ContactScreen } from "@/screens/ContactScreen";
-import ToneMusicSystem from "@/components/ToneMusicSystem";
 import CollectionsMicrodata from "@/components/CollectionsMicrodata";
 import styles from "@/App.module.css";
-import { ToneMusicProvider, useToneMusic } from "@/context/ToneMusicContext";
+import * as Tone from "tone";
+import { FileSoundBlock, ToneMusicScene } from "@/audio/ToneMusicScene";
 
-function AppContent() {
+function App() {
+  // Screen state
   const [selectedScreen, setSelectedScreen] = useState<Screen>(Screen.LANDING);
   const [selectedCat, setSelectedCat] = useState<string>("");
   const [isSearchVisible, setSearchVisible] = useState<boolean>(false);
   const [images, setImages] = useState<any[]>([]); // Initially empty
   const [isLoadingImages, setLoadingImages] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
-  const [verbose] = useState(true);
 
-  // Use our new context
-  const { isPlaying, togglePlay, setAudioBlocks, blocks, resetAudio, fadeDuration, setFadeDuration } = useToneMusic();
+  // Audio state
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [blocks, setBlocks] = useState<FileSoundBlock[]>([]);
+  const [fadeDuration] = useState(1.5);
 
-  // Use the togglePlay function from the context
-  const handleMusicToggle = useCallback(() => {
-    console.log("App: Toggling music playback, current state:", isPlaying);
-    if (blocks.length === 0) {
-      console.warn("App: Cannot toggle music - no blocks loaded");
-      return;
-    }
-    togglePlay(fadeDuration).catch((err) => console.error("Error toggling music:", err));
-  }, [togglePlay, isPlaying, blocks.length, fadeDuration]);
+  // Refs
+  const sceneRef = useRef<ToneMusicScene | null>(null);
+  const audioInitialized = useRef(false);
+  const loadingAudio = useRef(false);
 
+  // Initialize audio on first user interaction
   useEffect(() => {
-    if (selectedScreen === Screen.LANDING) {
-      const fetchBlocks = async () => {
+    const initAudio = () => {
+      const handleFirstInteraction = async () => {
         try {
-          const response = await fetch("/assets/soundblocks/kalimba_piano_scene.json");
-          if (!response.ok) {
-            throw new Error(`Failed to fetch blocks: ${response.status}`);
+          if (Tone.context.state !== "running") {
+            await Tone.start();
+            console.log("Audio context started");
+
+            // Set a reasonable default volume to avoid being too loud
+            Tone.getDestination().volume.value = -6;
           }
-          const data = await response.json();
-          console.log("App: Loaded initial blocks:", data.length);
-          setAudioBlocks(data);
+
+          // Fetch initial blocks if not already loaded
+          if (blocks.length === 0 && !loadingAudio.current) {
+            loadAudioBlocks("/assets/soundblocks/kalimba_piano_scene.json");
+          }
+
+          audioInitialized.current = true;
         } catch (error) {
-          console.error("Error fetching blocks:", error);
+          console.error("Failed to initialize audio:", error);
         }
       };
-      fetchBlocks();
-    }
-  }, [selectedScreen, setAudioBlocks]);
 
-  // Initialize audio context on first user interaction
-  useEffect(() => {
-    const initAudio = async () => {
-      try {
-        // This will ensure the audio context is created and running
-        await import("tone").then((Tone) => {
-          if (Tone.context.state !== "running") {
-            console.log("App: Initializing Tone.js audio context");
-            document.addEventListener(
-              "click",
-              async () => {
-                await Tone.start();
-                console.log("App: Tone.js context started on user interaction");
-              },
-              { once: true },
-            );
-          }
-        });
-      } catch (error) {
-        console.error("App: Failed to initialize audio:", error);
-      }
+      // Listen for user interaction to start audio
+      document.addEventListener("click", handleFirstInteraction, { once: true });
+      document.addEventListener("touchstart", handleFirstInteraction, { once: true });
+
+      return () => {
+        document.removeEventListener("click", handleFirstInteraction);
+        document.removeEventListener("touchstart", handleFirstInteraction);
+      };
     };
 
-    initAudio();
+    return initAudio();
+  }, [blocks.length]);
+
+  // Clean up audio on unmount
+  useEffect(() => {
+    return () => {
+      if (sceneRef.current) {
+        sceneRef.current.stop();
+        sceneRef.current.dispose();
+      }
+      Tone.Transport.cancel();
+      Tone.Transport.stop();
+    };
   }, []);
 
-  // Log when audio playback state changes
-  useEffect(() => {
-    console.log("App: Audio playback state changed to:", isPlaying);
-  }, [isPlaying]);
+  // Load audio blocks from a file
+  const loadAudioBlocks = useCallback(
+    async (url: string) => {
+      if (loadingAudio.current) return;
 
-  const onNavigate = async (screen: Screen) => {
-    setSelectedScreen(screen);
-    // Fetch blocks for the new screen
-    const urls = [
-      "/assets/soundblocks/atellier_zukunft_scene.json",
-      "/assets/soundblocks/atellier_zukunft2_scene.json",
-      "/assets/soundblocks/atellier_zukunft3_scene.json",
-      "/assets/soundblocks/atellier_zukunft4_scene.json",
-    ];
-    let url = urls[Math.floor(Math.random() * urls.length)];
+      loadingAudio.current = true;
+      setLoading(true);
 
-    if (screen === Screen.GALLERY && !selectedCat) {
-      const urls2 = [
-        "/assets/soundblocks/bowltest_scene.json",
-        "/assets/soundblocks/kalimba_piano_scene.json",
-        "/assets/soundblocks/kalimba_piano_scene1.json",
-        "/assets/soundblocks/kalimba_piano_scene3.json",
-        "/assets/soundblocks/kalimba_piano_scene4.json",
-      ];
-      url = urls2[Math.floor(Math.random() * urls2.length)];
-    }
+      try {
+        console.log(`Loading audio blocks from ${url}`);
+        const response = await fetch(url);
 
-    if (screen !== Screen.GALLERY && selectedCat === "Dovcenko2 (2022)") {
-      const arsenalUrls = ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"];
-      url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
-    }
+        if (!response.ok) {
+          throw new Error(`Failed to fetch blocks: ${response.status}`);
+        }
 
-    // Override for testing
-    url = "/assets/soundblocks/atellier_zukunft_scene.json";
+        const data = await response.json();
+        console.log(`Loaded ${data.length} audio blocks`);
+
+        // Stop current audio if playing
+        if (isPlaying && sceneRef.current) {
+          await stopAudio();
+        }
+
+        // Update blocks
+        setBlocks(data);
+
+        // If it was playing, restart with new blocks
+        if (isPlaying) {
+          setTimeout(() => playAudio(data), 100);
+        }
+      } catch (error) {
+        console.error("Error loading audio blocks:", error);
+      } finally {
+        loadingAudio.current = false;
+        setLoading(false);
+      }
+    },
+    [isPlaying],
+  );
+
+  // Play audio with the current blocks
+  const playAudio = useCallback(
+    async (blocksToPlay?: FileSoundBlock[]) => {
+      if (!audioInitialized.current) {
+        console.warn("Audio not initialized yet");
+        return;
+      }
+
+      try {
+        // Use provided blocks or current state
+        const currentBlocks = blocksToPlay || blocks;
+
+        if (currentBlocks.length === 0) {
+          console.warn("No blocks available to play");
+          return;
+        }
+
+        // Ensure audio context is running
+        if (Tone.context.state !== "running") {
+          await Tone.start();
+        }
+
+        // Clean up any existing scene
+        if (sceneRef.current) {
+          sceneRef.current.stop();
+          sceneRef.current.dispose();
+          sceneRef.current = null;
+        }
+
+        // Create a new scene
+        const newScene = new ToneMusicScene(currentBlocks, true, true);
+        await newScene.load();
+        sceneRef.current = newScene;
+
+        // Start playback
+        await newScene.scheduleQuantizedPlayback();
+
+        setIsPlaying(true);
+        console.log("Audio playback started");
+      } catch (error) {
+        console.error("Error starting audio playback:", error);
+        setIsPlaying(false);
+      }
+    },
+    [blocks],
+  );
+
+  // Stop audio with fade out
+  const stopAudio = useCallback(async () => {
+    if (!sceneRef.current) return;
 
     try {
-      setLoading(true);
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch blocks: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log(`App: Loaded ${data.length} sound blocks for ${screen.toString()}`);
-      setAudioBlocks(data);
+      // Fade out
+      await sceneRef.current.fadeOut(fadeDuration);
+
+      // Stop and clean up
+      sceneRef.current.stop();
+
+      // Clean up Tone.js scheduling
+      Tone.Transport.cancel();
+      Tone.Transport.stop();
+
+      setIsPlaying(false);
+      console.log("Audio playback stopped");
     } catch (error) {
-      console.error("Error fetching blocks:", error);
-    } finally {
-      setLoading(false);
+      console.error("Error stopping audio:", error);
+      setIsPlaying(false);
     }
-  };
+  }, [fadeDuration]);
+
+  // Toggle audio playback
+  const handleMusicToggle = useCallback(() => {
+    if (isPlaying) {
+      stopAudio();
+    } else {
+      playAudio();
+    }
+  }, [isPlaying, playAudio, stopAudio]);
+
+  // Handle navigation between screens
+  const onNavigate = useCallback(
+    async (screen: Screen) => {
+      // Update screen state
+      setSelectedScreen(screen);
+
+      // Select appropriate audio for this screen
+      let url: string;
+
+      if (screen === Screen.LANDING) {
+        url = "/assets/soundblocks/kalimba_piano_scene.json";
+      } else if (screen === Screen.GALLERY && !selectedCat) {
+        const galleryUrls = [
+          "/assets/soundblocks/bowltest_scene.json",
+          "/assets/soundblocks/kalimba_piano_scene.json",
+          "/assets/soundblocks/kalimba_piano_scene1.json",
+          "/assets/soundblocks/kalimba_piano_scene3.json",
+          "/assets/soundblocks/kalimba_piano_scene4.json",
+        ];
+        url = galleryUrls[Math.floor(Math.random() * galleryUrls.length)];
+      } else if (screen !== Screen.GALLERY && selectedCat === "Dovcenko2 (2022)") {
+        const arsenalUrls = ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"];
+        url = arsenalUrls[Math.floor(Math.random() * arsenalUrls.length)];
+      } else {
+        // Default audio for other screens
+        const defaultUrls = [
+          "/assets/soundblocks/atellier_zukunft_scene.json",
+          "/assets/soundblocks/atellier_zukunft_scene2.json",
+          "/assets/soundblocks/atellier_zukunft_scene3.json",
+          "/assets/soundblocks/atellier_zukunft_scene4.json",
+        ];
+        url = defaultUrls[Math.floor(Math.random() * defaultUrls.length)];
+      }
+
+      // Load the new audio
+      await loadAudioBlocks(url);
+    },
+    [loadAudioBlocks, selectedCat],
+  );
+
+  // Search functionality
   const handleSearchOpen = async () => {
     if (images.length === 0) {
       setLoadingImages(true);
@@ -145,8 +257,6 @@ function AppContent() {
   };
 
   const handleItemSelect = (category: string) => {
-    console.log(selectedCat);
-
     setSelectedCat(category);
     setSelectedScreen(Screen.GALLERY);
     setSearchVisible(false);
@@ -168,9 +278,6 @@ function AppContent() {
               <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
             )}
 
-            {blocks.length > 0 && (
-              <ToneMusicSystem onLoadingChange={setLoading} play={isPlaying} blocks={blocks} verbose={verbose} fadeDuration={fadeDuration || 1.5} />
-            )}
             <BottomBar
               onNavigate={onNavigate}
               selectedScreen={selectedScreen}
@@ -182,15 +289,44 @@ function AppContent() {
           {isSearchVisible && <SearchOverlay items={images} isLoading={isLoadingImages} onClose={handleSearchClose} onItemSelect={handleItemSelect} />}
         </main>
       </div>
-    </GalleryContextProvider>
-  );
-}
 
-function App() {
-  return (
-    <ToneMusicProvider initialVerbose={true} initialFadeDuration={1.5}>
-      <AppContent />
-    </ToneMusicProvider>
+      {/* Add a hidden emergency reset button for stuck states */}
+      <div
+        style={{
+          position: "fixed",
+          bottom: 0,
+          right: 0,
+          width: "30px",
+          height: "30px",
+          background: "transparent",
+          zIndex: 9999,
+        }}
+        onClick={(e) => {
+          if (e.altKey && e.shiftKey) {
+            console.log("App: Emergency reset triggered");
+            // Force reset everything
+            if (sceneRef.current) {
+              try {
+                sceneRef.current.stop();
+                sceneRef.current.dispose();
+              } catch (e) {
+                /* ignore */
+              }
+              sceneRef.current = null;
+            }
+            audioInitialized.current = false;
+
+            // Force navigate to landing
+            setSelectedScreen(Screen.LANDING);
+
+            // Force a page reload if Alt+Shift+Triple click
+            if ((e.nativeEvent as any).detail === 3) {
+              window.location.reload();
+            }
+          }
+        }}
+      ></div>
+    </GalleryContextProvider>
   );
 }
 
