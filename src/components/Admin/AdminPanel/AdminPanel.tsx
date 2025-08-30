@@ -6,7 +6,7 @@ import { InterpretationsEditor } from "../InterpretationsEditor/InterpretationsE
 import { MusicEditor } from "../MusicEditor/MusicEditor";
 import { Settings } from "../Settings/Settings";
 import { ImageEditor } from "../ImageEditor/ImageEditor";
-import { useToneMusic } from "@/context/ToneMusicContext";
+import { useToneMusic, ToneMusicProvider } from "@/context/ToneMusicContext";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "../theme.css";
 import "../common.css";
@@ -27,6 +27,14 @@ interface AdminPanelProps {
  * Manages authentication and tab navigation between different admin sections
  */
 export function AdminPanel({ onClose }: AdminPanelProps) {
+  return (
+    <ToneMusicProvider initialFadeDuration={1.5}>
+      <AdminPanelContent onClose={onClose} />
+    </ToneMusicProvider>
+  );
+}
+
+function AdminPanelContent({ onClose }: AdminPanelProps) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [activeTab, setActiveTab] = useState<AdminTab>(AdminTab.TEXTE);
   const [errorMessage, setErrorMessage] = useState("");

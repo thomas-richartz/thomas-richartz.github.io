@@ -5,65 +5,144 @@
     align-items: center;
     min-height: 100px;
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 9px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 25px;
     margin: 20px auto;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
-    transition:
-        transform 0.5s ease,
-        opacity 0.5s ease;
+    box-shadow:
+        0 10px 20px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    max-width: 95%;
+    animation: subtle-float 6s ease-in-out infinite alternate;
+}
+
+@keyframes subtle-float {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-3px);
+        box-shadow:
+            0 12px 25px rgba(0, 0, 0, 0.5),
+            inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    }
 }
 
 .paragraphContent {
     transform: rotateX(0deg) rotateY(0deg); /* Default flat position */
     transform-origin: center; /* Pivot for 3D transformations */
-    transition:
-        transform 1.5s ease,
-        opacity 0.3s ease; /* Smooth hover effects */
-}
-
-.paragraphWindow:hover .paragraphContent {
-    transform: rotateX(360deg) rotateY(-0deg); /* Adjust angles for 3D tilt */
+    width: 100%;
+    position: relative;
+    z-index: 1;
     opacity: 1;
 }
 
 .paragraphText {
-    color: #999;
+    color: #aaa;
     font-size: var(--fs-md);
-    line-height: 1.6;
+    line-height: 1.8;
     text-align: center;
     margin: 0;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .paragraphLink {
     color: #ff7733;
     text-decoration: none;
-    transition: color 0.3s ease;
+    padding: 2px 4px;
+    border-radius: 4px;
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
 }
 
-.paragraphLink:hover {
-    text-decoration: underline;
-    color: #ff4400;
+.paragraphLink::after {
+    content: "";
+    position: absolute;
+    width: 30%;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #ff4400;
+    transform: translateX(-50%);
+    animation: pulse-width 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-width {
+    0% {
+        width: 30%;
+        opacity: 0.5;
+    }
+    100% {
+        width: 70%;
+        opacity: 0.8;
+    }
 }
 
 .ccIcon {
     height: 22px !important;
     margin-left: 3px;
     vertical-align: text-bottom;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+    animation: subtle-pulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes subtle-pulse {
+    0% {
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3));
+    }
+    100% {
+        filter: drop-shadow(0 1px 2px rgba(255, 119, 51, 0.4));
+    }
 }
 
 .glassCard {
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow:
         0 8px 32px rgba(31, 38, 135, 0.37),
-        0 1 1.95px rgba(31, 38, 135, 0.19);
+        0 1px 2px rgba(31, 38, 135, 0.19);
+    position: relative;
+    overflow: hidden;
 }
 
-.glassCard:hover {
-    transform: scale(1.05);
-    box-shadow:
-        0 16px 64px rgba(31, 38, 135, 0.37),
-        0 2 4.5px rgba(31, 38, 135, 0.19);
+.glassCard::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+    animation: gentle-glow 8s ease-in-out infinite alternate;
+}
+
+@keyframes gentle-glow {
+    0% {
+        opacity: 0.1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0.4;
+        transform: translateY(-10px);
+    }
+}
+
+/* New styles for link container */
+.linkContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.linkText {
+    position: relative;
+    z-index: 1;
 }

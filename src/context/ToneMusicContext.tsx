@@ -18,12 +18,14 @@ interface ToneMusicContextType {
   isLoading: boolean;
   verbose: boolean;
   visualizationData: Uint8Array;
+  fadeDuration: number;
 
   // Actions
-  togglePlay: () => Promise<void>;
-  setAudioBlocks: (blocks: FileSoundBlock[]) => void;
+  togglePlay: (customFadeDuration?: number) => Promise<void>;
+  setAudioBlocks: (blocks: FileSoundBlock[], preservePlayback?: boolean) => Promise<void>;
   updateBlock: (index: number, changes: Partial<FileSoundBlock>) => void;
   updateAllBlocks: (blocks: FileSoundBlock[]) => void;
+  setFadeDuration: (duration: number) => void;
   loadBlocksFromFile: (url: string) => Promise<void>;
   setVerbose: (verbose: boolean) => void;
 
@@ -57,16 +59,24 @@ interface WaveformData {
 interface ToneMusicProviderProps {
   children: React.ReactNode;
   initialBlocks?: FileSoundBlock[];
-  autoPlay?: boolean;
+  initialPlay?: boolean;
   initialVerbose?: boolean;
+  initialFadeDuration?: number;
 }
 
-export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, initialBlocks = [], autoPlay = false, initialVerbose = false }) => {
+export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({
+  children,
+  initialBlocks = [],
+  initialPlay = false,
+  initialVerbose = false,
+  initialFadeDuration = 2,
+}) => {
   // State
-  const [isPlaying, setIsPlaying] = useState<boolean>(autoPlay);
+  const [isPlaying, setIsPlaying] = useState<boolean>(initialPlay);
   const [blocks, setBlocks] = useState<FileSoundBlock[]>(initialBlocks);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [verbose, setVerbose] = useState<boolean>(initialVerbose);
+  const [fadeDuration, setFadeDuration] = useState<number>(initialFadeDuration || 2);
   const [visualizationData, setVisualizationData] = useState<Uint8Array>(new Uint8Array(128).fill(0));
   const [waveforms, setWaveforms] = useState<Map<string, WaveformData>>(new Map());
 
@@ -75,14 +85,28 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
   const analyserRef = useRef<Tone.Analyser | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
+  const isInitializedRef = useRef<boolean>(false);
 
   // Initialize Tone.js and analyser for visualizations
   useEffect(() => {
+    // Prevent multiple initializations in development mode (React StrictMode)
+    if (isInitializedRef.current) {
+      console.log("ToneMusicContext: Already initialized, skipping redundant initialization");
+      return;
+    }
+
+    // Make sure Transport is in a clean state at component mount
+    Tone.Transport.cancel();
+
     const initTone = async () => {
       try {
+        console.log("ToneMusicContext: Initializing audio system");
+        isInitializedRef.current = true;
+
         // Force create a clean Tone context
         if (Tone.context.state !== "running") {
-          await Tone.start();
+          // Don't await here - it needs user interaction which may not happen yet
+          Tone.start().catch((err) => console.log("ToneMusicContext: Tone.js awaiting user interaction"));
         }
 
         if (!analyserRef.current) {
@@ -91,18 +115,25 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
           console.log("ToneMusicContext: Analyzer initialized successfully");
         }
       } catch (error) {
-        console.error("Failed to initialize audio analyzer:", error);
+        console.error("ToneMusicContext: Failed to initialize audio analyzer:", error);
+        isInitializedRef.current = false; // Allow retry on failure
       }
     };
 
     initTone();
 
     return () => {
-      // Clean up
+      // In development mode with React StrictMode, this cleanup may run multiple times
+      // We'll only clean up if we're truly unmounting the app
+      console.log("ToneMusicContext: Cleanup function called");
+
+      // Always clean up animation frame
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
       }
 
+      // Only clean up analyzer if we're truly unmounting
       if (analyserRef.current) {
         try {
           analyserRef.current.dispose();
@@ -112,6 +143,14 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
         }
       }
 
+      // We'll keep Tone.js resources alive to prevent issues with multiple initializations
+      // Real cleanup will happen when the app is closed or refreshed
+
+      // We're intentionally disabling scene cleanup in the cleanup function
+      // to prevent issues with React StrictMode's double mount/unmount
+      // Real cleanup will happen when the app is closed
+      // This commented code is kept for reference purposes only
+      /*
       if (sceneRef.current) {
         try {
           sceneRef.current.stop();
@@ -120,6 +159,15 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
         } catch (error) {
           console.warn("Error disposing scene:", error);
         }
+      }
+      */
+
+      // Always make sure Transport is stopped and events are cleared
+      try {
+        Tone.Transport.cancel();
+        Tone.Transport.stop();
+      } catch (error) {
+        console.warn("Error stopping Tone.js Transport:", error);
       }
     };
   }, []);
@@ -250,86 +298,142 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
   }, [blocks, generateWaveformData, waveforms, verbose]);
 
   // Toggle play/pause
-  const togglePlay = useCallback(async () => {
-    try {
-      console.log("ToneMusicContext: Toggle play called. Current state:", isPlaying);
-      console.log("ToneMusicContext: Blocks available:", blocks.length);
+  const togglePlay = useCallback(
+    async (customFadeDuration?: number) => {
+      const fadeTime = customFadeDuration !== undefined ? customFadeDuration : fadeDuration || 2;
+      // Create a timeout promise to prevent hanging operations
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Operation timed out")), 5000);
+      });
 
-      // Ensure audio context is running
-      if (Tone.context.state !== "running") {
-        console.log("ToneMusicContext: Starting Tone.js audio context");
-        await Tone.start();
-      }
+      try {
+        console.log("ToneMusicContext: Toggle play called. Current state:", isPlaying);
+        console.log("ToneMusicContext: Blocks available:", blocks.length);
 
-      if (isPlaying) {
-        // Stop playback
-        if (sceneRef.current) {
-          if (verbose) console.log("ToneMusicContext: Stopping playback and fading out");
-          try {
-            await sceneRef.current.fadeOut?.(2);
-            sceneRef.current.stop();
-            // Clean up Tone.js
-            Tone.Transport.cancel();
-            Tone.Transport.stop();
-          } catch (error) {
-            console.error("ToneMusicContext: Error during fadeout:", error);
-          }
+        // Ensure audio context is running
+        if (Tone.context.state !== "running") {
+          console.log("ToneMusicContext: Starting Tone.js audio context");
+          await Promise.race([Tone.start(), timeoutPromise]).catch((err) => {
+            console.warn("ToneMusicContext: Tone.start() timed out or failed:", err);
+            // Continue anyway, as user interaction may resolve this later
+          });
         }
-        setIsPlaying(false);
-      } else {
-        // Start playback
-        if (verbose) console.log("ToneMusicContext: Starting playback with", blocks.length, "blocks");
-        console.log("ToneMusicContext: Audio context state:", Tone.context.state);
 
-        if (blocks.length > 0) {
-          // Set state first to avoid race conditions
-          setIsPlaying(true);
+        if (isPlaying) {
+          // Stop playback with careful null handling
+          if (sceneRef.current) {
+            if (verbose) console.log(`ToneMusicContext: Stopping playback and fading out with duration ${fadeTime}s`);
+            try {
+              // Store reference locally to prevent null issues during async operations
+              const currentScene = sceneRef.current;
 
-          try {
-            // Initialize and start Tone.js if needed
-            if (Tone.context.state !== "running") {
-              await Tone.start();
-              console.log("ToneMusicContext: Tone.js started successfully");
-              await new Promise((resolve) => setTimeout(resolve, 300)); // Longer delay to ensure Tone.js is ready
+              console.log(`ToneMusicContext: Fading out with duration: ${fadeTime}s`);
+              // Safely call fadeOut if it exists
+              if (typeof currentScene.fadeOut === "function") {
+                await Promise.race([currentScene.fadeOut(fadeTime), timeoutPromise]).catch((err) => {
+                  console.warn("ToneMusicContext: Fade out timed out or failed:", err);
+                  // Continue with stop even if fadeOut fails
+                });
+              }
+
+              // Check reference again after async operation
+              if (currentScene && typeof currentScene.stop === "function") {
+                try {
+                  currentScene.stop();
+                } catch (stopError) {
+                  console.warn("ToneMusicContext: Error stopping scene:", stopError);
+                }
+              }
+
+              // Clean up Tone.js - this is independent of scene object
+              Tone.Transport.cancel();
+              Tone.Transport.stop();
+            } catch (error) {
+              console.warn("ToneMusicContext: Error during fadeout:", error);
+              // Still proceed with transport cleanup on error
+              try {
+                Tone.Transport.cancel();
+                Tone.Transport.stop();
+              } catch (transportError) {
+                console.error("ToneMusicContext: Transport cleanup error:", transportError);
+              }
             }
-
-            // Force create a new scene (not reusing existing one to avoid issues)
-            if (sceneRef.current) {
-              sceneRef.current.stop();
-              sceneRef.current.dispose();
-              sceneRef.current = null;
-            }
-
-            // Create the new scene explicitly
-            console.log("ToneMusicContext: Creating new ToneMusicScene with", blocks.length, "blocks");
-            const newScene = new ToneMusicScene(blocks, true, true);
-            console.log("ToneMusicContext: Loading audio files...");
-            await newScene.load();
-            console.log("ToneMusicContext: Audio files loaded successfully");
-            sceneRef.current = newScene;
-
-            // Actual playback
-            console.log("ToneMusicContext: Starting quantized playback...");
-            await newScene.scheduleQuantizedPlayback();
-            console.log("ToneMusicContext: Playback started successfully");
-
-            // Verify Tone.js is actually playing
-            // Check Transport state safely
-            console.log("ToneMusicContext: Transport state:", Tone.Transport.state || "unknown");
-            console.log("ToneMusicContext: Audio context state:", Tone.context.state);
-          } catch (error) {
-            console.error("ToneMusicContext: Error starting playback:", error);
-            setIsPlaying(false);
           }
+          setIsPlaying(false);
         } else {
-          if (verbose) console.warn("ToneMusicContext: No blocks available to play");
+          // Start playback
+          if (verbose) console.log("ToneMusicContext: Starting playback with", blocks.length, "blocks");
+          console.log("ToneMusicContext: Audio context state:", Tone.context.state);
+
+          if (blocks.length > 0) {
+            // Set state first to avoid race conditions
+            setIsPlaying(true);
+
+            try {
+              // Initialize and start Tone.js if needed
+              if (Tone.context.state !== "running") {
+                await Tone.start();
+                console.log("ToneMusicContext: Tone.js started successfully");
+                await new Promise((resolve) => setTimeout(resolve, 300)); // Longer delay to ensure Tone.js is ready
+              }
+
+              // Force create a new scene (not reusing existing one to avoid issues)
+              if (sceneRef.current) {
+                try {
+                  sceneRef.current.stop();
+                  sceneRef.current.dispose();
+                } catch (error) {
+                  console.warn("ToneMusicContext: Error cleaning up previous scene:", error);
+                }
+                sceneRef.current = null;
+              }
+
+              // Create the new scene explicitly
+              console.log("ToneMusicContext: Creating new ToneMusicScene with", blocks.length, "blocks");
+              const newScene = new ToneMusicScene(blocks, true, true);
+              console.log("ToneMusicContext: Loading audio files...");
+              await newScene.load();
+              console.log("ToneMusicContext: Audio files loaded successfully");
+
+              // Another safety check before starting playback
+              if (blocks.length === 0) {
+                console.warn("ToneMusicContext: Blocks disappeared after loading - aborting playback");
+                return;
+              }
+
+              sceneRef.current = newScene;
+
+              // Actual playback with retry
+              console.log("ToneMusicContext: Starting quantized playback...");
+              try {
+                await newScene.scheduleQuantizedPlayback();
+                console.log("ToneMusicContext: Playback started successfully");
+              } catch (error) {
+                console.error("ToneMusicContext: Error in quantized playback, retrying...", error);
+                // Retry once after a short delay
+                await new Promise((resolve) => setTimeout(resolve, 300));
+                await newScene.scheduleQuantizedPlayback();
+              }
+
+              // Verify Tone.js is actually playing
+              // Check Transport state safely
+              console.log("ToneMusicContext: Transport state:", Tone.Transport.state || "unknown");
+              console.log("ToneMusicContext: Audio context state:", Tone.context.state);
+            } catch (error) {
+              console.error("ToneMusicContext: Error starting playback:", error);
+              setIsPlaying(false);
+            }
+          } else {
+            if (verbose) console.warn("ToneMusicContext: No blocks available to play");
+          }
         }
+      } catch (error) {
+        console.error("ToneMusicContext: Error in togglePlay:", error);
+        setIsPlaying(false);
       }
-    } catch (error) {
-      console.error("ToneMusicContext: Error in togglePlay:", error);
-      setIsPlaying(false);
-    }
-  }, [isPlaying, blocks, verbose]);
+    },
+    [isPlaying, blocks, verbose, fadeDuration],
+  );
 
   // Update a single block's properties
   const updateBlock = useCallback(
@@ -356,46 +460,156 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
 
   // Set all blocks at once, with fadeOutDuration parameter
   const setAudioBlocks = useCallback(
-    async (newBlocks: FileSoundBlock[], fadeOutDuration: number = 1) => {
+    async (newBlocks: FileSoundBlock[], preservePlayback?: boolean) => {
       if (!newBlocks || newBlocks.length === 0) {
         console.warn("ToneMusicContext: Empty blocks array provided to setAudioBlocks");
+        return;
       }
 
-      console.log(`ToneMusicContext: Setting ${newBlocks?.length || 0} audio blocks`);
-      setBlocks(newBlocks);
+      // Create a timeout promise to prevent hanging operations
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Operation timed out")), 5000);
+      });
 
-      // If playing, transition to the new scene
-      if (isPlaying && newBlocks && newBlocks.length > 0) {
+      // Store blocks in a local variable to prevent race conditions
+      const blocksToUse = [...newBlocks]; // Create a copy to avoid reference issues
+
+      // Determine fade duration - use default value of 1 if not specified elsewhere
+      const fadeOutDuration = fadeDuration || 1;
+      // Modify preservation logic to respect the preservePlayback flag regardless of current playback state
+      // This ensures we can have smooth transitions even when isPlaying might temporarily be false
+      const shouldPreservePlayback = preservePlayback === true;
+
+      // Store current playing state to use throughout this function
+      const wasPlaying = isPlaying || shouldPreservePlayback;
+
+      console.log(`ToneMusicContext: shouldPreservePlayback=${shouldPreservePlayback}, preservePlayback param=${preservePlayback}, isPlaying=${wasPlaying}`);
+
+      console.log(`ToneMusicContext: Setting ${blocksToUse.length} audio blocks (preservePlayback: ${shouldPreservePlayback}, isPlaying: ${wasPlaying})`);
+
+      // Set blocks first to ensure they're available for scene creation
+      setBlocks(blocksToUse);
+
+      // If shouldPreservePlayback is true, we want to transition smoothly to the new scene
+      // If false, we want to fully stop the current scene before starting the new one
+      if (shouldPreservePlayback) {
         try {
-          if (verbose) console.log("ToneMusicContext: Transitioning to new scene with", newBlocks.length, "blocks");
+          if (verbose) console.log("ToneMusicContext: Preserving playback during scene transition");
 
-          // Stop current scene explicitly with fade out
-          if (sceneRef.current) {
-            await sceneRef.current.fadeOut?.(fadeOutDuration);
-            sceneRef.current.stop();
-            sceneRef.current.dispose();
+          // Make sure Tone.js is running
+          if (Tone.context.state !== "running") {
+            await Promise.race([Tone.start(), timeoutPromise]).catch((err) => {
+              console.warn("ToneMusicContext: Tone.start() timed out or failed:", err);
+              // Continue anyway, as user interaction may resolve this
+            });
+            console.log("ToneMusicContext: Started Tone.js context");
           }
 
-          // Create a new scene (don't transition to avoid issues)
-          const newScene = new ToneMusicScene(newBlocks, true, true);
+          // Handle fadeout of current scene if it exists
+          if (sceneRef.current) {
+            try {
+              const currentScene = sceneRef.current;
+
+              // Fade out current scene
+              if (typeof currentScene.fadeOut === "function") {
+                await Promise.race([currentScene.fadeOut(fadeOutDuration), timeoutPromise]).catch((err) => {
+                  console.warn("ToneMusicContext: Fade out timed out or failed:", err);
+                  // Continue with stop even if fadeOut fails
+                });
+              }
+
+              // Stop and dispose after fadeout
+              try {
+                currentScene.stop();
+                currentScene.dispose();
+              } catch (stopError) {
+                console.warn("ToneMusicContext: Error stopping/disposing scene:", stopError);
+              }
+
+              // Clear reference
+              if (sceneRef.current === currentScene) {
+                sceneRef.current = null;
+              }
+            } catch (error) {
+              console.warn("ToneMusicContext: Error during scene fadeout:", error);
+            }
+          }
+
+          // Final check before creating new scene
+          if (blocksToUse.length === 0) {
+            console.warn("ToneMusicContext: No blocks available for new scene - aborting transition");
+            return;
+          }
+
+          // Create new scene with our safely copied blocks
+          const newScene = new ToneMusicScene(blocksToUse, true, true);
           await newScene.load();
           sceneRef.current = newScene;
 
-          // Start playback
-          await newScene.scheduleQuantizedPlayback();
-
-          console.log("ToneMusicContext: New scene started successfully");
+          // Start playback immediately if we were already playing OR if preservePlayback is true
+          if (wasPlaying || shouldPreservePlayback) {
+            await newScene.scheduleQuantizedPlayback();
+            setIsPlaying(true); // Ensure we're in playing state
+            console.log("ToneMusicContext: New scene started with continuous playback");
+          }
         } catch (error) {
-          console.error("ToneMusicContext: Error transitioning to new scene:", error);
+          console.error("ToneMusicContext: Error during playback-preserving transition:", error);
         }
-      } else if (sceneRef.current) {
-        // If we're not playing, just stop the current scene
-        sceneRef.current.stop();
-        sceneRef.current.dispose();
-        sceneRef.current = null;
+      } else {
+        // We're either explicitly not preserving playback, or we weren't playing to begin with
+
+        // First fully stop the current scene if it exists
+        if (sceneRef.current) {
+          try {
+            // Complete fadeout before stopping
+            if (typeof sceneRef.current.fadeOut === "function") {
+              await sceneRef.current.fadeOut(fadeOutDuration);
+            }
+
+            // Stop and dispose
+            sceneRef.current.stop();
+            sceneRef.current.dispose();
+            sceneRef.current = null;
+
+            // Ensure we're in stopped state
+            setIsPlaying(false);
+
+            // No delay needed - we want immediate transition between scenes
+            // This prevents the "gap" between audio scenes
+          } catch (error) {
+            console.warn("ToneMusicContext: Error stopping current scene:", error);
+            sceneRef.current = null;
+          }
+        }
+
+        // Create new scene only after old one is completely stopped
+        try {
+          // Make sure we still have blocks to play
+          if (blocksToUse.length === 0) {
+            console.warn("ToneMusicContext: No blocks available for new scene after clean stop - aborting");
+            return;
+          }
+
+          console.log("ToneMusicContext: Creating new scene after clean stop");
+          const newScene = new ToneMusicScene(blocksToUse, true, true);
+          await newScene.load();
+          sceneRef.current = newScene;
+
+          // Start playback if we should preserve playback or were already playing
+          if (shouldPreservePlayback || wasPlaying) {
+            await newScene.scheduleQuantizedPlayback();
+            setIsPlaying(true);
+            console.log("ToneMusicContext: Started playback of new scene after clean stop");
+          }
+        } catch (error) {
+          console.error("ToneMusicContext: Error creating new scene:", error);
+        }
       }
+
+      // Return promise for proper chaining
+      return Promise.resolve();
     },
-    [isPlaying, verbose],
+    [verbose, fadeDuration, setIsPlaying, setBlocks, isPlaying],
   );
 
   // Update all blocks (without transition if already playing)
@@ -493,11 +707,28 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
 
   const resetAudio = useCallback(async () => {
     console.log("ToneMusicContext: Resetting audio...");
-    // Stop any current playback
+    // Stop any current playback with safe null handling
     if (sceneRef.current) {
-      sceneRef.current.stop();
-      sceneRef.current.dispose();
-      sceneRef.current = null;
+      try {
+        // Get local reference to avoid null issues during cleanup
+        const currentScene = sceneRef.current;
+
+        if (typeof currentScene.stop === "function") {
+          currentScene.stop();
+        }
+
+        if (typeof currentScene.dispose === "function") {
+          currentScene.dispose();
+        }
+
+        // Clear reference only if it hasn't changed
+        if (sceneRef.current === currentScene) {
+          sceneRef.current = null;
+        }
+      } catch (error) {
+        console.warn("ToneMusicContext: Error during audio reset:", error);
+        sceneRef.current = null;
+      }
     }
     setIsPlaying(false);
 
@@ -515,10 +746,12 @@ export const ToneMusicProvider: React.FC<ToneMusicProviderProps> = ({ children, 
     isLoading,
     verbose,
     visualizationData,
+    fadeDuration: fadeDuration || 2,
 
     // Actions
     togglePlay,
     setAudioBlocks,
+    setFadeDuration,
     updateBlock,
     updateAllBlocks,
     loadBlocksFromFile,

@@ -1,32 +1,36 @@
 [
   {
     "name": "az 1",
-    "filePath": "/assets/mp3/atellier-zukunft_01.mp3",
+    "filePath": "/assets/mp3/atellier-zukunft_01_1.mp3",
     "reverb": true,
-    "volume": 0.4,
+    "volume": 0.48,
     "loop": true,
-    "loopStart": 0.0,
-    "loopEnd": 360.0,
-    "playbackRate": 1.0,
-    "duration": 1800,
+    "loopStart": 2.0,
+    "loopEnd": 95.0,
+    "playbackRate": 0.95,
+    "originalFrequency": 440,
+    "scale": [440, 466.16, 493.88, 523.25, 587.33],
     "delay": true,
     "delayTime": "8n",
-    "delayFeedback": 0.8,
-    "pan": 0.4
+    "delayFeedback": 0.45,
+    "pan": 0.35
   },
   {
     "name": "az 2",
-    "filePath": "/assets/mp3/atellier-zukunft_01.mp3",
-    "volume": 0.7,
+    "filePath": "/assets/mp3/atellier-zukunft_01_2.mp3",
+    "volume": 0.5,
     "loop": true,
-    "loopStart": 20.0,
-    "loopEnd": 360.0,
+    "loopStart": 15.0,
+    "loopEnd": 60.0,
     "quantize": "2m",
     "reverb": true,
     "delay": true,
     "delayTime": "8n",
-    "delayFeedback": 0.8,
-    "pan": -0.4,
-    "reverse": true
+    "delayFeedback": 0.4,
+    "pan": -0.35,
+    "reverse": true,
+    "playbackRate": 0.89,
+    "originalFrequency": 440,
+    "scale": [440, 466.16, 493.88, 523.25]
   }
 ]

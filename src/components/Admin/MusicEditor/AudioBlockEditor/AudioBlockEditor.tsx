@@ -16,6 +16,8 @@ interface AudioBlockEditorProps {
   onChange?: (blocks: FileSoundBlock[], changedIndex?: number, changedParam?: keyof FileSoundBlock | string, value?: any) => void;
   title?: string;
   onClose?: () => void;
+  visualizationData?: Uint8Array;
+  isPlaying?: boolean;
 }
 
 // List of available sound block files
@@ -26,9 +28,9 @@ const SOUND_BLOCK_FILES = [
   "/assets/soundblocks/kalimba_piano_scene3.json",
   "/assets/soundblocks/kalimba_piano_scene4.json",
   "/assets/soundblocks/atellier_zukunft_scene.json",
-  "/assets/soundblocks/atellier_zukunft2_scene.json",
-  "/assets/soundblocks/atellier_zukunft3_scene.json",
-  "/assets/soundblocks/atellier_zukunft4_scene.json",
+  "/assets/soundblocks/atellier_zukunft_scene2.json",
+  "/assets/soundblocks/atellier_zukunft_scene3.json",
+  "/assets/soundblocks/atellier_zukunft_scene4.json",
   "/assets/soundblocks/arsenal_scene.json",
   "/assets/soundblocks/bowltest_scene.json",
   "/assets/soundblocks/test_scene.json",
@@ -51,7 +53,13 @@ const BLOCK_COLORS = [
 
 const quantizeOptions = ["1m", "2n", "4n", "8n", "16n", "32n", "3n", "6n", "12n"];
 
-const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onChange, title = "Audio Block Editor" }) => {
+const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({
+  initialBlocks,
+  onChange,
+  title = "Audio Block Editor",
+  visualizationData: propVisualizationData,
+  isPlaying: propIsPlaying,
+}) => {
   const { currentTheme } = useTheme(); // Use theme context
 
   const [selectedFile, setSelectedFile] = useState(SOUND_BLOCK_FILES[0]);
@@ -68,10 +76,10 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
 
   // Use the ToneMusic context
   const {
-    isPlaying,
+    isPlaying: contextIsPlaying,
     togglePlay,
     isLoading: loading,
-    visualizationData,
+    visualizationData: contextVisualizationData,
     waveforms,
     processAudioFile,
     updateBlock: contextUpdateBlock,
@@ -83,7 +91,13 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
     blocks,
     verbose,
     getCurrentScene,
+    fadeDuration,
+    setFadeDuration,
   } = useToneMusic();
+
+  // Use props if provided, otherwise use context values
+  const isPlaying = propIsPlaying !== undefined ? propIsPlaying : contextIsPlaying;
+  const visualizationData = propVisualizationData || contextVisualizationData;
 
   // Collect debug info on demand
   const handleDebugPanel = async () => {
@@ -155,7 +169,8 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
   // Cache over refs to persist and avoid redundant loading
   const fileCache = useRef<Map<string, FileSoundBlock[]>>(new Map());
 
-  const FADE_OUT_DURATION = 1.5;
+  // Use the fadeDuration from context or default to 1.5 seconds
+  const fadeOutDuration = fadeDuration || 1.5;
 
   const loadSoundBlocksFromFile = async (filePath: string) => {
     try {
@@ -247,10 +262,10 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
     updateAllBlocks(localBlocks);
 
     try {
-      // Use the context's toggle function
-      const wasPlaying = isPlaying;
-      await togglePlay();
-      console.log(`AudioBlockEditor: Toggled playback from ${wasPlaying} to ${!wasPlaying}`);
+      // Use the context's toggle function with the fadeOutDuration
+      const wasPlaying = contextIsPlaying;
+      await togglePlay(fadeOutDuration);
+      console.log(`AudioBlockEditor: Toggled playback from ${wasPlaying} to ${!wasPlaying} with fade duration ${fadeOutDuration}s`);
 
       // Handle onChange for backward compatibility
       if (onChange && useMainSystem) {
@@ -274,9 +289,9 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
   const handleFileChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log("AudioBlockEditor: File selection changed");
     // Toggle off playback if needed
-    if (isPlaying) {
+    if (contextIsPlaying) {
       try {
-        await togglePlay();
+        await togglePlay(fadeOutDuration);
       } catch (error) {
         console.error("Error stopping playback:", error);
       }
@@ -830,7 +845,7 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
               <button onClick={() => resetAudio()} className={styles.debugButton}>
                 Reset
               </button>
-              <button onClick={() => togglePlay()} className={styles.debugButton}>
+              <button onClick={() => togglePlay(fadeOutDuration)} className={styles.debugButton}>
                 Toggle Play
               </button>
               <button onClick={() => setShowDebug(false)} className={styles.debugButton}>

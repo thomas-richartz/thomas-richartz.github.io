@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import styles from "./SearchOverlay.module.css";
 import { GalleryImage } from "../types";
 import { Spinner } from "./Spinner";
-import { Cross1Icon, DownloadIcon } from "@radix-ui/react-icons";
+import { Cross1Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { LightBoxImage } from "./LightBoxImage";
-import { InputEditInPlace } from "./InputEditInPlace";
 import lightBoxStyles from "./LightBoxImage.module.css";
 
 interface SearchOverlayProps {
@@ -12,6 +11,9 @@ interface SearchOverlayProps {
   isLoading: boolean;
   onClose: () => void;
   onItemSelect: (category: string) => void;
+  initialQuery?: string;
+  autoFocus?: boolean;
+  onQueryChange?: (query: string) => void;
 }
 
 export const SearchOverlay: React.FC<SearchOverlayProps> = ({
@@ -19,37 +21,59 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
   isLoading,
   onClose,
   onItemSelect,
+  initialQuery = "",
+  autoFocus = false,
+  onQueryChange,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [isContentVisible, setIsContentVisible] = useState(false);
   const [lightboxImage, setLightboxImage] = useState<GalleryImage | null>(null);
-  const [filteredItems, setFilteredItems] = useState<GalleryImage[]>(items);
-  const [editedTitles, setEditedTitles] = useState<Record<string, string>>(() =>
-    JSON.parse(localStorage.getItem("editedTitles") || "{}"),
-  );
+  const [filteredItems, setFilteredItems] = useState<GalleryImage[]>(items || []);
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
+  const [scrollPosition, setScrollPosition] = useState(0);
   const searchInputRef = useRef<HTMLInputElement | null>(null);
   const overlayRef = useRef<HTMLDivElement | null>(null); // Ref for overlay
+  const contentRef = useRef<HTMLDivElement | null>(null); // Ref for content container
 
   useEffect(() => {
     setIsVisible(true);
 
     const timer = setTimeout(() => {
       setIsContentVisible(true);
-    }, 200);
+      if (searchInputRef.current) {
+        if (autoFocus) {
+          searchInputRef.current.focus();
+        }
+        if (initialQuery) {
+          searchInputRef.current.value = initialQuery;
+          handleFilter(initialQuery);
+        }
+      }
+    }, 100);
 
     return () => {
       clearTimeout(timer);
     };
+  }, [initialQuery]);
+
+  // Handle scroll animations
+  const handleScroll = useCallback(() => {
+    if (contentRef.current) {
+      setScrollPosition(contentRef.current.scrollTop);
+    }
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (
-      event: MouseEvent | TouchEvent | PointerEvent,
-    ) => {
-      if (
-        overlayRef.current &&
-        !overlayRef.current.contains(event.target as Node)
-      ) {
+    const content = contentRef.current;
+    if (content) {
+      content.addEventListener("scroll", handleScroll);
+      return () => content.removeEventListener("scroll", handleScroll);
+    }
+  }, [handleScroll]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent | PointerEvent) => {
+      if (overlayRef.current && !overlayRef.current.contains(event.target as Node)) {
         console.log("Outside click detected. Closing overlay.");
         handleClose();
       }
@@ -63,21 +87,20 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
     };
   }, []);
 
-  const handleFilter = () => {
-    const query = searchInputRef.current?.value.trim().toLowerCase() || "";
-    const filtered = items.filter(
-      (item) =>
-        item.title.toLowerCase().includes(query) ||
-        item.filename.toLowerCase().includes(query) ||
-        item.cat.toLowerCase().includes(query),
+  const handleFilter = (inputQuery?: string) => {
+    const query = inputQuery !== undefined ? inputQuery.trim().toLowerCase() : searchInputRef.current?.value.trim().toLowerCase() || "";
+
+    setSearchQuery(query);
+
+    // Call the onQueryChange callback if provided
+    if (onQueryChange) {
+      onQueryChange(query);
+    }
+
+    const filtered = (items || []).filter(
+      (item) => item.title?.toLowerCase().includes(query) || item.filename?.toLowerCase().includes(query) || item.cat?.toLowerCase().includes(query),
     );
     setFilteredItems(filtered);
-  };
-
-  const handleTitleUpdate = (filename: string, newTitle: string) => {
-    const updatedTitles = { ...editedTitles, [filename]: newTitle };
-    setEditedTitles(updatedTitles);
-    localStorage.setItem("editedTitles", JSON.stringify(updatedTitles));
   };
 
   const handleClose = () => {
@@ -88,36 +111,9 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
     }, 200);
   };
 
-  const exportEditedTitles = () => {
-    const updatedAssets = items.map((item) => ({
-      ...item,
-      title: editedTitles[item.filename] || item.title,
-    }));
-
-    const formattedExport = `${JSON.stringify(updatedAssets, null, 2)};`;
-
-    const blob = new Blob([formattedExport], { type: "text/javascript" });
-    const url = URL.createObjectURL(blob);
-
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = "assets.json";
-    link.click();
-
-    URL.revokeObjectURL(url);
-  };
-
-  const hasEdits = items.some(
-    (item) =>
-      editedTitles[item.filename] && editedTitles[item.filename] !== item.title,
-  );
-
   return (
     <>
-      <div
-        ref={overlayRef}
-        className={`${styles.overlay} ${isVisible ? styles.visible : ""}`}
-      >
+      <div ref={overlayRef} className={`${styles.overlay} ${isVisible ? styles.visible : ""}`}>
         {(lightboxImage && (
           <LightBoxImage
             onClick={() => setLightboxImage(null)}
@@ -126,26 +122,23 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
             className={lightBoxStyles.lightBoxImage}
           />
         )) || (
-          <div
-            className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}
-          >
+          <div ref={contentRef} className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}>
             <div className={styles.header}>
-              <input
-                type="text"
-                ref={searchInputRef}
-                placeholder="Suche nach Titel oder Ausstellung..."
-                className={styles.searchInput}
-                disabled={isLoading}
-                onChange={handleFilter}
-              />
-              {hasEdits && (
-                <button
-                  onClick={exportEditedTitles}
-                  className={styles.exportButton}
-                >
-                  <DownloadIcon />
-                </button>
-              )}
+              <div className={styles.searchInputContainer}>
+                <MagnifyingGlassIcon className={styles.searchIcon} />
+                <input
+                  type="text"
+                  ref={searchInputRef}
+                  placeholder="Search for title or exhibition..."
+                  className={styles.searchInput}
+                  defaultValue={initialQuery}
+                  disabled={isLoading}
+                  onChange={(e) => handleFilter(e.target.value)}
+                  autoFocus={autoFocus}
+                  autoComplete="off"
+                />
+              </div>
+
               <button onClick={handleClose} className={styles.closeButton}>
                 <Cross1Icon />
               </button>
@@ -155,27 +148,31 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
                 <div className={styles.spinner}>
                   <Spinner onClick={onClose} />
                 </div>
+              ) : filteredItems.length > 0 ? (
+                filteredItems.map((item, index) => {
+                  // Calculate animation delay based on scroll position and item index
+                  const scrollFactor = Math.max(0, Math.min(1, (scrollPosition - index * 50) / 400));
+                  const style = {
+                    opacity: isContentVisible ? 1 : 0,
+                    transform: `translateY(${scrollFactor * 10}px)`,
+                    transition: `transform 0.3s ease, opacity 0.5s ease ${index * 0.1}s`,
+                  };
+
+                  return (
+                    <div key={item.filename} className={styles.resultItem} onClick={() => setLightboxImage(item)} style={style}>
+                      <img src={`assets/images/${item.filename}`} alt={item.title} className={styles.thumbnail} />
+                      <span className={styles.itemTitle}>{item.title}</span>
+                      <span className={styles.itemCat}>{item.cat}</span>
+                    </div>
+                  );
+                })
               ) : (
-                filteredItems.map((item) => (
-                  <div
-                    key={item.filename}
-                    className={styles.resultItem}
-                    onClick={() => setLightboxImage(item)}
-                  >
-                    <img
-                      src={`assets/images/${item.filename}`}
-                      alt={item.title}
-                      className={styles.thumbnail}
-                    />
-                    <InputEditInPlace
-                      value={editedTitles[item.filename] || item.title}
-                      onSave={(newTitle) =>
-                        handleTitleUpdate(item.filename, newTitle)
-                      }
-                    />
-                    <span className={styles.itemCat}>{item.cat}</span>
+                !isLoading && (
+                  <div className={styles.noResults}>
+                    <p>No results found {searchQuery ? `for "${searchQuery}"` : ""}</p>
+                    <p>{items && items.length > 0 ? "Try different keywords or browse categories" : "No items available"}</p>
                   </div>
-                ))
+                )
               )}
             </div>
           </div>
