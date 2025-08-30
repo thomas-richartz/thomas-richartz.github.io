@@ -16,6 +16,8 @@ interface AudioBlockEditorProps {
   onChange?: (blocks: FileSoundBlock[], changedIndex?: number, changedParam?: keyof FileSoundBlock | string, value?: any) => void;
   title?: string;
   onClose?: () => void;
+  visualizationData?: Uint8Array;
+  isPlaying?: boolean;
 }
 
 // List of available sound block files
@@ -51,7 +53,13 @@ const BLOCK_COLORS = [
 
 const quantizeOptions = ["1m", "2n", "4n", "8n", "16n", "32n", "3n", "6n", "12n"];
 
-const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onChange, title = "Audio Block Editor" }) => {
+const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({
+  initialBlocks,
+  onChange,
+  title = "Audio Block Editor",
+  visualizationData: propVisualizationData,
+  isPlaying: propIsPlaying,
+}) => {
   const { currentTheme } = useTheme(); // Use theme context
 
   const [selectedFile, setSelectedFile] = useState(SOUND_BLOCK_FILES[0]);
@@ -68,10 +76,10 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
 
   // Use the ToneMusic context
   const {
-    isPlaying,
+    isPlaying: contextIsPlaying,
     togglePlay,
     isLoading: loading,
-    visualizationData,
+    visualizationData: contextVisualizationData,
     waveforms,
     processAudioFile,
     updateBlock: contextUpdateBlock,
@@ -86,6 +94,10 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
     fadeDuration,
     setFadeDuration,
   } = useToneMusic();
+
+  // Use props if provided, otherwise use context values
+  const isPlaying = propIsPlaying !== undefined ? propIsPlaying : contextIsPlaying;
+  const visualizationData = propVisualizationData || contextVisualizationData;
 
   // Collect debug info on demand
   const handleDebugPanel = async () => {
@@ -251,7 +263,7 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
 
     try {
       // Use the context's toggle function with the fadeOutDuration
-      const wasPlaying = isPlaying;
+      const wasPlaying = contextIsPlaying;
       await togglePlay(fadeOutDuration);
       console.log(`AudioBlockEditor: Toggled playback from ${wasPlaying} to ${!wasPlaying} with fade duration ${fadeOutDuration}s`);
 
@@ -277,7 +289,7 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({ initialBlocks, onCh
   const handleFileChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log("AudioBlockEditor: File selection changed");
     // Toggle off playback if needed
-    if (isPlaying) {
+    if (contextIsPlaying) {
       try {
         await togglePlay(fadeOutDuration);
       } catch (error) {

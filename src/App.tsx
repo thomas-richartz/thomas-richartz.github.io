@@ -210,15 +210,9 @@ function App() {
       let url: string;
 
       if (screen === Screen.LANDING) {
-        url = "/assets/soundblocks/kalimba_piano_scene.json";
+        url = "/assets/soundblocks/atellier_zukunft_scene3.json";
       } else if (screen === Screen.GALLERY && !selectedCat) {
-        const galleryUrls = [
-          "/assets/soundblocks/bowltest_scene.json",
-          "/assets/soundblocks/kalimba_piano_scene.json",
-          "/assets/soundblocks/kalimba_piano_scene1.json",
-          "/assets/soundblocks/kalimba_piano_scene3.json",
-          "/assets/soundblocks/kalimba_piano_scene4.json",
-        ];
+        const galleryUrls = ["/assets/soundblocks/bowltest_scene.json", "/assets/soundblocks/test_scene.json"];
         url = galleryUrls[Math.floor(Math.random() * galleryUrls.length)];
       } else if (screen !== Screen.GALLERY && selectedCat === "Dovcenko2 (2022)") {
         const arsenalUrls = ["/assets/soundblocks/arsenal_scene.json", "/assets/soundblocks/test_scene.json"];

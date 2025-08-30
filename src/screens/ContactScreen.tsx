@@ -5,7 +5,8 @@ import { Paragraph } from "@/components/Paragraph";
 import { GearIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { AdminControlsView } from "@/components/AdminControls/AdminControlsView";
 import { SearchOverlay } from "@/components/SearchOverlay";
-import { GalleryImage } from "@/types";
+// import { GalleryImage } from "@/types";
+// import { ContactForm } from "@/components/ContactForm";
 
 type ContactScreenProps = {
   onCatClick: (cat: string) => void;
@@ -22,6 +23,7 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
   const [isLoading, setIsLoading] = useState(false);
   const [animationsReady, setAnimationsReady] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
+  // const [formSubmitted, setFormSubmitted] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsHidden(false), 800);
@@ -64,6 +66,12 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
     closeSearchOverlay();
   };
 
+  // const handleFormSubmit = (formData: { name: string; email: string; message: string }) => {
+  //   console.log("Form submitted:", formData);
+  //   // In a real application, you would send this data to your backend
+  //   setFormSubmitted(true);
+  // };
+
   return (
     <div className={`${styles.screenContainer} ${isHidden ? styles.hidden : ""} ${animationsReady ? styles.animationsReady : ""}`}>
       <div className={styles.fabContainer}>
@@ -91,8 +99,18 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
         <Paragraph>
           Copyright by Thomas Richartz, Mainz.
           <br />
-          Feel free to reach out to me at {email && <a href={email}>thomas.richartz.com at gmail.com</a>}
+          <>Email me at {email && <a href={email}>thomas.richartz.com at gmail.com</a>}</>
+          {/*{formSubmitted ? (
+            "Thank you for your message! I'll get back to you soon."
+          ) : (
+            <>Fill out the form below or email me at {email && <a href={email}>thomas.richartz.com at gmail.com</a>}</>
+          )}*/}
         </Paragraph>
+        {/*{!formSubmitted && (
+          <div className={styles.formWrapper}>
+            <ContactForm onSubmit={handleFormSubmit} />
+          </div>
+        )}*/}
       </div>
 
       <div className={styles.paragraphContainer}>

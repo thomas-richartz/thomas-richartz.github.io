@@ -47,8 +47,8 @@ export const Paragraph: React.FC<ParagraphProps> = ({ children, links }) => {
           </div>
         ) : (
           // Regular paragraph content
-          <p className={styles.paragraphText}>
-            {children}
+          <div className={styles.paragraphText}>
+            <div>{children}</div>
             {links && (
               <div className={styles.linkContainer}>
                 {links.map(({ href, text, imgSrc, imgAlt }, idx) => (
@@ -62,7 +62,7 @@ export const Paragraph: React.FC<ParagraphProps> = ({ children, links }) => {
                 ))}
               </div>
             )}
-          </p>
+          </div>
         )}
       </div>
     </div>
