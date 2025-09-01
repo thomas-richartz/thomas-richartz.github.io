@@ -3,6 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import styles from "./IntenseImage.module.css";
 import { categoryInterpretations, imageInterpretations } from "@/assets/interpretations";
 import Markdown from "@/components/Markdown";
+import { useDisplayPreferences } from "@/context/DisplayPreferencesContext";
 
 interface IIntenseImage {
   nextImage: () => void;
@@ -21,6 +22,18 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
   const [isLoading, setIsLoading] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const overlayRef = useRef<HTMLDivElement | null>(null);
+  const {
+    fullscreen: userFullscreen,
+    fullscreenSource,
+    isFullscreenFromUserSettings,
+    isFullscreenFromIntenseImage,
+    setFullscreen,
+    applyFullscreen,
+    exitFullscreen,
+  } = useDisplayPreferences();
+
+  // Track if this component instance initiated fullscreen
+  const [instanceInitiatedFullscreen, setInstanceInitiatedFullscreen] = useState(false);
 
   const categoryInterpretation = categoryInterpretations[category];
   const imageKey = src.replace(/^.*assets\/images\//, "");
@@ -64,16 +77,34 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
 
   const hasFullscreenSupport = typeof document !== "undefined" && !!document.fullscreenEnabled;
 
+  // Keep track of fullscreen state from user settings
+  useEffect(() => {
+    if (userFullscreen && isFullscreenFromUserSettings()) {
+      setIsFullscreen(true);
+    }
+  }, [userFullscreen, isFullscreenFromUserSettings]);
+
   useEffect(() => {
     const fsListener = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-      if (!document.fullscreenElement && isFullscreen && onClose) onClose();
+      const isInFullscreen = !!document.fullscreenElement;
+      setIsFullscreen(isInFullscreen);
+
+      // Handle exiting fullscreen
+      if (!isInFullscreen) {
+        // Only close if fullscreen was initiated by this instance of IntenseImage, not UserSettings
+        if (instanceInitiatedFullscreen && onClose && !isFullscreenFromUserSettings()) {
+          // Update display preferences context
+          setFullscreen(false, "intense-image");
+          setInstanceInitiatedFullscreen(false);
+          onClose();
+        }
+      }
     };
     document.addEventListener("fullscreenchange", fsListener);
     return () => {
       document.removeEventListener("fullscreenchange", fsListener);
     };
-  }, [isFullscreen, onClose]);
+  }, [isFullscreen, onClose, isFullscreenFromUserSettings, setFullscreen, instanceInitiatedFullscreen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -89,28 +120,53 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
     };
   }, [isOpen, handleKeyUp]);
 
-  const handleRequestFullscreen = (e: React.MouseEvent) => {
+  const handleRequestFullscreen = async (e: React.MouseEvent) => {
     e.stopPropagation();
+    // Don't try to request fullscreen if already in UserSettings fullscreen
+    if (isFullscreenFromUserSettings()) {
+      setIsFullscreen(true);
+      return;
+    }
+
     if (hasFullscreenSupport && overlayRef.current && !document.fullscreenElement) {
-      overlayRef.current
-        .requestFullscreen?.()
-        .then(() => setIsFullscreen(true))
-        .catch(() => {});
+      try {
+        // First mark this instance as the initiator
+        setInstanceInitiatedFullscreen(true);
+
+        // Request fullscreen directly on the overlay element
+        await overlayRef.current.requestFullscreen();
+
+        // Update context
+        setIsFullscreen(true);
+        setFullscreen(true, "intense-image");
+      } catch (err) {
+        console.error("Error entering fullscreen:", err);
+        setInstanceInitiatedFullscreen(false);
+      }
     }
   };
 
-  const handleClose = (e?: React.MouseEvent) => {
+  const handleClose = async (e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    if (hasFullscreenSupport && document.fullscreenElement) {
-      document
-        .exitFullscreen?.()
-        .then(() => {
-          setIsFullscreen(false);
-          onClose?.();
-        })
-        .catch(() => {
-          onClose?.();
-        });
+
+    // If fullscreen was initiated by UserSettings, don't exit fullscreen
+    if (isFullscreenFromUserSettings()) {
+      onClose?.();
+      return;
+    }
+
+    if (hasFullscreenSupport && document.fullscreenElement && instanceInitiatedFullscreen) {
+      try {
+        // Exit fullscreen through the context if this instance initiated it
+        await document.exitFullscreen();
+        setIsFullscreen(false);
+        setInstanceInitiatedFullscreen(false);
+        setFullscreen(false, "intense-image");
+        onClose?.();
+      } catch (err) {
+        console.error("Error exiting fullscreen:", err);
+        onClose?.();
+      }
     } else {
       onClose?.();
     }
@@ -206,14 +262,14 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
                 </button>
               </div>
             )}
-            {/* FULLSCREEN BUTTON */}
+            {/* FULLSCREEN BUTTON - hidden in any kind of fullscreen */}
             {hasFullscreenSupport && (
               <button
                 className={styles.fullscreenButton}
                 onClick={handleRequestFullscreen}
                 aria-label="Show fullscreen"
                 type="button"
-                style={{ display: isFullscreen ? "none" : "inline-flex" }}
+                style={{ display: isFullscreen || userFullscreen ? "none" : "inline-flex" }}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +286,13 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
                 </svg>
               </button>
             )}
-            <button className={styles.closeButton} onClick={handleClose} aria-label="Close" type="button" style={{ display: isFullscreen ? "none" : "block" }}>
+            <button
+              className={styles.closeButton}
+              onClick={handleClose}
+              aria-label="Close"
+              type="button"
+              style={{ display: isFullscreen || userFullscreen ? "none" : "block" }}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>

@@ -318,7 +318,7 @@ a:hover::after {
 .paragraphContainer {
     width: 100%;
     max-width: 800px;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     transition: transform 0.3s ease;
 }
 

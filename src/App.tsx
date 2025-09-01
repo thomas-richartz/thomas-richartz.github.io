@@ -11,6 +11,7 @@ import CollectionsMicrodata from "@/components/CollectionsMicrodata";
 import styles from "@/App.module.css";
 import * as Tone from "tone";
 import { FileSoundBlock, ToneMusicScene } from "@/audio/ToneMusicScene";
+import { DisplayPreferencesProvider } from "@/context/DisplayPreferencesContext";
 
 function App() {
   // Screen state
@@ -257,70 +258,72 @@ function App() {
   };
 
   return (
-    <GalleryContextProvider>
-      <CollectionsMicrodata />
-      <div tabIndex={0}>
-        <main className={styles.warehouseWrap}>
-          <>
-            {selectedScreen === Screen.LANDING ? (
-              <LandingScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
-            ) : selectedScreen === Screen.GALLERY ? (
-              <GalleryScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
-            ) : selectedScreen === Screen.CONTACT ? (
-              <ContactScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} onSearch={handleSearchOpen} />
-            ) : (
-              <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
-            )}
+    <DisplayPreferencesProvider>
+      <GalleryContextProvider>
+        <CollectionsMicrodata />
+        <div tabIndex={0}>
+          <main className={styles.warehouseWrap}>
+            <>
+              {selectedScreen === Screen.LANDING ? (
+                <LandingScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
+              ) : selectedScreen === Screen.GALLERY ? (
+                <GalleryScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} />
+              ) : selectedScreen === Screen.CONTACT ? (
+                <ContactScreen onCatClick={(cat) => setSelectedCat(cat)} onNavigate={onNavigate} onSearch={handleSearchOpen} />
+              ) : (
+                <GalleryCatScreen cat={selectedCat} onClick={(cat) => setSelectedCat(cat)} />
+              )}
 
-            <BottomBar
-              onNavigate={onNavigate}
-              selectedScreen={selectedScreen}
-              onSearch={handleSearchOpen}
-              onMusicToggle={handleMusicToggle}
-              isPlaying={isPlaying}
-            />
-          </>
-          {isSearchVisible && <SearchOverlay items={images} isLoading={isLoadingImages} onClose={handleSearchClose} onItemSelect={handleItemSelect} />}
-        </main>
-      </div>
+              <BottomBar
+                onNavigate={onNavigate}
+                selectedScreen={selectedScreen}
+                onSearch={handleSearchOpen}
+                onMusicToggle={handleMusicToggle}
+                isPlaying={isPlaying}
+              />
+            </>
+            {isSearchVisible && <SearchOverlay items={images} isLoading={isLoadingImages} onClose={handleSearchClose} onItemSelect={handleItemSelect} />}
+          </main>
+        </div>
 
-      {/* Add a hidden emergency reset button for stuck states */}
-      <div
-        style={{
-          position: "fixed",
-          bottom: 0,
-          right: 0,
-          width: "30px",
-          height: "30px",
-          background: "transparent",
-          zIndex: 9999,
-        }}
-        onClick={(e) => {
-          if (e.altKey && e.shiftKey) {
-            console.log("App: Emergency reset triggered");
-            // Force reset everything
-            if (sceneRef.current) {
-              try {
-                sceneRef.current.stop();
-                sceneRef.current.dispose();
-              } catch (e) {
-                /* ignore */
+        {/* Add a hidden emergency reset button for stuck states */}
+        <div
+          style={{
+            position: "fixed",
+            bottom: 0,
+            right: 0,
+            width: "30px",
+            height: "30px",
+            background: "transparent",
+            zIndex: 9999,
+          }}
+          onClick={(e) => {
+            if (e.altKey && e.shiftKey) {
+              console.log("App: Emergency reset triggered");
+              // Force reset everything
+              if (sceneRef.current) {
+                try {
+                  sceneRef.current.stop();
+                  sceneRef.current.dispose();
+                } catch (e) {
+                  /* ignore */
+                }
+                sceneRef.current = null;
               }
-              sceneRef.current = null;
-            }
-            audioInitialized.current = false;
+              audioInitialized.current = false;
 
-            // Force navigate to landing
-            setSelectedScreen(Screen.LANDING);
+              // Force navigate to landing
+              setSelectedScreen(Screen.LANDING);
 
-            // Force a page reload if Alt+Shift+Triple click
-            if ((e.nativeEvent as any).detail === 3) {
-              window.location.reload();
+              // Force a page reload if Alt+Shift+Triple click
+              if ((e.nativeEvent as any).detail === 3) {
+                window.location.reload();
+              }
             }
-          }
-        }}
-      ></div>
-    </GalleryContextProvider>
+          }}
+        ></div>
+      </GalleryContextProvider>
+    </DisplayPreferencesProvider>
   );
 }
 

@@ -6,6 +6,7 @@ import { OrbitControls } from "@react-three/drei";
 import { GalleryImage } from "@/types";
 import CameraController from "@/components/CameraController";
 import "@/materials/BlurImageMaterial";
+import { useDisplayPreferences } from "@/context/DisplayPreferencesContext";
 
 interface RandomPictureParallaxViewProps {
   images: GalleryImage[];
@@ -28,6 +29,7 @@ const ParallaxCube = ({
   selected: boolean;
   blur?: number;
 }) => {
+  const { resolution } = useDisplayPreferences();
   const texture = useTexture({
     map: `/assets/images/${image}`,
     normalMap: "/assets/normalmaps/default.jpg",
@@ -80,7 +82,23 @@ const ParallaxCube = ({
       <mesh>
         <mesh>
           <boxGeometry args={geometryArgs} />
-          <blurImageMaterial uTexture={texture.map} uResolution={[window.innerWidth, window.innerHeight]} uTime={0} uLod={blur} normalMap={texture.normalMap} />
+          {resolution === "low" ? (
+            <blurImageMaterial
+              uTexture={texture.map}
+              uResolution={[window.innerWidth, window.innerHeight]}
+              uTime={0}
+              uLod={blur + 2.0}
+              normalMap={texture.normalMap}
+            />
+          ) : (
+            <blurImageMaterial
+              uTexture={texture.map}
+              uResolution={[window.innerWidth, window.innerHeight]}
+              uTime={0}
+              uLod={blur}
+              normalMap={texture.normalMap}
+            />
+          )}
           {/* <meshStandardMaterial map={texture} /> */}
         </mesh>
       </mesh>
@@ -100,6 +118,7 @@ export const RandomPictureParallaxView = ({ images, loadRandomImages, setImages 
   const [windowOffset, setWindowOffset] = useState(0);
   const windowSize = 9;
   const cameraRef = useRef<any>();
+  const { resolution, fullscreen } = useDisplayPreferences();
 
   const shiftWindow = () => {
     const nextOffset = windowOffset + 1;
@@ -120,11 +139,14 @@ export const RandomPictureParallaxView = ({ images, loadRandomImages, setImages 
         // pointerEvents: selectedIndex !== null ? "auto" : "none",
         background: "black",
       }}
+      dpr={resolution === "high" ? window.devicePixelRatio : 1}
       // vr
     >
       <ambientLight intensity={0.5} />
       {/* <directionalLight position={[5, 5, 5]} intensity={0.8} castShadow /> */}
       <directionalLight position={[5, 10, 5]} intensity={1} castShadow />
+      {/* Adjust rendering quality based on resolution setting */}
+      {resolution === "low" && <fog attach="fog" args={["#000", 5, 25]} />}
       <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
 
       <mesh position={[0, 0, -150]}>
