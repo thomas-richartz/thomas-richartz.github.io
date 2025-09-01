@@ -61,6 +61,7 @@
 .titleWrap {
     text-align: center;
     margin: 16px 0 0 0;
+    transition: text-align 0.3s ease;
 }
 
 .title {
@@ -175,6 +176,7 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
+    position: relative;
 }
 
 .intense__lightboxImage {
@@ -281,27 +283,55 @@
 
 .infoPanel {
     display: flex;
-    align-self: end;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 40%;
     padding: 2rem;
-    max-width: 40%;
+    background-color: rgba(0, 0, 0, 0.7);
     transition: all 0.3s ease-in-out;
     overflow-y: auto;
-    scrollbar-width: smooth;
+    scrollbar-width: thin;
+    z-index: 5;
+    max-height: 100vh;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
     .infoPanel {
-        flex-grow: 1;
-        /*position: relative;
+        position: relative;
         width: 100%;
-        max-width: unset;
-        display: block;
-        margin-top: 2rem;*/
+        height: auto;
+        max-width: 100%;
+        max-height: 40vh;
+        top: auto;
+        bottom: 0;
+        padding: 1rem;
+        padding-top: 2rem;
     }
     .intense__lightboxImageWrap {
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         height: auto;
+        padding-bottom: 40vh;
+    }
+    .intense__lightboxImage {
+        max-height: 60vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .infoPanel {
+        max-height: 50vh;
+        padding: 1rem;
+        padding-top: 2rem;
+    }
+    .intense__lightboxImageWrap {
+        padding-bottom: 50vh;
+    }
+    .intense__lightboxImage {
+        max-height: 50vh;
     }
 }
