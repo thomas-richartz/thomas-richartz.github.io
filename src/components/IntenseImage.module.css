@@ -363,7 +363,8 @@
         right: 0;
         padding: 1rem;
         border-right: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        /*border-top: 1px solid rgba(255, 255, 255, 0.1);*/
+        border-top: 1rem solid black;
         background-color: #000;
         box-sizing: border-box;
     }
