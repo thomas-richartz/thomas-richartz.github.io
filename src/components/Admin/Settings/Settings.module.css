@@ -92,13 +92,11 @@
 }
 
 .themeSwatch:hover {
-    transform: translateY(-3px) scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 .themeSwatch.selected {
     border-color: var(--admin-element-highlight);
-    transform: translateY(-2px);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -180,7 +178,6 @@
 
 .button:hover:not(:disabled) {
     background: var(--admin-button-secondary-hover);
-    transform: translateY(-2px);
     box-shadow: var(--admin-shadow-moderate);
 }
 
@@ -190,7 +187,6 @@
 }
 
 .button:active {
-    transform: translateY(0);
     box-shadow: var(--admin-shadow-subtle);
 }
 

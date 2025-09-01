@@ -195,7 +195,6 @@ input:checked + .slider:before {
 
 .button:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
 }
 
 .button.primary {
@@ -215,9 +214,9 @@ input:checked + .slider:before {
 }
 
 .settingContainer {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 .settingContainer:last-child {

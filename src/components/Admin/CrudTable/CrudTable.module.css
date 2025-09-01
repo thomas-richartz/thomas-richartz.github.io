@@ -63,7 +63,6 @@
 
 .exportButton:hover {
     background: var(--admin-button-secondary-hover);
-    transform: translateY(-1px);
     box-shadow: var(--admin-shadow-subtle);
 }
 
@@ -209,7 +208,6 @@
 }
 
 .button:hover {
-    transform: translateY(-1px);
     box-shadow: var(--admin-shadow-moderate);
 }
 

@@ -54,9 +54,7 @@ export function UserSettings({ onClose, onNavigateToLogin }: UserSettingsProps) 
       <button onClick={onClose} className={styles.closeButton}>
         <Cross2Icon />
       </button>
-      <h2 className={styles.title}>Display Settings</h2>
-      <div className={styles.description}>Customize your gallery viewing experience</div>
-
+      <h2 className={styles.title}>Settings</h2>
       <div className={styles.form}>
         <div className={styles.settingContainer}>
           <div className={styles.settingGroup}>
@@ -88,7 +86,7 @@ export function UserSettings({ onClose, onNavigateToLogin }: UserSettingsProps) 
 
         <div className={styles.settingContainer}>
           <div className={styles.settingLabel}>Admin Access</div>
-          <p className={styles.infoText}>Go to the admin login page to access content management</p>
+          {/*<p className={styles.infoText}></p>*/}
           <button className={styles.button} onClick={onNavigateToLogin}>
             <PersonIcon style={{ marginRight: "8px" }} />
             <span>Go to Login Page</span>
