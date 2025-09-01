@@ -1,6 +1,7 @@
 .crudTable {
     margin: var(--admin-spacing-lg) auto;
-    max-width: 1200px;
+    max-width: 100%;
+    width: 100%;
     background: var(--admin-panel-bg);
     border-radius: var(--admin-radius-lg);
     padding: var(--admin-spacing-lg);
@@ -116,7 +117,8 @@
 
 .tdActions {
     width: 150px;
-    vertical-align: middle;
+    vertical-align: top;
+    padding-top: 1rem;
     border-bottom: 1px solid var(--admin-border-subtle);
 }
 
@@ -259,6 +261,21 @@
     background: var(--admin-element-bg);
     border-radius: var(--admin-radius-sm);
     border: 1px solid var(--admin-border-subtle);
+}
+
+@media (min-width: 1800px) {
+    .crudTable {
+        max-width: 900px;
+    }
+
+    .tableWrapper {
+        max-height: calc(100vh - 380px);
+        overflow-y: auto;
+    }
+
+    .textarea {
+        min-height: 400px;
+    }
 }
 
 @media (max-width: 768px) {
