@@ -1,0 +1,99 @@
+.gridContainer {
+    /* display: masonary; https://developer.chrome.com/blog/masonry?hl=en  */
+    /* grid-template-rows: masonry;  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout/Masonry_layout */
+    /* grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); */
+    /* grid-template-columns: repeat(4, 1fr); */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2.5rem;
+    padding: 3rem;
+    align-items: center;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.gridItem {
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease-out;
+    will-change: transform;
+}
+
+.gridItem:hover {
+    transform: translateZ(20px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.gridItem img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 2px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-origin: center center;
+    backface-visibility: hidden;
+}
+
+.gridItem:hover img {
+    transform: scale(1.05);
+}
+
+/* Parallax animation effects */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    }
+}
+
+.infoText {
+    position: relative;
+    z-index: 2;
+}
+
+/* Staggered animation for grid items */
+.gridContainer > div {
+    animation: appear 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    opacity: 0;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Apply staggered delays based on grid position */
+.gridContainer > div:nth-child(3n + 1) {
+    animation-delay: 0.1s;
+}
+
+.gridContainer > div:nth-child(3n + 2) {
+    animation-delay: 0.25s;
+}
+
+.gridContainer > div:nth-child(3n + 3) {
+    animation-delay: 0.4s;
+}

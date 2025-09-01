@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { RandomPictureViewer } from "@/components/RandomPictureViewer";
-import { RandomPicureViewMode, Screen } from "@/enums";
+import { RandomPictureViewMode, Screen } from "@/enums";
 import styles from "./LandingScreen.module.css";
 import { TextFx } from "@/components/TextFx";
 
@@ -9,10 +9,7 @@ interface ILandingScreen {
   onNavigate: (screen: Screen) => void;
 }
 
-export const LandingScreen = ({
-  onCatClick,
-  onNavigate,
-}: ILandingScreen): JSX.Element => {
+export const LandingScreen = ({ onCatClick, onNavigate }: ILandingScreen): JSX.Element => {
   const [hide, setHide] = useState<boolean>(true);
 
   useEffect(() => {
@@ -29,27 +26,12 @@ export const LandingScreen = ({
   ];
 
   return (
-    <div
-      className={`${styles.fadeStyles} ${hide ? styles.fadeStylesHidden : ""}`}
-    >
-      <div
-        className={styles.gallerySliderWrap}
-        onClick={() => onNavigate(Screen.GALLERY)}
-        style={{ cursor: "pointer" }}
-      >
-        <img
-          className={`${styles.centeredImage} ${styles.imageProfile}`}
-          src="/assets/img/thomas-richartz.jpg"
-          alt="thomas-richartz"
-        />
+    <div className={`${styles.fadeStyles} ${hide ? styles.fadeStylesHidden : ""}`}>
+      <div className={styles.gallerySliderWrap} onClick={() => onNavigate(Screen.GALLERY)} style={{ cursor: "pointer" }}>
+        <img className={`${styles.centeredImage} ${styles.imageProfile}`} src="/assets/img/thomas-richartz.jpg" alt="thomas-richartz" />
         <h1 className={styles.landingHeadline}>Thomas Richartz</h1>
-        <h2
-          className={styles.underHeadline}
-          style={{ textAlign: "center", margin: "auto" }}
-        >
-          <TextFx>
-            {essayList[Math.floor(Math.random() * essayList.length)]}
-          </TextFx>
+        <h2 className={styles.underHeadline} style={{ textAlign: "center", margin: "auto" }}>
+          <TextFx>{essayList[Math.floor(Math.random() * essayList.length)]}</TextFx>
         </h2>
       </div>
 

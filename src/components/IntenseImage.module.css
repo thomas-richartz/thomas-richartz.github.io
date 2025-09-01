@@ -23,7 +23,7 @@
     height: 320px;
     background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
     animation: pulse 1.5s infinite;
-    border-radius: 10px;
+    border-radius: 2px;
 }
 
 @keyframes pulse {
@@ -40,7 +40,7 @@
 
 .figureKenBurns {
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 1px;
     margin: 0 auto;
     max-width: 100vw;
     max-height: 70vh;
@@ -186,22 +186,26 @@
 
 .intense__lightboxImageWrap {
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: stretch;
     justify-content: center;
     width: 100vw;
     height: 100vh;
     position: relative;
+    gap: 0;
+    background: #000;
 }
 
 .intense__lightboxImage {
-    max-width: 90vw;
+    max-width: 60vw;
     max-height: 90vh;
     object-fit: contain;
-    border: 1px solid #333;
-    background: #111;
+    /*border: 1px solid #333;*/
+    /*background: #111;*/
     display: block;
     border-radius: 3px;
-    margin: 0 auto;
+    margin: auto 0;
+    flex: 1 1 60vw;
 }
 
 .prevButton,
@@ -228,14 +232,29 @@
 }
 
 .iconRow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 16px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 10;
+    justify-content: flex-end;
+    padding: 16px 20px 0 20px;
+    z-index: 100;
+    pointer-events: auto;
+    gap: 12px;
+}
+
+/* Portrait mode: icons row at top, smaller gap */
+@media (orientation: portrait) {
+    .iconRow {
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 8px 10px 0 10px;
+        gap: 8px;
+    }
 }
 
 .closeButton,
@@ -315,19 +334,49 @@
 .infoPanel {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    right: 0;
-    top: 0;
+    position: relative;
     height: 100%;
-    width: 40%;
-    padding: 2rem;
+    min-width: 340px;
+    max-width: 40vw;
+    min-height: 38vh;
+    max-height: 100vh;
+    padding: 2rem 1.5rem 2rem 2rem;
     background-color: rgba(0, 0, 0, 0.8);
     transition: all 0.3s ease-in-out;
     overflow-y: auto;
     scrollbar-width: thin;
     z-index: 5;
-    max-height: 100vh;
     backdrop-filter: none;
+    flex: 0 0 40vw;
+}
+
+/* Portrait mode: InfoPanel takes full width, stacks above/below image */
+@media (orientation: portrait) {
+    .infoPanel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: 40vh;
+        top: auto;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+        border-right: none;
+        /*border-top: 1px solid rgba(255, 255, 255, 0.1);*/
+        border-top: 1rem solid black;
+        background-color: #000;
+        box-sizing: border-box;
+    }
+    .intense__lightboxImageWrap {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+        padding-bottom: 0;
+        padding-top: 60px; /* space for icons row */
+        position: relative;
+    }
 }
 
 @media (max-width: 1024px) {
@@ -342,15 +391,32 @@
         padding: 1rem;
         padding-top: 2rem;
     }
+
+    @media (orientation: portrait) {
+        .intense__lightboxImageWrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .intense__lightboxImage {
+            margin: auto;
+            max-height: 50vh;
+            max-width: 95vw;
+        }
+    }
     .intense__lightboxImageWrap {
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: center;
         height: auto;
         padding-bottom: 40vh;
+        padding: 15px;
     }
     .intense__lightboxImage {
-        max-height: 60vh;
+        max-height: 45vh;
+        margin: auto;
     }
 }
 
@@ -361,9 +427,19 @@
         padding-top: 2rem;
     }
     .intense__lightboxImageWrap {
-        padding-bottom: 50vh;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     .intense__lightboxImage {
-        max-height: 50vh;
+        max-height: 40vh;
+        margin: auto;
+    }
+}
+
+@media (orientation: portrait) and (max-height: 700px) {
+    .intense__lightboxImage {
+        max-height: 35vh;
     }
 }

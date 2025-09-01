@@ -7,6 +7,7 @@
     margin: 0;
     padding: 2rem;
     scrollbar-width: none; /* Firefox */
+    background-color: black;
 }
 
 ::-webkit-scrollbar {
@@ -16,6 +17,9 @@
 
 .imageContainer {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     /* transition:
         transform 0.6s ease,
         opacity 0.6s ease;
@@ -26,6 +30,8 @@
     width: 100%;
     margin-bottom: 0.5rem;
     transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
 }
 
 .gridImage:hover {
@@ -72,5 +78,41 @@
     .listContainer {
         padding: 1rem;
         grid-gap: 1.5rem;
+    }
+}
+
+@media (orientation: portrait) {
+    .imageContainer {
+        align-items: center;
+        justify-content: center;
+        max-height: 70vh;
+    }
+
+    .gridImage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 60vh;
+    }
+
+    .overlay {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .overlay > div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        width: 100%;
+        padding: 15px;
+    }
+}
+
+@media (orientation: portrait) and (max-height: 700px) {
+    .gridImage {
+        max-height: 40vh;
     }
 }

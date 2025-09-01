@@ -38,14 +38,7 @@ type SpaceImageProps = {
  * SpaceImage component that displays an image optimized for maximum space utilization
  * while maintaining aspect ratio on a clean black background
  */
-export const SpaceImage: React.FC<SpaceImageProps> = ({
-  src,
-  alt,
-  title,
-  onClick,
-  className = "",
-  optimizeSpace = true,
-}) => {
+export const SpaceImage: React.FC<SpaceImageProps> = ({ src, alt, title, onClick, className = "", optimizeSpace = true }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -80,10 +73,7 @@ export const SpaceImage: React.FC<SpaceImageProps> = ({
   };
 
   return (
-    <div
-      className={`${styles.container} ${optimizeSpace ? styles.optimizeSpace : ""} ${className}`}
-      onClick={handleClick}
-    >
+    <div className={`${styles.container} ${optimizeSpace ? styles.optimizeSpace : ""} ${className}`} onClick={handleClick}>
       {isLoading ? (
         <div className={styles.loader}>
           <div className={styles.spinner}></div>
@@ -93,15 +83,10 @@ export const SpaceImage: React.FC<SpaceImageProps> = ({
           <span>Image could not be loaded</span>
         </div>
       ) : (
-        <>
-          <img
-            src={src}
-            alt={alt}
-            className={styles.image}
-            draggable={false}
-          />
+        <div className={styles.imageWrapper}>
+          <img src={src} alt={alt} className={styles.image} draggable={false} />
           {title && <div className={styles.title}>{title}</div>}
-        </>
+        </div>
       )}
     </div>
   );
