@@ -202,27 +202,13 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
             src={src}
             alt={alt}
             draggable={false}
-            style={{
-              margin: "0 auto",
-              maxWidth: showInterpretation ? "60vw" : "90vw",
-              maxHeight: "90vh",
-              transition: "max-width 0.3s ease",
-            }}
             onClick={(e) => {
               hasFullscreenSupport && handleClose();
               e.stopPropagation();
             }}
           />
-
           {showInterpretation && (
-            <div
-              className={styles.infoPanel}
-              style={{
-                display: isFullscreen ? "none" : "flex",
-                overflowY: "auto",
-                width: "40%",
-              }}
-            >
+            <div className={styles.infoPanel}>
               {categoryInterpretation && (
                 <div>
                   <div style={{ fontWeight: "bold", marginBottom: 4 }}>{category}</div>
@@ -241,78 +227,61 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
               )}
             </div>
           )}
-          {/* Flex row for action icons */}
-          <div className={styles.iconRow}>
-            {/* INTERPRETATION ICON & POPOVER */}
-            {hasInterpretation && (
-              <div className={styles.interpretationIconWrap}>
-                <button
-                  className={styles.interpretationButton}
-                  aria-label="Show interpretation"
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setShowInterpretation((v) => !v);
-                  }}
-                  style={{
-                    display: isFullscreen ? "none" : "inline-flex",
-                    color: showInterpretation ? "#fff" : "#777",
-                    border: showInterpretation ? "1px solid rgba(255, 255, 255, 0.3)" : "none",
-                  }}
-                >
-                  <svg
-                    width="22"
-                    height="22"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="10" />
-                    <line x1="12" y1="16" x2="12" y2="12" />
-                    <circle cx="12" cy="8" r="1" />
-                  </svg>
-                </button>
-              </div>
-            )}
-            {/* FULLSCREEN BUTTON - hidden in any kind of fullscreen */}
-            {hasFullscreenSupport && (
+        </div>
+        <div className={styles.iconRow}>
+          {/* INTERPRETATION ICON & POPOVER */}
+          {hasInterpretation && (
+            <div className={styles.interpretationIconWrap}>
               <button
-                className={styles.fullscreenButton}
-                onClick={handleRequestFullscreen}
-                aria-label="Show fullscreen"
+                className={styles.interpretationButton}
+                aria-label="Show interpretation"
                 type="button"
-                style={{ display: isFullscreen || userFullscreen ? "none" : "inline-flex" }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setShowInterpretation((v) => !v);
+                }}
+                style={{
+                  display: isFullscreen ? "none" : "inline-flex",
+                  color: showInterpretation ? "#fff" : "#777",
+                  border: showInterpretation ? "1px solid rgba(255, 255, 255, 0.3)" : "none",
+                }}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  style={{ width: 24, height: 24 }}
-                >
-                  <path d="M4 9V5 Q4 4 5 4 H9" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M15 4h4 Q20 4 20 5 v4" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M20 15v4 Q20 20 19 20 h-4" strokeLinecap="round" strokeLinejoin="round" />
-                  <path d="M9 20H5 Q4 20 4 19 v-4" strokeLinecap="round" strokeLinejoin="round" />
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="16" x2="12" y2="12" />
+                  <circle cx="12" cy="8" r="1" />
                 </svg>
               </button>
-            )}
+            </div>
+          )}
+          {/* FULLSCREEN BUTTON - hidden in any kind of fullscreen */}
+          {hasFullscreenSupport && (
             <button
-              className={styles.closeButton}
-              onClick={handleClose}
-              aria-label="Close"
+              className={styles.fullscreenButton}
+              onClick={handleRequestFullscreen}
+              aria-label="Show fullscreen"
               type="button"
-              style={{ display: isFullscreen || userFullscreen ? "none" : "block" }}
+              style={{ display: isFullscreen || userFullscreen ? "none" : "inline-flex" }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" style={{ width: 24, height: 24 }}>
+                <path d="M4 9V5 Q4 4 5 4 H9" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M15 4h4 Q20 4 20 5 v4" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M20 15v4 Q20 20 19 20 h-4" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9 20H5 Q4 20 4 19 v-4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </button>
-          </div>
+          )}
+          <button
+            className={styles.closeButton}
+            onClick={handleClose}
+            aria-label="Close"
+            type="button"
+            style={{ display: isFullscreen || userFullscreen ? "none" : "block" }}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m9.75 9.75 4.5 4.5m0-4.5-4.5 4.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            </svg>
+          </button>
         </div>
         <button
           className={styles.prevButton}

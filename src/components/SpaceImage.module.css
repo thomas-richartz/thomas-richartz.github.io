@@ -170,3 +170,59 @@
         max-height: 40vh;
     }
 }
+
+.imageWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.image {
+    display: block;
+    max-width: 100%;
+    max-height: 60vh; /* never more than 60% of viewport height */
+    object-fit: contain;
+    margin: auto;
+}
+
+@media (orientation: portrait) {
+    .imageWrapper {
+        min-height: 60vh;
+        height: 60vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .image {
+        max-height: 60vh;
+    }
+}
+
+.imageWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.image {
+    display: block;
+    max-width: 100%;
+    max-height: 60vh; /* never more than 60% of viewport height */
+    object-fit: contain;
+    margin: auto;
+}
+
+@media (orientation: portrait) {
+    .imageWrapper {
+        min-height: 60vh;
+        height: 60vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .image {
+        max-height: 60vh;
+    }
+}
