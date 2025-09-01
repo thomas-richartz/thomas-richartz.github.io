@@ -211,7 +211,7 @@
     height: 100%;
     position: relative;
     box-sizing: border-box;
-    background: radial-gradient(circle, #222 0%, #111 70%, #000 100%);
+    background: #000;
 }
 
 .imageContainer {
@@ -225,8 +225,8 @@
     padding: 20px;
     box-sizing: border-box;
     transition: width 0.3s ease;
-    background: transparent;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    background: #000;
+    box-shadow: none;
 }
 
 .imageContainer.withInfoPanel {
@@ -414,7 +414,7 @@
     height: 100%;
     padding: 2rem;
     padding-top: 4rem;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #000;
     transition: all 0.3s ease-in-out;
     overflow-y: auto;
     scrollbar-width: thin;
@@ -438,6 +438,7 @@
         padding-top: 3rem;
         border-right: none;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: #000;
     }
 
     .imageContainer,

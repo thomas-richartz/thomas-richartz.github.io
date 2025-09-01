@@ -207,9 +207,10 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 }}
                 style={{
                   display: "inline-flex",
-                  background: showInterpretation ? "transparent" : "rgba(0, 0, 0, 0.7)",
+                  background: "rgba(0, 0, 0, 0.7)",
                   color: showInterpretation ? "#fff" : "#777",
                   zIndex: 15,
+                  border: showInterpretation ? "1px solid rgba(255, 255, 255, 0.3)" : "none",
                 }}
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
