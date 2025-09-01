@@ -1,0 +1,172 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #000;
+    border-radius: 2px;
+}
+
+.optimizeSpace {
+    min-height: 70vh;
+    max-height: 85vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imageWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    max-height: 100%;
+}
+
+.image {
+    display: block;
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease;
+    margin: auto;
+}
+
+.image:hover {
+    transform: scale(1.005);
+}
+
+.title {
+    position: relative;
+    padding: 10px 16px;
+    margin-top: 12px;
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+    max-width: 90%;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    color: #f66;
+    font-size: 1rem;
+    text-align: center;
+    padding: 0 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    .optimizeSpace {
+        min-height: 60vh;
+    }
+
+    .image {
+        max-height: 70vh;
+    }
+
+    .title {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+}
+
+@media (orientation: portrait) {
+    .container {
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .imageWrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+    }
+
+    .optimizeSpace {
+        min-height: 50vh;
+        max-height: 65vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .image {
+        max-height: 50vh;
+        margin: auto;
+        align-self: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .optimizeSpace {
+        min-height: 40vh;
+        max-height: 60vh;
+    }
+
+    .image {
+        max-height: 45vh;
+    }
+
+    .title {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+}
+
+@media (orientation: portrait) and (max-height: 700px) {
+    .optimizeSpace {
+        min-height: 40vh;
+        max-height: 55vh;
+    }
+
+    .image {
+        max-height: 40vh;
+    }
+}

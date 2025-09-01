@@ -83,7 +83,7 @@
     padding: 12px 15px;
     background: rgba(20, 20, 20, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 2px;
     color: #eee;
     font-size: 16px;
     letter-spacing: 0.02em;
@@ -116,7 +116,7 @@
     background: linear-gradient(135deg, #ff7733, #ff4400);
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 1px;
     cursor: pointer;
     font-size: 16px;
     font-weight: 500;
@@ -163,7 +163,7 @@
 .statusMessage {
     margin-top: 16px;
     padding: 12px;
-    border-radius: 8px;
+    border-radius: 1px;
     text-align: center;
     font-weight: 500;
     animation: fadeIn 0.5s ease;

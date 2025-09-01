@@ -5,7 +5,7 @@ export enum Screen {
   CONTACT,
 }
 
-export enum RandomPicureViewMode {
+export enum RandomPictureViewMode {
   SCROLL = 1,
   SCROLL_GRID,
   SCROLL_PARALLAX,

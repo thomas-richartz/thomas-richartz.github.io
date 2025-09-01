@@ -250,6 +250,7 @@
     justify-content: center;
     width: 100%;
     height: calc(100% - 50px);
+    margin: auto;
 }
 
 .titleContainer {
@@ -266,6 +267,7 @@
     flex-wrap: wrap;
     opacity: 1; /* TODO: 0 and show*/
     transition: opacity 800ms;
+    height: 100%;
 }
 
 .imageWrapper.show {
@@ -496,10 +498,20 @@
     .imageContainer.withInfoPanel {
         height: 50%;
         padding: 10px 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        max-height: 60vh;
     }
 
     .imageWrapper {
         height: calc(100% - 30px);
+        max-height: 50vh;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .titleContainer {
@@ -559,5 +571,41 @@
     .imageContainer.withInfoPanel {
         width: 60%;
         height: 100%;
+    }
+}
+
+/* For portrait orientation on any device */
+@media (orientation: portrait) {
+    .imageWrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        height: 100%;
+    }
+
+    .galleryCatScreen__spaceImage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-height: 60vh;
+    }
+
+    .lightboxContentWrapper {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .imageContainer,
+    .imageContainer.withInfoPanel {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        max-height: 60vh;
     }
 }
