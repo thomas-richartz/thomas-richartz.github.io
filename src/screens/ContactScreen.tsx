@@ -5,18 +5,20 @@ import { Paragraph } from "@/components/Paragraph";
 import { GearIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { AdminControlsView } from "@/components/AdminControls/AdminControlsView";
 import { SearchOverlay } from "@/components/SearchOverlay";
+import { UserSettings } from "@/components/UserSettings";
 // import { GalleryImage } from "@/types";
 // import { ContactForm } from "@/components/ContactForm";
 
 type ContactScreenProps = {
   onCatClick: (cat: string) => void;
   onNavigate: (screen: Screen) => void;
-  onSearch: () => void; // Triggered when the search button is clicked
+  onSearch: () => void;
 };
 
 export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScreenProps): JSX.Element => {
   const [isHidden, setIsHidden] = useState(true);
   const [isControlsHidden, setIsControlsHidden] = useState(true);
+  const [isSettingsHidden, setIsSettingsHidden] = useState(true);
   const [email, setEmail] = useState<string | null>(null);
   const [showSearchOverlay, setShowSearchOverlay] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
@@ -43,6 +45,20 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
 
   const toggleControls = () => {
     setIsControlsHidden(!isControlsHidden);
+    // Make sure settings are hidden when admin controls are shown
+    setIsSettingsHidden(true);
+  };
+
+  const toggleSettings = () => {
+    setIsSettingsHidden(!isSettingsHidden);
+    // Make sure admin controls are hidden when settings are shown
+    setIsControlsHidden(true);
+  };
+
+  const navigateToLogin = () => {
+    // Close settings and show admin controls with login form
+    setIsSettingsHidden(true);
+    setIsControlsHidden(false);
   };
 
   const handleSearchClick = () => {
@@ -75,7 +91,7 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
   return (
     <div className={`${styles.screenContainer} ${isHidden ? styles.hidden : ""} ${animationsReady ? styles.animationsReady : ""}`}>
       <div className={styles.fabContainer}>
-        <button className={`${styles.fab} ${styles.gearButton}`} onClick={toggleControls}>
+        <button className={`${styles.fab} ${styles.gearButton}`} onClick={toggleSettings}>
           <GearIcon color="#dce" width={20} height={20} />
         </button>
       </div>
@@ -83,6 +99,12 @@ export const ContactScreen = ({ onCatClick, onNavigate, onSearch }: ContactScree
       {isControlsHidden ? null : (
         <div className={styles.Controls}>
           <AdminControlsView onClose={toggleControls} />
+        </div>
+      )}
+
+      {isSettingsHidden ? null : (
+        <div className={styles.Controls}>
+          <UserSettings onClose={toggleSettings} onNavigateToLogin={navigateToLogin} />
         </div>
       )}
       <div className={styles.searchSectionContainer}>
