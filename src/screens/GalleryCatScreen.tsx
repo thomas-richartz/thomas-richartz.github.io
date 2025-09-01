@@ -17,8 +17,6 @@ type GalleryCatScreenProps = {
   onClick: (cat: string) => void;
 };
 
-// Function moved to a shared Markdown component
-
 export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element => {
   const [hide, setHide] = useState<boolean>(true);
   const [showImage, setShowImage] = useState<GalleryImage | null>(null);
@@ -149,53 +147,59 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
         {/* Lightbox for selected image */}
         {showImage && (
           <div className={styles.galleryCatScreen__lightBoxOverlay} {...bindGesture()}>
+            {/* Main content container with flexible layout */}
+            <div className={styles.lightboxContentWrapper}>
+              {/* Left side - Info panel */}
+              {showInterpretation && (
+                <div className={styles.infoPanel}>
+                  {categoryInterpretation && (
+                    <div>
+                      <div style={{ fontWeight: "bold", marginBottom: 8 }}>{cat}</div>
+                      <div style={{ marginBottom: 16 }}>
+                        <Markdown content={categoryInterpretation} />
+                      </div>
+                    </div>
+                  )}
+                  {showImage && imageInterpretations[showImage.filename] && (
+                    <div>
+                      <div style={{ fontWeight: "bold", marginBottom: 8 }}>{showImage.title}</div>
+                      <div>
+                        <Markdown content={imageInterpretations[showImage.filename]} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Right side - Image and title */}
+              <div className={`${styles.imageContainer} ${showInterpretation ? styles.withInfoPanel : ""}`}>
+                <div className={styles.imageWrapper}>
+                  <LightBoxImage
+                    alt={showImage.title}
+                    src={`assets/images/${showImage.filename}`}
+                    className={styles.galleryCatScreen__lightBoxImage}
+                    onClick={() => setShowImage(null)}
+                  />
+                </div>
+                <div className={styles.titleContainer}>
+                  <h2 className={styles.galleryCatScreen__imageTitle}>{showImage.title}</h2>
+                </div>
+              </div>
+            </div>
+
+            {/* Navigation buttons */}
             <button className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonLeft}`} onClick={showPrevImage}>
               <ChevronLeftIcon />
             </button>
-            {showInterpretation && (
-              <div
-                className={styles.infoPanel}
-                style={{
-                  display: "flex",
-                }}
-              >
-                {categoryInterpretation && (
-                  <div>
-                    <div style={{ fontWeight: "bold", marginBottom: 4 }}>{cat}</div>
-                    <div style={{ marginBottom: 12 }}>
-                      <Markdown content={categoryInterpretation} />
-                    </div>
-                  </div>
-                )}
-                {showImage && imageInterpretations[showImage.filename] && (
-                  <div>
-                    <div style={{ fontWeight: "bold", marginBottom: 4 }}>{showImage.title}</div>
-                    <div>
-                      <Markdown content={imageInterpretations[showImage.filename]} />
-                    </div>
-                  </div>
-                )}
-              </div>
-            )}
-            <LightBoxImage
-              alt={showImage.title}
-              src={`assets/images/${showImage.filename}`}
-              className={styles.galleryCatScreen__lightBoxImage}
-              onClick={() => setShowImage(null)}
-            />
-            <div className={styles.galleryCatScreen__imageOverlay}>
-              <h2 className={styles.galleryCatScreen__imageTitle}>{showImage.title}</h2>
-            </div>
-
             <button className={`${styles.galleryCatScreen__button} ${styles.galleryCatScreen__buttonRight}`} onClick={showNextImage}>
               <ChevronRightIcon />
             </button>
 
-            {/* INTERPRETATION ICON & POPOVER */}
+            {/* Control buttons */}
             {hasInterpretation && (
               <button
                 className={styles.galleryCatScreen__infoButton}
-                aria-label="Show interpretation"
+                aria-label={showInterpretation ? "Hide interpretation" : "Show interpretation"}
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -203,6 +207,9 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 }}
                 style={{
                   display: "inline-flex",
+                  background: showInterpretation ? "transparent" : "rgba(0, 0, 0, 0.7)",
+                  color: showInterpretation ? "#fff" : "#777",
+                  zIndex: 15,
                 }}
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -220,7 +227,9 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
                 setCurrentIndex(null);
               }}
             >
-              <Cross2Icon />
+              <div className={styles.closeIconWrapper}>
+                <Cross2Icon width={24} height={24} />
+              </div>
             </button>
           </div>
         )}

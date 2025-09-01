@@ -42,9 +42,11 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
 
   const [showInterpretation, setShowInterpretation] = useState(false);
 
-  // useEffect(() => {
-  //   setShowInterpretation(hasInterpretation);
-  // }, [hasInterpretation, src, title]);
+  useEffect(() => {
+    if (!hasInterpretation) {
+      setShowInterpretation(false);
+    }
+  }, [hasInterpretation, src]);
 
   const bind = useDrag(
     ({ last, movement: [mx], velocity: [vx] }) => {
@@ -208,6 +210,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
               className={styles.infoPanel}
               style={{
                 display: isFullscreen ? "none" : "flex",
+                overflowY: "auto",
               }}
             >
               {categoryInterpretation && (
@@ -337,7 +340,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
       <div className={styles.figureKenBurns}>
         <img loading="lazy" alt={alt} className={styles.intenseImgKenBurns} src={src} />
       </div>
-      <div className={styles.titleWrap}>
+      <div className={styles.titleWrap} style={{ textAlign: showInterpretation ? "right" : "center", transition: "text-align 0.3s ease" }}>
         <span className={styles.title}>{title}</span>
       </div>
     </>
