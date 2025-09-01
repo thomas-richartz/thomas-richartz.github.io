@@ -94,7 +94,6 @@
 }
 .button:hover {
     background: var(--admin-button-primary-hover);
-    transform: translateY(-1px);
     box-shadow: var(--admin-shadow-moderate);
 }
 .activeRow {

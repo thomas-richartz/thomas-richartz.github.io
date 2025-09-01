@@ -144,7 +144,6 @@
 
 .button:hover {
     background: var(--admin-button-secondary-hover);
-    transform: translateY(-1px);
 }
 
 .button svg {
@@ -297,7 +296,6 @@
 }
 
 .imageCard:hover {
-    transform: translateY(-2px);
     box-shadow: var(--admin-shadow-moderate);
     border-color: var(--admin-border-moderate);
 }

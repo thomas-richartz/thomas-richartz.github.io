@@ -17,7 +17,7 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(0);
     }
     to {
         opacity: 1;
@@ -79,6 +79,15 @@
     gap: 0.5rem;
 }
 
+.settingLabelContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    flex-wrap: nowrap;
+    min-height: 26px;
+}
+
 .settingLabel {
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.8);
@@ -90,8 +99,10 @@
 .settingOption {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    justify-content: space-between;
     margin-bottom: 0.5rem;
+    flex-wrap: nowrap;
+    min-height: 36px;
 }
 
 .radioGroup {
@@ -129,6 +140,8 @@
     display: inline-block;
     width: 48px;
     height: 24px;
+    flex-shrink: 0;
+    margin-left: 1rem;
 }
 
 .switch input {
@@ -193,9 +206,23 @@ input:checked + .slider:before {
     transition: all 0.3s ease;
 }
 
+.loginButton {
+    flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    padding: 0.5rem 0.75rem;
+    margin-left: 1rem;
+    min-width: 90px;
+    max-height: 36px;
+    flex-shrink: 0;
+    font-size: 0.85rem;
+    background: rgba(255, 255, 255, 0.15);
+}
+
 .button:hover {
     background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
 }
 
 .button.primary {
@@ -215,13 +242,109 @@ input:checked + .slider:before {
 }
 
 .settingContainer {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 1.5rem;
+    padding-bottom: 1rem;
 }
 
 .settingContainer:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
+}
+
+.tooltipContainer {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    margin-left: 4px;
+}
+
+.infoIconButton {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.infoIconButton:hover,
+.infoIconButton:focus {
+    color: rgba(255, 255, 255, 0.9);
+    outline: none;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 100;
+    background: rgba(25, 30, 35, 0.95);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    width: max-content;
+    max-width: 250px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    left: -10px;
+    top: 26px;
+    z-index: 10;
+    animation: fadeIn 0.3s ease-out;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    pointer-events: none;
+}
+
+.tooltip:before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 14px;
+    transform: rotate(45deg);
+    width: 10px;
+    height: 10px;
+    background: rgba(25, 30, 35, 0.95);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tooltipCloseButton {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.tooltipCloseButton:hover,
+.tooltipCloseButton:focus {
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .tooltip {
+        padding-right: 28px;
+    }
+
+    .infoIconButton {
+        min-width: 24px;
+        min-height: 24px;
+        padding: 4px;
+    }
 }

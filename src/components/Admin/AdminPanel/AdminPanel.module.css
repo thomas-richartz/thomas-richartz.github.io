@@ -135,7 +135,6 @@
 .tabButton:hover {
     background-color: var(--admin-button-secondary);
     color: var(--admin-text-primary);
-    /*transform: translateY(-1px);*/
 }
 
 .activeTab {

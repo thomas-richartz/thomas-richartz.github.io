@@ -484,7 +484,7 @@ const AudioBlockEditor: React.FC<AudioBlockEditorProps> = ({
               <div className={styles.cardHeader} style={{ backgroundColor: getBlockColor(idx) }}>
                 <h4 className={styles.blockName}>{block.name}</h4>
                 <div className={styles.fileInfo}>
-                  {block.filePath?.startsWith("/uploaded/") ? "📤 " + block.filePath.split("/").pop() : block.filePath?.split("/").pop()}
+                  {block.filePath?.startsWith("/uploaded/") ? " /  " + block.filePath.split("/").pop() : block.filePath?.split("/").pop()}
                 </div>
               </div>
 
