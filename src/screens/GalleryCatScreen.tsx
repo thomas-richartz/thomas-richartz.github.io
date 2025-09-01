@@ -3,6 +3,7 @@ import { allImages } from "@/assets/assets";
 import { categoryDescriptions } from "@/assets/resurrection";
 import { LazyLoadImage } from "@/components/LazyLoadImage";
 import { LightBoxImage } from "@/components/LightBoxImage";
+import { SpaceImage } from "@/components/SpaceImage";
 import styles from "./GalleryCatScreen.module.css";
 import galleryStyles from "./GalleryScreen.module.css";
 import { categoryInterpretations, imageInterpretations } from "@/assets/interpretations";
@@ -23,9 +24,12 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
   const [currentIndex, setCurrentIndex] = useState<number | null>(null);
 
   const categoryInterpretation = categoryInterpretations[cat];
+  const hasImageInterpretation = (image: GalleryImage) => !!imageInterpretations[image.filename];
   const hasInterpretation = !!categoryInterpretation;
 
-  const [showInterpretation, setShowInterpretation] = useState(false);
+  const [showInterpretation, setShowInterpretation] = useState(true);
+  const [viewImageOnly, setViewImageOnly] = useState(false);
+  const hasAnyInterpretation = (image: GalleryImage) => hasInterpretation || hasImageInterpretation(image);
 
   const images = useMemo(() => {
     const filtered = allImages.filter((image) => image.cat === cat);
@@ -150,7 +154,7 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             {/* Main content container with flexible layout */}
             <div className={styles.lightboxContentWrapper}>
               {/* Left side - Info panel */}
-              {showInterpretation && (
+              {showInterpretation && !viewImageOnly && showImage && (hasInterpretation || hasImageInterpretation(showImage)) && (
                 <div className={styles.infoPanel}>
                   {categoryInterpretation && (
                     <div>
@@ -172,18 +176,34 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
               )}
 
               {/* Right side - Image and title */}
-              <div className={`${styles.imageContainer} ${showInterpretation ? styles.withInfoPanel : ""}`}>
+              <div
+                className={`${styles.imageContainer} ${showInterpretation && !viewImageOnly && (hasInterpretation || (showImage && hasImageInterpretation(showImage))) ? styles.withInfoPanel : ""}`}
+              >
                 <div className={styles.imageWrapper}>
-                  <LightBoxImage
-                    alt={showImage.title}
-                    src={`assets/images/${showImage.filename}`}
-                    className={styles.galleryCatScreen__lightBoxImage}
-                    onClick={() => setShowImage(null)}
-                  />
+                  {viewImageOnly ? (
+                    <SpaceImage
+                      src={`assets/images/${showImage.filename}`}
+                      alt={showImage.title}
+                      title={showImage.title}
+                      onClick={() => setViewImageOnly(false)}
+                      className={styles.galleryCatScreen__spaceImage}
+                      optimizeSpace={true}
+                    />
+                  ) : (
+                    <LightBoxImage
+                      alt={showImage.title}
+                      src={`assets/images/${showImage.filename}`}
+                      className={styles.galleryCatScreen__lightBoxImage}
+                      onClick={() => (showImage && hasAnyInterpretation(showImage) ? setViewImageOnly(true) : setShowImage(null))}
+                      enableBlurEffect={false}
+                    />
+                  )}
                 </div>
-                <div className={styles.titleContainer}>
-                  <h2 className={styles.galleryCatScreen__imageTitle}>{showImage.title}</h2>
-                </div>
+                {!viewImageOnly && (
+                  <div className={styles.titleContainer}>
+                    <h2 className={styles.galleryCatScreen__imageTitle}>{showImage.title}</h2>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -196,29 +216,58 @@ export const GalleryCatScreen = ({ cat }: GalleryCatScreenProps): JSX.Element =>
             </button>
 
             {/* Control buttons */}
-            {hasInterpretation && (
+            {showImage && (hasInterpretation || hasImageInterpretation(showImage)) && (
               <button
                 className={styles.galleryCatScreen__infoButton}
-                aria-label={showInterpretation ? "Hide interpretation" : "Show interpretation"}
+                aria-label={viewImageOnly ? "Show information" : "View image only"}
                 type="button"
                 onClick={(e) => {
                   e.stopPropagation();
-                  setShowInterpretation((v) => !v);
+                  setViewImageOnly((v) => !v);
                 }}
                 style={{
                   display: "inline-flex",
                   background: "rgba(0, 0, 0, 0.7)",
-                  // background: showInterpretation ? "transparent" : "rgba(0, 0, 0, 0.7)",
-                  color: showInterpretation ? "#fff" : "#777",
+                  color: viewImageOnly ? "#777" : "#fff",
                   zIndex: 15,
-                  border: showInterpretation ? "1px solid rgba(255, 255, 255, 0.3)" : "none",
+                  border: viewImageOnly ? "none" : "1px solid rgba(255, 255, 255, 0.3)",
+                  position: "absolute",
+                  top: "20px",
+                  right: "70px",
                 }}
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="12" r="10" />
-                  <line x1="12" y1="16" x2="12" y2="12" />
-                  <circle cx="12" cy="8" r="1" />
-                </svg>
+                {viewImageOnly ? (
+                  // Info icon for going back to info view
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx="12" cy="12" r="10" />
+                    <line x1="12" y1="16" x2="12" y2="12" />
+                    <circle cx="12" cy="8" r="1" />
+                  </svg>
+                ) : (
+                  // Back icon for going to full image view
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M19 12H5" />
+                    <path d="M12 19l-7-7 7-7" />
+                  </svg>
+                )}
               </button>
             )}
 

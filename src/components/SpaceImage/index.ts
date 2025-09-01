@@ -1,0 +1,1 @@
+export { SpaceImage } from './SpaceImage';

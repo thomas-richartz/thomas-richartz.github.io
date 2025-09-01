@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { GalleryImage } from "@/types";
 import { IntenseImage } from "@/components/IntenseImage";
+import { SpaceImage } from "@/components/SpaceImage";
 import styles from "./RandomPictureListView.module.css";
 
 interface IRandomPictureListView {
@@ -64,15 +65,13 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
               aria-label={`Open image ${image.title}`}
               role="button"
             >
-              <IntenseImage
+              <SpaceImage
                 alt={image.title}
                 title={image.title}
-                category={image.cat}
                 src={`/assets/images/${image.filename}`}
-                nextImage={showNextImage}
-                prevImage={showPrevImage}
-                onClose={handleClose}
-                isOpen={false}
+                optimizeSpace={false}
+                className={styles.gridImage}
+                onClick={() => handleImageClick(index)}
               />
             </div>
           ))}
@@ -81,16 +80,18 @@ export const RandomPictureListView = ({ images }: IRandomPictureListView): JSX.E
 
       {/* Only one IntenseImage for overlay/fullscreen */}
       {showIndex !== null && (
-        <IntenseImage
-          alt={memoImages[showIndex].title}
-          title={memoImages[showIndex].title}
-          category={memoImages[showIndex].cat}
-          src={`/assets/images/${memoImages[showIndex].filename}`}
-          nextImage={showNextImage}
-          prevImage={showPrevImage}
-          onClose={handleClose}
-          isOpen={true} // always open in overlay
-        />
+        <div className={styles.overlay}>
+          <IntenseImage
+            alt={memoImages[showIndex].title}
+            title={memoImages[showIndex].title}
+            category={memoImages[showIndex].cat}
+            src={`/assets/images/${memoImages[showIndex].filename}`}
+            nextImage={showNextImage}
+            prevImage={showPrevImage}
+            onClose={handleClose}
+            isOpen={true} // always open in overlay
+          />
+        </div>
       )}
     </>
   );

@@ -8,14 +8,10 @@ type LightBoxImageProps = {
   src: string;
   className: string;
   onClick: MouseEventHandler<HTMLImageElement> | undefined;
+  enableBlurEffect?: boolean;
 };
 
-export const LightBoxImage = ({
-  alt,
-  src,
-  className,
-  onClick,
-}: LightBoxImageProps) => {
+export const LightBoxImage = ({ alt, src, className, onClick, enableBlurEffect = false }: LightBoxImageProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [currentSrc, setCurrentSrc] = useState<string>("");
 
@@ -50,23 +46,25 @@ export const LightBoxImage = ({
     (style, item) =>
       item && (
         <div className={styles.lightBoxWrapper}>
-          <animated.img
-            src={currentSrc}
-            alt={alt}
-            className={styles.light}
-            style={{
-              ...style,
-              ...blurPulse,
-              position: "absolute",
-              filter: "blur(35px)",
-              zIndex: 0,
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "auto",
-              objectFit: "contain",
-            }}
-          />
+          {enableBlurEffect && (
+            <animated.img
+              src={currentSrc}
+              alt={alt}
+              className={styles.light}
+              style={{
+                ...style,
+                ...blurPulse,
+                position: "absolute",
+                filter: "blur(35px)",
+                zIndex: 0,
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "auto",
+                objectFit: "contain",
+              }}
+            />
+          )}
 
           <animated.img
             loading="lazy"

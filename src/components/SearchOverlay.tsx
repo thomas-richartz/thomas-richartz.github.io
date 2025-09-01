@@ -120,6 +120,7 @@ export const SearchOverlay: React.FC<SearchOverlayProps> = ({
             alt={lightboxImage.title}
             src={`assets/images/${lightboxImage.filename}`}
             className={lightBoxStyles.lightBoxImage}
+            enableBlurEffect={false}
           />
         )) || (
           <div ref={contentRef} className={`${styles.content} ${isContentVisible ? styles.expanded : ""}`}>

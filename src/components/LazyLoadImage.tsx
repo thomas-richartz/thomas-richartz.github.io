@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useTransition, animated } from "@react-spring/web";
 import { useIntersectionObserver } from "usehooks-ts";
-import styles from "./LazyLoadImage.module.css";
+// import styles from "./LazyLoadImage.module.css";
 import lightBoxStyles from "./LightBoxImage.module.css";
 import { Spinner } from "./Spinner";
 
@@ -60,10 +60,7 @@ export const LazyLoadImage = ({ alt, src, className }: ILazyLoadImage) => {
       }}
     >
       {isLoading ? (
-        <div
-          style={{ position: "absolute", top: "0", left: "0" }}
-          className={lightBoxStyles.spinnerWrapper}
-        >
+        <div style={{ position: "absolute", top: "0", left: "0" }} className={lightBoxStyles.spinnerWrapper}>
           <Spinner onClick={() => {}} />
         </div>
       ) : (

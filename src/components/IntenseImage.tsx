@@ -40,11 +40,13 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
   const imageInterpretation = imageInterpretations[imageKey];
   const hasInterpretation = !!(categoryInterpretation || imageInterpretation);
 
-  const [showInterpretation, setShowInterpretation] = useState(false);
+  const [showInterpretation, setShowInterpretation] = useState(true);
 
   useEffect(() => {
     if (!hasInterpretation) {
       setShowInterpretation(false);
+    } else {
+      setShowInterpretation(true);
     }
   }, [hasInterpretation, src]);
 
@@ -191,6 +193,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
         onClick={handleClose}
         aria-modal="true"
         role="dialog"
+        style={{ background: "rgba(0, 0, 0, 0.96)" }}
         {...bind()}
       >
         <div className={styles.intense__lightboxImageWrap} onClick={(e) => e.stopPropagation()}>
@@ -199,6 +202,12 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
             src={src}
             alt={alt}
             draggable={false}
+            style={{
+              margin: "0 auto",
+              maxWidth: showInterpretation ? "60vw" : "90vw",
+              maxHeight: "90vh",
+              transition: "max-width 0.3s ease",
+            }}
             onClick={(e) => {
               hasFullscreenSupport && handleClose();
               e.stopPropagation();
@@ -211,6 +220,7 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
               style={{
                 display: isFullscreen ? "none" : "flex",
                 overflowY: "auto",
+                width: "40%",
               }}
             >
               {categoryInterpretation && (
@@ -246,6 +256,8 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
                   }}
                   style={{
                     display: isFullscreen ? "none" : "inline-flex",
+                    color: showInterpretation ? "#fff" : "#777",
+                    border: showInterpretation ? "1px solid rgba(255, 255, 255, 0.3)" : "none",
                   }}
                 >
                   <svg
@@ -340,8 +352,9 @@ export const IntenseImage = ({ nextImage, prevImage, alt, src, title, category =
       <div className={styles.figureKenBurns}>
         <img loading="lazy" alt={alt} className={styles.intenseImgKenBurns} src={src} />
       </div>
-      <div className={styles.titleWrap} style={{ textAlign: showInterpretation ? "right" : "center", transition: "text-align 0.3s ease" }}>
+      <div className={styles.titleWrap}>
         <span className={styles.title}>{title}</span>
+        {category && <span className={styles.category}>{category}</span>}
       </div>
     </>
   );

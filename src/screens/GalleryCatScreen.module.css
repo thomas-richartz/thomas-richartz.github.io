@@ -185,6 +185,14 @@
     z-index: 2;
 }
 
+.galleryCatScreen__spaceImage {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .galleryCatScreen__button {
     background: transparent;
     border: none;
@@ -303,6 +311,16 @@
     border: 1px solid #fff;
     margin: auto;
     z-index: 2;
+}
+
+/* Full screen image view */
+.fullImageView {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
 }
 
 .button {

@@ -59,18 +59,30 @@
 }
 
 .titleWrap {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 16px 0 0 0;
-    transition: text-align 0.3s ease;
+    padding: 0 8px;
+    width: 100%;
 }
 
 .title {
     color: #fff;
-    /* background: rgba(30, 30, 30, 0.6); */
     padding: 4px 16px;
     border-radius: 6px;
     font-size: 1.05rem;
     display: inline-block;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.category {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    padding: 2px 12px;
+    display: inline-block;
+    border-radius: 4px;
 }
 
 /* LIGHTBOX/FULLSCREEN */
@@ -79,6 +91,7 @@
     inset: 0;
     z-index: 9999;
     background: rgba(0, 0, 0, 0.96);
+    background: black;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -162,6 +175,7 @@
         opacity 1.3s cubic-bezier(0.4, 0.2, 0.2, 1),
         transform 1.38s cubic-bezier(0.4, 0.2, 0.2, 1);
     pointer-events: none;
+    backdrop-filter: none;
 }
 
 .intense__lightBoxOverlayOpen {
@@ -187,6 +201,7 @@
     background: #111;
     display: block;
     border-radius: 3px;
+    margin: 0 auto;
 }
 
 .prevButton,
@@ -273,6 +288,22 @@
     opacity: 0.7;
 }
 
+@media (max-width: 768px) {
+    .titleWrap {
+        margin-top: 12px;
+    }
+
+    .title {
+        font-size: 0.95rem;
+        padding: 3px 12px;
+    }
+
+    .category {
+        font-size: 0.8rem;
+        padding: 2px 8px;
+    }
+}
+
 @media (max-width: 600px) {
     .iconRow {
         right: 10px;
@@ -290,12 +321,13 @@
     height: 100%;
     width: 40%;
     padding: 2rem;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     transition: all 0.3s ease-in-out;
     overflow-y: auto;
     scrollbar-width: thin;
     z-index: 5;
     max-height: 100vh;
+    backdrop-filter: none;
 }
 
 @media (max-width: 1024px) {

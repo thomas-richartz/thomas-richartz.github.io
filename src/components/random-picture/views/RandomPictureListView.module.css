@@ -22,6 +22,16 @@
     will-change: transform, opacity; */
 }
 
+.gridImage {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.gridImage:hover {
+    transform: scale(1.01);
+}
+
 /* .imageContainer {
     width: 100%;
     transition:
@@ -40,4 +50,27 @@
 } */
 
 .listImagesWrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: none;
+}
+
+@media (max-width: 768px) {
+    .listContainer {
+        padding: 1rem;
+        grid-gap: 1.5rem;
+    }
 }
