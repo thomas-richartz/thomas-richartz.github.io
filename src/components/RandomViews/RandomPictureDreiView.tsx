@@ -21,14 +21,12 @@ const ParallaxCube = ({
   position,
   onClick,
   selected,
-  blur = 0,
 }: {
   image: string;
   title: string;
   position: [number, number, number];
   onClick: () => void;
   selected: boolean;
-  blur?: number;
 }) => {
   const { resolution } = useDisplayPreferences();
   const texture = useTexture(
@@ -96,24 +94,13 @@ const ParallaxCube = ({
     <group ref={meshRef} position={position} onClick={onClick} onPointerOver={() => setHovered(true)} onPointerOut={() => setHovered(false)}>
       <mesh>
         <boxGeometry args={geometryArgs} />
-        {texture.map &&
-          (resolution === "low" ? (
-            <blurImageMaterial
-              uTexture={texture.map}
-              uResolution={[window.innerWidth, window.innerHeight]}
-              uTime={0}
-              uLod={blur + 2.0}
-              normalMap={texture.normalMap}
-            />
-          ) : (
-            <blurImageMaterial
-              uTexture={texture.map}
-              uResolution={[window.innerWidth, window.innerHeight]}
-              uTime={0}
-              uLod={blur}
-              normalMap={texture.normalMap}
-            />
-          ))}
+        <meshStandardMaterial
+          map={texture.map}
+          normalMap={texture.normalMap}
+          // uResolution={[window.innerWidth, window.innerHeight]}
+          // uTime={0}
+          // uLod={blur + 2.0}
+        />
       </mesh>
       {selected && (
         <Text fontSize={0.1} color="white" anchorX="center" anchorY="top" position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}>
