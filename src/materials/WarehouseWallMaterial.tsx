@@ -7,18 +7,18 @@ import { ReactThreeFiber } from "@react-three/fiber";
 const WarehouseWallMaterial = shaderMaterial(
   {
     // Uniforms
-    uTexture: { value: new THREE.Texture() },
-    uNormalMap: { value: new THREE.Texture() },
-    uRoughness: { value: 0.9 },
-    uMetalness: { value: 0.05 },
-    uBumpScale: { value: 0.2 },
-    uColor: { value: new THREE.Color("#333333") },
-    uSecondaryColor: { value: new THREE.Color("#222222") },
-    uTime: { value: 0 },
-    uNoiseScale: { value: 10.0 },
-    uNoiseStrength: { value: 0.1 },
-    uDirtiness: { value: 0.3 },
-    uWornEdges: { value: 0.4 },
+    uTexture: new THREE.Texture(),
+    uNormalMap: new THREE.Texture(),
+    uRoughness: 0.9,
+    uMetalness: 0.05,
+    uBumpScale: 0.2,
+    uColor: new THREE.Color("#333333"),
+    uSecondaryColor: new THREE.Color("#222222"),
+    uTime: 0,
+    uNoiseScale: 10.0,
+    uNoiseStrength: 0.1,
+    uDirtiness: 0.3,
+    uWornEdges: 0.4,
   },
   // Vertex shader
   `

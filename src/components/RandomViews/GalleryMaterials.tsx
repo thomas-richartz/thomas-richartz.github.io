@@ -1,16 +1,16 @@
-import * as THREE from 'three';
-import { extend } from '@react-three/fiber';
-import { shaderMaterial } from '@react-three/drei';
+import * as THREE from "three";
+import { extend } from "@react-three/fiber";
+import { shaderMaterial } from "@react-three/drei";
 
 // Simplified concrete material for walls and floors
 const ConcreteMaterial = shaderMaterial(
   {
-    uColor: { value: new THREE.Color('#333333') },
-    uSecondaryColor: { value: new THREE.Color('#222222') },
-    uTime: { value: 0 },
-    uNoiseScale: { value: 10.0 },
-    uNoiseStrength: { value: 0.2 },
-    uRoughness: { value: 0.8 },
+    uColor: new THREE.Color("#333333"),
+    uSecondaryColor: new THREE.Color("#222222"),
+    uTime: 0,
+    uNoiseScale: 10.0,
+    uNoiseStrength: 0.2,
+    uRoughness: 0.8,
   },
   // Vertex shader
   `
@@ -86,18 +86,18 @@ const ConcreteMaterial = shaderMaterial(
 
       gl_FragColor = vec4(ambient + diffuse, 1.0);
     }
-  `
+  `,
 );
 
 // Concrete wall material (darker)
 const WallMaterial = shaderMaterial(
   {
-    uColor: { value: new THREE.Color('#1a1a1a') },
-    uSecondaryColor: { value: new THREE.Color('#141414') },
-    uTime: { value: 0 },
-    uNoiseScale: { value: 8.0 },
-    uNoiseStrength: { value: 0.15 },
-    uDirtiness: { value: 0.3 },
+    uColor: new THREE.Color("#1a1a1a"),
+    uSecondaryColor: new THREE.Color("#141414"),
+    uTime: 0,
+    uNoiseScale: 8.0,
+    uNoiseStrength: 0.15,
+    uDirtiness: 0.3,
   },
   // Vertex shader
   `
@@ -181,19 +181,19 @@ const WallMaterial = shaderMaterial(
 
       gl_FragColor = vec4(ambient + diffuse, 1.0);
     }
-  `
+  `,
 );
 
 // Floor material with grid
 const FloorMaterial = shaderMaterial(
   {
-    uColor: { value: new THREE.Color('#111111') },
-    uSecondaryColor: { value: new THREE.Color('#222222') },
-    uGridColor: { value: new THREE.Color('#333333') },
-    uTime: { value: 0 },
-    uNoiseScale: { value: 4.0 },
-    uGridScale: { value: 8.0 },
-    uGridWidth: { value: 0.02 },
+    uColor: new THREE.Color("#111111"),
+    uSecondaryColor: new THREE.Color("#222222"),
+    uGridColor: new THREE.Color("#333333"),
+    uTime: 0,
+    uNoiseScale: 4.0,
+    uGridScale: 8.0,
+    uGridWidth: 0.02,
   },
   // Vertex shader
   `
@@ -285,7 +285,7 @@ const FloorMaterial = shaderMaterial(
 
       gl_FragColor = vec4(ambient + diffuse, 1.0);
     }
-  `
+  `,
 );
 
 // Extend the materials for use in THREE.js

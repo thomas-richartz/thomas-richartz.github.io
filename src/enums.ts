@@ -9,4 +9,6 @@ export enum RandomPictureViewMode {
   SCROLL = 1,
   SCROLL_GRID,
   SCROLL_PARALLAX,
+  SCROLL_DREI,
+  SCROLL_MOSAIC,
 }
