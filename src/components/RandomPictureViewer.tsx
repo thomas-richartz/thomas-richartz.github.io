@@ -26,7 +26,8 @@ export const RandomPictureViewer = ({}: RandomPictureViewerProps): JSX.Element =
         next = RandomPictureViewMode.SCROLL_GRID;
         break;
       case RandomPictureViewMode.SCROLL_GRID:
-        next = RandomPictureViewMode.SCROLL_PARALLAX;
+        // next = RandomPictureViewMode.SCROLL_PARALLAX;
+        next = RandomPictureViewMode.SCROLL_DREI;
         break;
       case RandomPictureViewMode.SCROLL_PARALLAX:
         next = RandomPictureViewMode.SCROLL_DREI;

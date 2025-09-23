@@ -337,15 +337,15 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
       })}
 
       {/* Gallery floor markers */}
-      <Circle color="#444" position={[0, -6.95, 0]} rotation={[-Math.PI / 2, 0, 0]} size={18} />
+      {/*<Circle color="#444" position={[0, -6.95, 0]} rotation={[-Math.PI / 2, 0, 0]} size={18} />
       <Circle color="#333" position={[0, -6.94, 0]} rotation={[-Math.PI / 2, 0, 0]} size={12} />
-      <Circle color="#222" position={[0, -6.93, 0]} rotation={[-Math.PI / 2, 0, 0]} size={6} />
+      <Circle color="#222" position={[0, -6.93, 0]} rotation={[-Math.PI / 2, 0, 0]} size={6} />*/}
 
       {/* Subtle decorative elements */}
-      <Circle color="#333" position={[15, 2, -25]} rotation={[0, -Math.PI / 4, 0]} size={2} />
+      {/*<Circle color="#333" position={[15, 2, -25]} rotation={[0, -Math.PI / 4, 0]} size={2} />
       <Circle color="#333" position={[-15, 2, -25]} rotation={[0, Math.PI / 4, 0]} size={2} />
       <Circle color="#333" position={[0, 5, -40]} rotation={[Math.PI / 2, 0, 0]} size={3} />
-
+*/}
       <CameraController cameraRef={cameraRef} targetPosition={targetPosition} />
       {selectedIndex !== null && <OrbitControls enableZoom enablePan={false} enableRotate target={targetPosition} />}
       {/* Navigation Button - only visible in overview mode (when no image is selected) */}
@@ -355,15 +355,18 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
             style={{
               fontSize: "1.1em",
               fontFamily: "Didot, 'Times New Roman', serif",
+              // fontWeight: "bold",
               letterSpacing: "2px",
               textTransform: "uppercase",
               background: "rgba(20, 20, 20, 0.8)",
-              color: "#e0e0e0",
-              border: "1px solid rgba(180, 170, 140, 0.3)",
+              color: "red",
+              // color: "#e0e0e0",
+              border: "1px solid rgba(180, 170, 140, 0.1)",
               borderRadius: "2px",
               position: "fixed",
-              bottom: "25px",
+              bottom: "0px",
               left: "50%",
+              // width: "7em",
               transform: "translateX(-50%)",
               padding: "12px 28px",
               cursor: "pointer",
@@ -376,7 +379,16 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
             onMouseOut={(e) => (e.currentTarget.style.background = "rgba(20, 20, 20, 0.8)")}
             onClick={shiftWindow}
           >
-            Next Gallery Section
+            Go
+            {/*Change*/}
+            {/* Next Gallery Selection */}
+            {/*<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3"
+              />
+            </svg>*/}
           </button>
         </Html>
       )}
