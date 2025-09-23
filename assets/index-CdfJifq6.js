@@ -47,32 +47,12 @@ Thomas Richartz - Eine Stadt mit
 drei Monden (2018)
 
 Im September 2018 verwandelte
-sich der „Kunst-Kiosk“ Yok Yok im
+sich der ,,Kunst-Kiosk" Yok Yok im
 Frankfurter Bahnhofsviertel in einen
 rituellen Kampfplatz gegen die
 dunklen Kräfte urbaner Gier. Mit der
 Performance Eine Stadt mit drei
-Monden inszenierte 
-Thomas Richartz - Eine Stadt mit
-drei Monden (2018)
-
-Mit Eine Stadt mit drei Monden
-positioniert sich Thomas Richartz in
-einer performativen Tradition, die
-von den rituell aufgeladenen
-Aktionen der Wiener Aktionisten bis
-zu den sozialräumlichen
-Interventionen zeitgenössischer
-Performancekunst reicht. Die im
-„Kunst-Kiosk“ Yok Yok inszenierte
-Arbeit ist zugleich ein
-Ortskommentar und eine
-symbolische Verdichtung der
-ökonomischen, erotischen und
-toxischen Dynamiken des
-Frankfurter Bahnhofsviertels.
-
-
+Monden inszenierte Thomas
 Richartz die Austreibung dreier
 Dämonen, die wie unsichtbare
 Herrscher über das Viertel
@@ -80,11 +60,12 @@ schweben: der Dämon der Geld-
 und Goldgier, der Dämon der
 sexuellen Gier und der Dämon der
 Sucht nach Alkohol und Drogen.
-Drei „Exorzisten“ und ein
+
+Drei "Exorzisten" und ein
 Zeremonienmeister führten ein
 drastisches, symbolgeladenes Ritual
 durch: Drei Pfähle wurden in drei
-Toilettenschüsseln gerammt - ein
+Toilettenschüsseln gerammt, ein
 Akt zwischen sakraler Geste und
 aggressiver Entweihung. Jede
 Schüssel war präpariert, um bei der
@@ -93,11 +74,6 @@ für den unstillbaren Hunger nach
 Reichtum, Rot für die triebhafte
 Begierde, Schwarz für den Rausch
 und die Selbstzerstörung.
-für den unstillbaren Hunger nach
-Reichtum, Rot für die triebhafte
-Begierde, Schwarz für den Rausch
-und die Selbstzerstörung.
-
 Das Publikum erlebte eine rohe,
 körperliche, fast kathartische
 Entladung. Spritzer und Tropfen an
@@ -107,82 +83,28 @@ Gegner nicht aus Fleisch und Blut,
 sondern aus den unsichtbaren
 Strukturen von Macht, Verlangen
 und Abhängigkeit bestanden.
-Richartz’ Arbeit verschränkt in
+Richartz' Arbeit verschränkt in
 diesem Moment politische,
 gesellschaftliche und spirituelle
-Ebenen - eine rituelle Bildsprache,
+Ebenen, eine rituelle Bildsprache,
 die zwischen Abwehrzauber und
 Abrechnung changiert.
 
-Thomas Richartz - Eine Stadt mit
-drei Monden (2018)
 
-Im September 2018, mitten im
-pulsierenden und widersprüchlichen
-Frankfurter Bahnhofsviertel, erhob
-sich im „Kunst-Kiosk“ Yok Yok ein
-Raum der Beschwörung. Thomas
-Richartz verwandelte den engen Ort
-in eine Bühne für ein archaisch
-anmutendes Ritual: die Austreibung
-dreier Dämonen, deren unsichtbare
-Gegenwart seit jeher die Straßen
-beherrscht =- die unersättliche Gier
-nach Geld und Gold, die fiebrige
-Gier des Fleisches und die dunkle
-Gier nach Rausch und Vergessen. In
-der Mitte: drei Toilettenschüsseln,
-Sinnbilder für die Verdauung und
-Entsorgung des Unreinen, 
-übersät mit Spritzern, wurden zum
-stummen Zeugnis einer Schlacht
-ohne Körper, aber voller Spuren.
-
-Eine Stadt mit drei Monden ist mehr
-als eine Performance - es ist eine
-rituelle Anrufung, ein Versuch, das
-moralische und emotionale
-Gleichgewicht in einem Viertel zu
-erzwingen, das von Verlockung und
-Verfall gleichermaßen durchzogen
-ist. In Richartz’ Inszenierung
-verschränken sich das Sakrale und
-das Profane, das Theater des
-Körpers und die Alchemie der Farbe,
-bis sie sich in einer einzigen Frage
-auflösen: Kann man Dämonen
-wirklich vertreiben = oder nur ihre
-Namen rufen, um ihnen zu
-begegnen?
-
-Profane Thronsitze der Dämonen. In
-sie wurden drei spitze Pfähle
-gerammt - ein Akt von Gewalt und
-Befreiung, ein Schlag gegen das
-Unsichtbare.
-
-Mit jedem Hieb schossen Farben
-durch den Raum: Gold wie der
-verführerische Glanz des Reichtums,
-Rot wie das pochende Blut der
-Begierde, Schwarz wie der zähe
-Schatten der Sucht. Die Wände,
-übersät mit Spritzern, wurden zum
-stummen Zeugnis einer Schlacht
-ohne Körper, aber voller Spuren
 
 Thomas Richartz - Eine Stadt mit
 drei Monden (2018)
+Kunsttheoretische Interpretation:
 
 Mit Eine Stadt mit drei Monden
-positioniert sich Thomas Richartz in
+positioniert sich Richartz in
 einer performativen Tradition, die
 von den rituell aufgeladenen
 Aktionen der Wiener Aktionisten bis
 zu den sozialräumlichen
 Interventionen zeitgenössischer
 Performancekunst reicht. Die im
-„Kunst-Kiosk“ Yok Yok inszenierte
+"Kunst-Kiosk" Yok Yok inszenierte
 Arbeit ist zugleich ein
 Ortskommentar und eine
 symbolische Verdichtung der
@@ -190,15 +112,8 @@ symbolische Verdichtung der
 toxischen Dynamiken des
 Frankfurter Bahnhofsviertels.
 
-„Kunst-Kiosk“ Yok Yok inszenierte
-Arbeit ist zugleich ein
-Ortskommentar und eine
-symbolische Verdichtung der
-ökonomischen, erotischen und
-toxischen Dynamiken des
-Frankfurter Bahnhofsviertels.
-Richartz’ Wahl der Bildträger =-
-Toilettenschüsseln =- bricht bewusst
+Richartz’ Wahl der Bildträger-
+Toilettenschüsseln-bricht 
 mit der Vorstellung einer
 „neutralen“ künstlerischen
 Oberfläche. Stattdessen wird der
@@ -220,7 +135,7 @@ Farbexplosionen an den weißen
 Wänden erinnern an gestische
 Malerei, verweisen jedoch zugleich
 auf Spuren von Gewalt, Unfällen
-oder Verbrechen - ein bewusstes
+oder Verbrechen - ein 
 Spiel mit ästhetischer Ambivalenz.
 In kunsthistorischer Perspektive
 lässt sich Richartz’ Performance als
@@ -232,7 +147,7 @@ Impuls der 1970er
 Sensibilität für urbane Mikrokosmen.
 Durch die situative Bindung an das
 Bahnhofsviertel fungiert die Arbeit
-als ortsspezifischer Exorzismus =-
+als ortsspezifischer Exorzismus,
 weniger als Versuch, Dämonen
 endgültig zu vertreiben, sondern als
 Sichtbarmachung ihrer
@@ -255,25 +170,25 @@ Thomas Richartz - 32 Denkmäler
 (1993-1999)
 
 Zwischen 1993 und 1999 entstand
-mit der Serie „32 Denkmäler“ ein
+mit der Serie "32 Denkmäler" ein
 Werkzyklus, der gleichermaßen
 archaisch und zeitgenössisch wirkt.
 Der Ausgangspunkt war
-unscheinbar:während seiner  
-Tätigkeit in einer Baustofffirma
+unscheinbar: während seiner  
+Tätigkeit in einer Baustoffirma
 erhielt Thomas Richartz Zugang zu
-einer großen Menge Ytong-Bruch =
+einer großen Menge Ytong-Bruch,
 ein industriell gefertigtes, leicht zu
 bearbeitendes Material, das für ihn
 zum idealen Medium wurde. Mit diesem Fund konnte Richartz
 einen lange gehegten Plan
 verwirklichen: eine Reihe von
 Skulpturen zu schaffen, die er
-bewusst unter den Arbeitstitel „32
+unter den Arbeitstitel "32
 Denkmäler für den unbekannten
-Künstler“ stellte - eine direkte
-Anspielung auf das „Denkmal für
-den unbekannten Soldaten“. Damit
+Künstler" stellte - eine direkte
+Anspielung auf das "Denkmal für
+den unbekannten Soldaten". Damit
 verlagert er die Geste des
 Gedenkens vom militärischen
 Helden hin zum anonymen
@@ -304,86 +219,16 @@ sie ein kollektives Gedächtnis an
 jene, die künstlerisch wirken, ohne
 Spuren in den Annalen der
 Kunstgeschichte zu hinterlassen.
-„32 Denkmäler“ ist somit nicht nur
+"32 Denkmäler" ist somit nicht nur
 ein plastisches Projekt, sondern
 auch ein stiller Kommentar über
 Sichtbarkeit, Anerkennung und das
 oft unsichtbare / Fundament
 kultureller Produktion.
 
-Thomas Richartz - 32 Denkmäler
-(1993-1999)
 
-Aus den Resten einer Baustofffirma,
-aus Bruchstücken von Ytong, wuchs
-eine stille Stadt aus Zeichen.
-Zwischen 1993 und 1999 schuf
-Thomas Richartz zweiunddreißig
-Skulpturen - zweiunddreißig
-Denkmäler für den unbekannten
-Künstler.
 
-Sie sind keine heroischen
-Standbilder, keine Triumphbögen,
-keine Namen in Stein. Es sind
-Formen, die an Tempelruinen
-erinnern, an Maschinen, die längst
-verstummt sind, an Stelen, die
-schweigend von einer vergessenen
-Geschichte künden. Das brüchige
-Material trägt die Narben der
-Bearbeitung, als hätte es selbst
-einen langen Weg hinter sich - vom
-Abfallhaufen zur Trägerin von
-Erinnerung.
 
-Jedes Denkmal ist ein Echo, das sich
-nicht auf eine einzelne Stimme
-richtet, sondern auf all jene, die
-ohne Signatur arbeiten. Es ist eine
-Sammlung aus stummen
-Widmungen, errichtet für das
-unsichtbare Heer der Schaffenden,
-deren Werke kein Museum bewahrt.
-So stehen sie nun - leicht und doch
-massiv, verletzlich und doch trotzig
-= wie eine Landschaft aus
-Gedenken. Ein Ort, an dem das
-Vergängliche und das Unvergessene
-ineinander übergehen.
-
-"32 Denkmäler" von Thomas Richartz
-
-Aus den Scherben des Alltags, aus
-den Trümmern einer gewöhnlichen
-Existenz, erhebt Thomas Richartz
-seine stummen Zeugen. Sechs Jahre
-lang, von 1993 bis 1999, wuchs in der
-Stille seiner Werkstatt ein Pantheon
-des Unbekannten. Nicht aus Marmor
-oder Bronze, sondern aus
-Y-tong-Bruchstücken, dem
-unscheinbaren Abfall einer
-Baustofffirma, formte er seine
-Denkmäler. Ein pathetischer Akt der
-Auflehnung gegen die Vergessenheit von
-
-Schweiß, Mühe und der Beharrlichkeit
-des Schaffens. Jedes Stück Y-tong,
-einst ein Bruchstück, wird in Richartz'
-Händen zu einem Mosaikstein der
-Erinnerung. Diese Denkmäler sind
-keine glatten, polierten Abbilder der
-Macht, sondern rauhe, ungeschliffene
-Zeugnisse einer inneren Wahrheit. Sie
-fordern uns auf, genauer hinzusehen
-= auf die Schönheit im Zerbrochenen,
-auf die Würde im Verborgenen. Sie
-sind das Vermächtnis des Künstlers,
-der uns daran erinnert, dass wahre
-Kunst nicht im Ruhm, sondern in der
-Leidenschaft des Schaffens selbst
-liegt.
 
 
 
@@ -392,7 +237,7 @@ liegt.
 `,"Africa-Europa (2016)":`
 Afrika/Europa: 
 
-Die Installation , Afrika/Europa”
+Die Installation "Afrika/Europa"
 manifestiert die vielschichtige und oft
 widersprüchliche Beziehung
 zwischen den beiden Kontinenten. Sie
@@ -417,9 +262,9 @@ Geschichte, Kolonialismus, Migration
 und kultureller Identitat aufwirft.
 
 Die Installation spielt mit
-Gegensätzen = Schwere und
+Gegensätzen, Schwere und
 Leichtigkeit, Tradition und Moderne,
-Natur und Technik = um die
+Natur und Technik, um die
 komplexen Verflechtungen zu
 verdeutlichen, die das Schicksal
 beider Kontinente unwiderruflich
@@ -437,9 +282,9 @@ Europa nachzudenken.
 Ametat
 Installation von Thomas Richartz
 
-Ametat = ein athiopisches Wort fur
-"Ursprung” = ist die Suche nach den
-Anfangen unserer menschlichen
+"Ametat", ein Äthiopisches Wort für
+Ursprung, ist die Suche nach den
+Anfängen unserer menschlichen
 Natur. Die Installation verbindet
 großformatige Mauer-Frottagen mit
 organischen und mineralischen
@@ -454,13 +299,13 @@ Bauens als Schutz vor einer
 bedrohlichen Umwelt und als Mittel
 zur Vorratshaltung. Es ist der
 Moment, in dem der Mensch
-beginnt, Raum zu definieren = ein
+beginnt, Raum zu definieren — ein
 "Innen" zu schaffen und ein
 "Außen" auszugrenzen.
 
 Die Samen des Affenbrotbaums
 verweisen auf die triebgesteuerten
-Instinkte der Anfangszeit = den
+Instinkte der Anfangszeit — den
 Urimpuls zur Ernährung, zur
 Selbsterhaltung, zur Reproduktion.
 Ihnen gegenüber stehen die
@@ -475,33 +320,26 @@ Gestalten der Welt.
 In der Reduktion auf wenige,
 elementare Materialien öffnet
 Ametat einen stillen Denkraum über
-den Ursprung = und darüber, wie
+den Ursprung und darüber, wie
 sehr wir noch heute zwischen
 Schutzbedürfnis und geistigem
 Aufbruch stehen.
 
 
 
-Ametat
 
-Samen, schwer von Ursprung.
-Steine, aufgehoben ins Schweben.
-Mauern, die schutzen = und trennen.
-Zwischen Instinkt und Geist
-spannt sich der erste Bogen
-menschlicher Geschichte
 
 Ametat / Corona-Art (2020)
 Thomas Richartz
 
-Ametat = "Ursprung" = ist eine
+Ametat "Ursprung" ist eine
 künstlerische Spurensuche nach
 den Anfängen: dem ersten
 Aufkeimen von Materie, dem Beginn
 menschlicher Kultur, den Schritten
 vom Instinkt zum Geist.
 
-Der erste Teil, als Installation,
+Der erste Teil als Installation 
 verbindet Mauer-Frottagen, Samen
 des Affenbrotbaums und hängende
 Steine zu einer archaischen
@@ -532,11 +370,11 @@ Isolation, Ursprung und Neubeginn
 neu verhandelt wurden.
 
 
-Gemeinsam sind beide
+Gemeinsam sind beiden
 Werkgruppen eine Einladung, in den
 Resonanzraum von Vergangenheit
-und Gegenwart einzutreten -
-dorthin, wo Anfang und Ende nicht
+und Gegenwart einzutreten,
+dorthin wo Anfang und Ende nicht
 abgeschlossen sind, sondern immer
 wieder neu entstehen.
 
@@ -544,10 +382,14 @@ wieder neu entstehen.
 
 
 
-`,"Auswahl 1 (1995-2008)":`Thomas Richartz
+`,"Auswahl 1 (1995-2008)":`
 
-Zwischen 1995 und 2008 entfaltet sich in diesen Arbeiten ein visuelles Archiv des Fragens und Erinnerns.
-Thomas Richartz verbindet in seiner
+Thomas Richartz
+
+Zwischen 1995 und 2008 entfaltet
+sich in diesen Arbeiten ein visuelles
+Archiv des Fragens und Erinnerns.
+Richartz verbindet in seiner
 Serie das Flüchtige der Lasur mit
 der Direktheit figürlicher
 Anspielungen. Jedes Bild steht für
@@ -558,20 +400,15 @@ Versatzstücke, abstrakte Strukturen
 und organische Spuren, gebettet in
 ein komplexes Farbspektrum.
 
-Die Werke oszillieren zwischen
-Abstraktion und Erzählung.
-
+Die Werke oszillieren zwischen 
+Abstraktion und Erzählung
 Mal dominiert ein reines
-
-
-
-Mal dominiert ein reines
-Farb-Geschehen - kühle Blautöne,
-glühendes Rot, verhaltenes Ocker =
+Farb-Geschehen, kühle Blautöne,
+glühendes Rot, verhaltenes Ocker —
 wie Echos von Naturprozessen, die
 sich in Oberflächen einschreiben.
 Mal treten Figuren auf: antike
-Götterkopfe, Krieger mit Schilden,
+Götterköpfe, Krieger mit Schilden,
 Skelettgestalten, allegorische
 Frauenfiguren. Sie blicken uns aus
 der Geschichte entgegen, entrückt
@@ -580,15 +417,12 @@ kollektiven Erinnerung
 herausgefiltert.
 
 Es entsteht ein Spannungsfeld aus
-Nahe und Distanz: Die figürlichen
+Nähe und Distanz: Die figürlichen
 Motive verankern den Blick,
 während die abstrakten Lasuren ihn
-ins Unbestimmte führen. Die
-
-
-ins Unbestimmte fuhren. Die
+ins Unbestimmte führen.  Die
 malerische Schichtung wird so zu
-einer Zeitreise = nicht linear,
+einer Zeitreise — nicht linear,
 sondern vielschichtig, überlagernd,
 assoziativ.
 
@@ -604,13 +438,12 @@ ein Mosaik von Bildgedanken aus
 dreizehn Jahren. Es sind Bilder, die
 Geschichten bergen, ohne sie
 vollständig zu erzählen, und Spuren
-hinterlassen, die weiterwirken = wie
+hinterlassen, die weiterwirken — wie
 Erinnerungen, die sich in Farbe
 verwandelt haben.
-Thomas Richartz
 
 Diese Serie vereint dreizehn Jahre
-künstlerischer Arbeit = ein Mosaik
+künstlerischer Arbeit — ein Mosaik
 aus abstrakten Lasuren, figürlichen
 Anspielungen und mythischen
 Fragmenten.
@@ -631,24 +464,28 @@ neuer Gestalt offenbart.
 
 
 
-`,"Auswahl 2 (2008-2013)":`Thomas Richartz - Auswahl 2 (2008-2013)
+`,"Auswahl 2 (2008-2013)":`
+Thomas Richartz — Auswahl 2
+(2008-2013)
 
 Nach der Auseinandersetzung mit der
-Skulpturen-Serie "32 Denkmaler" und
+Skulpturen-Serie "32 Denkmäler" und
 den großformatigen Acryl-Bildern der
-"Auswahl 1 (1995-2008)", die
+"Auswahl 1" (1995-2008), die
 Kunstgeschichte und persönliche
 Erfahrungen reflektierten, wandte
 sich Thomas Richartz mit der Serie
-"Auswahl 2 (2008-2013)" neuen
-malerischen Wegen zu.
-
-
-In diesen Werken versucht der
-Künstler, die Grenzen zwischen
+"Auswahl 2" (2008-2013) neuen
+Wegen zu.
+In diesen Werken versucht er
+die Grenzen zwischen
 abstrakter Struktur und feiner
-Zeichnung aufzulösen. Die Bilder sind geprägt von einem intensiven Spiel
-aus explosiven Farbschichten und sorgfältig ausgearbeiteten, immer starker betonten Umrisslinien. Diese verbinden sich mit dynamischen,
+Zeichnung aufzulösen. Die Bilder sind
+geprägt von einem intensiven Spiel
+aus explosiven Farbschichten und
+sorgfältig ausgearbeiteten, immer
+stärker betonten Umrisslinien. Diese
+verbinden sich mit dynamischen,
 kalligraphischen Elementen, die den
 Kompositionen eine kraftvolle und
 zugleich flieBende Dynamik verleihen.
@@ -656,7 +493,7 @@ Richartz' Malerei in dieser
 Schaffensperiode ist ein Dialog
 zwischen spontanem Ausdruck und
 kontrollierter Form, der zu komplexen,
-vielschichtigen Oberflächen fuhrt, die
+vielschichtigen Oberflächen führt, die
 den Betrachter zur Entdeckung neuer
 visueller Ebenen einladen.
 
@@ -716,7 +553,7 @@ Kunst selbst liegt.
 
 
 
-`,"Bilder (1995-1999)":"Zwölf Lasurmalereien - zwölf Stationen einer stillen Erkundung. Schicht um Schicht legt sich Farbe über die Fläche, durchlässig und zugleich verschlossen. Kühle Blau- und Violetttöne treffen auf rostige Wärme, vertikale Bahnen gliedern den Raum wie Mauern oder Säulen einer unsichtbaren Architektur. ... ","Wege aus dem Ghetto (2016)":`"Kunst und so (2020/2021)
+`,"Bilder (1995-1999)":"Zwölf Lasurmalereien - zwölf Stationen einer stillen Erkundung. Schicht um Schicht legt sich Farbe über die Fläche, durchlässig und zugleich verschlossen. Kühle Blau- und Violetttöne treffen auf rostige Wärme, vertikale Bahnen gliedern den Raum wie Mauern oder Säulen einer unsichtbaren Architektur.... ","Wege aus dem Ghetto (2016)":`"Kunst und so (2020/2021)
 
 In der Serie "Kunst und so" widmet
 sich Thomas Richartz der
@@ -736,9 +573,9 @@ formale Essenz lenkt.
 
 Das Werk Die Rückkehr des Vaters
 greift sowohl auf die Bildwelt eines
-römischen Reliefs als auch auf eine
-Boccioni zurück. Beide Referenzen
-verschmelzen in einer
+römischen Reliefs als auch auf eine 
+Skulptur von Boccioni zurück. Beide 
+Referenzen verschmelzen in einer
 abstrakt-tektonischen
 Schwarz-Weiß-Architektur, die
 sowohl historische Tiefe als auch
@@ -753,10 +590,10 @@ verdichtete Erzählung entsteht.
 So wird "Kunst und so" zu einer Serie,
 die nicht nur Kunstgeschichte
 zitiert, sondern sie in eine neue,
-meditative Bildsprache überführt =-
+meditative Bildsprache 
 zwischen Hommage,
 Dekonstruktion und
-eigenständigem Ausdruck.
+eigenständigem Ausdruck überführt.
 
 
 
@@ -780,25 +617,9 @@ Boccioni und übersetzt beide in eine
 abstrahierte, ornamentale
 Bildsprache. So entsteht eine Serie
 zwischen Hommage und
-Dekonstruktion = ein Dialog von
+Dekonstruktion, ein Dialog von
 Vergangenheit und Gegenwart in
 Schwarz und Weiß.
-Geschichte in Schwarz und
-Weiß = neu gedacht, neu
-gesehen.
-
-Ikonen der Kunst = zerlegt,
-verdichtet, verwandelt.
-
-Von Rom bis Futurismus:
-Vergangenheit trifft Gegenwart.
-
-Kunstgeschichte, neu
-komponiert = schwarz, weiß,
-zeitlos.
-
-Formen sprechen. Linien
-erinnern. Kunst bleibt.
 
 
 
@@ -838,13 +659,13 @@ eindrucksvolle Weise einfängt.
 
 Jedes Porträt ist ein eigenständiges
 Kunstwerk, das die Stimmung und die
-Erzählung des Films in sich tragt,
+Erzählung des Films in sich trägt,
 ohne den Kontext des bewegten
 Bildes zu verlieren.
 
 Die Gemäldeserie "Arsenal" ist eine
 Hommage an die revolutionäre
-Asthetik des sowjetischen Kinos und
+Ästhetik des sowjetischen Kinos und
 gleichzeitig eine moderne
 Interpretation der menschlichen
 Ausdrucksformen. Sie lädt den
@@ -857,9 +678,9 @@ der Porträtkunst zu erfahren.
 Corona-Art (2020)
 von Thomas Richartz
 Ursprünglich unter dem Titel
-»Ametat" konzipiert = einem
-athiopischen Wort, das ,,Ursprung*
-bedeutet = widmete sich diese
+"Ametat" konzipiert, einem
+äthiopischen Wort, das Ursprung
+bedeutet, widmete sich diese
 Werkreihe der Frage nach dem
 Beginn der materiellen Welt.
 Ausgangspunkt war eine meditative
@@ -868,16 +689,33 @@ jenes kaum fassbare Moment, in
 dem Form, Farbe und Struktur aus
 dem Unbestimmten hervorbrechen.
 Die Ausstellung war für das Frühjahr
-2020 geplant. Doch der weltweite
+2020 geplant, doch der weltweite
 Ausbruch der Corona-Pandemie
 verhinderte ihre Eröffnung. Was als
 kontemplative Reise in die
 Ursprünge gedacht war, wurde
 zugleich zu einem Spiegel unserer
-Gegenwart = einer Zeit, in der das
+Gegenwart, einer Zeit, in der das
 Leben selbst plötzlich fragil,
 verletzlich und von unsichtbaren
-Kraften geformt erschien.
+Kräften geformt erschien.
+
+Die Technik der Lasurmalerei auf
+Reflektorkarton erweist sich als
+besonders geeignet für solche
+Vorstellungen: Schicht für Schicht
+entstehen Tiefenräume, in denen
+das Licht in wechselnden Winkeln
+reflektiert und gebrochen wird.
+Diese changierenden Oberflächen
+laden den Betrachter dazu ein,
+innezuhalten und den Blick unter die
+sichtbare Schicht zu richten. So wurde die Ausstellung
+Zugleich zu einem Spiegel unserer
+Gegenwart, einer Zeit, in der das
+Leben selbst plötzlich fragil,
+verletzlich und von unsichtbaren
+Kräften geformt schien.
 
 Die Technik der Lasurmalerei auf
 Reflektorkarton erweist sich als
@@ -886,28 +724,11 @@ Vorstellungen: Schicht für Schicht
 entstehen Tiefenraume, in denen
 das Licht in wechselnden Winkeln
 reflektiert und gebrochen wird.
-Diese changierenden Oberflachen
+Diese changierenden Oberflächen
 laden den Betrachter dazu ein,
 innezuhalten und den Blick unter die
-sichtbare Schicht zu richten - so wurde die Ausstellung
-Zugleich zu einem Spiegel unserer
-Gegenwart = einer Zeit, in der das
-Leben selbst plötzlich fragil,
-verletzlich und von unsichtbaren
-Kräften geformt schien.
-
-Die Technik der Lasurmalerei auf
-Reflektorkarton erweist sich als
-besonders geeignet für solche
-Vorstellungen: Schicht fur Schicht
-entstehen Tiefenraume, in denen
-das Licht in wechselnden Winkeln
-reflektiert und gebrochen wird.
-Diese changierenden Oberflachen
-laden den Betrachter dazu ein,
-innezuhalten und den Blick unter die
-sichtbare Schicht zu richten - so
-wie man im Nachdenken Uber
+sichtbare Schicht zu richten, so
+wie man im Nachdenken über
 Ursprung und Werden unter die
 Oberfläche der Welt zu dringen
 versucht.
@@ -916,44 +737,12 @@ Corona-Art ist damit nicht
 nur eine Serie von Bildern, sondern
 ein doppelter Resonanzraum:
 zwischen der inneren Meditation
-Uber den Anfang und der
+über den Anfang und der
 Erfahrung einer historischen Zäsur.
 
 
-Corona-Art (2020)
 
-Ametat =- ,Ursprung” = war der
-erste Name dieser Bilder.
 
-Sie erzahlen vom Beginn, von jenem
-leisen Moment,
-
-in dem Materie Form annimmt
-
-und das Unsichtbare sichtbar wird.
-Dann kam das Jahr 2020.
-
-Die Türen der Welt schlossen sich,
-und die Werke, die vom Anfang
-sprechen,
-
-wurden Teil einer anderen
-Geschichte -
-
-einer Zeit, in der auch wir
-
-neu begreifen mussten,
-
-wie verletzlich alles ist.
-
-Schicht um Schicht legt die
-Lasurmalerei
-
-auf Reflektorkarton feine Häute aus
-Licht.
-
-Sie spiegeln, brechen, verbergen =
-wie die Welt selbst.
 
 
 
@@ -970,16 +759,8 @@ Titel: Die Geburt des erweiterten
 Kunstbegriffs aus dem Geist der
 Fünfziger Jahre
 Künstler: Thomas Richartz
-Ausstellung: “Büro 2018"
+Ausstellung: "Büro 2018"
 
-Thomas Richartz's Installation "Die
-Geburt des erweiterten Kunstbegriffs
-aus dem Geist der Fünfziger Jahre"
-ist ein faszinierender und
-vielschichtiger Beitrag zur
-Ausstellung "Büro 2018". In einem
-ehemaligen Büroraum inszeniert
-Richartz ein poetisches und zugleich
 Thomas Richartz's Installation "Die
 Geburt des erweiterten Kunstbegriffs
 aus dem Geist der Fünfziger Jahre"
@@ -1001,7 +782,7 @@ Fünfziger Jahre, die als Zeitkapseln
 kollektiver Träume und Sehnsüchte
 fungieren. Von jedem Magazin führt
 ein Kupferkabel herab, das diese
-“Träume" symbolisch ableitet. Die
+"Träume" symbolisch ableitet. Die
 Kabel münden in zwei Packungen
 Küchenfett, die auf einem alten
 Holzstuhl platziert sind. Dieser Stuhl,
@@ -1009,11 +790,11 @@ eine Reminiszenz an den berühmten
 "Fettstuhl" von Joseph Beuys, bildet
 den konzeptuellen Anker der Arbeit.
 Richartz's Werk schafft eine Brücke
-zwischen der Asthetik des
+zwischen der Ästhetik des
 Wirtschaftswunders und dem
 erweiterten Kunstbegriff von Beuys.
 Das "Fett" steht dabei nicht nur für
-die materiellen Uberflüsse und die
+die materiellen Überflüsse und die
 wirtschaftliche "Schmiere" der
 Fünfziger Jahre, sondern auch für die
 Energie, die Beuys als kreatives
@@ -1021,26 +802,8 @@ Potenzial verstand. Die Installation
 legt nahe, dass die kreative Kraft, die
 in den Alltagsträumen der Menschen
 schlummert, eine transformative
-Energie ist, die den Weg für neue
-Die Verbindung von Trivialem
-(Küchenfett, Filmmagazine) und
-Künstlerischem (Beuys's Fettstuhl)
-hinterfragt die Grenzen der Kunst und
-reflektiert über die Ursprünge des
-erweiterten Kunstbegriffs. Richartz
-zeigt, wie die alltäglichen Phänomene
-der Nachkriegsgesellschaft - die
-Konsumträume, die Hoffnung auf
-Fortschritt und Wohlstand - als
-Nährboden für eine neue, offene
-Kunstauffassung dienen konnten.
-erweiterten Kunstbegriffs. Richartz
-zeigt, wie die alltäglichen Phänomene
-der Nachkriegsgesellschaft - die
-Konsumträume, die Hoffnung auf
-Fortschritt und Wohlstand - als
-Nährboden für eine neue, offene
-Kunstauffassung dienen konnten.
+Energie ist, die den Weg für neue,
+offene Kunstauffassung dienen konnten.
 "Die Geburt des erweiterten
 Kunstbegriffs aus dem Geist der
 Fünfziger Jahre" ist somit eine
@@ -1050,9 +813,10 @@ Kommentar zur Rezeption und
 Entwicklung der Kunst in der zweiten
 Hälfte des 20. Jahrhunderts
 der künstlerische Denkweisen ebnet.
+
 Titel: Das haben wir schon immer so
 gemacht, da konnt ja jeder kommen
-Klnstler: Thomas Richartz
+Künstler: Thomas Richartz
 Ausstellung: "Büro"
 Ort: Ehemaliger Bürotrakt im
 Frankfurter Gallus-Viertel
@@ -1065,7 +829,6 @@ Auseinandersetzung mit den
 Mechanismen der Bürokratie und der
 darin liegenden Trägheit. Als zweiter
 Beitrag des Künstlers zur Ausstellung
-
 "Büro" im Frankfurter Gallus-Viertel,
 nutzt die Arbeit einen gefundenen
 Ort und dessen Inventar, um eine
@@ -1084,11 +847,8 @@ Dokumente die Ordnung der
 Bürokratie festlegten, liegen nun
 Beton-Armierungseisen. Diese Eisen,
 die eigentlich für Stabilitat und
-Neubau stehen, sind hier zu bloBen
-Relikten geworden = ihrer
-eigentlichen Funktion entledigt und in
-einer starren, nutzlosen Anordnung
-gefangen.
+Neubau stehen, sind hier Symbol für 
+mangelnde Flexibilität der Bürokratie.
 Lose installierte Drähte verbinden
 diese Eisen mit einer alten
 Schreibmaschine, die auf der Ablage
@@ -1119,7 +879,7 @@ dem Unbekannten und die
 Verfestigung von Regeln, die längst
 ihren ursprünglichen Zweck verloren
 haben. Richartz's Skulptur visualisiert
-dieses “Evolution-Stagnierungspotenzial*
+dieses "Evolution-Stagnierungspotenzial"
 auf eindrucksvolle Weise. Sie ist eine
 physische Manifestation des
 bürokratischen Stillstands, in der die
@@ -1152,9 +912,10 @@ unvereinbaren Welten: dem
 christlichen Glaubensmythos und der
 pessimistischen Philosophie Arthur
 Schopenhauers, insbesondere
-seinem Hauptwerk "Die Welt als Wille
-lkonographie und stellt die
-theologische Erzählung auf eine
+seinem Hauptwerk "Die Welt als Wille und 
+Vorstellung".Diese alternative Darstellung
+sprengt die traditionelle lkonographie und 
+stellt die theologische Erzählung auf eine
 philosophische Probe.
 
 Das Herzstück der Installation bildet
@@ -1164,18 +925,18 @@ bewusst die menschliche Gestalt des
 Göttlichen ablehnt. Stattdessen
 visualisiert Richartz das, was
 Schopenhauer als den
-metaphysischen Willen” bezeichnet
-= eine blinde, ziellose und
+"Metaphysischen Willen" bezeichnet
+ - eine blinde, ziellose und
 unaufhörliche Kraft, die die Welt
 antreibt. Die Komposition besteht aus
 einem komplexen Geflecht runder
 und eckiger Formen. Die runden,
 organischen Elemente können als
-“weiblich" interpretiert werden, sie
+"weiblich" interpretiert werden, sie
 symbolisieren das Formlose,
-FlieBende und Lebensspendende. Die
+Fließende und Lebensspendende. Die
 scharfen, eckigen Formen stehen
-dagegen für das "Männliche" = für
+dagegen für das "Männliche" — für
 Struktur, Ratio und die oft
 schmerzhafte Individualisierung, die
 der Wille hervorbringt. Dieses
@@ -1214,9 +975,9 @@ Welt als Vorstellung gefangen sind.
 Richartz schafft mit dieser Installation
 einen philosophischen Altar, der die
 gängige Interpretation des Letzten
-Abendmahls = die Stiftung der
-Eucharistie als Zeichen der Erlösung
-= hinterfragt. Statt der Hoffnung auf
+Abendmahls - die Stiftung der
+Eucharistie als Zeichen der Erlösung - 
+hinterfragt. Statt der Hoffnung auf 
 Erlösung durch Glauben bietet er eine
 Reflexion über die Natur des Seins
 selbst: das Dasein als ein unendliches
@@ -1250,19 +1011,6 @@ Freiheitskampf (2017)
 
 Ein Band aus Licht und Schatten, eine
 Abfolge geheimnisvoller Zeichen, die
-sich ineinander verflechten und zu
-einer stummen Erzählung verdichten.
-Thomas Richartz' Werk ist ein
-Denkmal des Widerstands, in dem
-sich die Kraft des Ringens und der
-Wille zur Freiheit in abstrakter Form
-manifestieren. Die Linien tanzen,
-brechen und vereinen sich, schaffen
-eine visuelle Chiffre, die von
-unauslöschlichen Spuren der
-Vergangenheit zeugt. Es ist ein
-zeitloses Echo, das in der tiefen
-
 sich ineinander verflechten und zu
 einer stummen Erzählung verdichten.
 Thomas Richartz' Werk ist ein
@@ -1315,7 +1063,7 @@ Titel Die heilige Familie zum
 poetischen wie ironischen
 Kommentar über Zusammenhalt,
 Schutz und die fragile Schönheit
-von Verbundenheit = immer
+von Verbundenheit — immer
 gefährdet, immer von einer dünnen
 Membran zwischen Nähe und
 Isolation wechselnd.
@@ -1334,7 +1082,7 @@ einem prekären Gleichgewicht
 verweilen. Steine, organische
 Fragmente und menschengemachte
 Formen treten in einen Kreis aus
-stiller Nähe = wie Angehörige, die in
+stiller Nähe — wie Angehörige, die in
 ihrer Verschiedenheit dennoch eine
 gemeinsame Aura teilen.
 
@@ -1346,7 +1094,7 @@ Titel Die heilige Familie zum
 poetischen wie ironischen
 Kommentar über Zusammenhalt,
 Schutz und die fragile Schönheit
-von Verbundenheit = immer
+von Verbundenheit — immer
 gefährdet, immer von einer dünnen
 Membran zwischen Nähe und
 Isolation durchzogen.
@@ -1409,7 +1157,7 @@ einem prekaren Gleichgewicht
 verweilen. Steine, organische
 Fragmente und menschengemachte
 Formen treten in einen Kreis aus
-stiller Nahe = wie Angehdrige, die in
+stiller Nahe — wie Angehdrige, die in
 ihrer Verschiedenheit dennoch eine
 gemeinsame Aura teilen.
 
@@ -1439,7 +1187,7 @@ Inszenierung ist. Zwischen Nähe
 und Distanz, Echtheit und
 Oberfläche entfaltet sich ein leiser
 Kommentar über das menschliche
-Bedürfnis, die Welt zu ordnen = und
+Bedürfnis, die Welt zu ordnen — und
 sie zugleich vor ihrem Verfall zu
 bewahren.
 
@@ -1602,13 +1350,13 @@ diese Materialien unmittelbar spürbar.
 
 
 `,"Gerüchteküche (2017)":`
-"Gerüchteküche" von Thomas Richartz:
-
+"Gerüchteküche" von Thomas
+Richartz:
 Thomas Richartz' "Gerüchteküche"
 taucht den Betrachter in eine
 verstörende, schwarz-weiße Szenerie
-ein, die das Konzept eines Raumes =
-in diesem Fall einer Küche =- neu
+ein, die das Konzept eines Raumes —
+in diesem Fall einer Küche —- neu
 interpretiert. Der Titel spielt auf die
 umgangssprachliche Bedeutung des
 Wortes an, die einen Ort beschreibt,
@@ -1662,7 +1410,9 @@ Strukturen nachzudenken, die unser
 Miteinander bestimmen.
 
 `,"Das verlorene Jahr (2017)":`
-"Das verlorene Jahr" von Thomas Richartz
+"Das verlorene Jahr" von
+Thomas Richartz
+
 
 Thomas Richartz's Installation "Das
 verlorene Jahr" ist eine ergreifende
@@ -1675,8 +1425,6 @@ eine physische Repräsentation dieses
 abstrakten Konzepts und lädt die
 Betrachter ein, sich dem Gewicht
 verlorener Zeit auf eine greifbare
-Weise zu stellen.
-
 Weise zu stellen.
 Im Zentrum der Installation stehen
 365 sorgfältig gefaltete
@@ -1694,8 +1442,8 @@ Vergänglichkeit und oft flüchtige
 Natur unseres täglichen Lebens.
 
 Die Wochen werden durch 56
-schwarze Mullsacke markiert. Diese
-Gegenstande, die typischerweise mit
+schwarze Mullsäcke markiert. Diese
+Gegenstände, die typischerweise mit
 Abfall und Entsorgung assoziiert
 werden, dienen als eine drastische
 und schwere Metapher für die
@@ -1719,7 +1467,7 @@ symbolisiert den Mangel an
 Produktivität oder Erfüllung, den der
 Künstler mit diesem speziellen Jahr in
 Verbindung bringt. Die dunklen,
-höhlenartigen Raume in jedem Kübel
+höhlenartigen Räume in jedem Kübel
 spiegeln das Gefühl einer Leere
 wieder, einer Zeitspanne, in der kein
 Fundament gelegt und nichts
@@ -1751,8 +1499,8 @@ verlorene Jahr" zu einem meditativen
 Raum. Der Betrachter wird physisch
 auf dem Weg eines Jahres geführt
 und mit der eskalierenden Symbolik
-seines Verlaufs konfrontiert = von den
-kleinen, hoffnungsvollen Anfangen
+seines Verlaufs konfrontiert — von den
+kleinen, hoffnungsvollen Anfängen
 eines einzigen Tages bis zur finalen,
 weiten Leere der Jahreszeiten.
 Richartz verwandelt die universelle
@@ -1771,7 +1519,7 @@ Thomas Richartz: "Berlin gibt auf"
 
 Das monumentale Acryl-Gemälde
 "Berlin gibt auf" von Thomas
-Richartz, das sich Uber eine Flache
+Richartz, das sich Uber eine Fläche
 von 30 Quadratmetern erstreckt, ist
 eine schonungslose
 Bestandsaufnahme der Berliner
@@ -1787,15 +1535,15 @@ brutaler Realität kollidieren.
 
 Anstatt eine romantische oder
 idealisierte Vorstellung von Berlin als
-Zufluchtsort fir Künstler zu malen,
+Zufluchtsort für Künstler zu malen,
 zeigt Richartz die Schattenseiten: den
 unerbittlichen Konkurrenzkampf um
 Anerkennung, Galerien, Fördermittel
 und die schlichte finanzielle Existenz.
 Die Komposition ist von einer rauen,
-expressiven Dynamik gepragt, die die
+expressiven Dynamik geprägt, die die
 Intensitat und den Druck des
-Uberlebenskampfes widerspiegelt.
+Überlebenskampfes widerspiegelt.
 Die Farbpalette ist oft düster und
 erdig, durchbrochen von grellen,
 unheimlichen Farbakzenten, die
@@ -1818,8 +1566,6 @@ Gesichtern, zersplitterten Formen und
 fragmentierten Erzählungen finden,
 die die Isolation trotz der Masse
 illustrieren. Richartz verzichtet auf
-eine klare, gegenständliche
-
 eine klare, gegenständliche
 Darstellung und setzt auf eine
 gestische, fast eruptive Malweise, die
@@ -1870,7 +1616,7 @@ Metapher für die Umweltprobleme
 der Großstadt interpretiert werden
 kann.
 Im Zentrum der Arbeit stehen
-Fundstücke der Natur = verwittertes
+Fundstücke der Natur — verwittertes
 Gestrüpp, Äste und Wurzeln - die
 nicht mehr leben, aber durch die
 künstlerische Geste eine neue
@@ -1891,8 +1637,8 @@ angeordneten Tafeln wirken wie
 archäologische Fundstücke oder
 botanische Präparate, die in einem
 Labor der Kunst untersucht werden.
-Sie zeigen die Spuren der Zeit =-
-Risse, Knoten und Verformungen = in
+Sie zeigen die Spuren der Zeit —-
+Risse, Knoten und Verformungen — in
 einer Ästhetik, die sowohl beruhigend
 als auch verstörend ist. Richartz lädt
 den Betrachter ein, Über die
@@ -1988,7 +1734,7 @@ Einzelnen und dient zugleich als
 Oberflächenstruktur der
 Installation prägt.
 Durch die Gegenüberstellung dieser
-Elemente = der imposanten Glocken
+Elemente — der imposanten Glocken
 als Sinnbild einer schweigenden
 kollektiven Kraft und der zahlreichen
 individuellen Steine - reflektiert
@@ -2029,7 +1775,7 @@ ein Teppich aus Erinnerungen, die
 sanft am Ufer liegen.
 Vereinzelung trifft Kollektiv, im
 Spannungsfeld von Stille und Macht.
-Hallgatas = ein Atemzug des
+Hallgatas — ein Atemzug des
 Schweigens, das mehr sagt 
 als jeder Ton.
 Ein Mahnmal für die Toten, verpackt
@@ -2056,13 +1802,13 @@ vereinen sakrale Ikonen,
 archetypische Figuren und
 symbolische Motive aus Judentum,
 Christentum, Islam, Buddhismus
-und anderen Glaubenssystemen =
+und anderen Glaubenssystemen —
 eingefasst in ein streng vertikal
 gegliedertes Grundraster.
 
 Diese Gitterstruktur, die die
 gesamte Serie durchzieht, wirkt wie
-ein Filter oder ein Käfig = ein
+ein Filter oder ein Käfig — ein
 formaler Kommentar zur
 Begrenztheit menschlicher
 Vorstellungskraft, aber auch zur
@@ -2089,7 +1835,7 @@ in ein komplexes, ornamentales
 Zeichensystem überführt. Der
 Zyklus thematisiert den Umgang
 mit Glauben, Bildverbot und
-spiritueller Autorität = zwischen
+spiritueller Autorität — zwischen
 Verehrung und Befragung.
 
 
@@ -2107,7 +1853,7 @@ grobem Betonbruch, führt auf eine
 skulpturale Formation aus
 aufgetürmtem Bruchholz zu. Der
 Weg ist zugleich Bedrohung und
-Verheißung = eine Passage in eine
+Verheißung — eine Passage in eine
 ungewisse Zukunft, in der
 natürliche und künstliche
 Materialien zu einem dystopischen
@@ -2115,7 +1861,7 @@ Gleichgewicht verschmelzen.
 
 
 Die Arbeit kommentiert das
-Scheitern utopischer Entwurfe,
+Scheitern utopischer Entwürfe,
 deren ldealismus oft auf der
 Verdrängung realer Bedingungen
 beruht. Der schwarze Sand steht für
@@ -2126,7 +1872,7 @@ Widerstand.
 Dystopie ist keine einfache
 Warnung, sondern ein begehbares
 Sinnbild für den Konflikt zwischen
-Vision und Wirklichkeit = still,
+Vision und Wirklichkeit — still,
 monumental, eindringlich.
 
 
@@ -2151,7 +1897,7 @@ Radierungen nach ,,Les Fleurs du
 mal“ von Charles Baudelaire
 
 In dieser Werkreihe widmet sich
-Thomas Richartz dem poetischen
+Richartz dem poetischen
 Kosmos von Charles Baudelaire.
 Zwischen 2003 und 2012 entstand
 ein vielschichtiger Zyklus von
@@ -2176,7 +1922,7 @@ Linien und nervös wuchernden
 Texturen. Gesichter, Gesten,
 Architekturen und Schattenrisse
 tauchen aus einem dichten Netz aus
-Linien auf = wie Erinnerungen oder
+Linien auf, wie Erinnerungen oder
 Visionen. Die Motive wirken wie
 Fragmente eines inneren Dramas,
 das sich ebenso auf das eigene
@@ -2202,49 +1948,6 @@ kraftvolle Bildwelten zu überführen.
 
 
 
-Thomas Richartz - "Baudelaire"(2003-2012)
-
-Radierungen nach Les Fleurs du mal
-von Charles Baudelaire
-
-
-
-Mit dem Zyklus Baudelaire
-(2003-2012) legt Thomas Richartz
-eine eindrucksvolle grafische
-Auseinandersetzung mit dem
-berühmten Gedichtband Les Fleurs
-du mal vor. In über einem Jahrzehnt
-entstand eine Serie von
-Radierungen, die Baudelaires
-symbolistische Bildsprache in
-expressive Linien, kontrastreiche
-Flächen und rätselhafte Szenen
-überfuhrt.
-
-
-Richartz verzichtet auf narrative
-Illustration = stattdessen entstehen
-visuelle Zustandsbilder:
-Verdichtungen seelischer Raume,
-Momentaufnahmen psychologischer
-Spannungen. Die Arbeiten
-changieren zwischen
-architektonischer Strenge,
-figürlicher Andeutung und
-abstrakter Überlagerung. Die Titel
-der Blätter = direkt aus Baudelaires
-Gedichten entnommen - fungieren
-als poetische Resonanzraume für
-eine eigenständige, visuell intensive
-Interpretation.
-
-Der Zyklus demonstriert Richartz’
-künstlerische Handschrift in
-Reinform: konzentriert, analytisch,
-existenziell.
-
-
 
 `,"LA BELLE ET LA BETE (2009)":`
 
@@ -2258,7 +1961,7 @@ Serie eine bildnerische Erzählung
 zwischen Anziehung und
 Konfrontation, Zartheit und Kraft.
 Die Werke spielen mit Gegensätzen
-= fließende Linien treffen auf
+— fließende Linien treffen auf
 kantige Strukturen, helle Flächen
 kontrastieren mit dunklen Schatten.
 Wie im Film verschmelzen Traum
@@ -2277,7 +1980,7 @@ So wird La Belle et la Bete bei
 Richartz zu einer Metapher für das
 kreative Ringen zwischen Ordnung
 und Chaos, Kontrolle und Ausdruck
-= ein Spiel der Kräfte, das sich auf
+— ein Spiel der Kräfte, das sich auf
 der Leinwand in immer neuen
 Konstellationen entfaltet.
 
