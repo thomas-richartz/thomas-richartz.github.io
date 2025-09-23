@@ -2,10 +2,12 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useTransition } from "@react-spring/web";
 import { allImages } from "@/assets/assets";
 import { RandomPictureViewMode } from "@/enums";
+import { RandomPictureMosaicView } from "@/components/RandomViews/RandomPictureMosaicView";
 import { GalleryImage } from "@/types";
 import { RandomPictureListView } from "@/components/RandomViews/RandomPictureListView";
 import { RandomPictureGridView } from "@/components/RandomViews/RandomPictureGridView";
 import { RandomPictureParallaxView } from "@/components/RandomViews/RandomPictureParallaxView";
+import { RandomPictureDreiView } from "@/components/RandomViews/RandomPictureDreiView";
 
 interface RandomPictureViewerProps {}
 
@@ -16,10 +18,30 @@ export const RandomPictureViewer = ({}: RandomPictureViewerProps): JSX.Element =
   const [iconMode, setIconMode] = useState(viewMode);
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
+  // Add SCROLL_MOSAIC to cycling logic
   const nextViewMode = () => {
-    setViewMode((prev) => (prev === RandomPictureViewMode.SCROLL_PARALLAX ? RandomPictureViewMode.SCROLL : ((prev + 1) as RandomPictureViewMode)));
-    setIconMode(viewMode);
-    // window.scrollTo(0, 0);
+    let next;
+    switch (viewMode) {
+      case RandomPictureViewMode.SCROLL:
+        next = RandomPictureViewMode.SCROLL_GRID;
+        break;
+      case RandomPictureViewMode.SCROLL_GRID:
+        // next = RandomPictureViewMode.SCROLL_PARALLAX;
+        next = RandomPictureViewMode.SCROLL_DREI;
+        break;
+      case RandomPictureViewMode.SCROLL_PARALLAX:
+        next = RandomPictureViewMode.SCROLL_DREI;
+        break;
+      case RandomPictureViewMode.SCROLL_DREI:
+      //   next = RandomPictureViewMode.SCROLL_MOSAIC;
+      //   break;
+      // case RandomPictureViewMode.SCROLL_MOSAIC:
+      default:
+        next = RandomPictureViewMode.SCROLL;
+        break;
+    }
+    setViewMode(next);
+    setIconMode(next);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -92,6 +114,18 @@ export const RandomPictureViewer = ({}: RandomPictureViewerProps): JSX.Element =
             <RandomPictureParallaxView loadRandomImages={loadRandomImages} images={images} setImages={setImages} />
           </div>
         );
+      case RandomPictureViewMode.SCROLL_DREI:
+        return (
+          <div style={{ height: "100vh", overflow: "hidden" }}>
+            <RandomPictureDreiView loadRandomImages={loadRandomImages} images={images} setImages={setImages} />
+          </div>
+        );
+      case RandomPictureViewMode.SCROLL_MOSAIC:
+        return (
+          <div style={{ minHeight: "100vh", background: "#f8f8fa" }}>
+            <RandomPictureMosaicView loadRandomImages={loadRandomImages} images={images} setImages={setImages} />
+          </div>
+        );
       case RandomPictureViewMode.SCROLL:
       default:
         return (
@@ -115,11 +149,33 @@ export const RandomPictureViewer = ({}: RandomPictureViewerProps): JSX.Element =
           </svg>
         );
       case RandomPictureViewMode.SCROLL_PARALLAX:
+      // // icon for SCROLL_PARALLAX
+      // return (
+      //   <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke="#FF9999" strokeWidth="2" fill="none">
+      //     <circle cx="32" cy="32" r="20" />
+      //     <path d="M16,32 Q32,8 48,32" />
+      //     <path d="M16,40 Q32,16 48,40" />
+      //   </svg>
+      // );
+      case RandomPictureViewMode.SCROLL_DREI:
         return (
           <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke="#664455" strokeWidth="1" fill="none">
             <path d="M16,48 L48,16" />
             <path d="M16,40 L40,16" />
             <path d="M24,48 L48,24" />
+          </svg>
+        );
+      case RandomPictureViewMode.SCROLL_MOSAIC:
+        // Fancy outline SVG icon for mosaic mode
+        return (
+          <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke="#FFB347" strokeWidth="2" fill="none">
+            <rect x="6" y="6" width="18" height="18" rx="4" />
+            <rect x="26" y="10" width="32" height="12" rx="6" />
+            <rect x="10" y="28" width="20" height="30" rx="6" />
+            <rect x="34" y="28" width="20" height="20" rx="6" />
+            <rect x="34" y="50" width="20" height="8" rx="4" />
+            <circle cx="16" cy="16" r="3" stroke="#FFB347" fill="#fff" />
+            <circle cx="44" cy="34" r="3" stroke="#FFB347" fill="#fff" />
           </svg>
         );
       case RandomPictureViewMode.SCROLL:
