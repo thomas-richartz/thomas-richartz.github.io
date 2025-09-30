@@ -2,7 +2,7 @@ import * as THREE from "three";
 import React, { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PerspectiveCamera, useTexture, Text, Html, Circle } from "@react-three/drei";
-import { OrbitControls, Environment, Plane, useHelper } from "@react-three/drei";
+import { OrbitControls, Environment, Plane, Reflector, useHelper } from "@react-three/drei";
 import { GalleryImage } from "@/types";
 import CameraController from "@/components/CameraController";
 import "@/materials/BlurImageMaterial";
@@ -106,12 +106,42 @@ const ParallaxCube = ({
         />
       </mesh>
       {selected && (
-        <Text fontSize={0.1} color="white" anchorX="center" anchorY="top" position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}>
+        <Text
+          outlineColor="#000"
+          outlineWidth={0.01}
+          fontSize={0.1}
+          color="white"
+          anchorX="center"
+          anchorY="top"
+          position={[0, -(geometryArgs[1] / 2 + 0.2), 0]}
+        >
           {title}
         </Text>
       )}
     </group>
   );
+};
+
+const Floor = () => {
+  return (
+    <Reflector
+      blur={[512, 512]}
+      resolution={1024}
+      args={[150, 150]} // plane size
+      mirror={0.5}
+      mixBlur={2}
+      mixStrength={1}
+      rotation={[-Math.PI / 2, 0, 0]}
+      position={[0, -0.71, 0]}
+    >
+      {(Material, props) => <Material color="#222" metalness={0.6} roughness={0.3} {...props} />}
+    </Reflector>
+  );
+  // <group>
+  //   <Plane args={[150, 150]} receiveShadow>
+  //     <meshStandardMaterial color="#111111" roughness={0.9} metalness={0.1} envMapIntensity={0.2} />
+  //   </Plane>
+  // </group>
 };
 
 // Gallery environment component
@@ -133,6 +163,7 @@ const GalleryEnvironment = () => {
     <>
       {/* Floor with grid pattern */}
       <group position={[0, -7, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        {/*<Floor />*/}
         {/* Main floor */}
         <Plane args={[150, 150]} receiveShadow>
           <meshStandardMaterial color="#111111" roughness={0.9} metalness={0.1} envMapIntensity={0.2} />

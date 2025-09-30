@@ -26,20 +26,39 @@ export const RandomPictureViewer = ({}: RandomPictureViewerProps): JSX.Element =
         next = RandomPictureViewMode.SCROLL_GRID;
         break;
       case RandomPictureViewMode.SCROLL_GRID:
-        // next = RandomPictureViewMode.SCROLL_PARALLAX;
         next = RandomPictureViewMode.SCROLL_DREI;
+        // next = RandomPictureViewMode.SCROLL_PARALLAX;
         break;
       case RandomPictureViewMode.SCROLL_PARALLAX:
         next = RandomPictureViewMode.SCROLL_DREI;
         break;
       case RandomPictureViewMode.SCROLL_DREI:
-      //   next = RandomPictureViewMode.SCROLL_MOSAIC;
-      //   break;
-      // case RandomPictureViewMode.SCROLL_MOSAIC:
+        next = RandomPictureViewMode.SCROLL_MOSAIC;
+        break;
+      case RandomPictureViewMode.SCROLL_MOSAIC:
       default:
         next = RandomPictureViewMode.SCROLL;
         break;
     }
+    // switch (viewMode) {
+    //   case RandomPictureViewMode.SCROLL:
+    //     next = RandomPictureViewMode.SCROLL_GRID;
+    //     break;
+    //   case RandomPictureViewMode.SCROLL_GRID:
+    //     // next = RandomPictureViewMode.SCROLL_PARALLAX;
+    //     next = RandomPictureViewMode.SCROLL_DREI;
+    //     break;
+    //   case RandomPictureViewMode.SCROLL_PARALLAX:
+    //     next = RandomPictureViewMode.SCROLL_DREI;
+    //     break;
+    //   case RandomPictureViewMode.SCROLL_DREI:
+    //   //   next = RandomPictureViewMode.SCROLL_MOSAIC;
+    //   //   break;
+    //   // case RandomPictureViewMode.SCROLL_MOSAIC:
+    //   default:
+    //     next = RandomPictureViewMode.SCROLL;
+    //     break;
+    // }
     setViewMode(next);
     setIconMode(next);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -149,14 +168,14 @@ export const RandomPictureViewer = ({}: RandomPictureViewerProps): JSX.Element =
           </svg>
         );
       case RandomPictureViewMode.SCROLL_PARALLAX:
-      // // icon for SCROLL_PARALLAX
-      // return (
-      //   <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke="#FF9999" strokeWidth="2" fill="none">
-      //     <circle cx="32" cy="32" r="20" />
-      //     <path d="M16,32 Q32,8 48,32" />
-      //     <path d="M16,40 Q32,16 48,40" />
-      //   </svg>
-      // );
+        // // icon for SCROLL_PARALLAX
+        return (
+          <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke="#FF9999" strokeWidth="2" fill="none">
+            <circle cx="32" cy="32" r="20" />
+            <path d="M16,32 Q32,8 48,32" />
+            <path d="M16,40 Q32,16 48,40" />
+          </svg>
+        );
       case RandomPictureViewMode.SCROLL_DREI:
         return (
           <svg width="32" height="32" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke="#664455" strokeWidth="1" fill="none">
