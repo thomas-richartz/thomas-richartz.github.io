@@ -7,7 +7,10 @@ import { GalleryImage } from "@/types";
 import CameraController from "@/components/CameraController";
 import "@/materials/BlurImageMaterial";
 import { useDisplayPreferences } from "@/context/DisplayPreferencesContext";
-import { SpotLightHelper, DirectionalLightHelper, Object3D, MeshStandardMaterial } from "three";
+// import { DepthBlurShader } from "../../shaders/DepthBlurShader";
+// import { SpotLightHelper, DirectionalLightHelper, Object3D, MeshStandardMaterial } from "three";
+// import { DepthBlurPass } from "../DepthBlurPass";
+// import ArtworkSpotlights from "../ArtworkSpotLights";
 
 interface RandomPictureDreiViewProps {
   images: GalleryImage[];
@@ -180,14 +183,15 @@ const GalleryEnvironment = () => {
       </Plane>
 
       {/* Gallery lighting */}
-      <ambientLight intensity={0.08} color="#121212" />
+      {/*<ambientLight intensity={1.8} color="#121212" />*/}
+      <ambientLight intensity={1.8} color="#FFFFFF" />
 
       {/* Main overhead light */}
       <directionalLight
         ref={directionalLightRef}
         position={[0, 12, 5]}
-        intensity={0.3}
-        color="#f5f5f5"
+        intensity={1.9}
+        color="#ffffff"
         castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
@@ -204,7 +208,7 @@ const GalleryEnvironment = () => {
         position={[0, 12, 5]}
         angle={0.28}
         penumbra={0.9}
-        intensity={1.2}
+        intensity={1.3}
         color="#ffffff"
         distance={60}
         castShadow
@@ -214,25 +218,28 @@ const GalleryEnvironment = () => {
       />
 
       {/* Artwork highlight spotlights */}
-      <spotLight position={[-5, 9, -10]} angle={0.38} penumbra={0.8} intensity={0.7} color="#f0e6d2" distance={40} castShadow />
-      <spotLight position={[5, 9, -15]} angle={0.38} penumbra={0.8} intensity={0.7} color="#e6e6fa" distance={40} castShadow />
+
+      {/*<ArtworkSpotlights />*/}
+
+      {/*<spotLight position={[-5, 9, -10]} angle={0.38} penumbra={0.8} intensity={1.7} color="#ffffff" distance={40} castShadow />
+      <spotLight position={[5, 9, -15]} angle={0.38} penumbra={0.8} intensity={1.7} color="#ffffff" distance={40} castShadow />*/}
 
       {/* Atmospheric accent lights */}
-      <pointLight position={[-10, 8, -5]} intensity={0.3} color="#2a4858" distance={20} />
-      <pointLight position={[10, 8, -5]} intensity={0.3} color="#583e2a" distance={20} />
+      {/*<pointLight position={[-10, 8, -5]} intensity={1.3} color="#2a4858" distance={20} />
+      <pointLight position={[10, 8, -5]} intensity={1.3} color="#583e2a" distance={20} />*/}
 
       {/* Wall wash lights */}
-      <spotLight position={[-18, 10, -30]} angle={0.6} penumbra={0.7} intensity={0.4} color="#b3c9d9">
+      {/*<spotLight position={[-18, 10, -30]} angle={0.6} penumbra={0.7} intensity={1.4} color="#b3c9d9">
         <object3D position={[-25, 2, -30]} />
       </spotLight>
-      <spotLight position={[18, 10, -30]} angle={0.6} penumbra={0.7} intensity={0.4} color="#d9c3b3">
+      <spotLight position={[18, 10, -30]} angle={0.6} penumbra={0.7} intensity={1.4} color="#d9c3b3">
         <object3D position={[25, 2, -30]} />
-      </spotLight>
+      </spotLight>*/}
 
       {/* Subtle floor lights */}
-      <pointLight position={[0, -4, -20]} intensity={0.15} color="#2b2b2b" distance={15} />
-      <pointLight position={[-10, -4, -10]} intensity={0.1} color="#2b2b2b" distance={12} />
-      <pointLight position={[10, -4, -10]} intensity={0.1} color="#2b2b2b" distance={12} />
+      <pointLight position={[0, -2, -10]} intensity={1.15} color="#2b2b2b" distance={15} />
+      <pointLight position={[-2, -2, -10]} intensity={1.1} color="#2b2b2b" distance={12} />
+      <pointLight position={[2, -2, -10]} intensity={1.1} color="#2b2b2b" distance={12} />
     </>
   );
 };
@@ -281,16 +288,30 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
       gl={{ antialias: resolution !== "low" }}
     >
       {/* Environment */}
+
       <GalleryEnvironment />
 
       {/* Fog for atmosphere */}
-      {resolution === "low" ? <fog attach="fog" args={["#000", 20, 70]} /> : <fog attach="fog" args={["#000", 35, 150]} />}
+      {/*
+	   {resolution === "low" ? <fog attach="fog" args={["#000", 20, 70]} /> : <fog attach="fog" args={["#000", 35, 150]} />}
+	*/}
 
       {/* Main camera */}
       <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
 
-      {/* Environment HDRI for reflections */}
-      <Environment preset="warehouse" background={false} />
+      {/* Environment HDRI for reflections      <Environment preset="warehouse" background={false} />
+       */}
+
+      {/*<Environment
+        // files="assets/img/warehouse.jpg"
+        preset="warehouse"
+        // ground={{
+        //   height: 15, // Height of the camera that was used to create the env map (Default: 15)
+        //   radius: 60, // Radius of the world. (Default 60)
+        //   scale: 1000, // Scale of the backside projected sphere that holds the env texture (Default: 1000)
+        // }}
+        background={true}
+      />*/}
 
       {images.slice(windowOffset, windowOffset + windowSize).map((img, i) => {
         // Calculate relative index based on windowOffset
@@ -318,7 +339,7 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
                 setTargetPosition([x, y, z + 5]); // Adjusted for the increased spacing
               }
             }}
-            blur={selectedIndex === displayIndex ? 0.0 : 2.5}
+            // blur={selectedIndex === displayIndex ? 0.0 : 2.5}
           />
         );
       })}
@@ -379,6 +400,10 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
           </button>
         </Html>
       )}
+
+      {/*{selectedIndex === null && <DepthBlurPass focus={1.6} maxBlur={1.6} />}*/}
+
+      {/*<DepthBlurPass focus={1} maxBlur={0.2} />*/}
     </Canvas>
   );
 };
