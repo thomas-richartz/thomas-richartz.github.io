@@ -56,21 +56,21 @@ const ParallaxCube = ({
   const lastUpdateTimeRef = useRef(performance.now());
 
   // Handle gentle swaying animation when not selected
-  useFrame(() => {
-    if (!meshRef.current || selected) return;
+  // useFrame(() => {
+  //   if (!meshRef.current || selected) return;
 
-    const now = performance.now();
-    const delta = (now - lastUpdateTimeRef.current) / 1000;
-    lastUpdateTimeRef.current = now;
+  //   const now = performance.now();
+  //   const delta = (now - lastUpdateTimeRef.current) / 1000;
+  //   lastUpdateTimeRef.current = now;
 
-    elapsedRef.current += delta;
-    const angle = Math.sin(elapsedRef.current * 1.5) * THREE.MathUtils.degToRad(5); // ±5°
+  //   elapsedRef.current += delta;
+  //   const angle = Math.sin(elapsedRef.current * 1.5) * THREE.MathUtils.degToRad(5); // ±5°
 
-    // Only animate the y-rotation, keeping the image upright
-    meshRef.current.rotation.y = angle;
-    meshRef.current.rotation.x = 0;
-    meshRef.current.rotation.z = 0;
-  });
+  //   // Only animate the y-rotation, keeping the image upright
+  //   meshRef.current.rotation.y = angle;
+  //   meshRef.current.rotation.x = 0;
+  //   meshRef.current.rotation.z = 0;
+  // });
 
   // Update dimensions when texture loads
   useEffect(() => {
@@ -301,6 +301,8 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
 
       {/* Environment HDRI for reflections      <Environment preset="warehouse" background={false} />
        */}
+
+      <Environment preset="forest" background={true} />
 
       {/*<Environment
         // files="assets/img/warehouse.jpg"
