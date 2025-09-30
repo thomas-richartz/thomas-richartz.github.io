@@ -122,155 +122,63 @@ const ParallaxCube = ({
   );
 };
 
+// Replace the existing Floor component with this one:
 const Floor = () => {
-  return (
-    <Reflector
-      blur={[512, 512]}
-      resolution={1024}
-      args={[150, 150]} // plane size
-      mirror={0.5}
-      mixBlur={2}
-      mixStrength={1}
-      rotation={[-Math.PI / 2, 0, 0]}
-      position={[0, -0.71, 0]}
-    >
-      {(Material, props) => <Material color="#222" metalness={0.6} roughness={0.3} {...props} />}
-    </Reflector>
-  );
-  // <group>
-  //   <Plane args={[150, 150]} receiveShadow>
-  //     <meshStandardMaterial color="#111111" roughness={0.9} metalness={0.1} envMapIntensity={0.2} />
-  //   </Plane>
-  // </group>
-};
-
-// Gallery environment component
-const GalleryEnvironment = () => {
-  const spotLightRef = useRef<THREE.SpotLight>(null);
-  const directionalLightRef = useRef<THREE.DirectionalLight>(null);
-  const timeRef = useRef(0);
-
-  // Animate time for subtle shader variations
-  useFrame((state) => {
-    timeRef.current = state.clock.getElapsedTime();
-  });
-
-  // Uncomment for debugging lights
-  // useHelper(spotLightRef, SpotLightHelper, "red");
-  // useHelper(directionalLightRef, DirectionalLightHelper, 1, "blue");
+  // Optional: Load textures for enhanced realism
+  const [floor, normal] = useTexture([
+    "/assets/img/warehouse.jpg", // Add these textures to your public folder
+    "/assets/normalmaps/default.jpg",
+  ]);
 
   return (
     <>
-      {/* Floor with grid pattern */}
-      <group position={[0, -7, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        {/*<Floor />*/}
-        {/* Main floor */}
-        <Plane args={[150, 150]} receiveShadow>
-          <meshStandardMaterial color="#111111" roughness={0.9} metalness={0.1} envMapIntensity={0.2} />
-        </Plane>
+      {/* Mirror surface */}
+      <Reflector
+        blur={[400, 100]} // Blur ground reflections (width, height), larger = more blur
+        resolution={1024} // Off-buffer resolution, lower = faster blur
+        args={[100, 100]} // Plane geometry arguments
+        mirror={0.75} // Mirror environment, 0 = no mirror, 1 = perfect mirror
+        mixBlur={12} // How much blur mixes with surface roughness
+        mixStrength={1.5} // Strength of the reflections
+        rotation={[-Math.PI / 2, 0, Math.PI / 2]} // Rotated to be horizontal
+        position={[0, -2.8, 0]} // Slightly below the cubes
+      >
+        {(Material, props) => (
+          <Material color="#a0a0a0" metalness={0.5} roughness={0.7} {...props} normalMap={normal} normalScale={[0.1, 0.1]} roughnessMap={floor} />
+        )}
+      </Reflector>
 
-        {/* Grid lines - horizontal */}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <Plane key={`grid-h-${i}`} args={[150, 0.05]} position={[0, -75 + i * 8, 0.01]} receiveShadow={false}>
-            <meshBasicMaterial color="#222222" transparent opacity={0.4} />
-          </Plane>
-        ))}
+      {/* Decorative ring around the mirror */}
+      {/*<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.85, 0]}>
+        <ringGeometry args={[35, 50, 64]} />
+        <meshStandardMaterial color="#444444" roughness={0.9} metalness={0.1} transparent opacity={0.7} />
+      </mesh>*/}
+    </>
+  );
+};
 
-        {/* Grid lines - vertical */}
-        {Array.from({ length: 20 }).map((_, i) => (
-          <Plane key={`grid-v-${i}`} args={[0.05, 150]} position={[-75 + i * 8, 0, 0.01]} receiveShadow={false}>
-            <meshBasicMaterial color="#222222" transparent opacity={0.4} />
-          </Plane>
-        ))}
-      </group>
+// Update the GalleryEnvironment component for better lighting with reflections
+const GalleryEnvironment = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <>
+      {/* Main lighting */}
+      <ambientLight intensity={0.5} />
 
-      {/* Ceiling */}
-      <Plane args={[150, 150]} rotation={[Math.PI / 2, 0, 0]} position={[0, 15, 0]}>
-        <meshStandardMaterial color="#222222" roughness={0.85} metalness={0.05} />
-      </Plane>
+      {/* Key light */}
+      <spotLight position={[10, 15, 10]} angle={0.3} penumbra={1} intensity={1} castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048} />
 
-      {/* Back wall */}
-      <Plane args={[150, 40]} rotation={[0, 0, 0]} position={[0, 2, -60]}>
-        <meshStandardMaterial color="#222222" roughness={0.8} metalness={0.05} />
-      </Plane>
+      {/* Fill light */}
+      <pointLight position={[-10, 8, -10]} intensity={0.5} />
 
-      {/* Left wall - angled */}
-      <Plane args={[150, 40]} rotation={[0, Math.PI / 2 - 0.2, 0]} position={[-20, 2, 0]}>
-        <meshStandardMaterial color="#1a1a1a" roughness={0.8} metalness={0.05} />
-      </Plane>
+      {/* Rim light */}
+      <pointLight position={[0, -10, 0]} intensity={1.5} color="#666" />
 
-      {/* Right wall - angled */}
-      <Plane args={[150, 40]} rotation={[0, -Math.PI / 2 + 0.2, 0]} position={[20, 2, 0]}>
-        <meshStandardMaterial color="#1a1a1a" roughness={0.8} metalness={0.05} />
-      </Plane>
+      {/* Environment */}
+      <Floor />
+      {children}
 
-      {/* Additional angled walls */}
-      <Plane args={[60, 40]} rotation={[0, Math.PI / 4, 0]} position={[-30, 2, -30]}>
-        <meshStandardMaterial color="#161616" roughness={0.85} metalness={0.05} />
-      </Plane>
-
-      <Plane args={[60, 40]} rotation={[0, -Math.PI / 4, 0]} position={[30, 2, -30]}>
-        <meshStandardMaterial color="#161616" roughness={0.85} metalness={0.05} />
-      </Plane>
-
-      {/* Gallery lighting */}
-      {/*<ambientLight intensity={1.8} color="#121212" />*/}
-      <ambientLight intensity={1.8} color="#FFFFFF" />
-
-      {/* Main overhead light */}
-      <directionalLight
-        ref={directionalLightRef}
-        position={[0, 12, 5]}
-        intensity={1.9}
-        color="#ffffff"
-        castShadow
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
-        shadow-camera-far={100}
-        shadow-camera-left={-20}
-        shadow-camera-right={20}
-        shadow-camera-top={25}
-        shadow-camera-bottom={-25}
-      />
-
-      {/* Main dramatic spotlight */}
-      <spotLight
-        ref={spotLightRef}
-        position={[0, 12, 5]}
-        angle={0.28}
-        penumbra={0.9}
-        intensity={1.3}
-        color="#ffffff"
-        distance={60}
-        castShadow
-        shadow-bias={-0.0001}
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
-      />
-
-      {/* Artwork highlight spotlights */}
-
-      {/*<ArtworkSpotlights />*/}
-
-      {/*<spotLight position={[-5, 9, -10]} angle={0.38} penumbra={0.8} intensity={1.7} color="#ffffff" distance={40} castShadow />
-      <spotLight position={[5, 9, -15]} angle={0.38} penumbra={0.8} intensity={1.7} color="#ffffff" distance={40} castShadow />*/}
-
-      {/* Atmospheric accent lights */}
-      {/*<pointLight position={[-10, 8, -5]} intensity={1.3} color="#2a4858" distance={20} />
-      <pointLight position={[10, 8, -5]} intensity={1.3} color="#583e2a" distance={20} />*/}
-
-      {/* Wall wash lights */}
-      {/*<spotLight position={[-18, 10, -30]} angle={0.6} penumbra={0.7} intensity={1.4} color="#b3c9d9">
-        <object3D position={[-25, 2, -30]} />
-      </spotLight>
-      <spotLight position={[18, 10, -30]} angle={0.6} penumbra={0.7} intensity={1.4} color="#d9c3b3">
-        <object3D position={[25, 2, -30]} />
-      </spotLight>*/}
-
-      {/* Subtle floor lights */}
-      <pointLight position={[0, -2, -10]} intensity={1.15} color="#2b2b2b" distance={15} />
-      <pointLight position={[-2, -2, -10]} intensity={1.1} color="#2b2b2b" distance={12} />
-      <pointLight position={[2, -2, -10]} intensity={1.1} color="#2b2b2b" distance={12} />
+      {/* Optional: Add fog for depth */}
+      <fog attach="fog" args={["#000", 30, 100]} />
     </>
   );
 };
@@ -315,27 +223,27 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
       }}
       dpr={resolution === "high" ? window.devicePixelRatio : 1}
       shadows
-      camera={{ position: [0, 0, 10], fov: 50 }}
+      camera={{ position: [0, 0, 15], fov: 70 }}
       gl={{ antialias: resolution !== "low" }}
     >
       {/* Environment */}
 
-      <GalleryEnvironment />
-
-      {/* Fog for atmosphere */}
-      {/*
+      <GalleryEnvironment>
+        <>
+          {/* Fog for atmosphere */}
+          {/*
 	   {resolution === "low" ? <fog attach="fog" args={["#000", 20, 70]} /> : <fog attach="fog" args={["#000", 35, 150]} />}
 	*/}
 
-      {/* Main camera */}
-      <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
+          {/* Main camera */}
+          <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 10]} />
 
-      {/* Environment HDRI for reflections      <Environment preset="warehouse" background={false} />
-       */}
+          {/* Environment HDRI for reflections      <Environment preset="warehouse" background={false} />
+           */}
 
-      <Environment preset="forest" background={true} />
+          <Environment preset="warehouse" background={false} />
 
-      {/*<Environment
+          {/*<Environment
         // files="assets/img/warehouse.jpg"
         preset="warehouse"
         // ground={{
@@ -346,47 +254,50 @@ export const RandomPictureDreiView = ({ images, loadRandomImages, setImages }: R
         background={true}
       />*/}
 
-      {images.slice(windowOffset, windowOffset + windowSize).map((img, i) => {
-        // Calculate relative index based on windowOffset
-        const relativeIndex = i;
-        const displayIndex = windowOffset + relativeIndex;
-        const z = -relativeIndex * 3; // Spacing based on relative position
-        const x = ((relativeIndex % 3) - 1) * 4.5; // Wider spacing
-        const y = Math.floor(relativeIndex / 3) * -3 + 2; // More vertical spacing with moderate height
+          {images.slice(windowOffset, windowOffset + windowSize).map((img, i) => {
+            // Calculate relative index based on windowOffset
+            const relativeIndex = i;
+            const displayIndex = windowOffset + relativeIndex;
+            const z = -relativeIndex * 3; // Spacing based on relative position
+            const x = ((relativeIndex % 3) - 1) * 4.5; // Wider spacing
+            const y = Math.floor(relativeIndex / 3) * -3 + 2; // More vertical spacing with moderate height
 
-        return (
-          <ParallaxCube
-            selected={selectedIndex === displayIndex}
-            key={`${img.filename}-${displayIndex}`}
-            image={img.filename}
-            title={img.title}
-            position={[x, y, z]}
-            onClick={() => {
-              if (selectedIndex === displayIndex) {
-                // Zoom out to gallery overview position
-                setSelectedIndex(null);
-                setTargetPosition(galleryOverviewPos); // Return to gallery overview where all images are visible
-              } else {
-                // Zoom into selected cube
-                setSelectedIndex(displayIndex);
-                setTargetPosition([x, y, z + 5]); // Adjusted for the increased spacing
-              }
-            }}
-            // blur={selectedIndex === displayIndex ? 0.0 : 2.5}
-          />
-        );
-      })}
+            return (
+              <ParallaxCube
+                selected={selectedIndex === displayIndex}
+                key={`${img.filename}-${displayIndex}`}
+                image={img.filename}
+                title={img.title}
+                position={[x, y, z]}
+                onClick={() => {
+                  if (selectedIndex === displayIndex) {
+                    // Zoom out to gallery overview position
+                    setSelectedIndex(null);
+                    setTargetPosition(galleryOverviewPos); // Return to gallery overview where all images are visible
+                  } else {
+                    // Zoom into selected cube
+                    setSelectedIndex(displayIndex);
+                    setTargetPosition([x, y, z + 5]); // Adjusted for the increased spacing
+                  }
+                }}
+                // blur={selectedIndex === displayIndex ? 0.0 : 2.5}
+              />
+            );
+          })}
 
-      {/* Gallery floor markers */}
-      {/*<Circle color="#444" position={[0, -6.95, 0]} rotation={[-Math.PI / 2, 0, 0]} size={18} />
+          {/* Gallery floor markers */}
+          {/*<Circle color="#444" position={[0, -6.95, 0]} rotation={[-Math.PI / 2, 0, 0]} size={18} />
       <Circle color="#333" position={[0, -6.94, 0]} rotation={[-Math.PI / 2, 0, 0]} size={12} />
       <Circle color="#222" position={[0, -6.93, 0]} rotation={[-Math.PI / 2, 0, 0]} size={6} />*/}
 
-      {/* Subtle decorative elements */}
-      {/*<Circle color="#333" position={[15, 2, -25]} rotation={[0, -Math.PI / 4, 0]} size={2} />
+          {/* Subtle decorative elements */}
+          {/*<Circle color="#333" position={[15, 2, -25]} rotation={[0, -Math.PI / 4, 0]} size={2} />
       <Circle color="#333" position={[-15, 2, -25]} rotation={[0, Math.PI / 4, 0]} size={2} />
       <Circle color="#333" position={[0, 5, -40]} rotation={[Math.PI / 2, 0, 0]} size={3} />
 */}
+        </>
+      </GalleryEnvironment>
+
       <CameraController cameraRef={cameraRef} targetPosition={targetPosition} />
       {selectedIndex !== null && <OrbitControls enableZoom enablePan={false} enableRotate target={targetPosition} />}
       {/* Navigation Button - only visible in overview mode (when no image is selected) */}
