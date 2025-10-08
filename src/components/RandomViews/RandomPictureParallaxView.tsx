@@ -37,16 +37,30 @@ const ParallaxImageLayer: React.FC<{
   onSnap: (idx: number) => void;
   snapped: boolean;
 }> = ({ image, index, total, isWide, interpretation, play, onSnap, snapped }) => {
-  const [imgAspect, setImgAspect] = useState(1);
+  const [dimensions, setDimensions] = useState<{ width: number; height: number } | null>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const [textScrolled, setTextScrolled] = useState(false);
+  const imageRef = useRef<HTMLImageElement>(null);
 
   // Detect aspect ratio for salon wall span
   useEffect(() => {
-    const img = new window.Image();
-    img.onload = () => setImgAspect(img.width / img.height);
-    img.src = `/assets/images/${image.filename}`;
-  }, [image.filename]);
+    if (imageRef.current?.complete) {
+      setDimensions({
+        width: imageRef.current.naturalWidth,
+        height: imageRef.current.naturalHeight,
+      });
+    }
+  }, [imageRef.current]);
+
+  const handleImageLoad = useCallback((e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget;
+    setDimensions({
+      width: img.naturalWidth,
+      height: img.naturalHeight,
+    });
+  }, []);
+
+  const imgAspect = dimensions ? dimensions.width / dimensions.height : 1;
 
   // Parallax speed: taller images move faster
   const speed = Math.max(0.3, Math.min(1.2, imgAspect < 0.8 ? 1.2 : 0.5 + (1.2 - Math.min(imgAspect, 1.2))));
@@ -116,6 +130,8 @@ const ParallaxImageLayer: React.FC<{
         </div>
         {/* Image */}
         <img
+          ref={imageRef}
+          onLoad={handleImageLoad}
           src={`/assets/images/${image.filename}`}
           alt={image.title}
           title={image.title}
@@ -209,11 +225,10 @@ export const RandomPictureParallaxView: React.FC<{
     setPlay(false);
   };
 
-  // Wide image detection
+  // Wide image detection - using the cached dimensions from the ParallaxImageLayer component
   const isWide = (img: GalleryImage) => {
-    // You could cache this for performance
-    const aspect = img.width && img.height ? img.width / img.height : 1;
-    return aspect > 1.2;
+    const imgEl = document.querySelector(`img[src="/assets/images/${img.filename}"]`) as HTMLImageElement;
+    return imgEl && imgEl.complete ? imgEl.width / imgEl.height > 1.2 : false;
   };
 
   // Parallax pages: one per image, with extra space
