@@ -117,8 +117,16 @@ const calculatePlacements = (images: GalleryImage[]): GridPlacement[] => {
     if (placedCount >= GRID.SIZE * GRID.SIZE) break;
   }
 
-  // Only return placements for images that fit in the grid, others get null
-  return placements;
+  // Always return GridPlacement[] by replacing nulls with fallback 1x1 placements
+  return placements.map(
+    (placement, idx) =>
+      placement || {
+        colStart: idx % GRID.SIZE,
+        rowStart: Math.floor(idx / GRID.SIZE),
+        colSpan: 1,
+        rowSpan: 1,
+      },
+  );
 };
 
 const MosaicImage = ({
