@@ -47,7 +47,7 @@ function App() {
 
           // Fetch initial blocks if not already loaded
           if (blocks.length === 0 && !loadingAudio.current) {
-            loadAudioBlocks("/assets/soundblocks/kalimba_piano_scene.json");
+            loadAudioBlocks("/assets/soundblocks/atellier_zukunft_scene2.json");
           }
 
           audioInitialized.current = true;

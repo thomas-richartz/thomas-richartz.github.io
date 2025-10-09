@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { GalleryImage } from "../types";
+import { GalleryImage } from "../../types";
 import { animated, useSpring } from "react-spring";
 
 const MosaicImage: React.FC<{
