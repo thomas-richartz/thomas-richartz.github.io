@@ -41,11 +41,16 @@ interface MosaicGroup {
 const calculateImageSpans = (width: number, height: number): { colSpan: number; rowSpan: number } => {
   const ratio = width / height;
 
-  if (ratio > GRID.RATIOS.ULTRAWIDE) return GRID.TYPES.ULTRAWIDE;
-  if (ratio > GRID.RATIOS.WIDE) return GRID.TYPES.WIDE;
-  if (ratio < GRID.RATIOS.ULTRAHIGH) return GRID.TYPES.ULTRAHIGH;
-  if (ratio < GRID.RATIOS.HIGH) return GRID.TYPES.HIGH;
-  return GRID.TYPES.SQUARE;
+  // Ultra-wide: take full row (6x1)
+  if (ratio > 4.0) return { colSpan: 6, rowSpan: 1 };
+  // Wide: take 3 cells horizontally
+  if (ratio > 1.5) return { colSpan: 3, rowSpan: 1 };
+  // Ultra-tall: take full column (1x6)
+  if (ratio < 0.25) return { colSpan: 1, rowSpan: 6 };
+  // Tall: take 3 cells vertically
+  if (ratio < 0.67) return { colSpan: 1, rowSpan: 3 };
+  // Square or near-square
+  return { colSpan: 1, rowSpan: 1 };
 };
 
 const findAvailablePosition = (grid: boolean[][], colSpan: number, rowSpan: number): GridPlacement | null => {
@@ -75,13 +80,14 @@ const findAvailablePosition = (grid: boolean[][], colSpan: number, rowSpan: numb
 };
 
 const calculatePlacements = (images: GalleryImage[]): GridPlacement[] => {
+  // Always fill a 6x6 grid (36 cells), never overflow
   const grid = Array(GRID.SIZE)
     .fill(null)
     .map(() => Array(GRID.SIZE).fill(false));
 
-  const placements: GridPlacement[] = Array(images.length);
+  const placements: (GridPlacement | null)[] = Array(images.length).fill(null);
 
-  // Sort images by size (larger first)
+  // Sort images by area (largest first)
   const sortedImagesWithIndices = images
     .map((img, index) => ({ img, index }))
     .sort((a, b) => {
@@ -90,29 +96,28 @@ const calculatePlacements = (images: GalleryImage[]): GridPlacement[] => {
       return bSize - aSize;
     });
 
-  // Place images in sorted order
-  sortedImagesWithIndices.forEach(({ img, index }) => {
+  let placedCount = 0;
+  for (const { img, index } of sortedImagesWithIndices) {
     if (!img.width || !img.height) {
-      placements[index] = {
-        colStart: index % GRID.SIZE,
-        rowStart: Math.floor(index / GRID.SIZE),
-        colSpan: 1,
-        rowSpan: 1,
-      };
-      return;
+      // If no dimensions, fallback to 1x1
+      const placement = findAvailablePosition(grid, 1, 1);
+      if (placement) {
+        placements[index] = placement;
+        placedCount++;
+      }
+      continue;
     }
-
     const { colSpan, rowSpan } = calculateImageSpans(img.width, img.height);
     const placement = findAvailablePosition(grid, colSpan, rowSpan);
+    if (placement) {
+      placements[index] = placement;
+      placedCount++;
+    }
+    // If no placement found, skip this image (do not overflow grid)
+    if (placedCount >= GRID.SIZE * GRID.SIZE) break;
+  }
 
-    placements[index] = placement || {
-      colStart: index % GRID.SIZE,
-      rowStart: Math.floor(index / GRID.SIZE),
-      colSpan: 1,
-      rowSpan: 1,
-    };
-  });
-
+  // Only return placements for images that fit in the grid, others get null
   return placements;
 };
 
