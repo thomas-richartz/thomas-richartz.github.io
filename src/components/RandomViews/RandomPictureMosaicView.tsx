@@ -5,49 +5,131 @@ import type { GalleryImage } from "@/types";
 import { IntenseImage } from "@/components/IntenseImage";
 import styles from "./RandomPictureMosaicView.module.css";
 
+// Grid Configuration
+const GRID = {
+  SIZE: 6,
+  TYPES: {
+    SQUARE: { cols: 1, rows: 1 },
+    WIDE: { cols: 2, rows: 1 },
+    ULTRAWIDE: { cols: 6, rows: 1 },
+    HIGH: { cols: 1, rows: 2 },
+    ULTRAHIGH: { cols: 1, rows: 6 },
+  },
+  RATIOS: {
+    ULTRAWIDE: 5.0, // > 5:1 (full width)
+    WIDE: 1.5, // > 1.5:1
+    ULTRAHIGH: 0.2, // < 0.2:1 (full height)
+    HIGH: 0.67, // < 0.67:1
+  },
+  BATCH_SIZE: 36, // Full 6x6 grid
+} as const;
+
+// Types
+interface GridPlacement {
+  colStart: number;
+  rowStart: number;
+  colSpan: number;
+  rowSpan: number;
+}
+
 interface MosaicGroup {
   images: GalleryImage[];
-  isPortrait: boolean;
   startIndex: number;
 }
 
-const IMAGES_PER_GROUP = 4;
+// Helper Functions
+const calculateImageSpans = (width: number, height: number): { colSpan: number; rowSpan: number } => {
+  const ratio = width / height;
 
-function createMosaicGroups(images: GalleryImage[]): MosaicGroup[] {
-  const groups: MosaicGroup[] = [];
+  if (ratio > GRID.RATIOS.ULTRAWIDE) return GRID.TYPES.ULTRAWIDE;
+  if (ratio > GRID.RATIOS.WIDE) return GRID.TYPES.WIDE;
+  if (ratio < GRID.RATIOS.ULTRAHIGH) return GRID.TYPES.ULTRAHIGH;
+  if (ratio < GRID.RATIOS.HIGH) return GRID.TYPES.HIGH;
+  return GRID.TYPES.SQUARE;
+};
 
-  for (let i = 0; i < images.length; i += IMAGES_PER_GROUP) {
-    const groupImages = images.slice(i, i + IMAGES_PER_GROUP);
-    const isPortrait = i % 2 === 0;
+const findAvailablePosition = (grid: boolean[][], colSpan: number, rowSpan: number): GridPlacement | null => {
+  for (let row = 0; row <= GRID.SIZE - rowSpan; row++) {
+    for (let col = 0; col <= GRID.SIZE - colSpan; col++) {
+      let canPlace = true;
 
-    if (groupImages.length > 0) {
-      groups.push({
-        images: groupImages,
-        isPortrait,
-        startIndex: i,
-      });
+      // Check if space is available
+      for (let r = row; r < row + rowSpan && canPlace; r++) {
+        for (let c = col; c < col + colSpan && canPlace; c++) {
+          if (grid[r][c]) canPlace = false;
+        }
+      }
+
+      if (canPlace) {
+        // Mark space as occupied
+        for (let r = row; r < row + rowSpan; r++) {
+          for (let c = col; c < col + colSpan; c++) {
+            grid[r][c] = true;
+          }
+        }
+        return { colStart: col, rowStart: row, colSpan, rowSpan };
+      }
     }
   }
+  return null;
+};
 
-  return groups;
-}
+const calculatePlacements = (images: GalleryImage[]): GridPlacement[] => {
+  const grid = Array(GRID.SIZE)
+    .fill(null)
+    .map(() => Array(GRID.SIZE).fill(false));
+
+  const placements: GridPlacement[] = Array(images.length);
+
+  // Sort images by size (larger first)
+  const sortedImagesWithIndices = images
+    .map((img, index) => ({ img, index }))
+    .sort((a, b) => {
+      const aSize = (a.img.width || 1) * (a.img.height || 1);
+      const bSize = (b.img.width || 1) * (b.img.height || 1);
+      return bSize - aSize;
+    });
+
+  // Place images in sorted order
+  sortedImagesWithIndices.forEach(({ img, index }) => {
+    if (!img.width || !img.height) {
+      placements[index] = {
+        colStart: index % GRID.SIZE,
+        rowStart: Math.floor(index / GRID.SIZE),
+        colSpan: 1,
+        rowSpan: 1,
+      };
+      return;
+    }
+
+    const { colSpan, rowSpan } = calculateImageSpans(img.width, img.height);
+    const placement = findAvailablePosition(grid, colSpan, rowSpan);
+
+    placements[index] = placement || {
+      colStart: index % GRID.SIZE,
+      rowStart: Math.floor(index / GRID.SIZE),
+      colSpan: 1,
+      rowSpan: 1,
+    };
+  });
+
+  return placements;
+};
 
 const MosaicImage = ({
   image,
+  placement,
   onClick,
-  isFeature,
-  isLastInGroup,
-  groupLength,
+  onLoad,
 }: {
   image: GalleryImage;
+  placement: GridPlacement;
   onClick: () => void;
-  isFeature: boolean;
-  isLastInGroup: boolean;
-  groupLength: number;
+  onLoad: (image: GalleryImage, width: number, height: number) => void;
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const isMobile = window.innerWidth <= 768;
+  const imageRef = useRef<HTMLImageElement>(null);
 
   const overlaySpring = useSpring({
     opacity: isHovered ? 1 : 0,
@@ -62,12 +144,25 @@ const MosaicImage = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
-        gridColumn: isFeature && !isMobile ? "span 2" : isLastInGroup && groupLength % 2 === 1 ? "span 2" : "auto",
-        gridRow: isFeature && !isMobile ? "span 2" : "auto",
+        gridColumn: `${placement.colStart + 1} / span ${placement.colSpan}`,
+        gridRow: `${placement.rowStart + 1} / span ${placement.rowSpan}`,
       }}
     >
       <div className={`${styles.imageContainer} ${isLoaded ? styles.loaded : ""}`}>
-        <img src={`/assets/images/${image.filename}`} alt={image.title} loading="lazy" className={styles.mosaicImage} onLoad={() => setIsLoaded(true)} />
+        <img
+          ref={imageRef}
+          src={`/assets/images/${image.filename}`}
+          alt={image.title}
+          loading="lazy"
+          className={styles.mosaicImage}
+          onLoad={() => {
+            if (imageRef.current) {
+              const { naturalWidth, naturalHeight } = imageRef.current;
+              setIsLoaded(true);
+              onLoad(image, naturalWidth, naturalHeight);
+            }
+          }}
+        />
         <animated.div className={styles.overlay} style={overlaySpring}>
           <h3>{image.title}</h3>
           <span>{image.cat}</span>
@@ -78,42 +173,55 @@ const MosaicImage = ({
 };
 
 const MosaicGroup = ({ group, onImageClick }: { group: MosaicGroup; onImageClick: (index: number) => void }) => {
-  const isMobile = window.innerWidth <= 768;
-  const isWide = window.innerWidth >= 1440;
+  const [loadedImages, setLoadedImages] = useState<Record<string, { width: number; height: number }>>({});
+  const [placements, setPlacements] = useState<GridPlacement[]>(
+    group.images.map((_, idx) => ({
+      colStart: idx % GRID.SIZE,
+      rowStart: Math.floor(idx / GRID.SIZE),
+      colSpan: 1,
+      rowSpan: 1,
+    })),
+  );
 
-  const getGridTemplate = () => {
-    if (group.isPortrait) {
-      return {
-        columns: isMobile ? "1fr 1fr" : isWide ? "1fr 1fr 1fr 1fr" : "1fr 1fr 1fr",
-        rows: isMobile ? "repeat(3, 1fr)" : isWide ? "repeat(2, 1fr)" : "repeat(2, 1fr)",
-      };
-    }
-    return {
-      columns: isMobile ? "1fr 1fr" : isWide ? "repeat(4, 1fr)" : "repeat(3, 1fr)",
-      rows: isMobile ? "repeat(3, 1fr)" : "repeat(2, 1fr)",
-    };
+  // Recalculate placements whenever loadedImages or group.images changes
+  useEffect(() => {
+    const imagesWithDimensions = group.images.map((img) => ({
+      ...img,
+      width: loadedImages[img.filename]?.width,
+      height: loadedImages[img.filename]?.height,
+    }));
+
+    // For images with dimensions, calculate spans; fallback to 1x1 for others
+    const newPlacements = calculatePlacements(imagesWithDimensions);
+    setPlacements(
+      group.images.map(
+        (_, idx) =>
+          newPlacements[idx] || {
+            colStart: idx % GRID.SIZE,
+            rowStart: Math.floor(idx / GRID.SIZE),
+            colSpan: 1,
+            rowSpan: 1,
+          },
+      ),
+    );
+  }, [loadedImages, group.images]);
+
+  const handleImageLoad = (image: GalleryImage, width: number, height: number) => {
+    setLoadedImages((prev) => ({
+      ...prev,
+      [image.filename]: { width, height },
+    }));
   };
 
-  const { columns, rows } = getGridTemplate();
-
   return (
-    <div
-      className={styles.mosaicGroup}
-      style={{
-        gridTemplateColumns: columns,
-        gridTemplateRows: rows,
-      }}
-    >
-      {group.images.map((img, idx) => (
-        <MosaicImage
-          key={img.filename}
-          image={img}
-          onClick={() => onImageClick(group.startIndex + idx)}
-          isFeature={idx === 0}
-          isLastInGroup={idx === group.images.length - 1}
-          groupLength={group.images.length}
-        />
-      ))}
+    <div className={styles.mosaicGroup}>
+      {group.images.map((img, idx) => {
+        const placement = placements[idx];
+        if (!placement) return null; // Defensive: skip rendering if placement is not ready
+        return (
+          <MosaicImage key={img.filename} image={img} placement={placement} onClick={() => onImageClick(group.startIndex + idx)} onLoad={handleImageLoad} />
+        );
+      })}
     </div>
   );
 };
@@ -131,19 +239,24 @@ export function RandomPictureMosaicView({
   const loaderRef = useRef<HTMLDivElement>(null);
   const [showIndex, setShowIndex] = useState<number | null>(null);
 
-  const mosaicGroups = useMemo(() => createMosaicGroups(images), [images]);
+  const mosaicGroups = useMemo(
+    () =>
+      Array.from({ length: Math.ceil(images.length / GRID.BATCH_SIZE) }, (_, i) => ({
+        images: images.slice(i * GRID.BATCH_SIZE, (i + 1) * GRID.BATCH_SIZE),
+        startIndex: i * GRID.BATCH_SIZE,
+      })),
+    [images],
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         if (entry?.isIntersecting) {
-          setImages((prev) => [...prev, ...loadRandomImages(IMAGES_PER_GROUP * 2)]);
+          setImages((prev) => [...prev, ...loadRandomImages(GRID.BATCH_SIZE)]);
         }
       },
-      {
-        rootMargin: "200px",
-      },
+      { rootMargin: "200px" },
     );
 
     if (loaderRef.current) {

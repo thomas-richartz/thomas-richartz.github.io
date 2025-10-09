@@ -5,6 +5,8 @@ export type GalleryImage = {
   cat: string;
   range: number[];
   keyPiece?: boolean = false;
+  width?: number;
+  height?: number;
 };
 
 export interface Interpretation {
