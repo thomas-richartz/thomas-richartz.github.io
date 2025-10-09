@@ -79,54 +79,45 @@ const findAvailablePosition = (grid: boolean[][], colSpan: number, rowSpan: numb
   return null;
 };
 
-const calculatePlacements = (images: GalleryImage[]): GridPlacement[] => {
-  // Always fill a 6x6 grid (36 cells), never overflow
+/**
+ * Returns an array of { image, placement } for images that fit in the grid.
+ * Only as many images as will fit in the grid (based on their spans) are returned.
+ */
+const calculatePlacements = (images: GalleryImage[]): { image: GalleryImage; placement: GridPlacement }[] => {
   const grid = Array(GRID.SIZE)
     .fill(null)
     .map(() => Array(GRID.SIZE).fill(false));
 
-  const placements: (GridPlacement | null)[] = Array(images.length).fill(null);
-
-  // Sort images by area (largest first)
+  // Sort images by max(colSpan, rowSpan) first, then by area (largest first)
   const sortedImagesWithIndices = images
-    .map((img, index) => ({ img, index }))
+    .map((img, index) => {
+      const width = img.width || 1;
+      const height = img.height || 1;
+      const { colSpan, rowSpan } = calculateImageSpans(width, height);
+      return { img, index, colSpan, rowSpan };
+    })
     .sort((a, b) => {
-      const aSize = (a.img.width || 1) * (a.img.height || 1);
-      const bSize = (b.img.width || 1) * (b.img.height || 1);
-      return bSize - aSize;
+      const aMaxSpan = Math.max(a.colSpan, a.rowSpan);
+      const bMaxSpan = Math.max(b.colSpan, b.rowSpan);
+      if (bMaxSpan !== aMaxSpan) return bMaxSpan - aMaxSpan;
+      const aArea = (a.img.width || 1) * (a.img.height || 1);
+      const bArea = (b.img.width || 1) * (b.img.height || 1);
+      return bArea - aArea;
     });
 
-  let placedCount = 0;
-  for (const { img, index } of sortedImagesWithIndices) {
-    if (!img.width || !img.height) {
-      // If no dimensions, fallback to 1x1
-      const placement = findAvailablePosition(grid, 1, 1);
-      if (placement) {
-        placements[index] = placement;
-        placedCount++;
-      }
-      continue;
-    }
-    const { colSpan, rowSpan } = calculateImageSpans(img.width, img.height);
+  const result: { image: GalleryImage; placement: GridPlacement }[] = [];
+
+  for (const { img, colSpan, rowSpan } of sortedImagesWithIndices) {
     const placement = findAvailablePosition(grid, colSpan, rowSpan);
     if (placement) {
-      placements[index] = placement;
-      placedCount++;
+      result.push({ image: img, placement });
     }
-    // If no placement found, skip this image (do not overflow grid)
-    if (placedCount >= GRID.SIZE * GRID.SIZE) break;
+    // Stop if grid is full
+    const usedCells = grid.flat().filter(Boolean).length;
+    if (usedCells >= GRID.SIZE * GRID.SIZE) break;
   }
 
-  // Always return GridPlacement[] by replacing nulls with fallback 1x1 placements
-  return placements.map(
-    (placement, idx) =>
-      placement || {
-        colStart: idx % GRID.SIZE,
-        rowStart: Math.floor(idx / GRID.SIZE),
-        colSpan: 1,
-        rowSpan: 1,
-      },
-  );
+  return result;
 };
 
 const MosaicImage = ({
@@ -185,16 +176,9 @@ const MosaicImage = ({
   );
 };
 
-const MosaicGroup = ({ group, onImageClick }: { group: MosaicGroup; onImageClick: (index: number) => void }) => {
+const MosaicGroup = ({ group, onImageClick }: { group: MosaicGroup; onImageClick: (filename: string) => void }) => {
   const [loadedImages, setLoadedImages] = useState<Record<string, { width: number; height: number }>>({});
-  const [placements, setPlacements] = useState<GridPlacement[]>(
-    group.images.map((_, idx) => ({
-      colStart: idx % GRID.SIZE,
-      rowStart: Math.floor(idx / GRID.SIZE),
-      colSpan: 1,
-      rowSpan: 1,
-    })),
-  );
+  const [placedImages, setPlacedImages] = useState<{ image: GalleryImage; placement: GridPlacement }[]>([]);
 
   // Recalculate placements whenever loadedImages or group.images changes
   useEffect(() => {
@@ -204,19 +188,9 @@ const MosaicGroup = ({ group, onImageClick }: { group: MosaicGroup; onImageClick
       height: loadedImages[img.filename]?.height,
     }));
 
-    // For images with dimensions, calculate spans; fallback to 1x1 for others
-    const newPlacements = calculatePlacements(imagesWithDimensions);
-    setPlacements(
-      group.images.map(
-        (_, idx) =>
-          newPlacements[idx] || {
-            colStart: idx % GRID.SIZE,
-            rowStart: Math.floor(idx / GRID.SIZE),
-            colSpan: 1,
-            rowSpan: 1,
-          },
-      ),
-    );
+    // Only as many images as will fit in the grid will be placed
+    const newPlacedImages = calculatePlacements(imagesWithDimensions);
+    setPlacedImages(newPlacedImages);
   }, [loadedImages, group.images]);
 
   const handleImageLoad = (image: GalleryImage, width: number, height: number) => {
@@ -228,13 +202,9 @@ const MosaicGroup = ({ group, onImageClick }: { group: MosaicGroup; onImageClick
 
   return (
     <div className={styles.mosaicGroup}>
-      {group.images.map((img, idx) => {
-        const placement = placements[idx];
-        if (!placement) return null; // Defensive: skip rendering if placement is not ready
-        return (
-          <MosaicImage key={img.filename} image={img} placement={placement} onClick={() => onImageClick(group.startIndex + idx)} onLoad={handleImageLoad} />
-        );
-      })}
+      {placedImages.map(({ image, placement }) => (
+        <MosaicImage key={image.filename} image={image} placement={placement} onClick={() => onImageClick(image.filename)} onLoad={handleImageLoad} />
+      ))}
     </div>
   );
 };
@@ -250,7 +220,7 @@ export function RandomPictureMosaicView({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const loaderRef = useRef<HTMLDivElement>(null);
-  const [showIndex, setShowIndex] = useState<number | null>(null);
+  const [showImageId, setShowImageId] = useState<string | null>(null);
 
   const mosaicGroups = useMemo(
     () =>
@@ -281,34 +251,47 @@ export function RandomPictureMosaicView({
 
   const bindGesture = useGesture({
     onDrag: ({ direction: [dx] }) => {
-      if (showIndex === null) return;
+      if (showImageId === null) return;
+      const currentIndex = images.findIndex((img) => img.filename === showImageId);
+      if (currentIndex === -1) return;
       if (dx > 0) {
-        setShowIndex((prev) => (prev === null || prev <= 0 ? images.length - 1 : prev - 1));
+        const prevIdx = currentIndex <= 0 ? images.length - 1 : currentIndex - 1;
+        setShowImageId(images[prevIdx].filename);
       }
       if (dx < 0) {
-        setShowIndex((prev) => (prev === null || prev >= images.length - 1 ? 0 : prev + 1));
+        const nextIdx = currentIndex >= images.length - 1 ? 0 : currentIndex + 1;
+        setShowImageId(images[nextIdx].filename);
       }
     },
   });
 
+  const currentIndex = showImageId !== null ? images.findIndex((img) => img.filename === showImageId) : -1;
+  const currentImage = currentIndex !== -1 ? images[currentIndex] : null;
+
   return (
     <div ref={containerRef} className={styles.mosaicContainer}>
       {mosaicGroups.map((group) => (
-        <MosaicGroup key={`group-${group.startIndex}`} group={group} onImageClick={setShowIndex} />
+        <MosaicGroup key={`group-${group.startIndex}`} group={group} onImageClick={setShowImageId} />
       ))}
 
       <div ref={loaderRef} className={styles.loader} />
 
-      {showIndex !== null && (
+      {showImageId !== null && currentImage && (
         <div {...bindGesture()} tabIndex={-1}>
           <IntenseImage
-            alt={images[showIndex].title}
-            title={images[showIndex].title}
-            category={images[showIndex].cat}
-            src={`assets/images/${images[showIndex].filename}`}
-            nextImage={() => setShowIndex((prev) => (prev === null || prev >= images.length - 1 ? 0 : prev + 1))}
-            prevImage={() => setShowIndex((prev) => (prev === null || prev <= 0 ? images.length - 1 : prev - 1))}
-            onClose={() => setShowIndex(null)}
+            alt={currentImage.title}
+            title={currentImage.title}
+            category={currentImage.cat}
+            src={`assets/images/${currentImage.filename}`}
+            nextImage={() => {
+              const nextIdx = currentIndex >= images.length - 1 ? 0 : currentIndex + 1;
+              setShowImageId(images[nextIdx].filename);
+            }}
+            prevImage={() => {
+              const prevIdx = currentIndex <= 0 ? images.length - 1 : currentIndex - 1;
+              setShowImageId(images[prevIdx].filename);
+            }}
+            onClose={() => setShowImageId(null)}
             isOpen
           />
         </div>
