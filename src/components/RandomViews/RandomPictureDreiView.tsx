@@ -72,13 +72,21 @@ const ParallaxCube = ({
   //   meshRef.current.rotation.z = 0;
   // });
 
+
   // Update dimensions when texture loads
   useEffect(() => {
-    if (texture.map?.image) {
-      const { width, height } = texture.map.image;
-      setDimensions([width, height]);
+    const img = texture.map?.image as
+      | { width: number; height: number }
+      | undefined;
+
+    if (img?.width && img?.height) {
+      setDimensions([img.width, img.height]);
     }
   }, [texture]);
+
+
+
+
 
   const canvasDepth = 0.05;
   const baseWidth = 1.5;
