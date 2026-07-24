@@ -5,9 +5,13 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/app
-      - /app/node_modules
+      - node_modules:/app/node_modules
     ports:
-      - "3000:3000" # Map dev server port
+      - "3000:3000"
     stdin_open: true
     tty: true
+
+volumes:
+  node_modules:
+
 

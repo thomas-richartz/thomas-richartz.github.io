@@ -1,11 +1,14 @@
-FROM node:23
+FROM node:24-bookworm-slim
 
 WORKDIR /app
 
 # Copy only package.json and package-lock.json first to leverage Docker caching
-COPY package*.json ./
+COPY package.json ./
 
 # Install dependencies
+# RUN npm ci
+# RUN npm install -D vite @vitejs/plugin-react
+
 RUN npm install
 
 # Copy the rest of your application code into the container
